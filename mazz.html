@@ -341,24 +341,32 @@
 
     <section class="hero">
         <h1>Catálogo de Cursos de Excelência</h1>
-        <p>Explore nossas formações em Educação, Engenharia, Inteligência Artificial, SST e Tecnologia. Capacitação técnica e profissional direto de Cuiabá-MT.</p>
+        <p>Explore nossas formações em Educação, BNCC, Humanas, Engenharia, IA, SST e Tecnologia. Capacitação técnica e profissional direto de Cuiabá-MT.</p>
     </section>
 
     <div class="controls-container">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Busque por nome do curso ou área (ex: Python, NR-35, BIM)...">
+            <input type="text" id="searchInput" placeholder="Busque por nome do curso ou área (ex: História, Geografia, BNCC, Python)...">
         </div>
 
         <div class="category-tabs" id="categoryTabs">
-            <button class="tab-btn active" onclick="filterCategory('all')">Todos (258)</button>
-            <button class="tab-btn" onclick="filterCategory('Educação')">Educação (50)</button>
-            <button class="tab-btn" onclick="filterCategory('Engenharia Ambiental')">Eng. Ambiental (20)</button>
-            <button class="tab-btn" onclick="filterCategory('Engenharia Civil')">Eng. Civil (30)</button>
-            <button class="tab-btn" onclick="filterCategory('IA nas Engenharias')">IA nas Engenharias (50)</button>
-            <button class="tab-btn" onclick="filterCategory('NR-')">Normas Regulamentadoras (38)</button>
-            <button class="tab-btn" onclick="filterCategory('SST')">SST (20)</button>
-            <button class="tab-btn" onclick="filterCategory('Tecnologia')">Tecnologia (50)</button>
+            <button class="tab-btn active" onclick="filterCategory('all', event)">Todos (338)</button>
+            <button class="tab-btn" onclick="filterCategory('Educação', event)">Educação (50)</button>
+            <button class="tab-btn" onclick="filterCategory('BNCC', event)">BNCC (10)</button>
+            <button class="tab-btn" onclick="filterCategory('História', event)">História (10)</button>
+            <button class="tab-btn" onclick="filterCategory('Geografia', event)">Geografia (10)</button>
+            <button class="tab-btn" onclick="filterCategory('Linguagens', event)">Linguagens (10)</button>
+            <button class="tab-btn" onclick="filterCategory('Matemática', event)">Matemática (10)</button>
+            <button class="tab-btn" onclick="filterCategory('Ciências da Natureza', event)">Ciências da Natureza (10)</button>
+            <button class="tab-btn" onclick="filterCategory('Ciências Humanas', event)">Ciências Humanas (10)</button>
+            <button class="tab-btn" onclick="filterCategory('Ensino Religioso', event)">Ensino Religioso (10)</button>
+            <button class="tab-btn" onclick="filterCategory('Engenharia Ambiental', event)">Eng. Ambiental (20)</button>
+            <button class="tab-btn" onclick="filterCategory('Engenharia Civil', event)">Eng. Civil (30)</button>
+            <button class="tab-btn" onclick="filterCategory('IA nas Engenharias', event)">IA nas Engenharias (50)</button>
+            <button class="tab-btn" onclick="filterCategory('NR-', event)">Normas Regulamentadoras (38)</button>
+            <button class="tab-btn" onclick="filterCategory('SST', event)">SST (20)</button>
+            <button class="tab-btn" onclick="filterCategory('Tecnologia', event)">Tecnologia (50)</button>
         </div>
     </div>
 
@@ -373,6 +381,7 @@
 
     <script>
         const rawCoursesData = [
+            // 1 a 50 - EDUCAÇÃO
             [1, "Educação: Alfabetização e Letramento na Educação Infantil", "40h"],
             [2, "Educação: Aprendizagem Baseada em Problemas (PBL)", "40h"],
             [3, "Educação: Avaliação da Aprendizagem e Formativa", "40h"],
@@ -424,7 +433,7 @@
             [49, "Educação: Tecnologias Educacionais e Plataformas Virtuais", "40h"],
             [50, "Educação: Tutoria e Mentoria em Ambientes EAD", "40h"],
 
-            // ENGENHARIA AMBIENTAL
+            // 51 a 70 - ENGENHARIA AMBIENTAL
             [51, "Engenharia Ambiental: Auditoria e Pericia Ambiental", "40h"],
             [52, "Engenharia Ambiental: Bioengenharia de Solos", "40h"],
             [53, "Engenharia Ambiental: Drenagem Sustentável e Soluções Baseadas na Natureza", "40h"],
@@ -446,7 +455,7 @@
             [69, "Engenharia Ambiental: Tratamento de Águas Residuárias e Esgoto", "80h"],
             [70, "Engenharia Ambiental: Valoração Econômica Ambiental", "40h"],
 
-            // ENGENHARIA CIVIL
+            // 71 a 100 - ENGENHARIA CIVIL
             [71, "Engenharia Civil: Acústica Arquitetônica e Edificações", "40h"],
             [72, "Engenharia Civil: Avaliação Imobiliária pela NBR 14653", "40h"],
             [73, "Engenharia Civil: Compatibilização de Projetos com Navisworks", "40h"],
@@ -478,7 +487,7 @@
             [99, "Engenharia Civil: Terraplenagem e Contenção de Encostas", "40h"],
             [100, "Engenharia Civil: Topografia e Agrimensura Aplicada", "40h"],
 
-            // IA NAS ENGENHARIAS
+            // 101 a 150 - IA NAS ENGENHARIAS
             [101, "IA nas Engenharias: Algoritmos Genéticos para Otimização de Projetos", "60h"],
             [102, "IA nas Engenharias: Análise de Sobrevivência e Confiabilidade de Ativos", "40h"],
             [103, "IA nas Engenharias: Automação CAD com Python e IA Generativa", "60h"],
@@ -530,7 +539,7 @@
             [149, "IA nas Engenharias: Visão Computacional para Percepção em Veículos Autônomos", "80h"],
             [150, "IA nas Engenharias: Vision Transformers em Diagnóstico Pericial de Fachadas", "60h"],
 
-            // NORMAS REGULAMENTADORAS (NRs)
+            // 151 a 188 - NORMAS REGULAMENTADORAS (NRs)
             [151, "NR-01: Disposições Gerais e Gerenciamento de Riscos Ocupacionais (PGR)", "40h"],
             [152, "NR-02: Inspeção Prévia", "40h"],
             [153, "NR-03: Embargo e Interdição", "40h"],
@@ -570,7 +579,7 @@
             [187, "NR-36: Segurança no Abate e Processamento de Carnes", "40h"],
             [188, "NR-37: Segurança em Plataformas de Petróleo", "40h"],
 
-            // SAÚDE E SEGURANÇA DO TRABALHO (SST)
+            // 189 a 208 - SAÚDE E SEGURANÇA DO TRABALHO (SST)
             [189, "SST: Análise Ergonômica do Trabalho (AET Avançada)", "40h"],
             [190, "SST: Auditoria Interna ISO 45001 (Saúde e Segurança)", "40h"],
             [191, "SST: Biossegurança em Laboratórios e Ambientes Criticos", "40h"],
@@ -592,7 +601,7 @@
             [207, "SST: Segurança em Rigging e Plano de Içamento", "40h"],
             [208, "SST: Treinador e Instrutor de Segurança do Trabalho", "60h"],
 
-            // TECNOLOGIA
+            // 209 a 258 - TECNOLOGIA
             [209, "Tecnologia: Arquitetura de Microsserviços", "60h"],
             [210, "Tecnologia: Arquitetura de Nuvem AWS (Amazon Web Services)", "80h"],
             [211, "Tecnologia: Automação Rpa com UiPath", "40h"],
@@ -642,7 +651,103 @@
             [255, "Tecnologia: Unreal Engine 5 para Projetos Interativos", "80h"],
             [256, "Tecnologia: Visualização de Dados com Tableau", "40h"],
             [257, "Tecnologia: Vue.js 3 e Nuxt.js", "60h"],
-            [258, "Tecnologia: Web Scraping e Mineração de Dados Web", "40h"]
+            [258, "Tecnologia: Web Scraping e Mineração de Dados Web", "40h"],
+
+            // 259 a 268 - BNCC (EDUCAÇÃO INFANTIL)
+            [259, "BNCC: Linguagem e Expressão Infantil", "40h"],
+            [260, "BNCC: Corpo, Gestos e Movimentos na Prática", "40h"],
+            [261, "BNCC: Traços, Sons, Cores e Formas", "40h"],
+            [262, "BNCC: Escuta, Fala, Pensamento e Imaginação", "40h"],
+            [263, "BNCC: Espaços, Tempos, Quantidades e Transformações", "40h"],
+            [264, "BNCC: Desenvolvimento Socioemocional Infantil", "40h"],
+            [265, "BNCC: Neurociência e Primeira Infância", "40h"],
+            [266, "BNCC: Brincadeiras e Ludicidade na Educação Infantil", "40h"],
+            [267, "BNCC: Práticas de Inclusão na Educação Infantil", "40h"],
+            [268, "BNCC: Avaliação Qualitativa no Ensino Infantil", "40h"],
+
+            // 269 a 278 - LINGUAGENS E SUAS TECNOLOGIAS
+            [269, "Linguagens: Leitura Critica e Produção Textual", "40h"],
+            [270, "Linguagens: Gramática Funcional e Análise Linguística", "40h"],
+            [271, "Linguagens: Cultura Digital e Letramento Midiático", "40h"],
+            [272, "Linguagens: Literatura Brasileira e Contemporânea", "40h"],
+            [273, "Linguagens: Inglês Instrumental e Comunicação Global", "40h"],
+            [274, "Linguagens: Espanhol para a Comunicação Intercultural", "40h"],
+            [275, "Linguagens: Artes Visuais e Performance na Escola", "40h"],
+            [276, "Linguagens: Educação Física e Saúde Escolar", "40h"],
+            [277, "Linguagens: Comunicação Não-Verbal e Linguagem Corporal", "40h"],
+            [278, "Linguagens: Multiletramentos e Novas Tecnologias", "40h"],
+
+            // 279 a 288 - MATEMÁTICA E SUAS TECNOLOGIAS
+            [279, "Matemática: Resolução de Problemas Matemáticos", "40h"],
+            [280, "Matemática: Álgebra e Pensamento Computacional", "40h"],
+            [281, "Matemática: Estatística e Análise de Dados", "40h"],
+            [282, "Matemática: Geometria Espacial e Plana", "40h"],
+            [283, "Matemática: Matemática Financeira para Jovens", "40h"],
+            [284, "Matemática: Modelagem Matemática na Prática", "40h"],
+            [285, "Matemática: Jogos e Gamificação no Ensino da Matemática", "40h"],
+            [286, "Matemática: História da Matemática", "40h"],
+            [287, "Matemática: Cálculo e Funções no Cotidiano", "40h"],
+            [288, "Matemática: Tecnologia no Ensino da Matemática", "40h"],
+
+            // 289 a 298 - CIÊNCIAS DA NATUREZA E SUAS TECNOLOGIAS
+            [289, "Ciências da Natureza: Ecologia e Sustentabilidade", "40h"],
+            [290, "Ciências da Natureza: Física do Cotidiano", "40h"],
+            [291, "Ciências da Natureza: Química Geral e Ambiental", "40h"],
+            [292, "Ciências da Natureza: Biologia Celular e Genética", "40h"],
+            [293, "Ciências da Natureza: Astronomia e Ciências Espaciais", "40h"],
+            [294, "Ciências da Natureza: Energias Renováveis e Transição Energética", "40h"],
+            [295, "Ciências da Natureza: Saúde e Biologia Humana", "40h"],
+            [296, "Ciências da Natureza: Práticas de Laboratório e Método Científico", "40h"],
+            [297, "Ciências da Natureza: Geologia e Dinâmica da Terra", "40h"],
+            [298, "Ciências da Natureza: Biotecnologia e Ética Científica", "40h"],
+
+            // 299 a 308 - CIÊNCIAS HUMANAS E SOCIAIS APLICADAS
+            [299, "Ciências Humanas: História do Brasil e do Mundo", "40h"],
+            [300, "Ciências Humanas: Geografia Geral e Geopolítica", "40h"],
+            [301, "Ciências Humanas: Sociologia do Mundo Contemporâneo", "40h"],
+            [302, "Ciências Humanas: Filosofia e Ética na Sociedade", "40h"],
+            [303, "Ciências Humanas: Direitos Humanos e Cidadania Ativa", "40h"],
+            [304, "Ciências Humanas: Educação Patrimonial e Memória", "40h"],
+            [305, "Ciências Humanas: Estudos Étnico-Raciais e Diversidade", "40h"],
+            [306, "Ciências Humanas: Cartografia e Sensoriamento Remoto", "40h"],
+            [307, "Ciências Humanas: História da América Latina", "40h"],
+            [308, "Ciências Humanas: Economia Politica e Sociedade", "40h"],
+
+            // 309 a 318 - ENSINO RELIGIOSO
+            [309, "Ensino Religioso: Diversidade Cultural e Tradições Religiosas", "40h"],
+            [310, "Ensino Religioso: Ética e Valores Humanos", "40h"],
+            [311, "Ensino Religioso: Mitos, Ritos e Símbolos das Religiões", "40h"],
+            [312, "Ensino Religioso: Textos Sagrados e Suas Interpretações", "40h"],
+            [313, "Ensino Religioso: Cultura de Paz e Diálogo Inter-religioso", "40h"],
+            [314, "Ensino Religioso: A Filosofia das Religiões", "40h"],
+            [315, "Ensino Religioso: Religião e Sociedade na História", "40h"],
+            [316, "Ensino Religioso: A ARTE e a Arquitetura Sacra", "40h"],
+            [317, "Ensino Religioso: Liberdade de Crença e Legislação", "40h"],
+            [318, "Ensino Religioso: Espiritualidade e Saúde Mental", "40h"],
+
+            // 319 a 328 - HISTÓRIA
+            [319, "História: História Antiga e as Primeiras Civilizações", "40h"],
+            [320, "História: Grécia e Roma Antiga", "40h"],
+            [321, "História: História Medieval e Feudalismo", "40h"],
+            [322, "História: História Moderna e Grandes Navegações", "40h"],
+            [323, "História: História Contemporânea e Século XX", "40h"],
+            [324, "História: História do Brasil Colonial", "40h"],
+            [325, "História: História do Brasil Império e República", "40h"],
+            [326, "História: História da África e Diáspora Africana", "40h"],
+            [327, "História: História da América Latina", "40h"],
+            [328, "História: Patrimônio Histórico e Historiografia", "40h"],
+
+            // 329 a 338 - GEOGRAFIA
+            [329, "Geografia: Geografia Física e Geomorfologia", "40h"],
+            [330, "Geografia: Climatologia e Meteorologia", "40h"],
+            [331, "Geografia: Hidrografia e Gestão de Bacias Hidrográficas", "40h"],
+            [332, "Geografia: Biogeografia e Domínios Morfoclimáticos", "40h"],
+            [333, "Geografia: Geografia Humana e Demografia", "40h"],
+            [334, "Geografia: Geografia Urbana e Metopolização", "40h"],
+            [335, "Geografia: Geografia Agrária e Uso da Terra", "40h"],
+            [336, "Geografia: Geopolítica Contemporânea", "40h"],
+            [337, "Geografia: Cartografia e Leitura de Mapas", "40h"],
+            [338, "Geografia: Geotecnologias e Sensoriamento Remoto", "40h"]
         ];
 
         // Mapeamento e estruturação dos dados
@@ -702,10 +807,12 @@
             });
         }
 
-        function filterCategory(cat) {
+        function filterCategory(cat, e) {
             activeCategory = cat;
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            if(e && e.currentTarget) {
+                e.currentTarget.classList.add('active');
+            }
             renderCourses(document.getElementById('searchInput').value);
         }
 
