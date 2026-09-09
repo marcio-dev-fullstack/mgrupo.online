@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAZZ | Catálogo Completo de Cursos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* HEADER & LOGO MAZZ */
+        header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-mazz {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .logo-text span {
+            color: var(--accent-green);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .location-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .btn-aluno {
+            background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-aluno:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(59, 130, 246, 0.5);
+            color: #fff;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 3.5rem 1rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* CONTROLES E BUSCA */
+        .controls-container {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scroll-behavior: smooth;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--accent-blue);
+            color: #fff;
+            border-color: var(--accent-blue);
+        }
+
+        /* GRID DE CURSOS */
+        .courses-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .course-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-num {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .course-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .course-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .course-duration {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-enroll {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-enroll:hover {
+            background: var(--accent-green);
+            color: #fff;
+        }
+
+        /* FLOATING WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+
+        .whatsapp-float i {
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            header { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .header-actions { width: 100%; justify-content: space-between; }
+            .whatsapp-float span { display: none; }
+            .whatsapp-float { padding: 15px; border-radius: 50%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo-mazz">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="logo-text">MAZZ<span>.</span></div>
+        </a>
+        <div class="header-actions">
+            <div class="location-badge"><i class="fa-solid fa-location-dot"></i> Cuiabá - MT</div>
+            <a href="https://marcio-dev-fullstack.github.io/Web-Aluno/#/admin" target="_blank" class="btn-aluno">
+                <i class="fa-solid fa-user-gear"></i> Área do Aluno / Admin
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Catálogo de Cursos de Excelência</h1>
+        <p>Explore nossas formações em Educação, Engenharia, Inteligência Artificial, SST e Tecnologia. Capacitação técnica e profissional direto de Cuiabá-MT.</p>
+    </section>
+
+    <div class="controls-container">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Busque por nome do curso ou área (ex: Python, NR-35, BIM)...">
+        </div>
+
+        <div class="category-tabs" id="categoryTabs">
+            <button class="tab-btn active" onclick="filterCategory('all')">Todos (258)</button>
+            <button class="tab-btn" onclick="filterCategory('Educação')">Educação (50)</button>
+            <button class="tab-btn" onclick="filterCategory('Engenharia Ambiental')">Eng. Ambiental (20)</button>
+            <button class="tab-btn" onclick="filterCategory('Engenharia Civil')">Eng. Civil (30)</button>
+            <button class="tab-btn" onclick="filterCategory('IA nas Engenharias')">IA nas Engenharias (50)</button>
+            <button class="tab-btn" onclick="filterCategory('NR-')">Normas Regulamentadoras (38)</button>
+            <button class="tab-btn" onclick="filterCategory('SST')">SST (20)</button>
+            <button class="tab-btn" onclick="filterCategory('Tecnologia')">Tecnologia (50)</button>
+        </div>
+    </div>
+
+    <main class="courses-container" id="coursesGrid">
+        <!-- Cursos carregados via JavaScript -->
+    </main>
+
+    <a href="https://wa.me/5565996108749?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20cursos%20da%20MAZZ." class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Fale Conosco</span>
+    </a>
+
+    <script>
+        const rawCoursesData = [
+            [1, "Educação: Alfabetização e Letramento na Educação Infantil", "40h"],
+            [2, "Educação: Aprendizagem Baseada em Problemas (PBL)", "40h"],
+            [3, "Educação: Avaliação da Aprendizagem e Formativa", "40h"],
+            [4, "Educação: BNCC na Prática Pedagógica", "40h"],
+            [5, "Educação: Comunicação Não Violenta na Escola", "40h"],
+            [6, "Educação: Design Instrucional para Cursos EAD", "60h"],
+            [7, "Educação: Didática do Ensino Superior", "60h"],
+            [8, "Educação: Dificuldades e Transtornos de Aprendizagem", "40h"],
+            [9, "Educação: Direitos Humanos e Cidadania na Escola", "40h"],
+            [10, "Educação: Docência no Ensino Técnico e Profissionalizante", "40h"],
+            [11, "Educação: Educação Ambiental e Projetos Interdisciplinares", "40h"],
+            [12, "Educação: Educação Anti-racista e Étnico-Racial", "40h"],
+            [13, "Educação: Educação Bilingue: Abordagens e Metodologias", "40h"],
+            [14, "Educação: Educação Corporativa e T&D", "40h"],
+            [15, "Educação: Educação de Jovens e Adultos (EJA)", "40h"],
+            [16, "Educação: Educação Especial e Inclusiva", "60h"],
+            [17, "Educação: Educação Financeira nas Escolas", "40h"],
+            [18, "Educação: Educação Infantil: Desenvolvimento e Ludicidade", "40h"],
+            [19, "Educação: Educação no Campo e Comunidades Tradicionais", "40h"],
+            [20, "Educação: Elaboração de Itinerários Formativos para o Novo Ensino Médio", "40h"],
+            [21, "Educação: Elaboração de Material Didático Impresso e Digital", "40h"],
+            [22, "Educação: Ensino de História e Cultura Afro-Brasileira e Indígena", "40h"],
+            [23, "Educação: Ensino Híbrido e Aprendizagem Ativa", "40h"],
+            [24, "Educação: Ferramentas Digitais e Google Classroom para Professores", "40h"],
+            [25, "Educação: Gamificação na Educação", "40h"],
+            [26, "Educação: Gestão Democrática e Participativa na Escola", "40h"],
+            [27, "Educação: Gestão e Coordenação Pedagógica", "60h"],
+            [28, "Educação: Gestão Escolar e Liderança Educacional", "60h"],
+            [29, "Educação: Inclusão do Aluno com Autismo (TEA) no Ambiente Escolar", "60h"],
+            [30, "Educação: Inteligência Artificial Aplicada à Educação", "40h"],
+            [31, "Educação: Jogos, Brincadeiras e Recreação Escolar", "40h"],
+            [32, "Educação: Legislação Educacional e LDB Atualizada", "40h"],
+            [33, "Educação: Libras Básica para Educadores", "60h"],
+            [34, "Educação: Literatura Infantil e Contação de Histórias", "40h"],
+            [35, "Educação: Mediação de Conflitos no Ambiente Escolar", "40h"],
+            [36, "Educação: Metodologia da Pesquisa Científica e Orientação de TCC", "40h"],
+            [37, "Educação: Metodologias Ativas de Aprendizagem", "40h"],
+            [38, "Educação: Neuroeducação e Processos de Aprendizagem", "60h"],
+            [39, "Educação: Neuropsicopedagogia Clínica e Institucional", "60h"],
+            [40, "Educação: Orientação Educacional e Vocacional", "40h"],
+            [41, "Educação: Pedagogia Hospitalar e Domiciliar", "40h"],
+            [42, "Educação: Pedagogia Social e Projetos Comunitários", "40h"],
+            [43, "Educação: Práticas de Leitura e Produção de Texto", "40h"],
+            [44, "Educação: Psicologia da Educação e do Desenvolvimento Infantil", "40h"],
+            [45, "Educação: Psychopedagogia Institucional", "60h"],
+            [46, "Educação: STEM/STEAM na Educação (Ciência, Tecnologia, Engenharia, Artes e Matemática)", "40h"],
+            [47, "Educação: Supervisionamento Escolar e Inspeção Escolar", "40h"],
+            [48, "Educação: Tecnologias Assistivas na Educação Inclusiva", "40h"],
+            [49, "Educação: Tecnologias Educacionais e Plataformas Virtuais", "40h"],
+            [50, "Educação: Tutoria e Mentoria em Ambientes EAD", "40h"],
+
+            // ENGENHARIA AMBIENTAL
+            [51, "Engenharia Ambiental: Auditoria e Pericia Ambiental", "40h"],
+            [52, "Engenharia Ambiental: Bioengenharia de Solos", "40h"],
+            [53, "Engenharia Ambiental: Drenagem Sustentável e Soluções Baseadas na Natureza", "40h"],
+            [54, "Engenharia Ambiental: Ecotoxicología e Análise de Risco", "40h"],
+            [55, "Engenharia Ambiental: Energias Renováveis e Transição Energética", "40h"],
+            [56, "Engenharia Ambiental: Geoprocessamento e QGIS Aplicado", "60h"],
+            [57, "Engenharia Ambiental: Gestão Integrada de Residuos Sólidos (PGRS)", "40h"],
+            [58, "Engenharia Ambiental: Gestão de Recursos Hidricos e Bacias", "40h"],
+            [59, "Engenharia Ambiental: Gestão de Riscos e Desastres Naturais", "40h"],
+            [60, "Engenharia Ambiental: Hidrologia e Modelagem Hidráulica (HEC-RAS)", "60h"],
+            [61, "Engenharia Ambiental: Legislação Ambiental e Crimes Ambientais", "40h"],
+            [62, "Engenharia Ambiental: Licenciamento e Estudo de Impacto (EIA/RIMA)", "60h"],
+            [63, "Engenharia Ambiental: Monitoramento e Qualidade do Ar", "40h"],
+            [64, "Engenharia Ambiental: Mudanças Climáticas e Créditos de Carbono", "40h"],
+            [65, "Engenharia Ambiental: Potabilização e Tratamento de Água (ETA)", "60h"],
+            [66, "Engenharia Ambiental: Recuperação de Áreas Degradadas (PRAD)", "60h"],
+            [67, "Engenharia Ambiental: Remediação de Solos Contaminados", "60h"],
+            [68, "Engenharia Ambiental: Sistema de Gestão Ambiental (ISO 14001)", "40h"],
+            [69, "Engenharia Ambiental: Tratamento de Águas Residuárias e Esgoto", "80h"],
+            [70, "Engenharia Ambiental: Valoração Econômica Ambiental", "40h"],
+
+            // ENGENHARIA CIVIL
+            [71, "Engenharia Civil: Acústica Arquitetônica e Edificações", "40h"],
+            [72, "Engenharia Civil: Avaliação Imobiliária pela NBR 14653", "40h"],
+            [73, "Engenharia Civil: Compatibilização de Projetos com Navisworks", "40h"],
+            [74, "Engenharia Civil: Concreto Protendido na Prática", "40h"],
+            [75, "Engenharia Civil: Desempenho de Edificações (NBR 15575)", "40h"],
+            [76, "Engenharia Civil: Dimensionamento de Estruturas Metálicas", "60h"],
+            [77, "Engenharia Civil: Drenagem Urbana e Manejo de Águas Pluviais", "40h"],
+            [78, "Engenharia Civil: Estruturas de Madeira e Alvenaria Estrutural", "40h"],
+            [79, "Engenharia Civil: Fundações e Mecânica dos Solos", "60h"],
+            [80, "Engenharia Civil: Gestão e Planejamento de Obras", "60h"],
+            [81, "Engenharia Civil: Gestão de Reformas Prediais (NBR 16280)", "40h"],
+            [82, "Engenharia Civil: Impermeabilização de Estruturas", "40h"],
+            [83, "Engenharia Civil: Inspeção Predial e Pericia de Engenharia", "60h"],
+            [84, "Engenharia Civil: Instalações Elétricas Prediais", "40h"],
+            [85, "Engenharia Civil: Instalações Hidrossanitárias Prediais", "40h"],
+            [86, "Engenharia Civil: Lean Construction (Construção Enxuta)", "40h"],
+            [87, "Engenharia Civil: Logistica de Canteiro de Obras", "40h"],
+            [88, "Engenharia Civil: Modelagem BIM com Revit Structure", "80h"],
+            [89, "Engenharia Civil: MS Project Avançado para Obras", "40h"],
+            [90, "Engenharia Civil: Orçamento e Composição de Custos (SINAPI)", "40h"],
+            [91, "Engenharia Civil: Patologia das Construções", "40h"],
+            [92, "Engenharia Civil: Pavimentação e Geotecnia Rodoviária", "60h"],
+            [93, "Engenharia Civil: Pontes e Obras de Arte Especiais", "80h"],
+            [94, "Engenharia Civil: Projetos Estruturais em Concreto Armado", "80h"],
+            [95, "Engenharia Civil: Recuperação e Reforço Estrutural", "40h"],
+            [96, "Engenharia Civil: Segurança Estrutural em Incêndios", "40h"],
+            [97, "Engenharia Civil: Sustentabilidade e Certificação LEED", "40h"],
+            [98, "Engenharia Civil: Tecnologia do Concreto e Argamassas", "40h"],
+            [99, "Engenharia Civil: Terraplenagem e Contenção de Encostas", "40h"],
+            [100, "Engenharia Civil: Topografia e Agrimensura Aplicada", "40h"],
+
+            // IA NAS ENGENHARIAS
+            [101, "IA nas Engenharias: Algoritmos Genéticos para Otimização de Projetos", "60h"],
+            [102, "IA nas Engenharias: Análise de Sobrevivência e Confiabilidade de Ativos", "40h"],
+            [103, "IA nas Engenharias: Automação CAD com Python e IA Generativa", "60h"],
+            [104, "IA nas Engenharias: Automação de Canteiros de Obras com Robótica e IA", "40h"],
+            [105, "IA nas Engenharias: Automação de Relatórios Técnicos e Perícias com IA", "40h"],
+            [106, "IA nas Engenharias: Chatbots e Assistentes Virtuais para Gestão de Obras", "40h"],
+            [107, "IA nas Engenharias: Computer Vision para Inspeção Predial com Drones", "60h"],
+            [108, "IA nas Engenharias: Controladores Inteligentes Lógicos Fuzzy na Indústria", "40h"],
+            [109, "IA nas Engenharias: Copilotos de Código Python e C++ para Engenheiros", "40h"],
+            [110, "IA nas Engenharias: Data Analytics em Engenharia de Petróleo e Gás", "60h"],
+            [111, "IA nas Engenharias: Deep Learning para Análise Geotécnica e Solos", "60h"],
+            [112, "IA nas Engenharias: Design Generativo Aplicado ao Projeto Estrutural", "60h"],
+            [113, "IA nas Engenharias: Design Paramétrico e IA com Grasshopper e Dynamo", "60h"],
+            [114, "IA nas Engenharias: Detecção de Anomalias Estruturais com Sensores IoT e IA", "40h"],
+            [115, "IA nas Engenharias: Detecção de Falhas Elétricas Usando Visão Computacional", "40h"],
+            [116, "IA nas Engenharias: Engenharia de Prompt para Engenheiros Civis e Mecânicos", "40h"],
+            [117, "IA nas Engenharias: Gêmeos Digitais (Digital Twins) e Aprendizado de Máquina", "80h"],
+            [118, "IA nas Engenharias: Geoprocessamento e Sensoriamento Remoto com IA", "60h"],
+            [119, "IA nas Engenharias: IA Aplicada à Eficiência Energética de Edificações", "40h"],
+            [120, "IA nas Engenharias: IA para Análise de Vibrações e Manutenção Preditiva", "60h"],
+            [121, "IA nas Engenharias: IA para Dimensionamento de Sistemas Fotovoltaicos", "40h"],
+            [122, "IA nas Engenharias: IA para Monitoramento de Barragens e Encostas", "60h"],
+            [123, "IA nas Engenharias: IA para Otimização de Traçados Rodoviários e Transporte", "40h"],
+            [124, "IA nas Engenharias: IA na Avaliação de Impacto Ambiental e Licenciamento", "40h"],
+            [125, "IA nas Engenharias: IA na Estimativa Automática de Custos e Orçamentos", "40h"],
+            [126, "IA nas Engenharias: IA na Indústria 4.0 e Sistemas de Manufatura", "60h"],
+            [127, "IA nas Engenharias: IA no Controle de Qualidade de Materiais de Construção", "40h"],
+            [128, "IA nas Engenharias: IA no Planejamento de Cargas e Içamentos (Rigging)", "40h"],
+            [129, "IA nas Engenharias: Integrando IA ao BIM (Building Information Modeling)", "60h"],
+            [130, "IA nas Engenharias: Machine Learning para Previsão de Cargas Elétricas", "40h"],
+            [131, "IA nas Engenharias: Machine Learning para Previsão de Riscos na Construção", "40h"],
+            [132, "IA nas Engenharias: Machine Learning na Mecânica dos Sólidos", "60h"],
+            [133, "IA nas Engenharias: Manutenção Preditiva Indústria 4.0 com Machine Learning", "60h"],
+            [134, "IA nas Engenharias: Modelagem Climática e Recursos Hidricos com IA", "40h"],
+            [135, "IA nas Engenharias: Modelagem Hidrológica e Fluido-Dinâmica (CFD) com IA", "80h"],
+            [136, "IA nas Engenharias: Modelagem de Tráfego e Mobilidade Urbana com IA", "40h"],
+            [137, "IA nas Engenharias: Otimização da Cadeia de Suprimentos em Obras com IA", "40h"],
+            [138, "IA nas Engenharias: Otimização de Redes de Água e Esgoto com Aprendizado de Máquina", "40h"],
+            [139, "IA nas Engenharias: Otimização Multiobjetivo de Estruturas Metálicas", "60h"],
+            [140, "IA nas Engenharias: Processamento de Linguagem Natural (PLN) para Normas Técnicas", "40h"],
+            [141, "IA nas Engenharias: Reconhecimento de Padrões em Dados de Escaneamento 3D (LIDAR)", "60h"],
+            [142, "IA nas Engenharias: Redes Neurais para Previsão de Resistência do Concreto", "40h"],
+            [143, "IA nas Engenharias: Redes Neurais para Previsão de Vento e Energia Eólica", "40h"],
+            [144, "IA nas Engenharias: Simulação de Processos Quimicos e Bioprocessos com IA", "60h"],
+            [145, "IA nas Engenharias: Simulação e Otimização Acústica com Algoritmos Inteligentes", "40h"],
+            [146, "IA nas Engenharias: Sistemas de Análise de Risco de Incêndio Baseados em IA", "40h"],
+            [147, "IA nas Engenharias: Visão Computacional para Monitoramento de EPIs e SST", "40h"],
+            [148, "IA nas Engenharias: Visão Computacional para Monitoramento do Avanço Físico de Obras", "60h"],
+            [149, "IA nas Engenharias: Visão Computacional para Percepção em Veículos Autônomos", "80h"],
+            [150, "IA nas Engenharias: Vision Transformers em Diagnóstico Pericial de Fachadas", "60h"],
+
+            // NORMAS REGULAMENTADORAS (NRs)
+            [151, "NR-01: Disposições Gerais e Gerenciamento de Riscos Ocupacionais (PGR)", "40h"],
+            [152, "NR-02: Inspeção Prévia", "40h"],
+            [153, "NR-03: Embargo e Interdição", "40h"],
+            [154, "NR-04: SESMT - Serviço Especializado em Segurança e Medicina", "40h"],
+            [155, "NR-05: CIPA Comissão Interna de Prevenção de Acidentes", "40h"],
+            [156, "NR-06: Equipamentos de Proteção Individual (EPI)", "40h"],
+            [157, "NR-07: PCMSO - Programas de Controle Médico de Saúde Ocupacional", "40h"],
+            [158, "NR-08: Edificações e Condições de Conforto", "40h"],
+            [159, "NR-09: Avaliação e Controle das Exposições Ocupacionais", "40h"],
+            [160, "NR-10: Segurança em Instalações e Serviços em Eletricidade - Básico", "40h"],
+            [161, "NR-10: Sistema Elétrico de Potência (SEP) - Complementar", "40h"],
+            [162, "NR-11: Transporte, Movimentação, Manuseio e Armazenamento de Materiais", "40h"],
+            [163, "NR-12: Segurança no Trabalho em Máquinas e Equipamentos", "40h"],
+            [164, "NR-13: Caldeiras, Vasos de Pressão, Tubulações e Tanques", "40h"],
+            [165, "NR-14: Fornos Industriais", "40h"],
+            [166, "NR-15: Atividades e Operações Insalubres", "40h"],
+            [167, "NR-16: Atividades e Operações Perigosas", "40h"],
+            [168, "NR-17: Ergonomia no Ambiente de Trabalho", "40h"],
+            [169, "NR-18: Segurança e Saúde no Trabalho na Indústria da Construção", "40h"],
+            [170, "NR-19: Explosivos - Depósito e Manuseio", "40h"],
+            [171, "NR-20: Inflamáveis e Combustiveis - Intermediário", "40h"],
+            [172, "NR-20: Inflamáveis e Combustíveis - Avançado", "40h"],
+            [173, "NR-21: Trabalhos a Céu Aberto", "40h"],
+            [174, "NR-22: Segurança e Saúde Ocupacional na Mineração", "40h"],
+            [175, "NR-23: Proteção Contra Incêndios e Brigada de Emergência", "40h"],
+            [176, "NR-24: Condições Sanitárias e de Conforto nos Locais de Trabalho", "40h"],
+            [177, "NR-25: Resíduos Industriais", "40h"],
+            [178, "NR-26: Sinalização de Segurança e GHS", "40h"],
+            [179, "NR-28: Fiscalização, Procedimentos e Multas", "40h"],
+            [180, "NR-29: Segurança e Saúde no Trabalho Portuário", "40h"],
+            [181, "NR-30: Segurança e Saúde no Trabalho Aquaviário", "40h"],
+            [182, "NR-31: Segurança no Trabalho na Agricultura e Pecuária", "40h"],
+            [183, "NR-32: Segurança e Saúde no Trabalho em Serviços de Saúde", "40h"],
+            [184, "NR-33: Espaços Confinados para Trabalhadores e Vigias", "40h"],
+            [185, "NR-33: Espaços Confinados para Supervisores de Entrada", "40h"],
+            [186, "NR-35: Trabalho em Altura - Capacitação Básica", "40h"],
+            [187, "NR-36: Segurança no Abate e Processamento de Carnes", "40h"],
+            [188, "NR-37: Segurança em Plataformas de Petróleo", "40h"],
+
+            // SAÚDE E SEGURANÇA DO TRABALHO (SST)
+            [189, "SST: Análise Ergonômica do Trabalho (AET Avançada)", "40h"],
+            [190, "SST: Auditoria Interna ISO 45001 (Saúde e Segurança)", "40h"],
+            [191, "SST: Biossegurança em Laboratórios e Ambientes Criticos", "40h"],
+            [192, "SST: Conservação Auditiva e Programa PCA", "40h"],
+            [193, "SST: Gestão de Emergências e Plano de Resposta a Incidentes", "40h"],
+            [194, "SST: Gestão de Empreiteiras e Terceirizados", "40h"],
+            [195, "SST: Gestão do GRO e Elaboração do PGR", "40h"],
+            [196, "SST: Higiene Ocupacional Agentes Quimicos e Poeiras", "40h"],
+            [197, "SST: Higiene Ocupacional - Avaliação de Ruido e Vibração", "40h"],
+            [198, "SST: Implementação do eSocial para Segurança do Trabalho", "40h"],
+            [199, "SST: Indicadores de Desempenho e Metricas em SST", "40h"],
+            [200, "SST: Investigação e Análise de Acidentes de Trabalho (Método Árvore de Causas)", "40h"],
+            [201, "SST: Operação e Inspeção de Pontes Rolantes e Escavadeiras", "40h"],
+            [202, "SST: Pericia Judicial em Insalubridade e Periculosidade", "60h"],
+            [203, "SST: Primeiros Socorros e Atendimento Pré-Hospitalar Ocupacional", "40h"],
+            [204, "SST: Proteção Respiratória e Programa PPR", "40h"],
+            [205, "SST: Radioproteção Industrial", "40h"],
+            [206, "SST: Riscos Psicossociais e Saúde Mental no Trabalho", "40h"],
+            [207, "SST: Segurança em Rigging e Plano de Içamento", "40h"],
+            [208, "SST: Treinador e Instrutor de Segurança do Trabalho", "60h"],
+
+            // TECNOLOGIA
+            [209, "Tecnologia: Arquitetura de Microsserviços", "60h"],
+            [210, "Tecnologia: Arquitetura de Nuvem AWS (Amazon Web Services)", "80h"],
+            [211, "Tecnologia: Automação Rpa com UiPath", "40h"],
+            [212, "Tecnologia: Banco de Dados SQL (PostgreSQL & MySQL)", "40h"],
+            [213, "Tecnologia: Bancos de Dados NoSQL com MongoDB", "40h"],
+            [214, "Tecnologia: Big Data com Apache Spark e Hadoop", "80h"],
+            [215, "Tecnologia: Blockchain e Contratos Inteligentes (Smart Contracts)", "60h"],
+            [216, "Tecnologia: Business Intelligence com Power BI Avançado", "60h"],
+            [217, "Tecnologia: CI/CD Pipelines com GitHub Actions e Jenkins", "40h"],
+            [218, "Tecnologia: Cloud Computing com Microsoft Azure", "60h"],
+            [219, "Tecnologia: Data Science e Machine Learning com Python", "100h"],
+            [220, "Tecnologia: Deep Learning com TensorFlow e PyTorch", "80h"],
+            [221, "Tecnologia: Desenvolvimento Backend em C# e .NET Core", "80h"],
+            [222, "Tecnologia: Desenvolvimento de Jogos com Unity e C#", "80h"],
+            [223, "Tecnologia: Desenvolvimento Mobile com React Native", "80h"],
+            [224, "Tecnologia: Desenvolvedor Front-End com React.js", "80h"],
+            [225, "Tecnologia: DevOps Fundamentals (Docker e Kubernetes)", "60h"],
+            [226, "Tecnologia: Engenharia de Dados e Pipelines ETL", "80h"],
+            [227, "Tecnologia: Engenharia de Prompt para Inteligência Artificial", "40h"],
+            [228, "Tecnologia: Estrutura de Dados e Algoritmos Avançados", "60h"],
+            [229, "Tecnologia: Flutter e Dart para Criação de Apps", "80h"],
+            [230, "Tecnologia: Git e GitHub para Controle de Versão", "40h"],
+            [231, "Tecnologia: Governança de TI com ITIL v4 e COBIT", "40h"],
+            [232, "Tecnologia: GraphQL para Construção de APIs Eficientes", "40h"],
+            [233, "Tecnologia: Gestão de Projetos de TI com PMBOK", "40h"],
+            [234, "Tecnologia: HTML5 e CSS3 Responsivo com Tailwind CSS", "40h"],
+            [235, "Tecnologia: Internet das Coisas (IoT) com Arduino e ESP32", "40h"],
+            [236, "Tecnologia: Java Orientado a Objetos e Spring Boot", "100h"],
+            [237, "Tecnologia: JavaScript Moderno (ES6+) do Zero ao Avançado", "60h"],
+            [238, "Tecnologia: LGPD e Proteção de Dados para Profissionais de TI", "40h"],
+            [239, "Tecnologia: Linguagem Go (Golang) para Sistemas Distribuidos", "40h"],
+            [240, "Tecnologia: Linux Administração de Sistemas e Shell Script", "60h"],
+            [241, "Tecnologia: Lógica de Programação e Algoritmos", "40h"],
+            [242, "Tecnologia: Metodologia Agil (Scrum e Kanban para Devs)", "40h"],
+            [243, "Tecnologia: Next.js para Aplicações React de Alta Performance", "50h"],
+            [244, "Tecnologia: Node.js e Construção de APIs RESTful", "60h"],
+            [245, "Tecnologia: PHP Moderno e Framework Laravel", "60h"],
+            [246, "Tecnologia: Programação em Rust para Alta Performance", "60h"],
+            [247, "Tecnologia: Python para Análise de Dados e Automação", "60h"],
+            [248, "Tecnologia: Redes de Computadores e Protocolos TCP/IP", "60h"],
+            [249, "Tecnologia: Segurança da Informação e Cibersegurança Básica", "40h"],
+            [250, "Tecnologia: Terraform para Infraestrutura como Código (laC)", "40h"],
+            [251, "Tecnologia: Testes Automatizados com Cypress e Jest", "40h"],
+            [252, "Tecnologia: Testes de Invasão e Pentest Ético", "80h"],
+            [253, "Tecnologia: TypeScript na Prática para Desenvolvedores", "40h"],
+            [254, "Tecnologia: UI/UX Design: Interfaces e Experiência do Usuário", "40h"],
+            [255, "Tecnologia: Unreal Engine 5 para Projetos Interativos", "80h"],
+            [256, "Tecnologia: Visualização de Dados com Tableau", "40h"],
+            [257, "Tecnologia: Vue.js 3 e Nuxt.js", "60h"],
+            [258, "Tecnologia: Web Scraping e Mineração de Dados Web", "40h"]
+        ];
+
+        // Mapeamento e estruturação dos dados
+        const coursesData = rawCoursesData.map(item => {
+            const id = item[0];
+            const fullName = item[1];
+            const hours = item[2];
+
+            let category = "Geral";
+            let title = fullName;
+
+            if (fullName.includes(": ")) {
+                const parts = fullName.split(": ");
+                category = parts[0];
+                title = parts.slice(1).join(": ");
+            } else if (fullName.startsWith("NR-")) {
+                category = "NR";
+                title = fullName;
+            }
+
+            return { id, category, title, fullName, hours };
+        });
+
+        let activeCategory = 'all';
+
+        function renderCourses(filterText = '') {
+            const grid = document.getElementById('coursesGrid');
+            grid.innerHTML = '';
+
+            const filtered = coursesData.filter(course => {
+                const matchesCat = activeCategory === 'all' || course.category.toLowerCase().includes(activeCategory.toLowerCase());
+                const matchesSearch = course.fullName.toLowerCase().includes(filterText.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            filtered.forEach(course => {
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                
+                const encodedMsg = encodeURIComponent(`Olá! Quero saber mais sobre o curso (#${course.id}): ${course.fullName}`);
+                const whatsappUrl = `https://wa.me/5565996108749?text=${encodedMsg}`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="course-header-info">
+                            <span class="course-category">${course.category}</span>
+                            <span class="course-num">#${course.id}</span>
+                        </div>
+                        <div class="course-title">${course.title}</div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-duration"><i class="fa-regular fa-clock"></i> ${course.hours}</div>
+                        <a href="${whatsappUrl}" target="_blank" class="btn-enroll">Matricular <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            renderCourses(document.getElementById('searchInput').value);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderCourses(e.target.value);
+        });
+
+        // Inicialização
+        renderCourses();
+    </script>
+</body>
+</html>
