@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Certificados - MAZZ Cursos e Capacitações</title>
-    <!-- Bibliotecas externas para gerar QR Code e ícones -->
+    <!-- Biblioteca externa para QR Code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         :root {
@@ -35,7 +35,6 @@
             gap: 20px;
         }
 
-        /* Formulário Lateral */
         .form-container {
             background: #fff;
             padding: 25px;
@@ -73,8 +72,28 @@
         }
 
         .form-group textarea {
-            height: 70px;
+            height: 100px;
             resize: vertical;
+        }
+
+        .input-group-code {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-gen-code {
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            padding: 0 12px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-gen-code:hover {
+            background: #ab851e;
         }
 
         .btn-print {
@@ -94,7 +113,6 @@
             background: #0f2341;
         }
 
-        /* Área do Certificado */
         .preview-container {
             display: flex;
             flex-direction: column;
@@ -117,7 +135,6 @@
             background-image: radial-gradient(circle, #fbfbfb 0%, #fff 100%);
         }
 
-        /* Marca d'água no fundo */
         .watermark {
             position: absolute;
             top: 50%;
@@ -129,13 +146,11 @@
             z-index: 1;
         }
 
-        /* Garantir que o conteúdo fique acima da marca d'água */
         .certificate-page > * {
             position: relative;
             z-index: 2;
         }
 
-        /* Borda Elegante */
         .border-frame {
             position: absolute;
             top: 8mm;
@@ -149,7 +164,6 @@
             z-index: 3;
         }
 
-        /* Estilo da Logo Central */
         .cert-logo {
             max-width: 125px;
             height: auto;
@@ -157,7 +171,6 @@
             display: block;
         }
 
-        /* Frente */
         .cert-header {
             text-align: center;
             margin-top: 2mm;
@@ -181,7 +194,6 @@
             margin-top: 2px;
         }
 
-        /* Centralização e alinhamento do texto principal */
         .cert-body {
             text-align: center;
             padding: 0 40px;
@@ -211,7 +223,6 @@
             padding-bottom: 4mm;
         }
 
-        /* Bloco de Assinatura da Direção */
         .signature-direction {
             text-align: center;
             width: 220px;
@@ -248,7 +259,6 @@
             font-style: italic;
         }
 
-        /* Verso */
         .verso-container-top {
             margin-top: 2mm;
         }
@@ -306,7 +316,6 @@
             box-shadow: 0 0 5px rgba(0,0,0,0.15);
         }
 
-        /* Configurações de Impressão */
         @media print {
             @page {
                 margin: 0;
@@ -341,7 +350,6 @@
 <body>
 
 <div class="container">
-    <!-- Painel de Controle -->
     <div class="form-container">
         <h2>Dados do Certificado</h2>
         
@@ -357,58 +365,53 @@
 
         <div class="form-group">
             <label>Nome do Aluno</label>
-            <input type="text" id="inAluno" value="Bill Gates" oninput="updateCert()">
+            <input type="text" id="inAluno" value="" placeholder="Digite o nome do aluno" oninput="updateCert()">
         </div>
 
         <div class="form-group">
             <label>Nome do Curso</label>
-            <input type="text" id="inCurso" value="Segurança do Trabalho" oninput="updateCert()">
+            <input type="text" id="inCurso" value="" placeholder="Digite o nome do curso" oninput="updateCert()">
         </div>
 
         <div class="form-group">
             <label>Carga Horária (Horas)</label>
-            <input type="number" id="inCH" value="40" oninput="updateCert()">
+            <input type="number" id="inCH" value="" placeholder="Ex: 40" oninput="updateCert()">
         </div>
 
         <div class="form-group">
             <label>Professor</label>
-            <input type="text" id="inProfessor" value="Márcio Rodrigues de Oliveira, Engenheiro Civil, Software & Segurnaça do Trabalho - CREA: 1522223070PA" oninput="updateCert()">
+            <input type="text" id="inProfessor" value="" placeholder="Nome e titulação do professor" oninput="updateCert()">
         </div>
 
         <div class="form-group">
-            <label>Data de Conclusão</label>
-            <input type="date" id="inDataConclusao" value="2050-01-01" onchange="updateCert()">
+            <label>Data de Conclusão / Emissão</label>
+            <input type="date" id="inDataConclusao" value="" onchange="updateCert()">
         </div>
 
         <div class="form-group">
-            <label>Código de Registro</label>
-            <input type="text" id="inCodigo" value="MAZZ-2026-0891" oninput="updateCert()">
+            <label>Código de Registro (Gerado Automático)</label>
+            <div class="input-group-code">
+                <input type="text" id="inCodigo" value="" placeholder="Ex: MAZZ-2026-0000001" oninput="updateCert()">
+                <button type="button" class="btn-gen-code" title="Gerar Novo Código" onclick="generateRandomCode()">🔄</button>
+            </div>
         </div>
 
         <div class="form-group">
-            <label>Conteúdo Programático</label> <br>
-            <textarea id="inEmenta" oninput="updateCert()">
-                1. Introdução à Normas Regulamentadoras (NRs)
-                2. Gestão de Riscos Ocupacionais (GRO) e PGR
-                3. Inspeção e Auditoria de Segurança
-                4. Primeiros Socorros e Planos de Emergência
-                5. Práticas de Liderança e Prevenção de Acidentes</textarea>
+            <label>Conteúdo Programático</label>
+            <textarea id="inEmenta" placeholder="Insira o conteúdo programático..." oninput="updateCert()"></textarea>
         </div>
 
         <button class="btn-print" onclick="window.print()">Imprimir / Salvar em PDF</button>
     </div>
 
-    <!-- Visualização do Certificado -->
     <div class="preview-container">
         
         <!-- FRENTE -->
         <div class="certificate-page">
             <div class="border-frame"></div>
-            <!-- Marca d'água aplicada -->
             <img src="04.png" alt="Marca D'água" class="watermark">
             
             <div class="cert-header">
-                <!-- Logo Central -->
                 <img id="outLogo" src="img/022.png" alt="MAZZ Logo" class="cert-logo">
                 <p>Cursos e Capacitações</p>
                 <h1>Certificado de Conclusão</h1><br><br><br><br>
@@ -416,16 +419,14 @@
 
             <div class="cert-body">
                 <p>
-                    Certificamos que <strong id="outAluno">Bill Gates</strong> concluiu com êxito o curso de 
-                    <strong id="outCurso">Segurança do Trabalho</strong>, 
-                    ministrado pelo(a) professor(a) <span id="outProfessorDisplay" style="font-weight:600; color:var(--primary);">
-                    Márcio Rodrigues de Oliveira, Engenheiro Civil, Software & Segurnaça do Trabalho - CREA: 1522223070PA</span>, 
-                    com carga horária total de <strong id="outCH">40</strong> horas, finalizado em <span id="outDataConclusaoFrente"></span>.
+                    Certificamos que <strong id="outAluno"></strong> concluiu com êxito o curso de 
+                    <strong id="outCurso"></strong>, 
+                    ministrado pelo(a) professor(a) <span id="outProfessorDisplay" style="font-weight:600; color:var(--primary);"></span>, 
+                    com carga horária total de <strong id="outCH"></strong> horas, finalizado em <span id="outDataConclusaoFrente"></span>.
                 </p>
             </div>
 
             <div class="cert-footer">
-                <!-- Bloco Assinatura da Direção -->
                 <div class="signature-direction">
                     <img id="outAssinatura" src="" alt="" class="signature-img" style="display: none;">
                     <div class="signature-line"></div>
@@ -449,11 +450,10 @@
             <img src="04.png" alt="Marca D'água" class="watermark">
 
             <div class="verso-container-top">
-                <!-- Logo Central Verso -->
                 <h2 class="verso-title">Conteúdo Programático</h2><br><br>
                 <div class="verso-info">
-                    <p><strong>Curso:</strong> <span id="outCursoVerso">Segurança do Trabalho</span>
-                    <p><strong>Carga Horária:</strong> <span id="outCHVerso">40</span>h</p>
+                    <p><strong>Curso:</strong> <span id="outCursoVerso"></span></p>
+                    <p><strong>Carga Horária:</strong> <span id="outCHVerso"></span>h</p>
                 </div><br><br>
 
                 <div class="ementa-box" id="outEmenta"></div>
@@ -462,7 +462,7 @@
             <div class="verso-footer">
                 <div class="validation-info">
                     <p><strong>Autenticidade do Documento:</strong></p>
-                    <p>Para verificar a validade deste certificado, acesse <u>https://mgrupo.online/valida.html</u> e digite o código de verificação: <strong id="outCodigo">MAZZ-2026-0891</strong> ou aponte a câmera para o QR Code ao lado.</p>
+                    <p>Para verificar a validade deste certificado, acesse <u>https://mgrupo.online/valida.html</u> e digite o código de verificação: <strong id="outCodigo"></strong> ou aponte a câmera para o QR Code ao lado.</p>
                     <br>
                     <p style="font-size: 0.72rem; color: #888;">MAZZ Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Goiânia/GO</p>
                 </div>
@@ -479,7 +479,14 @@
 
 <script>
     let qrcodeObj = null;
-    let dataGeracaoAtual = null;
+
+    function generateRandomCode() {
+        const year = new Date().getFullYear();
+        const randomNumber = Math.floor(Math.random() * 10000000).toString().padStart(7, '0');
+        const code = `MAZZ-${year}-${randomNumber}`;
+        document.getElementById('inCodigo').value = code;
+        updateCert();
+    }
 
     function formatDate(dateString) {
         if (!dateString) return '';
@@ -491,11 +498,11 @@
     function formatDateExtenso(dateString) {
         if (!dateString) return '';
         const date = new Date(dateString + 'T00:00:00');
+        if (isNaN(date.getTime())) return '';
         const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
         return `${date.getDate()} de ${meses[date.getMonth()]} de ${date.getFullYear()}`;
     }
 
-    // Função para carregar as imagens de upload (Logo e Assinatura)
     function loadFile(event, targetId) {
         const input = event.target;
         if (input.files && input.files[0]) {
@@ -515,46 +522,53 @@
         const ch = document.getElementById('inCH').value;
         const prof = document.getElementById('inProfessor').value;
         const dataConclusao = document.getElementById('inDataConclusao').value;
-        const codigo = document.getElementById('inCodigo').value;
+        const codigo = document.getElementById('inCodigo').value.trim();
         const ementa = document.getElementById('inEmenta').value;
 
-        // Atualizar Frente
+        // Atualizar Tela
         document.getElementById('outAluno').innerText = aluno;
         document.getElementById('outCurso').innerText = curso;
         document.getElementById('outCH').innerText = ch;
         document.getElementById('outProfessorDisplay').innerText = prof;
         document.getElementById('outDataConclusaoFrente').innerText = formatDate(dataConclusao);
-        document.getElementById('outDataAtualExtenso').innerText = formatDateExtenso(dataGeracaoAtual);
+        document.getElementById('outDataAtualExtenso').innerText = formatDateExtenso(dataConclusao);
 
-        // Atualizar Verso
         document.getElementById('outCursoVerso').innerText = curso;
         document.getElementById('outCHVerso').innerText = ch;
         document.getElementById('outEmenta').innerText = ementa;
         document.getElementById('outCodigo').innerText = codigo;
 
+        // Salvar no localStorage para o valida.html
+        if (codigo !== "") {
+            const certData = {
+                aluno: aluno,
+                curso: curso,
+                ch: ch,
+                professor: prof,
+                dataConclusao: formatDate(dataConclusao),
+                codigo: codigo
+            };
+            localStorage.setItem(codigo, JSON.stringify(certData));
+        }
+
         // Atualizar QR Code
-        const urlValida = `https://mgrupo.online/valida.html?codigo=${encodeURIComponent(codigo)}`;
+        const urlValida = `valida.html?codigo=${encodeURIComponent(codigo)}`;
         
         document.getElementById('qrcode').innerHTML = "";
-        qrcodeObj = new QRCode(document.getElementById("qrcode"), {
-            text: urlValida,
-            width: 85,
-            height: 85,
-            colorDark : "#1a365d",
-            colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H
-        });
+        if (codigo !== "") {
+            qrcodeObj = new QRCode(document.getElementById("qrcode"), {
+                text: urlValida,
+                width: 85,
+                height: 85,
+                colorDark : "#1a365d",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
     }
 
     window.onload = function() {
-        const hoje = new Date();
-        const ano = hoje.getFullYear();
-        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-        const dia = String(hoje.getDate()).padStart(2, '0');
-        
-        dataGeracaoAtual = `${ano}-${mes}-${dia}`;
-
-        updateCert();
+        generateRandomCode();
     };
 </script>
 
