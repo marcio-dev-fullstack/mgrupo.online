@@ -462,7 +462,7 @@
             <div class="verso-footer">
                 <div class="validation-info">
                     <p><strong>Autenticidade do Documento:</strong></p>
-                    <p>Para verificar a validade deste certificado, acesse <u>https://mgrupo.online/valida.html</u> e digite o código de verificação: <strong id="outCodigo"></strong> ou aponte a câmera para o QR Code ao lado.</p>
+                    <p>Para verificar a validade deste certificado, aponte a câmera para o QR Code ao lado.</p>
                     <br>
                     <p style="font-size: 0.72rem; color: #888;">MAZZ Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Goiânia/GO</p>
                 </div>
@@ -536,9 +536,8 @@
         document.getElementById('outCursoVerso').innerText = curso;
         document.getElementById('outCHVerso').innerText = ch;
         document.getElementById('outEmenta').innerText = ementa;
-        document.getElementById('outCodigo').innerText = codigo;
 
-        // Salvar no localStorage (útil para testes na mesma máquina)
+        // Salvar no localStorage
         if (codigo !== "") {
             const certData = {
                 aluno: aluno,
@@ -551,7 +550,7 @@
             localStorage.setItem(codigo, JSON.stringify(certData));
         }
 
-        // Gerar URL Absoluta codificada com os dados
+        // Gerar URL Absoluta com os dados codificados
         const params = new URLSearchParams({
             codigo: codigo,
             aluno: aluno,
@@ -561,7 +560,6 @@
             data: formatDate(dataConclusao)
         });
 
-        // URL completa do seu domínio
         const urlValida = `https://mgrupo.online/valida.html?${params.toString()}`;
 
         // Atualizar QR Code
