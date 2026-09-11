@@ -6,6 +6,8 @@
     <title>Gerador de Certificados - MAZZ Cursos e Capacitações</title>
     <!-- Biblioteca externa para QR Code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Biblioteca para conversão do HTML em PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --primary: #1a365d;
@@ -96,21 +98,36 @@
             background: #ab851e;
         }
 
-        .btn-print {
+        .btn-action {
             width: 100%;
-            background: var(--primary);
             color: #fff;
             border: none;
             padding: 12px;
             border-radius: 5px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s;
+            margin-top: 6px;
+            transition: opacity 0.3s;
         }
 
-        .btn-print:hover {
-            background: #0f2341;
+        .btn-folder {
+            background: #28a745;
+        }
+
+        .btn-save {
+            background: var(--primary);
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+
+        .folder-status-text {
+            font-size: 0.78rem;
+            color: #666;
+            text-align: center;
+            margin-top: 4px;
+            word-break: break-all;
         }
 
         .preview-container {
@@ -401,10 +418,16 @@
             <textarea id="inEmenta" placeholder="Insira o conteúdo programático..." oninput="updateCert()"></textarea>
         </div>
 
-        <button class="btn-print" onclick="window.print()">Imprimir / Salvar em PDF</button>
+        <div class="form-group">
+            <button type="button" class="btn-action btn-folder" onclick="selecionarPastaRaiz()">1. Selecionar Pasta no PC</button>
+            <div class="folder-status-text" id="folderStatus">Nenhuma pasta selecionada.</div>
+            
+            <button type="button" class="btn-action btn-save" onclick="salvarCertificadoLocal()">2. Salvar Certificado (Pasta/PDF)</button>
+            <button type="button" class="btn-action" style="background:#555;" onclick="window.print()">Imprimir Diretamente</button>
+        </div>
     </div>
 
-    <div class="preview-container">
+    <div class="preview-container" id="certPreview">
         
         <!-- FRENTE -->
         <div class="certificate-page">
@@ -479,6 +502,7 @@
 
 <script>
     let qrcodeObj = null;
+    let rootDirectoryHandle = null;
 
     function generateRandomCode() {
         const year = new Date().getFullYear();
@@ -525,7 +549,7 @@
         const codigo = document.getElementById('inCodigo').value.trim();
         const ementa = document.getElementById('inEmenta').value;
 
-        // Atualizar a Tela
+        // Atualizar visualização
         document.getElementById('outAluno').innerText = aluno;
         document.getElementById('outCurso').innerText = curso;
         document.getElementById('outCH').innerText = ch;
@@ -537,7 +561,7 @@
         document.getElementById('outCHVerso').innerText = ch;
         document.getElementById('outEmenta').innerText = ementa;
 
-        // Salvar no localStorage
+        // Salvar no localStorage local
         if (codigo !== "") {
             const certData = {
                 aluno: aluno,
@@ -550,7 +574,7 @@
             localStorage.setItem(codigo, JSON.stringify(certData));
         }
 
-        // Gerar URL Absoluta com os dados codificados
+        // URL com parâmetros
         const params = new URLSearchParams({
             codigo: codigo,
             aluno: aluno,
@@ -562,7 +586,7 @@
 
         const urlValida = `https://mgrupo.online/valida.html?${params.toString()}`;
 
-        // Atualizar QR Code
+        // Gerar QR Code
         document.getElementById('qrcode').innerHTML = "";
         if (codigo !== "") {
             qrcodeObj = new QRCode(document.getElementById("qrcode"), {
@@ -573,6 +597,72 @@
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.M
             });
+        }
+    }
+
+    // Seleção de pasta no computador local
+    async function selecionarPastaRaiz() {
+        if (!('showDirectoryPicker' in window)) {
+            alert("Seu navegador não suporta gravação direta de pastas no PC. Utilize um navegador moderno como Google Chrome, Microsoft Edge ou Opera.");
+            return;
+        }
+
+        try {
+            rootDirectoryHandle = await window.showDirectoryPicker();
+            document.getElementById('folderStatus').innerText = `Pasta selecionada: ${rootDirectoryHandle.name}`;
+            document.getElementById('folderStatus').style.color = "#155724";
+        } catch (err) {
+            console.error("Seleção de pasta cancelada ou não permitida.", err);
+        }
+    }
+
+    // Salvar PDF na estrutura "Pasta do Aluno / Nome do Curso.pdf"
+    async function salvarCertificadoLocal() {
+        const aluno = document.getElementById('inAluno').value.trim();
+        const curso = document.getElementById('inCurso').value.trim();
+
+        if (!aluno || !curso) {
+            alert("Por favor, preencha o Nome do Aluno e o Nome do Curso antes de salvar.");
+            return;
+        }
+
+        if (!rootDirectoryHandle) {
+            alert("Por favor, clique primeiro em '1. Selecionar Pasta no PC' para definir o local de salvamento.");
+            return;
+        }
+
+        try {
+            // Limpa caracteres inválidos no sistema de arquivos
+            const nomePastaLimpo = aluno.replace(/[\\/:*?"<>|]/g, '');
+            const nomeArquivoLimpo = curso.replace(/[\\/:*?"<>|]/g, '');
+
+            // 1. Cria/acessa a pasta com o Nome do Aluno
+            const alunoFolderHandle = await rootDirectoryHandle.getDirectoryHandle(nomePastaLimpo, { create: true });
+
+            // 2. Cria o arquivo com o Nome do Curso (.pdf)
+            const fileHandle = await alunoFolderHandle.getFileHandle(`${nomeArquivoLimpo}.pdf`, { create: true });
+
+            // 3. Renderiza o PDF
+            const element = document.getElementById('certPreview');
+            const opt = {
+                margin: 0,
+                filename: `${nomeArquivoLimpo}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+
+            const pdfBlob = await html2pdf().set(opt).from(element).output('blob');
+
+            // 4. Escreve o arquivo PDF no PC
+            const writable = await fileHandle.createWritable();
+            await writable.write(pdfBlob);
+            await writable.close();
+
+            alert(`Certificado salvo com sucesso!\nPasta: ${nomePastaLimpo}\nArquivo: ${nomeArquivoLimpo}.pdf`);
+        } catch (err) {
+            console.error("Erro ao gravar arquivo:", err);
+            alert("Erro ao gravar o arquivo localmente.");
         }
     }
 
