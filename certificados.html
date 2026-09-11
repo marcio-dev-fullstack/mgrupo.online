@@ -525,7 +525,7 @@
         const codigo = document.getElementById('inCodigo').value.trim();
         const ementa = document.getElementById('inEmenta').value;
 
-        // Atualizar Tela
+        // Atualizar a Tela
         document.getElementById('outAluno').innerText = aluno;
         document.getElementById('outCurso').innerText = curso;
         document.getElementById('outCH').innerText = ch;
@@ -538,7 +538,7 @@
         document.getElementById('outEmenta').innerText = ementa;
         document.getElementById('outCodigo').innerText = codigo;
 
-        // Salvar no localStorage para o valida.html
+        // Salvar no localStorage (útil para testes na mesma máquina)
         if (codigo !== "") {
             const certData = {
                 aluno: aluno,
@@ -551,9 +551,20 @@
             localStorage.setItem(codigo, JSON.stringify(certData));
         }
 
+        // Gerar URL Absoluta codificada com os dados
+        const params = new URLSearchParams({
+            codigo: codigo,
+            aluno: aluno,
+            curso: curso,
+            ch: ch,
+            prof: prof,
+            data: formatDate(dataConclusao)
+        });
+
+        // URL completa do seu domínio
+        const urlValida = `https://mgrupo.online/valida.html?${params.toString()}`;
+
         // Atualizar QR Code
-        const urlValida = `valida.html?codigo=${encodeURIComponent(codigo)}`;
-        
         document.getElementById('qrcode').innerHTML = "";
         if (codigo !== "") {
             qrcodeObj = new QRCode(document.getElementById("qrcode"), {
@@ -562,7 +573,7 @@
                 height: 85,
                 colorDark : "#1a365d",
                 colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H
+                correctLevel : QRCode.CorrectLevel.M
             });
         }
     }
