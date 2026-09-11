@@ -47,6 +47,30 @@
         .info-group strong {
             color: #1a365d;
         }
+        .search-box {
+            margin-top: 20px;
+            display: flex;
+            gap: 8px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        .search-box button {
+            background: #1a365d;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .search-box button:hover {
+            background: #0f2341;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +78,13 @@
 <div class="card">
     <h2>MAZZ Cursos e Capacitações</h2>
     <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">Validação de Autenticidade de Certificado</p>
+
+    <!-- Formulário para digitar o código manualmente -->
+    <div class="search-box">
+        <input type="text" id="inCodigoBusca" placeholder="Digite o código (ex: MAZZ-2026-XXXXXXX)">
+        <button onclick="buscarCodigo()">Validar</button>
+    </div>
+    <br>
 
     <div id="result"></div>
 </div>
@@ -69,6 +100,12 @@
 
     const resultDiv = document.getElementById('result');
 
+    function buscarCodigo() {
+        const codDig = document.getElementById('inCodigoBusca').value.trim();
+        if (!codDig) return;
+        window.location.href = `valida.html?codigo=${encodeURIComponent(codDig)}`;
+    }
+
     if (codigo && aluno) {
         resultDiv.innerHTML = `
             <div class="status-badge valid">✓ CERTIFICADO VÁLIDO E AUTÊNTICO</div>
@@ -82,7 +119,6 @@
             </div>
         `;
     } else if (codigo) {
-        // Tenta buscar no localStorage como fallback
         const localData = localStorage.getItem(codigo);
         if (localData) {
             const cert = JSON.parse(localData);
@@ -100,13 +136,12 @@
         } else {
             resultDiv.innerHTML = `
                 <div class="status-badge invalid">✕ CERTIFICADO NÃO ENCONTRADO</div>
-                <p>Não foi possível encontrar dados para o código informado (${codigo}).</p>
+                <p>Não foi possível localizar as informações para o código informado (<strong>${codigo}</strong>).</p>
             `;
         }
     } else {
         resultDiv.innerHTML = `
-            <div class="status-badge invalid">✕ NENHUM CÓDIGO INFORMADO</div>
-            <p>Por favor, escaneie o QR Code no certificado ou informe o código completo de validação.</p>
+            <p style="color: #666; font-size: 0.85rem;">Insira o código impresso no certificado acima ou escaneie o QR Code com a câmera do celular.</p>
         `;
     }
 </script>
