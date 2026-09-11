@@ -110,24 +110,12 @@
             transition: opacity 0.3s;
         }
 
-        .btn-folder {
-            background: #28a745;
-        }
-
         .btn-save {
             background: var(--primary);
         }
 
         .btn-action:hover {
             opacity: 0.9;
-        }
-
-        .folder-status-text {
-            font-size: 0.78rem;
-            color: #666;
-            text-align: center;
-            margin-top: 4px;
-            word-break: break-all;
         }
 
         .preview-container {
@@ -420,10 +408,7 @@
         </div>
 
         <div class="form-group">
-            <button type="button" class="btn-action btn-folder" onclick="selecionarPastaRaiz()">1. Selecionar Pasta no PC</button>
-            <div class="folder-status-text" id="folderStatus">Nenhuma pasta selecionada.</div>
-            
-            <button type="button" class="btn-action btn-save" onclick="salvarCertificadoLocal()">2. Salvar Certificado (Pasta/PDF)</button>
+            <button type="button" class="btn-action btn-save" onclick="salvarCertificadoPDF()">Salvar Certificado em PDF</button>
             <button type="button" class="btn-action" style="background:#555;" onclick="window.print()">Imprimir Diretamente</button>
         </div>
     </div>
@@ -503,7 +488,6 @@
 
 <script>
     let qrcodeObj = null;
-    let rootDirectoryHandle = null;
 
     function generateRandomCode() {
         const year = new Date().getFullYear();
@@ -601,70 +585,39 @@
         }
     }
 
-    // Seleção de pasta no computador local
-    async function selecionarPastaRaiz() {
-        if (!('showDirectoryPicker' in window)) {
-            alert("Seu navegador não suporta gravação direta de pastas no PC. Utilize um navegador moderno como Google Chrome, Microsoft Edge ou Opera.");
-            return;
-        }
-
-        try {
-            rootDirectoryHandle = await window.showDirectoryPicker();
-            document.getElementById('folderStatus').innerText = `Pasta selecionada: ${rootDirectoryHandle.name}`;
-            document.getElementById('folderStatus').style.color = "#155724";
-        } catch (err) {
-            console.error("Seleção de pasta cancelada ou não permitida.", err);
-        }
-    }
-
-    // Salvar PDF na estrutura "Pasta do Aluno / Nome do Curso.pdf"
-    async function salvarCertificadoLocal() {
+    // Gerar e Baixar o PDF com nome do arquivo no padrão: Aluno - Curso - Data.pdf
+    function salvarCertificadoPDF() {
         const aluno = document.getElementById('inAluno').value.trim();
         const curso = document.getElementById('inCurso').value.trim();
+        const dataConclusao = document.getElementById('inDataConclusao').value;
 
         if (!aluno || !curso) {
             alert("Por favor, preencha o Nome do Aluno e o Nome do Curso antes de salvar.");
             return;
         }
 
-        if (!rootDirectoryHandle) {
-            alert("Por favor, clique primeiro em '1. Selecionar Pasta no PC' para definir o local de salvamento.");
-            return;
+        // Formata data para DD-MM-AAAA (substitui barras por traços para compatibilidade de arquivo)
+        const dataFormatada = formatDate(dataConclusao).replace(/\//g, '-');
+
+        // Cria o nome do arquivo final
+        let nomeArquivo = `${aluno} - ${curso}`;
+        if (dataFormatada) {
+            nomeArquivo += ` - ${dataFormatada}`;
         }
+        
+        // Remove caracteres especiais não permitidos em nomes de arquivos
+        nomeArquivo = nomeArquivo.replace(/[\\/:*?"<>|]/g, '') + '.pdf';
 
-        try {
-            // Limpa caracteres inválidos no sistema de arquivos
-            const nomePastaLimpo = aluno.replace(/[\\/:*?"<>|]/g, '');
-            const nomeArquivoLimpo = curso.replace(/[\\/:*?"<>|]/g, '');
+        const element = document.getElementById('certPreview');
+        const opt = {
+            margin: 0,
+            filename: nomeArquivo,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+        };
 
-            // 1. Cria/acessa a pasta com o Nome do Aluno
-            const alunoFolderHandle = await rootDirectoryHandle.getDirectoryHandle(nomePastaLimpo, { create: true });
-
-            // 2. Cria o arquivo com o Nome do Curso (.pdf)
-            const fileHandle = await alunoFolderHandle.getFileHandle(`${nomeArquivoLimpo}.pdf`, { create: true });
-
-            // 3. Renderiza o PDF
-            const element = document.getElementById('certPreview');
-            const opt = {
-                margin: 0,
-                filename: `${nomeArquivoLimpo}.pdf`,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-            };
-
-            const pdfBlob = await html2pdf().set(opt).from(element).output('blob');
-
-            // 4. Escreve o arquivo PDF no PC
-            const writable = await fileHandle.createWritable();
-            await writable.write(pdfBlob);
-            await writable.close();
-
-            alert(`Certificado salvo com sucesso!\nPasta: ${nomePastaLimpo}\nArquivo: ${nomeArquivoLimpo}.pdf`);
-        } catch (err) {
-            console.error("Erro ao gravar arquivo:", err);
-            alert("Erro ao gravar o arquivo localmente.");
-        }
+        html2pdf().set(opt).from(element).save();
     }
 
     window.onload = function() {
