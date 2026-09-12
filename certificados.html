@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Certificados - zentox Cursos e Capacitações</title>
+    <title>Gerador de Certificados - ZENTIX Cursos e Capacitações</title>
     <!-- Biblioteca externa para QR Code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <!-- Biblioteca para conversão do HTML em PDF -->
@@ -397,7 +397,7 @@
         <div class="form-group">
             <label>Código de Registro (Gerado Automático)</label>
             <div class="input-group-code">
-                <input type="text" id="inCodigo" value="" placeholder="Ex: zentox-2026-0000001" oninput="updateCert()">
+                <input type="text" id="inCodigo" value="" placeholder="Ex: ZENTIX-2026-0000001" oninput="updateCert()">
                 <button type="button" class="btn-gen-code" title="Gerar Novo Código" onclick="generateRandomCode()">🔄</button>
             </div>
         </div>
@@ -421,7 +421,7 @@
             <img src="04.png" alt="Marca D'água" class="watermark">
             
             <div class="cert-header">
-                <img id="outLogo" src="img/022.png" alt="zentox Logo" class="cert-logo">
+                <img id="outLogo" src="img/022.png" alt="ZENTIX Logo" class="cert-logo">
                 <p>Cursos e Capacitações</p>
                 <h1>Certificado de Conclusão</h1><br><br><br><br>
             </div>
@@ -443,7 +443,7 @@
                 </div>
 
                 <div class="company-info">
-                    <p><strong>zentox Cursos e Capacitações</strong></p>
+                    <p><strong>ZENTIX Cursos e Capacitações</strong></p>
                     <p style="font-size: 0.8rem; color: #555;">CNPJ: 68.664.946/0001-96</p>
                 </div>
 
@@ -473,7 +473,7 @@
                     <p><strong>Autenticidade do Documento:</strong></p>
                     <p>Para verificar a validade deste certificado, aponte a câmera para o QR Code ao lado.</p>
                     <br>
-                    <p style="font-size: 0.72rem; color: #888;">zentox Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Goiânia/GO</p>
+                    <p style="font-size: 0.72rem; color: #888;">ZENTIX Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Goiânia/GO</p>
                 </div>
 
                 <div class="qr-code-box">
@@ -492,7 +492,7 @@
     function generateRandomCode() {
         const year = new Date().getFullYear();
         const randomNumber = Math.floor(Math.random() * 10000000).toString().padStart(7, '0');
-        const code = `zentox-${year}-${randomNumber}`;
+        const code = `ZENTIX-${year}-${randomNumber}`;
         document.getElementById('inCodigo').value = code;
         updateCert();
     }
