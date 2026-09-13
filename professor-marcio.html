@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professor Drº Márcio Rodrigues de Oliveira</title>
+    <title>Prof. Me. Drd. Márcio Rodrigues de Oliveira</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -30,7 +30,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated Background */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -71,14 +70,12 @@
             100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
 
-        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Header / Hero Section */
         .hero {
             display: grid;
             grid-template-columns: 1fr 2fr;
@@ -167,7 +164,7 @@
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--light) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
@@ -177,27 +174,29 @@
         }
 
         .hero-content .title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary);
             margin-bottom: 20px;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .hero-stats {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             margin: 25px 0;
             flex-wrap: wrap;
         }
 
         .stat-item {
             text-align: center;
-            padding: 15px 25px;
+            padding: 15px 20px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 10px;
             transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
         }
 
         .stat-item:hover {
@@ -207,50 +206,19 @@
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: var(--primary);
             display: block;
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #888;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            border-left: 3px solid var(--primary);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: var(--light);
-        }
-
-        .contact-item:hover {
-            background: rgba(0, 212, 255, 0.1);
-            transform: translateX(5px);
-        }
-
-        .contact-item i {
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-
-        /* Section Styling */
         .section {
             padding: 50px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -291,7 +259,6 @@
             background: linear-gradient(90deg, var(--primary), transparent);
         }
 
-        /* Skills Grid */
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -334,7 +301,6 @@
             border-radius: 20px;
             font-size: 0.85rem;
             transition: all 0.3s ease;
-            cursor: default;
         }
 
         .skill-tag:hover {
@@ -349,12 +315,6 @@
             color: var(--success);
         }
 
-        .skill-tag.expert:hover {
-            background: var(--success);
-            color: var(--dark);
-        }
-
-        /* Timeline */
         .timeline {
             position: relative;
             padding-left: 30px;
@@ -387,12 +347,6 @@
             border: 3px solid var(--primary);
             border-radius: 50%;
             box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.2);
-        }
-
-        .timeline-item.current::before {
-            background: var(--success);
-            border-color: var(--success);
-            animation: pulse 2s infinite;
         }
 
         .timeline-header {
@@ -433,11 +387,6 @@
             gap: 5px;
         }
 
-        .timeline-desc {
-            color: #aaa;
-            line-height: 1.8;
-        }
-
         .timeline-desc ul {
             list-style: none;
             padding-left: 0;
@@ -447,6 +396,7 @@
             padding-left: 20px;
             position: relative;
             margin-bottom: 8px;
+            color: #ccc;
         }
 
         .timeline-desc li::before {
@@ -456,10 +406,9 @@
             color: var(--primary);
         }
 
-        /* Education Cards */
         .edu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
@@ -467,7 +416,7 @@
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(0, 212, 255, 0.1);
             border-radius: 12px;
-            padding: 25px;
+            padding: 22px;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -493,20 +442,29 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--primary);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-weight: bold;
         }
 
         .edu-title {
             font-size: 1.1rem;
             color: var(--light);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
         }
 
         .edu-institution {
-            color: #888;
+            color: #aaa;
             font-size: 0.9rem;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+        }
+
+        .edu-details {
+            font-size: 0.82rem;
+            color: #888;
+            margin-top: 6px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-top: 6px;
         }
 
         .edu-year {
@@ -522,46 +480,10 @@
             padding: 4px 10px;
             border-radius: 10px;
             font-size: 0.75rem;
-            margin-top: 10px;
+            margin-top: 8px;
             border: 1px solid var(--success);
         }
 
-        /* GitHub Section */
-        .github-section {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(123, 44, 191, 0.05));
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .github-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            color: var(--light);
-            font-size: 1.1rem;
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .github-link:hover {
-            background: var(--primary);
-            color: var(--dark);
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-        }
-
-        .github-link i {
-            font-size: 1.5rem;
-        }
-
-        /* Summary Box */
         .summary-box {
             background: rgba(255, 255, 255, 0.02);
             border-left: 4px solid var(--primary);
@@ -576,50 +498,6 @@
             color: var(--primary);
         }
 
-        /* Personal Info Grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .info-item i {
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-
-        .info-content label {
-            display: block;
-            font-size: 0.8rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .info-content span {
-            color: var(--light);
-            font-weight: 500;
-        }
-
-        /* Footer */
         .footer {
             text-align: center;
             padding: 40px 0;
@@ -627,53 +505,11 @@
             font-size: 0.9rem;
         }
 
-        .footer .highlight {
-            color: var(--primary);
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-stats {
-                justify-content: center;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-header {
-                flex-direction: column;
-            }
-        }
-
-        /* Print Styles */
-        @media print {
-            body {
-                background: white;
-                color: black;
-            }
-
-            .bg-animation, .particles, .profile-ring {
-                display: none;
-            }
-
-            .hero {
-                border-bottom: 2px solid #333;
-            }
-
-            .skill-tag, .timeline-date, .edu-card {
-                border: 1px solid #ccc;
-                background: white;
-            }
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-stats { justify-content: center; }
+            .timeline-header { flex-direction: column; }
         }
     </style>
 </head>
@@ -691,30 +527,29 @@
                 </div>
                 <div class="status-badge">
                     <span class="status-dot"></span>
-                    <span>Disponível para Oportunidades Acadêmicas</span>
+                    <span>Disponível para Atuação Universitária e EPT</span>
                 </div>
             </div>
 
             <div class="hero-content">
                 <h1>Márcio Rodrigues de Oliveira</h1>
-                <div class="title">&lt;Docente & Pesquisador em Computação e Educação/&gt;</div>
+                <div class="title">&lt;Docente & Pesquisador no Ensino Superior, EPT e EaD/&gt;</div>
 
                 <div class="hero-stats">    
                     <div class="stat-item">
                         <span class="stat-number">3</span>
                         <span class="stat-label">Graduações</span>
                     </div> 
-                     <div class="stat-item">
+                    <div class="stat-item">
                         <span class="stat-number">1</span>
                         <span class="stat-label">Doutorando</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">18+</span>
+                        <span class="stat-number">15+</span>
                         <span class="stat-label">Especializações</span>
                     </div>     
                 </div>
-
-                
+            </div>
         </header>
 
         <!-- Professional Summary -->
@@ -726,85 +561,80 @@
                 <h2>Resumo Profissional Docente</h2>
             </div>
             <div class="summary-box">
-                Docente com sólida atuação no Ensino Superior, Educação Profissional e Tecnológica (EPT), Educação a Distância (EaD) e Formação Acadêmica nas áreas de <strong>Ciência da Computação, Sistemas de Informação, Licenciatura em Informática e Matemática</strong>. Experiência na concepção de cursos, tutoria virtual, mediação pedagógica, desenvolvimento de material didático e aplicação de Inteligência Artificial e metodologias ativas no ensino-aprendizagem. Pesquisador focado em Inteligência Artificial Aplicada à Educação, Educação Tecnológica e Inovação Pedagógica.
+                Docente e pesquisador com ampla atuação no <strong>Ensino Superior, Educação Profissional e Tecnológica (EPT) e Educação a Distância (EaD)</strong>. Possui uma sólida formação acadêmica multidisciplinar que integra <strong>Tecnologia da Informação, Educação Matemática, Engenharia Civil, Segurança do Trabalho e Engenharia de Tráfego</strong>. Experiência na docência superior, tutoria virtual, mediação pedagógica, desenvolvimento de material didático, elaboração de projetos integradores e aplicação de Inteligência Artificial Generativa e metodologias ativas no processo de ensino-aprendizagem. Pesquisador voltado à inovação pedagógica e Tecnologias Aplicadas à Educação.
             </div>
         </section>
 
-        <!-- Technical Skills -->
+        <!-- Technical & Pedagogical Skills -->
         <section class="section">
             <div class="section-header">
                 <div class="section-icon">
                     <i class="fas fa-book-reader"></i>
                 </div>
-                <h2>Competências Pedagógicas & Áreas de Ensino</h2>
+                <h2>Competências Pedagógicas & Áreas de Atuação Científica</h2>
             </div>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3><i class="fas fa-chalkboard-teacher"></i> Práticas Docentes & EaD</h3>
+                    <h3><i class="fas fa-chalkboard-teacher"></i> Práticas Docentes, EPT & EaD</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag expert">Design Instrucional</span>
-                        <span class="skill-tag expert">Moodle & LMS</span>
-                        <span class="skill-tag expert">Metodologias Ativas</span>
-                        <span class="skill-tag">Mediação Pedagógica</span>
-                        <span class="skill-tag">Produção de Videoaulas</span>
-                        <span class="skill-tag">Gamificação no Ensino</span>
-                        <span class="skill-tag">Tutoria Virtual</span>
+                        <span class="skill-tag expert">Docência no Ensino Superior</span>
+                        <span class="skill-tag expert">Design Instrucional & Desenho Didático</span>
+                        <span class="skill-tag expert">Moodle & Ambientes Virtuais (LMS)</span>
+                        <span class="skill-tag">Metodologias Ativas & Gamificação</span>
+                        <span class="skill-tag">Produção de Videoaulas & Material Didático</span>
+                        <span class="skill-tag">Tutoria & Mediação Pedagógica</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3><i class="fas fa-robot"></i> IA na Educação & Pesquisa</h3>
+                    <h3><i class="fas fa-robot"></i> IA na Educação & Inovação</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag expert">IA Generativa no Ensino</span>
-                        <span class="skill-tag expert">Tutores Virtuais</span>
-                        <span class="skill-tag">Itinerários Personalizados</span>
-                        <span class="skill-tag">Avaliação Formativa</span>
-                        <span class="skill-tag">Chatbots Educacionais</span>
-                        <span class="skill-tag">Ética em IA</span>
+                        <span class="skill-tag expert">IA Generativa Aplicada ao Ensino</span>
+                        <span class="skill-tag expert">Tutores Virtuais & Chatbots Educacionais</span>
+                        <span class="skill-tag">Itinerários de Aprendizagem Personalizados</span>
+                        <span class="skill-tag">Avaliação Formativa Continuada</span>
+                        <span class="skill-tag">Ética & Inovação Tecnológica na Educação</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Ensino de Programação & Web</h3>
+                    <h3><i class="fas fa-laptop-code"></i> Ensino de Ciência da Computação & TI</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag expert">Algoritmos & ED</span>
-                        <span class="skill-tag expert">Lógica de Programação</span>
-                        <span class="skill-tag">Engenharia de Software</span>
-                        <span class="skill-tag">Desenvolvimento Web</span>
-                        <span class="skill-tag">Python & Java</span>
-                        <span class="skill-tag">POO</span>
+                        <span class="skill-tag expert">Algoritmos & Estrutura de Dados</span>
+                        <span class="skill-tag expert">Engenharia de Software & DevOps</span>
+                        <span class="skill-tag">Perícia Forense em TI & Cibersegurança</span>
+                        <span class="skill-tag">Redes de Computadores & Cloud Computing</span>
+                        <span class="skill-tag">Banco de Dados & Gestão de TI</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3><i class="fas fa-database"></i> Ensino de Dados & Infraestrutura</h3>
+                    <h3><i class="fas fa-calculator"></i> Educação Matemática & Exatas</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Banco de Dados & SQL</span>
-                        <span class="skill-tag">Sistemas Operacionais</span>
-                        <span class="skill-tag">Redes de Computadores</span>
-                        <span class="skill-tag">Arquitetura de Sistemas</span>
-                        <span class="skill-tag">Cibersegurança</span>
+                        <span class="skill-tag">Práticas Pedagógicas em Matemática</span>
+                        <span class="skill-tag">Informática na Educação Matemática</span>
+                        <span class="skill-tag">Métodos Computacionais & Estatística</span>
+                        <span class="skill-tag">Matemática Aplicada às Ciências Exatas</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3><i class="fas fa-calculator"></i> Educação Matemática</h3>
+                    <h3><i class="fas fa-drafting-compass"></i> Engenharia, Mobilidade & Segurança</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Matemática Aplicada</span>
-                        <span class="skill-tag">Informática na Ed. Matemática</span>
-                        <span class="skill-tag">Métodos Computacionais</span>
-                        <span class="skill-tag">Estatística Computacional</span>
-                        <span class="skill-tag">Matemática Financeira</span>
+                        <span class="skill-tag">Engenharia de Tráfego & Mobilidade Urbana</span>
+                        <span class="skill-tag">Sistemas Construtivos & Patologias</span>
+                        <span class="skill-tag">Engenharia de Segurança do Trabalho & Perícia</span>
+                        <span class="skill-tag">Topografia & Geoprocessamento/Sensoriamento Remoto</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3><i class="fas fa-tasks"></i> Gestão Acadêmica & EPT</h3>
+                    <h3><i class="fas fa-tasks"></i> Gestão Acadêmica, Projetos & EPT</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Coordenação Pedagógica</span>
-                        <span class="skill-tag">Elaboração de PPC</span>
-                        <span class="skill-tag">Gestão de Projetos Educacionais</span>
-                        <span class="skill-tag">Orientação de TCC</span>
+                        <span class="skill-tag">MBA em Gestão de Projetos & PMO</span>
+                        <span class="skill-tag">MBA em Logística & Modais de Transporte</span>
+                        <span class="skill-tag">Elaboração de PPC & Coordenação Pedagógica</span>
+                        <span class="skill-tag">Orientação de TCC & Pesquisa Aplicada</span>
                     </div>
                 </div>
             </div>
@@ -814,29 +644,11 @@
         <section class="section">
             <div class="section-header">
                 <div class="section-icon">
-                    <i class="fas fa-graduation-cap"></i>
+                    <i class="fas fa-briefcase"></i>
                 </div>
-                <h2>Trajetória Docente & Atuação Acadêmica</h2>
+                <h2>Trajetória Docente</h2>
             </div>         
             <div class="timeline">
-                <div class="timeline-item current">
-                    <div class="timeline-header">
-                        <div>
-                            <div class="timeline-title">Coordenador / Professor Conteudista</div>
-                            <div class="timeline-company">Prefeitura Municipal - Educação / Projetos</div>
-                        </div>
-                        <div class="timeline-date">2025 - Atual</div>
-                    </div>
-                    <div class="timeline-location">
-                        <i class="fas fa-laptop-house"></i> Ensino & Gestão Educacional
-                    </div>       
-                    <div class="timeline-desc">
-                        <ul>
-                            <li>Coordenação e elaboração de conteúdos didáticos voltados para formação tecnológica e programas educacionais.</li>
-                        </ul>
-                    </div>            
-                </div>
-
                 <div class="timeline-item">
                     <div class="timeline-header">
                         <div>
@@ -851,7 +663,7 @@
                     <div class="timeline-desc">
                         <ul>
                             <li>Ministrou as disciplinas de <strong>Introdução à Computação</strong> (40h), <strong>Informática Aplicada à Educação Matemática</strong> (120h), <strong>Computação</strong> (120h) e <strong>Métodos Computacionais</strong> (60h).</li>
-                            <li>Aplicação de recursos tecnológicos e computacionais para integração ao ensino de ciências exatas e matemática.</li>
+                            <li>Integração de metodologias ativas e recursos computacionais aplicados ao ensino das ciências exatas.</li>
                         </ul>
                     </div>             
                 </div>
@@ -865,11 +677,11 @@
                         <div class="timeline-date">2012 - 2014</div>
                     </div>
                     <div class="timeline-location">
-                        <i class="fas fa-school"></i> Educação Profissional e Tecnológica
+                        <i class="fas fa-school"></i> Educação Profissional e Tecnológica (EPT)
                     </div>       
                     <div class="timeline-desc">
                         <ul>
-                            <li>Docência nos cursos de Operador de Computador, Montagem e Manutenção de Computadores, e Instalador/Reparador de Redes.</li>
+                            <li>Atuação docente nos cursos técnicos e profissionalizantes de Operador de Computador, Montagem e Manutenção de Computadores, e Instalador/Reparador de Redes.</li>
                             <li>Disciplinas ministradas: Configurações de Redes Locais, Instalação de Sistemas Operacionais, Internet e Fundamentos Profissionais.</li>
                         </ul>
                     </div>             
@@ -884,11 +696,11 @@
                         <div class="timeline-date">2011 - 2012</div>
                     </div>
                     <div class="timeline-location">
-                        <i class="fas fa-university"></i> Graduação / Licenciatura em Informática
+                        <i class="fas fa-university"></i> Ensino Superior / Licenciatura em Informática
                     </div>       
                     <div class="timeline-desc">
                         <ul>
-                            <li>Docente no curso de Licenciatura Plena em Informática.</li>
+                            <li>Docente no curso de Licenciatura Plena em Informática voltado para a formação de professores.</li>
                             <li>Disciplinas ministradas: <strong>Estrutura de Dados</strong> (80h), <strong>Projeto e Análise de Orientação a Objetos</strong> (80h) e <strong>Sistemas Operacionais</strong> (80h).</li>
                         </ul>
                     </div>             
@@ -897,7 +709,7 @@
                 <div class="timeline-item">
                     <div class="timeline-header">
                         <div>
-                            <div class="timeline-title">Professor de Cursos Profissionalizantes de Tecnologia</div>
+                            <div class="timeline-title">Professor de Formação Profissional em Tecnologia</div>
                             <div class="timeline-company">Instituições de Ensino Técnico e Cursos Livres</div>
                         </div>
                         <div class="timeline-date">2008 - 2012</div>
@@ -907,26 +719,26 @@
                     </div>       
                     <div class="timeline-desc">
                         <ul>
-                            <li>Instrutoria de conceitos de Informática Básica, Pacote Office, Sistemas Operacionais, Redes e Arquitetura de Computadores.</li>
+                            <li>Instrutoria técnica em Informática Básica, Suíte de Escritório, Sistemas Operacionais, Redes e Arquitetura de Computadores.</li>
                         </ul>
                     </div>             
                 </div>
             </div>
         </section>
 
-        <!-- Education -->
+        <!-- Education (Graduation) -->
         <section class="section">
             <div class="section-header">
                 <div class="section-icon">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
-                <h2>Graduações Acadêmicas</h2>
+                <h2>Graduações</h2>
             </div>
             <div class="edu-grid">
                 <div class="edu-card">
                     <div class="edu-type">Bacharelado</div>
                     <div class="edu-title">Sistemas de Informação</div>     
-                    <div class="edu-institution">IESAM</div>
+                    <div class="edu-institution">IESAM - Instituto de Ensino Superior da Amazônia</div>
                     <div class="edu-year">2002 - 2005</div>               
                 </div>
                 <div class="edu-card">
@@ -935,7 +747,7 @@
                     <div class="edu-institution">Universidade Cruzeiro do Sul</div>
                     <div class="edu-year">2021 - 2022</div>              
                 </div>
-                 <div class="edu-card">
+                <div class="edu-card">
                     <div class="edu-type">Bacharelado</div>
                     <div class="edu-title">Engenharia Civil</div>     
                     <div class="edu-institution">Faculdade Católica Paulista</div>
@@ -944,72 +756,160 @@
             </div>
         </section>
 
-        <!-- Post-Graduations -->
+        <!-- Stricto & Lato Sensu Post-Graduations -->
         <section class="section">
             <div class="section-header">
                 <div class="section-icon">
-                    <i class="fas fa-certificate"></i>
+                    <i class="fas fa-user-graduate"></i>
                 </div>
-                <h2>Doutorado & Pós-Graduações na Área Pedagógica e de Tecnologia</h2>
+            <h2>Doutorado & Mestrado</h2>
+            </div>
+             <!-- Doutorado -->
+                <div class="edu-card" style="border-color: var(--primary);">
+                    <div class="edu-type">Doutorando em Educação</div>
+                    <div class="edu-institution">Christian Business School (CBS)</div>
+                    <div class="edu-year">2026 - 2029</div>
+                    <div class="edu-details">Linha de Pesquisa: Inteligência Artificial Aplicada à Educação</div>
+                    <span class="edu-status">Em Andamento</span>
+                </div>
+                 <!-- Mestrado -->
+                <div class="edu-card" style="border-color: var(--primary);">
+                    <div class="edu-type">Mestrando em Administração</div>
+                    <div class="edu-institution">Christian Business School (CBS)</div>
+                    <div class="edu-year">2026 - 2027</div>
+                    <div class="edu-details">Linha de Pesquisa: Inteligência Artificial Aplicada à Administração</div>
+                    <span class="edu-status">Em Andamento</span>
+                </div>
+                
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+            <h2>Especializações</h2>
             </div>
             <div class="edu-grid">
                 <div class="edu-card">
-                    <div class="edu-type">Doutorando</div>
-                    <div class="edu-title">Doutorado em Educação</div>
-                    <div class="edu-institution">Christian Business School (CBS)</div>
-                    <div class="edu-year">2026 - 2029</div>
-                    <div style="font-size: 0.85rem; color: #aaa; margin-top: 5px;">Linha: Inteligência Artificial Aplicada à Educação</div>
-                    <span class="edu-status">Em Andamento</span>
+                    <div class="edu-type">Especialização (720h)</div>
+                    <div class="edu-title">Engenharia de Tráfego</div>
+                    <div class="edu-institution">FACPRISMA</div>
+                    <div class="edu-year">2025 - 2026</div>
+                    <div class="edu-details">TCC: Diagnóstico Operacional e Otimização Semafórica em Conceição do Araguaia-PA (Nota 91) | Contém a disciplina: Docência do Ensino Superior</div>
                 </div>
+
+                <div class="edu-card">
+                    <div class="edu-type">Especialização (720h)</div>
+                    <div class="edu-title">MBA em Logística e Modais de Transporte</div>
+                    <div class="edu-institution">FACPRISMA</div>
+                    <div class="edu-year">2025 - 2026</div>
+                    <div class="edu-details">TCC: Logística e Modais de Transporte no Brasil: Análise Crítica da Matriz Logística (Nota 90) | Contém a disciplina: Docência do Ensino Superior</div>
+                </div>
+
+                <div class="edu-card">
+                    <div class="edu-type">Especialização (432h)</div>
+                    <div class="edu-title">MBA em Gestão de Projetos</div>
+                    <div class="edu-institution">Faculdade Estratego</div>
+                    <div class="edu-year">2023 - 2024</div>
+                    <div class="edu-details">Ênfase em PMO, Scrum, Agile Project, Planejamento Estratégico e Gestão de TI</div>
+                </div>
+
+                <div class="edu-card">
+                    <div class="edu-type">Especialização (700h)</div>
+                    <div class="edu-title">Perícia Forense Aplicada à Informática</div>
+                    <div class="edu-institution">FACUMINAS</div>
+                    <div class="edu-year">2025</div>
+                    <div class="edu-details">TCC: Perícia Forense Computacional como Instrumento de Apoio à Segurança da Informação (Nota 85) | Contém a disciplina: Docência do Ensino Superior</div>
+                </div>
+
+                <div class="edu-card">
+                    <div class="edu-type">Especialização (640h)</div>
+                    <div class="edu-title">Topografia e Sensoriamento Remoto</div>
+                    <div class="edu-institution">FACUMINAS</div>
+                    <div class="edu-year">2025</div>
+                    <div class="edu-details">TCC: Georreferenciamento de Imóvel Rural: Fundamentos, Metodologias e Aplicações (Nota 80) | Contém a disciplina: Docência do Ensino Superior</div>
+                </div>
+
+                <div class="edu-card">
+                    <div class="edu-type">Especialização (720h)</div>
+                    <div class="edu-title">Engenharia em Segurança do Trabalho e Perícia Trabalhista</div>
+                    <div class="edu-institution">FACUMINAS</div>
+                    <div class="edu-year">2023</div>
+                    <div class="edu-details">Ênfase em Higiene do Trabalho, Ergonomia e Perícia Trabalhista | Contém a disciplina: Docência do Ensino Superior</div>
+                </div>
+
+                <div class="edu-card">
+                    <div class="edu-type">Especialização (720h)</div>
+                    <div class="edu-title">Sistemas Construtivos</div>
+                    <div class="edu-institution">FACUMINAS</div>
+                    <div class="edu-year">2025</div>
+                    <div class="edu-details">TCC: A Evolução dos Sistemas Construtivos: Tecnologias Emergentes na Construção Civil (Nota 75) | Contém a disciplina: Docência do Ensino Superior</div>
+                </div>
+
+                <div class="edu-card">
+                    <div class="edu-type">Especialização (700h)</div>
+                    <div class="edu-title">Projetos Urbanos para Loteamentos e Condomínios Urbanísticos</div>
+                    <div class="edu-institution">FACUMINAS</div>
+                    <div class="edu-year">2023</div>
+                    <div class="edu-details">Ênfase em Mobilidade Urbana, Sustentabilidade e Infraestrutura | Contém a disciplina: Docência do Ensino Superior</div>
+                </div>
+
                 <div class="edu-card">
                     <div class="edu-type">Especialização</div>
                     <div class="edu-title">EaD na Educação Profissional e Tecnológica</div>
                     <div class="edu-institution">IFMT (Instituto Federal de Mato Grosso)</div>
                     <div class="edu-year">2025</div>
+                    <span class="edu-status">Em Andamento</span>
                 </div>
+
                 <div class="edu-card">
                     <div class="edu-type">Especialização</div>
                     <div class="edu-title">Informática na Educação</div>
                     <div class="edu-institution">IFMA (Instituto Federal do Maranhão)</div>
                     <div class="edu-year">2022 - 2025</div>
                 </div>
+
                 <div class="edu-card">
                     <div class="edu-type">Especialização</div>
                     <div class="edu-title">Docência em Matemática e Práticas Pedagógicas</div>
                     <div class="edu-institution">Faculdade Serra Geral</div>
                     <div class="edu-year">2022</div>
                 </div>
+
+                <div class="edu-card">
+                    <div class="edu-type">Especialização (432h)</div>
+                    <div class="edu-title">Redes de Computadores e Cloud Computing</div>
+                    <div class="edu-institution">Faculdade Estratego</div>
+                    <div class="edu-year">2023 - 2024</div>
+                </div>
+
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Engenharia DevOps</div>
+                    <div class="edu-institution">IFMT (Instituto Federal de Mato Grosso)</div>
+                    <div class="edu-year">2025</div>
+                    <span class="edu-status">Em Andamento</span>
+                </div>
+
                 <div class="edu-card">
                     <div class="edu-type">Especialização</div>
                     <div class="edu-title">Engenharia de Software e Gestão de Projetos</div>
                     <div class="edu-institution">Faculdade Estratego</div>
                     <div class="edu-year">2022 - 2023</div>
                 </div>
-                <div class="edu-card">
-                    <div class="edu-type">Especialização</div>
-                    <div class="edu-title">Engenharia DevOps</div>
-                    <div class="edu-institution">IFMT (Instituto Federal de Mato Grosso)</div>
-                    <div class="edu-year">2025 - 2027</div>
-                    <span class="edu-status">Em Andamento</span>
-                </div>
-                <div class="edu-card">
-                    <div class="edu-type">Especialização</div>
-                    <div class="edu-title">Redes de Computadores e Cloud Computing</div>
-                    <div class="edu-institution">Faculdade Estratego</div>
-                    <div class="edu-year">2023</div>
-                </div>
+
                 <div class="edu-card">
                     <div class="edu-type">Especialização</div>
                     <div class="edu-title">Algoritmos e Estrutura de Dados</div>
                     <div class="edu-institution">Faculdade Focus</div>
                     <div class="edu-year">2021 - 2022</div>
                 </div>
+
                 <div class="edu-card">
                     <div class="edu-type">Especialização</div>
                     <div class="edu-title">Banco de Dados</div>
                     <div class="edu-institution">UniBF</div>
                     <div class="edu-year">2020</div>
                 </div>
+
                 <div class="edu-card">
                     <div class="edu-type">Especialização</div>
                     <div class="edu-title">Engenharia de Sistemas</div>
@@ -1019,13 +919,13 @@
             </div>
         </section>      
 
-        <!-- Formação Complementar em Docência -->
+        <!-- Formação Complementar Pedagógica -->
         <section class="section">
             <div class="section-header">
                 <div class="section-icon">
                     <i class="fas fa-award"></i>
                 </div>
-                <h2>Aperfeiçoamento Pedagógico & EaD (Destaques)</h2>
+                <h2>Aperfeiçoamento Pedagógico, Tecnológico & EaD</h2>
             </div>
             <div class="skills-container">
                 <div class="skill-category" style="width: 100%;">
@@ -1050,13 +950,12 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Perfil Acadêmico e Docente</p>
+            <p>Perfil Acadêmico, Docente e Científico</p>
             <p style="margin-top: 10px; font-size: 0.8rem;">© 2026 Márcio Rodrigues de Oliveira. Todos os direitos reservados.</p>
         </footer>
     </div>
 
     <script>
-        // Generate particles
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
@@ -1067,7 +966,6 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Add scroll reveal animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1082,7 +980,6 @@
             });
         }, observerOptions);
 
-        // Observe all sections
         document.querySelectorAll('.section, .skill-category, .edu-card, .timeline-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
@@ -1090,7 +987,6 @@
             observer.observe(el);
         });
 
-        // Typing effect for title
         const title = document.querySelector('.title');
         const text = title.textContent;
         title.textContent = '';
