@@ -1,258 +1,1038 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="h-full bg-slate-100">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mazz Concursos | Goiânia-GO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Treinamentos NRs | ZENTIX</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        @media print {
+            body { background: white !important; color: black !important; }
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
         }
-
-        body {
-            background-color: #f4f6f9;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: #1a365d;
-            color: #fff;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            color: #e2e8f0;
-        }
-
-        .logo span {
-            color: #38a169;
-        }
-
-        .location {
-            font-size: 0.9rem;
-            color: #cbd5e0;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.8)), url('https://via.placeholder.com/1200x400') center/cover;
-            color: #fff;
-            text-align: center;
-            padding: 3rem 1rem;
-        }
-
-        .hero h2 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #1a365d;
-            font-size: 1.8rem;
-            border-bottom: 3px solid #38a169;
-            display: inline-block;
-            padding-bottom: 0.3rem;
-        }
-
-        .title-wrapper {
-            text-align: center;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-            border-top: 5px solid #38a169;
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .tag {
-            background-color: #e6fffa;
-            color: #234e52;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .card h3 {
-            margin: 0.8rem 0 0.5rem 0;
-            color: #2d3748;
-        }
-
-        .card p {
-            color: #718096;
-            font-size: 0.95rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .card-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .btn-card {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 0.6rem 0;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background-color: #1a365d;
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            background-color: #2b6cb0;
-        }
-
-        .btn-whatsapp {
-            background-color: #25d366;
-            color: #fff;
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #1ebe5d;
-        }
-
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: #fff;
-            border-radius: 50px;
-            padding: 12px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            z-index: 1000;
-        }
-
-        footer {
-            background-color: #1a202c;
-            color: #a0aec0;
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 3rem;
+        .print-only { display: none; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        
+        /* Otimização de toque em telas móveis */
+        button, input, select {
+            touch-action: manipulation;
         }
     </style>
 </head>
-<body>
+<body class="h-full font-sans text-slate-800 flex flex-col antialiased bg-slate-100">
 
-    <header>
-        <div class="logo">
-            <h1>MAZZ <span>CONCURSOS</span></h1>
-        </div>
-        <div class="location">
-            📍 Goiânia-GO | WhatsApp: (62) 99646-6033
+    <!-- Header Mobile Optimized -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-40 border-b border-slate-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="bg-brand-700 p-2 rounded-xl text-white flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-hard-hat text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="font-black text-lg sm:text-xl tracking-tight text-white leading-none">ZENTIX Portal SST</h1>
+                            <span class="bg-amber-500/20 text-amber-400 text-[10px] sm:text-xs px-2 py-0.5 rounded font-bold border border-amber-500/30 uppercase">Engenharia</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Catálogo de Treinamentos (40h)</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <h2>Sua Aprovação Começa Aqui</h2>
-        <p>Acompanhe os principais editais abertos e prepare-se com quem entende.</p>
+    <!-- Banner Técnico Responsive -->
+    <section class="bg-gradient-to-b from-slate-900 via-brand-950 to-brand-900 text-white py-5 px-4 sm:px-6 lg:px-8 border-b border-brand-700/40 no-print">
+        <div class="max-w-7xl mx-auto space-y-4">
+            <div>
+                <span class="inline-flex items-center gap-1.5 bg-brand-500/20 text-brand-300 text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-bold border border-brand-500/30 mb-2">
+                    <i class="fa-solid fa-certificate text-brand-400"></i> Portaria 3.214/78 MTE & CONFEA/CREA
+                </span>
+                <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">
+                    Ementas Padronizadas para Engenheiro SST
+                </h2>
+                <p class="text-slate-300 text-xs sm:text-sm mt-1 leading-relaxed">
+                    Acesso rápido aos programas de **40 Horas** para emissão de ART e atendimento à NR-01 (GRO/PGR)[cite: 1].
+                </p>
+            </div>
+
+            <!-- Cards Resumo Táticos Mobile -->
+            <div class="grid grid-cols-3 gap-2 pt-1 text-center">
+                <div class="bg-slate-900/80 border border-slate-700/60 p-2 rounded-xl">
+                    <i class="fa-solid fa-shield-halved text-brand-400 text-sm mb-1 block"></i>
+                    <span class="text-[10px] text-slate-400 block font-medium">Habilitação</span>
+                    <strong class="text-[11px] text-white font-bold block truncate">Eng. SST</strong>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-700/60 p-2 rounded-xl">
+                    <i class="fa-solid fa-clock text-amber-400 text-sm mb-1 block"></i>
+                    <span class="text-[10px] text-slate-400 block font-medium">Carga Horária</span>
+                    <strong class="text-[11px] text-white font-bold block truncate">40h / Módulo</strong>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-700/60 p-2 rounded-xl">
+                    <i class="fa-solid fa-file-signature text-blue-400 text-sm mb-1 block"></i>
+                    <span class="text-[10px] text-slate-400 block font-medium">Validade</span>
+                    <strong class="text-[11px] text-white font-bold block truncate">CREA / ART</strong>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <main class="container">
-        <div class="title-wrapper">
-            <h2 class="section-title">Concursos Abertos em Destaque</h2>
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 flex-grow w-full no-print">
+        
+        <div class="space-y-4">
+            
+            <!-- Barra de Busca e Filtros - Mobile Refactored -->
+            <div class="bg-white p-3.5 sm:p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+                <div class="relative w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="searchInput" onkeyup="filterNRs()" placeholder="Buscar por número, título ou palavra (ex: NR-35, Altura)..." 
+                           class="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all">
+                </div>
+
+                <!-- Chips de Categoria com Scroll Horizontal no Mobile -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar text-xs">
+                    <button onclick="filterCategory('all')" class="cat-btn active shrink-0 px-3 py-2 font-bold rounded-xl border transition-all bg-brand-800 text-white border-brand-800 shadow-sm">
+                        Todas as NRs (<span id="totalNrBadge">0</span>)
+                    </button>
+                    <button onclick="filterCategory('eng')" class="cat-btn shrink-0 px-3 py-2 font-bold rounded-xl border transition-all bg-white text-slate-700 border-slate-300 active:bg-slate-100">
+                        <i class="fa-solid fa-user-gear text-brand-700 mr-1"></i>Com Ementa (40h)
+                    </button>
+                    <button onclick="filterCategory('geral')" class="cat-btn shrink-0 px-3 py-2 font-bold rounded-xl border transition-all bg-white text-slate-700 border-slate-300 active:bg-slate-100">
+                        Gestão / Outros
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="flex items-center justify-between text-[11px] text-slate-500 px-1">
+                <span>Exibindo <strong id="nrCount" class="text-slate-900 font-bold">0</strong> normas</span>
+                <span class="text-slate-400"><i class="fa-solid fa-touch-app mr-1"></i>Toque no card para ementa</span>
+            </div>
+
+            <!-- Grid de Cards de NRs Otimizado para Telas Menores -->
+            <div id="nrGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
+                <!-- Injetado Dinamicamente -->
+            </div>
         </div>
 
-        <div class="cards-grid">
-            <!-- Card SES-TO -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag">Inscrições Abertas</span>
-                    <h3>SES-TO</h3>
-                    <p>Secretaria de Estado da Saúde do Tocantins. Oportunidades para diversos cargos de níveis médio e superior.</p>
-                    <div class="card-buttons">
-                        <a href="https://conhecimento.fgv.br/concursos/sesto26" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (FGV)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20SES-TO" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card SEDUC-PA -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag">Inscrições Abertas</span>
-                    <h3>SEDUC-PA</h3>
-                    <p>Secretaria de Estado de Educação do Pará. Vagas para a área da educação e cargos administrativos.</p>
-                    <div class="card-buttons">
-                        <a href="https://conhecimento.fgv.br/concursos/seducpa26" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (FGV)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20SEDUC-PA" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card SEMA-MT -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag">Inscrições Abertas</span>
-                    <h3>SEMA-MT</h3>
-                    <p>Secretaria de Estado de Meio Ambiente de Mato Grosso. Oportunidades para carreiras ambientais e técnicas.</p>
-                    <div class="card-buttons">
-                        <a href="https://www.cesgranrio.org.br/concurso/sema-mt-2026" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (Cesgranrio)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20SEMA-MT" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
-                </div>
-            </article>
-        </div>
     </main>
 
-    <!-- Botão Flutuante do WhatsApp -->
-    <a href="https://wa.me/5562996466033" class="whatsapp-float" target="_blank">
-        💬 Fale no WhatsApp
-    </a>
+    <!-- Modal de Ementa Responsivo e Fullscreen em Telas Pequenas -->
+    <div id="syllabusModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden p-0 sm:p-4 no-print">
+        <div class="bg-white w-full sm:rounded-2xl rounded-t-2xl shadow-2xl sm:max-w-3xl max-h-[92vh] sm:max-h-[85vh] flex flex-col overflow-hidden animate-fadeIn">
+            
+            <!-- Modal Header -->
+            <div class="bg-slate-900 text-white p-4 sm:p-5 flex justify-between items-start border-b border-slate-800 shrink-0">
+                <div class="space-y-1 pr-2">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span id="modalNrBadge" class="bg-brand-500 text-white font-extrabold text-[11px] uppercase px-2 py-0.5 rounded"></span>
+                        <span id="modalSignatureBadge" class="bg-amber-400 text-slate-950 font-bold text-[10px] px-2 py-0.5 rounded">Eng. SST Habilitado</span>
+                    </div>
+                    <h2 id="modalNrTitle" class="text-base sm:text-lg font-bold text-white leading-tight pt-1"></h2>
+                    <p class="text-[11px] text-slate-400">Carga Horária Padrão: <span class="text-brand-400 font-bold">40 Horas Aula</span></p>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white p-2 text-xl font-bold rounded-lg active:bg-slate-800 transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
 
-    <footer>
-        <p>&copy; Mazz Concursos - Goiânia-GO. Todos os direitos reservados.</p>
+            <!-- Modal Body -->
+            <div id="modalContent" class="p-4 sm:p-6 overflow-y-auto space-y-4 text-xs sm:text-sm text-slate-700 custom-scrollbar flex-grow">
+                <!-- Conteúdo Injetado Dinamicamente -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-slate-50 p-3 sm:p-4 border-t border-slate-200 flex justify-between items-center shrink-0">
+                <span class="text-[10px] text-slate-400 hidden sm:inline">Portaria MTE e CONFEA/CREA</span>
+                <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                    <button onclick="printCurrentSyllabus()" class="flex-1 sm:flex-none px-4 py-2.5 bg-brand-700 active:bg-brand-800 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-print"></i> Imprimir Ementa
+                    </button>
+                    <button onclick="closeModal()" class="px-4 py-2.5 bg-slate-200 active:bg-slate-300 text-slate-800 font-bold rounded-xl text-xs">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Área de Impressão oculta -->
+    <div id="printArea" class="print-only p-6 text-black bg-white max-w-4xl mx-auto"></div>
+
+    <footer class="bg-slate-900 text-slate-400 text-[11px] py-6 mt-8 border-t border-slate-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-1">
+            <p class="font-bold text-slate-300">Catálogo Avançado de Treinamentos de Segurança do Trabalho (SST)</p>
+            <p class="text-slate-500">Conforme CLT, Portaria 3.214/1978 do MTE e atualizações vigentes[cite: 1].</p>
+        </div>
     </footer>
 
+    <script>
+        // Banco de Dados Sem as NRs Revogadas (NR-02 e NR-27 removidas)
+        const nrData = [
+            {
+                id: "NR-01",
+                title: "Disposições Gerais e Gerenciamento de Riscos Ocupacionais (GRO/PGR)",
+                category: "eng",
+                summary: "Diretrizes fundamentais para o Gerenciamento de Riscos Ocupacionais (GRO) e elaboração do Programa de Gerenciamento de Riscos (PGR).",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar gestores, engenheiros e trabalhadores na elaboração, implementação e inventário contínuo de riscos no PGR conforme NR-01.",
+                    modulos: [
+                        { titulo: "Módulo 1: Legislação, Conceitos e GRO", horas: "8h", ementa: "Diretrizes da NR-01; Conceitos de perigos, fatores de risco; Responsabilidades legais do empregador." },
+                        { titulo: "Módulo 2: Identificação de Perigos e Avaliação de Riscos", horas: "10h", ementa: "Metodologias de identificação; Matrizes de risco (Probabilidade x Severidade); Inventário de Riscos." },
+                        { titulo: "Módulo 3: Plano de Ação e Prevenção", horas: "10h", ementa: "Elaboração de metas e cronogramas; Hierarquia das medidas de controle (Eliminação, EPC, EPI)." },
+                        { titulo: "Módulo 4: Plano de Resposta a Emergências e Investigação", horas: "8h", ementa: "Estruturação do plano de emergência; Metodologias de investigação de acidentes (Árvore de Causas)." },
+                        { titulo: "Módulo 5: Avaliação Prática e Auditoria", horas: "4h", ementa: "Elaboração prática de minuta de PGR simulado e avaliação teórica e prática." }
+                    ]
+                }
+            },
+            {
+                id: "NR-03",
+                title: "Embargo e Interdição",
+                category: "eng",
+                summary: "Diretrizes e critérios para caracterização de grave e iminente risco à saúde e integridade física do trabalhador.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Orientar engenheiros e auditores sobre os critérios técnicos e metodologias para caracterização de Embargo ou Interdição.",
+                    modulos: [
+                        { titulo: "Módulo 1: Fundamentos Legais da NR-03", horas: "8h", ementa: "Conceito de grave e iminente risco; Responsabilidades e procedimentos de embargo parcial ou total." },
+                        { titulo: "Módulo 2: Matriz de Classificação de Risco", horas: "10h", ementa: "Utilização das tabelas de excesso de risco conforme portaria da NR-03; Urgência de paralisação." },
+                        { titulo: "Módulo 3: Intervenção Técnica e Plano de Adequação", horas: "10h", ementa: "Elaboração de relatórios técnicos de urgência; Medidas emergenciais para anulação de risco iminente." },
+                        { titulo: "Módulo 4: Responsabilidades Jurídicas", horas: "8h", ementa: "Implicações civis, criminais e trabalhistas para a empresa em casos de interdição pelo MTE." },
+                        { titulo: "Módulo 5: Estudo de Caso Prático", horas: "4h", ementa: "Análise de relatórios reais de fiscalização e elaboração simulada de laudo pericial." }
+                    ]
+                }
+            },
+            {
+                id: "NR-04",
+                title: "Serviços Especializados em Segurança e em Medicina do Trabalho (SESMT)",
+                category: "geral",
+                summary: "Dimensionamento e atribuições da equipe de segurança do trabalho (Engenheiros, Médicos, Técnicos, Enfermeiros).",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar gestores e engenheiros no dimensionamento legal e atuação estratégica do SESMT.",
+                    modulos: [
+                        { titulo: "Módulo 1: Organização e Dimensionamento", horas: "8h", ementa: "Cálculo de enquadramento por CNAE e Grau de Risco conforme Quadros da NR-04; Modalidades." },
+                        { titulo: "Módulo 2: Competências dos Profissionais", horas: "10h", ementa: "Atribuições e responsabilidade legal do Engenheiro de Segurança do Trabalho e equipe." },
+                        { titulo: "Módulo 3: Integração com PGR e PCMSO", horas: "10h", ementa: "Interpretação dos indicadores epidemiológicos e taxa de gravidade de acidentes." },
+                        { titulo: "Módulo 4: Planejamento Anual e Terceiros", horas: "8h", ementa: "Plano de trabalho do SESMT, auditoria de contratadas e fiscalização de conformidade de SST." },
+                        { titulo: "Módulo 5: Avaliação Prática de Gestão", horas: "4h", ementa: "Dimensionamento simulado para múltiplos CNAEs e apresentação de plano de gestão." }
+                    ]
+                }
+            },
+            {
+                id: "NR-05",
+                title: "Comissão Interna de Prevenção de Acidentes e Assédio (CIPA)",
+                category: "eng",
+                summary: "Regulamenta a constituição, organização e atribuições da CIPA, além da prevenção ao assédio e violência no trabalho.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar membros da CIPA para atuação preventiva, inspeções e combate ao assédio no trabalho.",
+                    modulos: [
+                        { titulo: "Módulo 1: Legislação e Organização da CIPA", horas: "8h", ementa: "Estrutura, processo eleitoral, estabilidade legal e atribuições dos representantes." },
+                        { titulo: "Módulo 2: Estudo de Riscos e Mapeamento", horas: "10h", ementa: "Identificação de riscos Físicos, Químicos, Biológicos, Ergonômicos; Elaboração do Mapa de Riscos." },
+                        { titulo: "Módulo 3: Inspeções e Investigação de Acidentes", horas: "10h", ementa: "Roteiro de inspeção de campo; Metodologia de análise de acidentes com e sem afastamento." },
+                        { titulo: "Módulo 4: Prevenção ao Assédio Moral e Sexual", horas: "8h", ementa: "Aplicação da Lei 14.457/22; Regras de conduta, canais de denúncia e ambiente seguro." },
+                        { titulo: "Módulo 5: SIPAT e Plano de Trabalho", horas: "4h", ementa: "Organização da SIPAT e elaboração do plano de ação anual da CIPA." }
+                    ]
+                }
+            },
+            {
+                id: "NR-06",
+                title: "Equipamentos de Proteção Individual (EPI)",
+                category: "eng",
+                summary: "Regulamenta a seleção, fornecimento, uso, inspeção, higienização e Certificado de Aprovação (CA) de EPIs.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar profissionais na gestão de EPIs, seleção técnica, fit test e controle documentado.",
+                    modulos: [
+                        { titulo: "Módulo 1: Legislação e Certificado de Aprovação (CA)", horas: "8h", ementa: "Responsabilidades legais do fabricante, empregador e empregado; Validade do CA." },
+                        { titulo: "Módulo 2: Proteção Respiratória e Auditiva", horas: "10h", ementa: "PPR; Seleção de respiradores e protetores auditivos (NARRsf); Ensaio de vedação (Fit Test)." },
+                        { titulo: "Módulo 3: Proteção Contra Quedas, Cabeça e Olhos", horas: "10h", ementa: "EPIs de altura (cinturão, talabartes); Capacetes e viseiras; Descarte técnico." },
+                        { titulo: "Módulo 4: Gestão de Fichas de Entrega", horas: "8h", ementa: "Controle informatizado de entrega de EPIs; Higienização, manutenção e guarda." },
+                        { titulo: "Módulo 5: Prática de Inspeção e Ajustes", horas: "4h", ementa: "Exercícios práticos de ajuste, inspeção prévia de uso antes da jornada e avaliação." }
+                    ]
+                }
+            },
+            {
+                id: "NR-07",
+                title: "Programa de Controle Médico de Saúde Ocupacional (PCMSO)",
+                category: "geral",
+                summary: "Diretrizes para monitoramento da saúde dos trabalhadores com base no PGR (Atribuição do Médico do Trabalho).",
+                canEngineerSign: false
+            },
+            {
+                id: "NR-08",
+                title: "Edificações",
+                category: "eng",
+                summary: "Requisitos técnicos mínimos em edificações para garantir segurança e conforto aos trabalhadores.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar na avaliação estrutural, circulação, pisos, coberturas e aberturas em prédios industriais.",
+                    modulos: [
+                        { titulo: "Módulo 1: Estruturas, Pisos e Coberturas", horas: "8h", ementa: "Resistência de pisos, rampas, passarelas e prevenção contra intempéries." },
+                        { titulo: "Módulo 2: Circulação e Escadas de Emergência", horas: "10h", ementa: "Dimensionamento de vias de circulação; Proteção em escadas, corrimãos e saídas." },
+                        { titulo: "Módulo 3: Proteção Contra Quedas de Objetos", horas: "10h", ementa: "Fechamento de aberturas no piso e paredes; Guarda-corpos perimetrais." },
+                        { titulo: "Módulo 4: Conforto Térmico e Iluminação", horas: "8h", ementa: "Diretrizes de insolação, ventilação natural e integridade de vedações edilícias." },
+                        { titulo: "Módulo 5: Inspeção Predial de Segurança", horas: "4h", ementa: "Roteiro de vistoria prática das condições de segurança das edificações." }
+                    ]
+                }
+            },
+            {
+                id: "NR-09",
+                title: "Exposições Ocupacionais a Agentes Físicos, Químicos e Biológicos",
+                category: "eng",
+                summary: "Metodologias para avaliação quantitativa e qualitativa dos agentes ambientais para o PGR.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar profissionais em higiene ocupacional, amostragem quantitativa e limites de tolerância.",
+                    modulos: [
+                        { titulo: "Módulo 1: Agentes Físicos (Ruído, Vibração, Calor)", horas: "10h", ementa: "NHO-01, NHO-06, NHO-09 e NHO-10; Dosimetria e exposição ocupacional ao calor (IBUTG)." },
+                        { titulo: "Módulo 2: Agentes Químicos (Poeiras, Vapores)", horas: "10h", ementa: "Bombas de amostragem, gravimetria e amostradores; Limites NR-15 e ACGIH." },
+                        { titulo: "Módulo 3: Agentes Biológicos e Estratégias", horas: "8h", ementa: "Avaliação qualitativa de agentes biológicos e classificação de biossegurança." },
+                        { titulo: "Módulo 4: Relatórios e Interpretação Estatística", horas: "8h", ementa: "Tratamento de dados (Grupo de Exposição Similar - GES) e relatórios de HO." },
+                        { titulo: "Módulo 5: Prática de Manuseio de Equipamentos HO", horas: "4h", ementa: "Calibração e operação de dosímetros, luxímetros e bombas de amostragem." }
+                    ]
+                }
+            },
+            {
+                id: "NR-10",
+                title: "Segurança em Instalações e Serviços em Eletricidade",
+                category: "eng",
+                summary: "Requisitos para implementação de medidas de controle e sistemas preventivos em serviços elétricos.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Habilitar trabalhadores e engenheiros nos riscos com energia elétrica, arc-flash e diretrizes do PIE.",
+                    modulos: [
+                        { titulo: "Módulo 1: Introdução e Perigos Elétricos", horas: "8h", ementa: "Efeitos do choque elétrico; Arcos elétricos, queimaduras e campos eletromagnéticos." },
+                        { titulo: "Módulo 2: Medidas de Controle do Risco Elétrico", horas: "10h", ementa: "Desenergização, seccionamento, verificação de tensão e aterramento provisório." },
+                        { titulo: "Módulo 3: Normas Técnicas e EPI/EPC", horas: "8h", ementa: "NBR 5410 e NBR 14039; Seleção de vestimentas contra arco elétrico e fogo repentino." },
+                        { titulo: "Módulo 4: Procedimentos, APR e Prontuário PIE", horas: "8h", ementa: "Elaboração de APR, Ordens de Serviço e estruturação do Prontuário PIE." },
+                        { titulo: "Módulo 5: Primeiros Socorros e Emergências", horas: "6h", ementa: "RCP, uso de DEA, combate a incêndios energizados e avaliação final." }
+                    ]
+                }
+            },
+            {
+                id: "NR-11",
+                title: "Transporte, Movimentação, Armazenagem e Manuseio de Materiais",
+                category: "eng",
+                summary: "Segurança na operação de empilhadeiras, guindastes, pontes rolantes, talhas e amarração de cargas.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar operadores e supervisores na movimentação segura de cargas e inspeção pré-operacional.",
+                    modulos: [
+                        { titulo: "Módulo 1: Equipamentos de Guindar", horas: "8h", ementa: "Operação de empilhadeiras, pontes rolantes, talhas e guindastes automotores." },
+                        { titulo: "Módulo 2: Estabilidade e Capacidade de Carga", horas: "10h", ementa: "Centro de gravidade, diagrama de carga, limites de trabalho e check-list." },
+                        { titulo: "Módulo 3: Amarração de Cargas e Acessórios", horas: "8h", ementa: "Inspeção de cintas têxteis, cabos de aço, correntes, manilhas e olhais." },
+                        { titulo: "Módulo 4: Análise de Riscos na Movimentação", horas: "8h", ementa: "Sinalização de manobras, raio de giro, solo instável e redes elétricas." },
+                        { titulo: "Módulo 5: Treinamento Prático de Içamento", horas: "6h", ementa: "Condução prática, elevação de carga real, manobras e avaliação prática." }
+                    ]
+                }
+            },
+            {
+                id: "NR-12",
+                title: "Segurança no Trabalho em Máquinas e Equipamentos",
+                category: "eng",
+                summary: "Requisitos técnicos para prevenção de acidentes nas fases de uso, manutenção e adequação de máquinas.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar no reconhecimento de perigos em máquinas, sistemas de intertravamento e apreciação de risco NBR ISO 12100.",
+                    modulos: [
+                        { titulo: "Módulo 1: Princípios Gerais e Arranjo Físico", horas: "8h", ementa: "Estrutura da norma, áreas de circulação e instalações elétricas de máquinas." },
+                        { titulo: "Módulo 2: Acionamento e Parada de Emergência", horas: "8h", ementa: "Categorias de segurança, relés, botoeiras de emergência e redundância." },
+                        { titulo: "Módulo 3: Proteções Físicas e Distâncias", horas: "10h", ementa: "Proteções intertravadas, cortinas de luz, scanners e cálculo de distância (ISO 13857)." },
+                        { titulo: "Módulo 4: Procedimentos Lockout/Tagout (LOTO)", horas: "8h", ementa: "Bloqueio e etiquetagem de energias perigosas (Elétrica, Mecânica, Pneumática)." },
+                        { titulo: "Módulo 5: Apreciação de Risco Prática", horas: "6h", ementa: "Metodologia HRN/ISO 12100 e inspeção prática em máquinas industriais." }
+                    ]
+                }
+            },
+            {
+                id: "NR-13",
+                title: "Caldeiras, Vasos de Pressão, Tubulações e Tanques",
+                category: "eng",
+                summary: "Segurança na instalação, inspeção técnica pericial, operação e manutenção de equipamentos pressurizados.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Habilitar e capacitar operadores e engenheiros na gestão da integridade e testes de vasos e caldeiras.",
+                    modulos: [
+                        { titulo: "Módulo 1: Termodinâmica e Fluidos", horas: "8h", ementa: "Pressão, temperatura, física dos vapores, dilatação e transferência de calor." },
+                        { titulo: "Módulo 2: Classificação e Dispositivos", horas: "10h", ementa: "Categorização; Válvulas de segurança, discos de ruptura e visores de nível." },
+                        { titulo: "Módulo 3: Inspeção e Ensaios Não Destrutivos (END)", horas: "10h", ementa: "Inspeções periódicas, teste hidrostático, ultrassom e medição de espessura." },
+                        { titulo: "Módulo 4: Prontuário e Registro de Segurança", horas: "6h", ementa: "Documentação obrigatória, livro de registro e projeto de alteração (PAR)." },
+                        { titulo: "Módulo 5: Emergência e Operação Prática", horas: "6h", ementa: "Tratamento de água, acendimento, parada de emergência e simulação prática." }
+                    ]
+                }
+            },
+            {
+                id: "NR-14",
+                title: "Fornos Industriais",
+                category: "eng",
+                summary: "Requisitos de segurança para construção, instalação e operação de fornos industriais.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar na operação segura de fornos industriais, prevenção de explosões e revestimentos refratários.",
+                    modulos: [
+                        { titulo: "Módulo 1: Construção e Instalação de Fornos", horas: "8h", ementa: "Revestimentos térmicos, isolamento e escoamento de gases de combustão." },
+                        { titulo: "Módulo 2: Sistemas de Combustão", horas: "10h", ementa: "Fornos a gás, elétricos e combustíveis; Dispositivos de segurança de chama." },
+                        { titulo: "Módulo 3: Proteção Contra Calor Radiante", horas: "10h", ementa: "Enclausuramento, barreiras refletivas e EPIs aluminizados alta temperatura." },
+                        { titulo: "Módulo 4: Purga e Exaustão", horas: "8h", ementa: "Prevenção de acúmulo de gases inflamáveis e explosões no acendimento." },
+                        { titulo: "Módulo 5: Avaliação Prática de Operação", horas: "4h", ementa: "Vistoria técnica simulada em forno industrial e verificação de emergência." }
+                    ]
+                }
+            },
+            {
+                id: "NR-15",
+                title: "Atividades e Operações Insalubres",
+                category: "eng",
+                summary: "Limites de tolerância para agentes nocivos e critérios de caracterização do adicional de insalubridade.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar engenheiros e peritos na interpretação dos 14 Anexos da NR-15 e Laudos de Insalubridade.",
+                    modulos: [
+                        { titulo: "Módulo 1: Aspectos Legais e Adicionais", horas: "8h", ementa: "CLT Art. 189-192; Graus mínimo (10%), médio (20%) e máximo (40%)." },
+                        { titulo: "Módulo 2: Avaliação Quantitativa (Anexos 1, 2, 3, 8, 11, 12)", horas: "10h", ementa: "Ruído, calor, vibração de corpo inteiro/mãos e poeiras minerais." },
+                        { titulo: "Módulo 3: Avaliação Qualitativa (Anexos 7, 9, 10, 13, 14)", horas: "10h", ementa: "Radiações não ionizantes, frio, umidade, agentes químicos e biológicos." },
+                        { titulo: "Módulo 4: Neutralização com EPI e Engenharia", horas: "8h", ementa: "Cessação da insalubridade via EPI (Súmula 289 TST) e medidas coletivas." },
+                        { titulo: "Módulo 5: Elaboração Prática de LTCAT/Laudo", horas: "4h", ementa: "Estruturação de Laudo Técnico de Condições Ambientais (LTCAT/NR-15)." }
+                    ]
+                }
+            },
+            {
+                id: "NR-16",
+                title: "Atividades e Operações Perigosas",
+                category: "eng",
+                summary: "Regulamenta atividades com explosivos, inflamáveis, eletricidade, radiação e segurança pessoal (Adicional 30%).",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar profissionais na caracterização pericial de periculosidade e delimitação de áreas de risco.",
+                    modulos: [
+                        { titulo: "Módulo 1: Periculosidade e Adicional de 30%", horas: "8h", ementa: "Diferenciação Insalubridade x Periculosidade; Base legal CLT Art. 193." },
+                        { titulo: "Módulo 2: Anexo 1 (Explosivos) e Anexo 2 (Inflamáveis)", horas: "10h", ementa: "Delimitação de áreas de risco, transporte e armazenagem de combustíveis." },
+                        { titulo: "Módulo 3: Anexo 4 (Eletricidade) e Radiação", horas: "10h", ementa: "Enquadramento em Alta/Baixa Tensão, Sistema Elétrico de Potência (SEP)." },
+                        { titulo: "Módulo 4: Segurança Pessoal e Motocicletas", horas: "8h", ementa: "Periculosidade para vigilantes e atividades com motocicletas." },
+                        { titulo: "Módulo 5: Estudo Pericial e Laudo", horas: "4h", ementa: "Elaboração de laudo simulado de periculosidade e análise de jurisprudência." }
+                    ]
+                }
+            },
+            {
+                id: "NR-17",
+                title: "Ergonomia",
+                category: "eng",
+                summary: "Parâmetros para adaptação das condições de trabalho às características psicofisiológicas dos trabalhadores.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Habilitar na elaboração da Análise Ergonômica do Trabalho (AET) e Avaliação Ergonômica Preliminar (AEP).",
+                    modulos: [
+                        { titulo: "Módulo 1: Requisitos da NR-17 e Conceitos", horas: "8h", ementa: "Organização do trabalho, postos de trabalho, mobiliário e equipamentos." },
+                        { titulo: "Módulo 2: Transporte e Levantamento de Cargas", horas: "10h", ementa: "Equação de NIOSH, limites de peso, pega de cargas e transporte manual." },
+                        { titulo: "Módulo 3: Postos de Trabalho e Iluminação", horas: "10h", ementa: "Dimensionamento de mesas, telas, iluminação (ISO 8995-1) e ruído de conforto." },
+                        { titulo: "Módulo 4: Avaliação Ergonômica (AEP e AET)", horas: "8h", ementa: "Ferramentas ergonômicas (RULA, REBA, OWAS); Estruturação de relatório de AET." },
+                        { titulo: "Módulo 5: Estudo Prático de Posto de Trabalho", horas: "4h", ementa: "Aplicação prática de checklist ergonômico em linha de produção ou escritório." }
+                    ]
+                }
+            },
+            {
+                id: "NR-18",
+                title: "Segurança na Indústria da Construção",
+                category: "eng",
+                summary: "Diretrizes de segurança na construção civil, Plano de Carga, Andaimes, Escavações e PGR da Construção.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar na gestão de canteiros de obras e implementação de sistemas de proteção coletiva (SPCQ).",
+                    modulos: [
+                        { titulo: "Módulo 1: Canteiro de Obras e PGR da Construção", horas: "8h", ementa: "Áreas de vivência, instalações provisórias e documentação do canteiro." },
+                        { titulo: "Módulo 2: Escavações e Fundações", horas: "8h", ementa: "Estabilidade de taludes, escoramento de valas e prevenção de soterramento." },
+                        { titulo: "Módulo 3: Proteção Coletiva Contra Quedas (SPCQ)", horas: "10h", ementa: "Guarda-corpos, redes de segurança e plataformas de proteção." },
+                        { titulo: "Módulo 4: Andaimes, Gruas e Elevadores", horas: "8h", ementa: "Montagem de andaimes fachadeiros, plano de carga e testes de elevadores." },
+                        { titulo: "Módulo 5: Vistoria Prática em Canteiro", horas: "6h", ementa: "Vistoria simulada em canteiro de obras e checklist da NR-18." }
+                    ]
+                }
+            },
+            {
+                id: "NR-19",
+                title: "Explosivos",
+                category: "eng",
+                summary: "Requisitos para depósito, manuseio, transporte e fabricação de substâncias explosivas.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar no manuseio seguro, furações, detonação, armazenagem em paióis e distâncias de segurança.",
+                    modulos: [
+                        { titulo: "Módulo 1: Química da Detonação e Explosivos", horas: "8h", ementa: "Iniciadores, secundários, pólvoras e acessórios de detonação." },
+                        { titulo: "Módulo 2: Depósitos e Paióis", horas: "10h", ementa: "Construção de paióis, barramentos de proteção e aterramento contra raios." },
+                        { titulo: "Módulo 3: Transporte e Manuseio Seguro", horas: "10h", ementa: "Veículos apropriados, sinalização de risco e compatibilidade de estocagem." },
+                        { titulo: "Módulo 4: Plano de Fogo e Prevenção de Falhas", horas: "8h", ementa: "Elaboração de plano de fogo e eliminação de fogos falhados." },
+                        { titulo: "Módulo 5: Simulação e Emergência", horas: "4h", ementa: "Combate a incêndios periféricos e plano de evacuação de área." }
+                    ]
+                }
+            },
+            {
+                id: "NR-20",
+                title: "Trabalho com Inflamáveis e Combustíveis",
+                category: "eng",
+                summary: "Gestão de segurança contra vazamentos, incêndios e explosões com inflamáveis (Classes I, II e III).",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar no Prontuário da NR-20, Análise de Riscos de Processo (HAZOP/APR) e controle de fontes de ignição.",
+                    modulos: [
+                        { titulo: "Módulo 1: Propriedades dos Inflamáveis", horas: "8h", ementa: "Ponto de fulgor, limites de explosividade (LEI/LES) e pressão de vapor." },
+                        { titulo: "Módulo 2: Classificação e Prontuário NR-20", horas: "8h", ementa: "Instalações Classes I, II e III; Elaboração e atualização do Prontuário." },
+                        { titulo: "Módulo 3: Análise de Riscos de Processo (HAZOP)", horas: "10h", ementa: "Metodologias de análise de riscos industriais em refinarias e depósitos." },
+                        { titulo: "Módulo 4: Fontes de Ignição e Áreas Classificadas", horas: "8h", ementa: "Eletricidade estática, equipotencialização e equipamentos Ex." },
+                        { titulo: "Módulo 5: Resposta a Emergências e Combate a Incêndios", horas: "6h", ementa: "Sistemas de espuma, esguichos, Plano de Emergência (PRE) e prática." }
+                    ]
+                }
+            },
+            {
+                id: "NR-21",
+                title: "Trabalhos a Céu Aberto",
+                category: "eng",
+                summary: "Medidas protetivas para trabalhadores expostos a intempéries, radiação solar e insolação.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar na implementação de abrigos, água potável e proteção UV em trabalhos ao ar livre.",
+                    modulos: [
+                        { titulo: "Módulo 1: Intempéries e Radiação Solar", horas: "8h", ementa: "Calor extremo, insolação, desidratação e proteção de pele e olhos." },
+                        { titulo: "Módulo 2: Sanitários e Abrigos em Campo", horas: "10h", ementa: "Dimensionamento de abrigos para refeição e sanitários móveis." },
+                        { titulo: "Módulo 3: Prevenção com Animais Peçonhentos", horas: "10h", ementa: "Identificação de serpentes e escorpiões; Soros e primeiros socorros." },
+                        { titulo: "Módulo 4: Descargas Atmosféricas (Raios)", horas: "8h", ementa: "Procedimentos de paralisação de atividades durante tempestades." },
+                        { titulo: "Módulo 5: Inspeção de Frentes de Trabalho", horas: "4h", ementa: "Avaliação prática de frentes de trabalho abertas e checklist." }
+                    ]
+                }
+            },
+            {
+                id: "NR-22",
+                title: "Segurança e Saúde Ocupacional na Mineração",
+                category: "eng",
+                summary: "Regulamenta mineração a céu aberto e subterrânea, Plano de Lavra e prevenção de explosões.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Habilitar na gestão de riscos na mineração, ventilação e estabilidade de galerias.",
+                    modulos: [
+                        { titulo: "Módulo 1: PGR da Mineração e Plano de Lavra", horas: "8h", ementa: "Requisitos específicos da NR-22 e interface com o Plano de Lavra." },
+                        { titulo: "Módulo 2: Mineração Subterrânea: Ventilação e Gases", horas: "10h", ementa: "Sistemas de exaustão, monitoramento de CO, grisu e poeiras (Sílica)." },
+                        { titulo: "Módulo 3: Estabilidade de Realces e Sustentação", horas: "10h", ementa: "Sustentação de teto/paredes, choco e abatimento de rochas." },
+                        { titulo: "Módulo 4: Transporte e Tráfego de Máquinas", horas: "8h", ementa: "Condução de caminhões fora-de-estrada e correias transportadoras." },
+                        { titulo: "Módulo 5: Plano de Emergência e Resgate", horas: "4h", ementa: "Brigada de resgate subterrâneo, auto-salvadores e câmaras de refúgio." }
+                    ]
+                }
+            },
+            {
+                id: "NR-23",
+                title: "Proteção Contra Incêndios",
+                category: "eng",
+                summary: "Diretrizes de proteção contra incêndio, saídas de emergência e sistemas de alarme nos locais de trabalho.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar brigadistas no combate a princípios de incêndio, abandono de área e extintores/hidrantes.",
+                    modulos: [
+                        { titulo: "Módulo 1: Química do Fogo e Classes de Incêndio", horas: "8h", ementa: "Tetraedro do fogo; Classes A, B, C, D e K; Métodos de extinção." },
+                        { titulo: "Módulo 2: Extintores e Hidrantes", horas: "10h", ementa: "Seleção, inspeção e operação de extintores (Água, CO2, PQS) e mangueiras." },
+                        { titulo: "Módulo 3: Alarmes e Saídas de Emergência", horas: "10h", ementa: "Sinalização fotoluminescente, rotas de fuga e portas corta-fogo." },
+                        { titulo: "Módulo 4: Abandono de Área e Simulados", horas: "8h", ementa: "Organização da Brigada de Incêndio (NBR 14276) e evacuação." },
+                        { titulo: "Módulo 5: Treinamento Prático de Combate", horas: "4h", ementa: "Prática com fogo real, extintores e linha de mangueira." }
+                    ]
+                }
+            },
+            {
+                id: "NR-24",
+                title: "Condições Sanitárias e de Conforto nos Locais de Trabalho",
+                category: "geral",
+                summary: "Dimensionamento de sanitários, vestiários, refeitórios e alojamentos para os trabalhadores.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Orientar gestores no dimensionamento legal de áreas de vivência e sanitários.",
+                    modulos: [
+                        { titulo: "Módulo 1: Dimensionamento Sanitário", horas: "8h", ementa: "Proporção de vasos, lavatórios e chuveiros por trabalhador." },
+                        { titulo: "Módulo 2: Vestiários e Armários", horas: "10h", ementa: "Tipos de armários (simples/duplos para insalubridade) e ventilação." },
+                        { titulo: "Módulo 3: Refeitórios e Cozinhas", horas: "10h", ementa: "Requisitos higiênico-sanitários, lavatórios e aquecimento de refeições." },
+                        { titulo: "Módulo 4: Alojamentos e Frentes de Trabalho", horas: "8h", ementa: "Dormitórios, espaçamento de camas, ventilação e lavanderia." },
+                        { titulo: "Módulo 5: Vistoria Prática das Áreas de Vivência", horas: "4h", ementa: "Auditoria prática das instalações de apoio e vivência." }
+                    ]
+                }
+            },
+            {
+                id: "NR-25",
+                title: "Resíduos Industriais",
+                category: "eng",
+                summary: "Requisitos para eliminação, tratamento e destinação segura de resíduos industriais nocivos.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar na gestão de resíduos perigosos (Classe I), destinação e normas ambientais.",
+                    modulos: [
+                        { titulo: "Módulo 1: Classificação de Resíduos (NBR 10004)", horas: "8h", ementa: "Resíduos Perigosos (Classe I) e Não Perigosos (Classe IIA/IIB)." },
+                        { titulo: "Módulo 2: Segregação e Armazenamento", horas: "10h", ementa: "Segregação na fonte, contaminação cruzada e tambores de contenção." },
+                        { titulo: "Módulo 3: Coleta, Transporte e Destinação", horas: "10h", ementa: "Manifesto de Transporte (MTR), coprocessamento e incineração." },
+                        { titulo: "Módulo 4: Prevenção de Vazamentos", horas: "8h", ementa: "Bacias de contenção, drenagem química e tratamento de efluentes." },
+                        { titulo: "Módulo 5: Plano de Gerenciamento (PGRS)", horas: "4h", ementa: "Elaboração de minuta de Plano de Gerenciamento de Resíduos Sólidos." }
+                    ]
+                }
+            },
+            {
+                id: "NR-26",
+                title: "Sinalização de Segurança",
+                category: "eng",
+                summary: "Padronização de cores para sinalização de segurança e rotulagem GHS para produtos químicos.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar no uso de cores de segurança e interpretação do sistema GHS / FISPQ / FDS.",
+                    modulos: [
+                        { titulo: "Módulo 1: Cores de Segurança", horas: "8h", ementa: "Significado das cores Vermelho, Amarelo, Verde, Azul (NBR 7195)." },
+                        { titulo: "Módulo 2: Sistema Globalmente Harmonizado (GHS)", horas: "10h", ementa: "Pictogramas de perigo, frases de perigo (H) e precaução (P)." },
+                        { titulo: "Módulo 3: Ficha de Dados de Segurança (FDS / FISPQ)", horas: "10h", ementa: "Interpretação das 16 seções da FDS para emergências químicas." },
+                        { titulo: "Módulo 4: Rotulagem e Tubulações", horas: "8h", ementa: "Identificação de tubulações de fluidos e rótulos de fracionamento." },
+                        { titulo: "Módulo 5: Exercício Prático de Rotulagem", horas: "4h", ementa: "Criação prática de rótulos GHS para produtos fracionados." }
+                    ]
+                }
+            },
+            {
+                id: "NR-28",
+                title: "Fiscalização, Penalidades e Multas",
+                category: "geral",
+                summary: "Critérios de gradação de multas por descumprimento das NRs aplicadas pela Auditoria Fiscal do Trabalho.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar na avaliação do valor de multas trabalhistas e ritos de defesa administrativa.",
+                    modulos: [
+                        { titulo: "Módulo 1: Procedimento da Fiscalização", horas: "8h", ementa: "Auto de Infração, notificação e prazos para defesa administrativa." },
+                        { titulo: "Módulo 2: Cálculo de Multas Ocupacionais", horas: "10h", ementa: "Cruzamento do Grau de Infração (1 a 4) com número de empregados." },
+                        { titulo: "Módulo 3: Reincidência e Embargo Fiscal", horas: "10h", ementa: "Agravantes por reincidência e critérios de interdição direta." },
+                        { titulo: "Módulo 4: Defesa Administrativa e Recurso", horas: "8h", ementa: "Estruturação de defesas técnicas e alegações de regularização." },
+                        { titulo: "Módulo 5: Simulação de Auditoria de Riscos", horas: "4h", ementa: "Cálculo simulado de passivo de multas em empresa com infrações." }
+                    ]
+                }
+            },
+            {
+                id: "NR-29",
+                title: "Segurança e Saúde no Trabalho Portuário",
+                category: "eng",
+                summary: "Regulamenta atracação, carregamento, estiva e descarga em portos organizados e instalações portuárias.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar em operações de estiva, içamento de contêineres e prevenção de acidentes portuários.",
+                    modulos: [
+                        { titulo: "Módulo 1: Legislação Portuária e OGMO", horas: "8h", ementa: "Estrutura do trabalho portuário e atribuições do operador portuário." },
+                        { titulo: "Módulo 2: Operações de Carga e Descarga", horas: "10h", ementa: "Uso de guindastes de terra, spreaders e peação de carga." },
+                        { titulo: "Módulo 3: Riscos no Porão e Espaços Confinados", horas: "10h", ementa: "Ventilação de porões, monitoramento de gases a granel e resgate." },
+                        { titulo: "Módulo 4: Prevenção de Quedas na Água", horas: "8h", ementa: "Coletes salva-vidas, redes de proteção e botes de resgate." },
+                        { titulo: "Módulo 5: Vistoria Prática em Instalação Portuária", horas: "4h", ementa: "Inspeção simulada das condições de segurança em cais de atracação." }
+                    ]
+                }
+            },
+            {
+                id: "NR-30",
+                title: "Segurança e Saúde no Trabalho Aquaviário",
+                category: "eng",
+                summary: "Requisitos para trabalhadores de embarcações comerciais, pesca e navegação interior/cabotagem.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar tripulantes nos riscos a bordo, sobrevivência no mar e prevenção de acidentes marítimos.",
+                    modulos: [
+                        { titulo: "Módulo 1: Organização da Segurança a Bordo", horas: "8h", ementa: "Atribuições do Comandante e da Comissão de Prevenção a Bordo (GSSTB)." },
+                        { titulo: "Módulo 2: Salvatagem e Sobrevivência Marítima", horas: "10h", ementa: "Balsas infláveis, coletes, boias e procedimentos de abandonar navio." },
+                        { titulo: "Módulo 3: Prevenção de Incêndios e Praça de Máquinas", horas: "10h", ementa: "Sistemas fixos de CO2/Hi-Fog e combate em praça de máquinas." },
+                        { titulo: "Módulo 4: Ergonomia e Habitabilidade", horas: "8h", ementa: "Escalas de serviço, ruído em camarotes e alimentação de aquaviários." },
+                        { titulo: "Módulo 5: Simulado de Abandono de Navio", horas: "4h", ementa: "Treinamento prático de vestimenta de imersão e manuseio de salvatagem." }
+                    ]
+                }
+            },
+            {
+                id: "NR-31",
+                title: "Segurança no Trabalho na Agricultura, Pecuária e Silvicultura",
+                category: "eng",
+                summary: "Prevenção de acidentes no meio rural, agrotóxicos, máquinas agrícolas (tratores) e ergonomia no campo.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar no manuseio seguro de defensivos agrícolas, operação de tratores e SEPTR/PGRTR.",
+                    modulos: [
+                        { titulo: "Módulo 1: Gestão no Campo (SEPTR / PGRTR)", horas: "8h", ementa: "Estrutura da NR-31 e implementação do PGRTR no trabalho rural." },
+                        { titulo: "Módulo 2: Agrotóxicos e Defensivos", horas: "10h", ementa: "EPIs de hidro-repelência, tríplice lavagem e sinais de intoxicação." },
+                        { titulo: "Módulo 3: Tratores e Máquinas Agrícolas", horas: "10h", ementa: "Proteção da tomada de potência (TDP) e estrutura anticapotamento (EPCC)." },
+                        { titulo: "Módulo 4: Silos e Manejo de Animais", horas: "8h", ementa: "Riscos em armazenamento de grãos (soterramento/explosões) e animais." },
+                        { titulo: "Módulo 5: Avaliação Prática em Propriedade Rural", horas: "4h", ementa: "Inspeção prática em depósito de agrotóxicos e garagem agrícola." }
+                    ]
+                }
+            },
+            {
+                id: "NR-32",
+                title: "Segurança e Saúde em Serviços de Saúde",
+                category: "eng",
+                summary: "Diretrizes para prevenção de acidentes com agentes biológicos, perfurocortantes e radiações em hospitais.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar no Plano de Prevenção com Perfurocortantes e biossegurança hospitalar.",
+                    modulos: [
+                        { titulo: "Módulo 1: Agentes Biológicos e Biossegurança", horas: "8h", ementa: "Classificação de risco biológico (Classes 1 a 4) e vacinação." },
+                        { titulo: "Módulo 2: Prevenção com Perfurocortantes", horas: "10h", ementa: "Dispositivos de segurança, proibição de reencape e caixas rígidas." },
+                        { titulo: "Módulo 3: Radiações e Quimioterápicos", horas: "10h", ementa: "Blindagem em Raios-X, dosímetros e manuseio de antineoplásicos." },
+                        { titulo: "Módulo 4: Resíduos Hospitalares (PGRSS)", horas: "8h", ementa: "Segregação de resíduos infectantes, químicos e radioativos." },
+                        { titulo: "Módulo 5: Auditoria Prática Hospitalar", horas: "4h", ementa: "Vistoria técnica simulada em ala hospitalar e descarte de perfurocortantes." }
+                    ]
+                }
+            },
+            {
+                id: "NR-33",
+                title: "Trabalhos em Espaços Confinados",
+                category: "eng",
+                summary: "Diretrizes para identificação, monitoramento de atmosfera, Permissão de Entrada (PET) e resgate em espaços confinados.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Habilitar Supervisores de Entrada na medição multigás, ventilação e resgate em Espaços Confinados.",
+                    modulos: [
+                        { titulo: "Módulo 1: Legislação e Cadastro de EC", horas: "6h", ementa: "Definição de EC conforme NR-33; Sinalização e cadastro de tanques/silos." },
+                        { titulo: "Módulo 2: Avaliação e Monitoramento Atmosférico", horas: "10h", ementa: "Detectores multigás; Medição de O2, H2S, CO e Limite de Explosividade (LEL)." },
+                        { titulo: "Módulo 3: Controle, Ventilação e PET", horas: "10h", ementa: "Insuflação/exaustão de ar; Isolação LOTO e Permissão de Entrada (PET)." },
+                        { titulo: "Módulo 4: Atribuições do Supervisor e Vigia", horas: "6h", ementa: "Monitoramento contínuo, cancelamento de PET em emergências e controle." },
+                        { titulo: "Módulo 5: Equipamentos de Resgate e Prática", horas: "8h", ementa: "Uso de tripés, guinchos, conjunto autônomo (SCBA) e resgate vertical." }
+                    ]
+                }
+            },
+            {
+                id: "NR-34",
+                title: "Condições e Meio Ambiente de Trabalho na Indústria Naval",
+                category: "eng",
+                summary: "Requisitos de segurança em estaleiros, trabalho a quente, ensaios não destrutivos e jateamento.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar na prevenção de incêndios em trabalhos a quente em conveses e jateamento abrasivo.",
+                    modulos: [
+                        { titulo: "Módulo 1: Gestão de Segurança em Estaleiros", horas: "8h", ementa: "Organização do canteiro naval, Permissão de Trabalho (PT) e liberação." },
+                        { titulo: "Módulo 2: Trabalhos a Quente (Solda/Corte)", horas: "10h", ementa: "Controle de ignição, observador de solda (Firewatch) e maçaricos." },
+                        { titulo: "Módulo 3: Jateamento Abrasivo e Pintura", horas: "10h", ementa: "Proteção contra poeira de granalha, aterramento e ventilação de tanques." },
+                        { titulo: "Módulo 4: Ensaios Não Destrutivos (END)", horas: "8h", ementa: "Segurança em gamagrafia, ultrassom e estanqueidade de cascos." },
+                        { titulo: "Módulo 5: Treinamento Prático e Simulado Naval", horas: "4h", ementa: "Simulação de liberação de trabalho a quente e combate a incêndio." }
+                    ]
+                }
+            },
+            {
+                id: "NR-35",
+                title: "Trabalho em Altura",
+                category: "eng",
+                summary: "Requisitos de proteção para trabalhos acima de 2,00 metros, planejamento, SPIQ e Análise de Risco.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar no planejamento, inspeção de EPIs contra queda, linhas de vida e resgate em altura.",
+                    modulos: [
+                        { titulo: "Módulo 1: Regulamentação e Física da Queda", horas: "6h", ementa: "Diretrizes NR-35; Fator de Queda (FQ < 1); Distância Livre de Queda (DLQ)." },
+                        { titulo: "Módulo 2: Análise de Risco (AR) e PT", horas: "8h", ementa: "Planejamento prévio, isolamento de área e fatores meteorológicos." },
+                        { titulo: "Módulo 3: Proteção Contra Quedas (SPIQ)", horas: "10h", ementa: "Ancoragens (A1, A2, C, D), cinturões paraquedistas e absorvedor de energia." },
+                        { titulo: "Módulo 4: Inspeção e Linhas de Vida", horas: "8h", ementa: "Cálculo e inspeção de linhas de vida flexíveis/rígidas; Descarte." },
+                        { titulo: "Módulo 5: Suspensão Inerte e Resgate Simulado", horas: "8h", ementa: "Trauma de suspensão inerte e simulação prática de resgate vertical." }
+                    ]
+                }
+            },
+            {
+                id: "NR-36",
+                title: "Segurança no Trabalho em Abate e Processamento de Carne",
+                category: "eng",
+                summary: "Medidas de prevenção em frigoríficos: ergonomia em esteiras, amônia (NH3), frio e pausas de trabalho.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar na gestão de riscos em frigoríficos, sistemas de refrigeração por amônia e ergonomia.",
+                    modulos: [
+                        { titulo: "Módulo 1: Ergonomia e Ritmo de Trabalho", horas: "8h", ementa: "Esteiras de corte, rodízio de tarefas e pausas térmicas/ergonômicas." },
+                        { titulo: "Módulo 2: Prevenção com Amônia (NH3)", horas: "10h", ementa: "Propriedades da amônia; Detectores, chuveiros de emergência e máscaras." },
+                        { titulo: "Módulo 3: Máquinas de Corte e Serras", horas: "10h", ementa: "Proteções fixas, luvas de malha de aço e empurradores de carne." },
+                        { titulo: "Módulo 4: Proteção Térmica e Frio", horas: "8h", ementa: "Vestimentas para câmaras frias e prevenção de geladuras." },
+                        { titulo: "Módulo 5: Simulado de Resgate e Vazamento", horas: "4h", ementa: "Simulação de evacuação em caso de vazamento de amônia." }
+                    ]
+                }
+            },
+            {
+                id: "NR-37",
+                title: "Segurança e Saúde em Plataformas de Petróleo",
+                category: "eng",
+                summary: "Requisitos de prevenção em instalações petrolíferas offshore (FPSO, Plataformas Fixas).",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Capacitar na gestão de segurança offshore, Comissão CIPLAT e resposta a emergências amplas.",
+                    modulos: [
+                        { titulo: "Módulo 1: Operações Offshore e CIPLAT", horas: "8h", ementa: "Diretrizes da NR-37; Organização da segurança a bordo e CIPLAT." },
+                        { titulo: "Módulo 2: Análise de Riscos em Plataformas", horas: "10h", ementa: "Parada de emergência (ESD), despressurização (EDP) e sistemas F&G." },
+                        { titulo: "Módulo 3: Cargas Offshore e Helideque", horas: "10h", ementa: "Guindastes de bordo, cesta de transbordo e segurança no helideque." },
+                        { titulo: "Módulo 4: Gás H2S e Radiação Natural (NORM)", horas: "8h", ementa: "Detecção de gás sulfídrico e controle de incrustações radioativas." },
+                        { titulo: "Módulo 5: Simulado de Emergência Offshore", horas: "4h", ementa: "Simulação de evacuação para baleeiras (TEMPSC) e emergência." }
+                    ]
+                }
+            },
+            {
+                id: "NR-38",
+                title: "Segurança nas Atividades de Limpeza Urbana e Resíduos",
+                category: "eng",
+                summary: "Medidas de proteção para garis, coletores de lixo, varredores e trabalhadores de aterros sanitários.",
+                canEngineerSign: true,
+                syllabus: {
+                    objetivo: "Treinar profissionais na operação de coleta de lixo, caminhões compactadores e imunização.",
+                    modulos: [
+                        { titulo: "Módulo 1: Riscos na Limpeza Urbana", horas: "8h", ementa: "Estrutura da NR-38; Riscos biológicos, ergonômicos e atropelamentos." },
+                        { titulo: "Módulo 2: Coleta e Caminhões Compactadores", horas: "10h", ementa: "Segurança nos estribos, pontos cegos e acionamento da prensa." },
+                        { titulo: "Módulo 3: Ergonomia e Varrição", horas: "10h", ementa: "Técnicas de varrição, manuseio de carrinhos e pausas de descanso." },
+                        { titulo: "Módulo 4: EPIs Específicos e Imunização", horas: "8h", ementa: "Calçados com biqueira, luvas anticorte e vacinação obrigatória." },
+                        { titulo: "Módulo 5: Vistoria Prática na Coleta", horas: "4h", ementa: "Acompanhamento prático de rota e checklist de caminhão compactador." }
+                    ]
+                }
+            }
+        ];
+
+        // Renderizador de Cards de NRs com Otimização para Toque
+        function renderCards(data) {
+            const grid = document.getElementById('nrGrid');
+            grid.innerHTML = '';
+            document.getElementById('nrCount').innerText = data.length;
+
+            if (data.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full bg-white p-8 text-center rounded-2xl border border-slate-200">
+                        <i class="fa-solid fa-folder-open text-3xl text-slate-300 mb-2"></i>
+                        <h3 class="font-bold text-slate-700 text-sm">Nenhuma norma encontrada</h3>
+                        <p class="text-xs text-slate-400 mt-1">Ajuste os termos da busca ou filtros.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            data.forEach(nr => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-5 flex flex-col justify-between active:scale-[0.99] sm:hover:border-brand-500 sm:hover:shadow-md transition-all cursor-pointer';
+                card.onclick = () => openModal(nr.id);
+
+                const isEng = nr.canEngineerSign;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-2.5">
+                            <span class="bg-slate-900 text-white font-extrabold text-xs px-2.5 py-1 rounded-md">
+                                ${nr.id}
+                            </span>
+                            ${isEng ? 
+                                `<span class="bg-brand-50 text-brand-800 font-bold text-[10px] px-2 py-0.5 rounded-full border border-brand-200 flex items-center gap-1">
+                                    <i class="fa-solid fa-user-check text-brand-600"></i> Eng. SST (40h)
+                                </span>` : 
+                                `<span class="bg-slate-100 text-slate-600 font-medium text-[10px] px-2 py-0.5 rounded-full border border-slate-200">
+                                    Multidisciplinar
+                                </span>`
+                            }
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm sm:text-base mb-1.5 leading-snug">${nr.title}</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3 line-clamp-2 sm:line-clamp-none">${nr.summary}</p>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
+                        ${isEng ?
+                            `<span class="text-slate-500 font-bold text-[11px] flex items-center gap-1">
+                                <i class="fa-regular fa-clock text-amber-500"></i> 40 Horas
+                            </span>
+                            <span class="text-brand-700 font-bold text-[11px] flex items-center gap-1">
+                                Ver Ementa <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </span>` :
+                            `<span class="text-slate-400 italic text-[11px]">Gestão / Saúde</span>
+                            <span class="text-slate-600 font-semibold text-[11px]">
+                                Detalhes <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </span>`
+                        }
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filtro por Texto
+        function filterNRs() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = nrData.filter(nr => 
+                nr.id.toLowerCase().includes(query) || 
+                nr.title.toLowerCase().includes(query) ||
+                nr.summary.toLowerCase().includes(query)
+            );
+            renderCards(filtered);
+        }
+
+        // Filtro por Categoria
+        function filterCategory(cat) {
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-800', 'text-white', 'border-brand-800', 'shadow-sm');
+                btn.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
+            });
+
+            event.target.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
+            event.target.classList.add('bg-brand-800', 'text-white', 'border-brand-800', 'shadow-sm');
+
+            if (cat === 'all') {
+                renderCards(nrData);
+            } else if (cat === 'eng') {
+                renderCards(nrData.filter(nr => nr.canEngineerSign));
+            } else {
+                renderCards(nrData.filter(nr => !nr.canEngineerSign));
+            }
+        }
+
+        // Controle do Modal
+        let activeModalNr = null;
+
+        function openModal(id) {
+            const nr = nrData.find(item => item.id === id);
+            if (!nr) return;
+            activeModalNr = nr;
+
+            document.getElementById('modalNrBadge').innerText = nr.id;
+            document.getElementById('modalNrTitle').innerText = nr.title;
+            
+            const sigBadge = document.getElementById('modalSignatureBadge');
+            if(nr.canEngineerSign) {
+                sigBadge.className = "bg-amber-400 text-slate-950 font-bold text-[10px] px-2 py-0.5 rounded";
+                sigBadge.innerText = "Engenheiro de Seg. do Trabalho";
+            } else {
+                sigBadge.className = "bg-slate-200 text-slate-700 font-bold text-[10px] px-2 py-0.5 rounded";
+                sigBadge.innerText = "Multidisciplinar / Médico";
+            }
+
+            const content = document.getElementById('modalContent');
+
+            if (!nr.syllabus) {
+                content.innerHTML = `
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                        <h3 class="font-bold text-slate-800 mb-1">Resumo da Norma</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">${nr.summary}</p>
+                        <p class="text-xs text-slate-500 italic bg-amber-50 p-2.5 rounded-lg border border-amber-200">
+                            Esta norma possui caráter diretivo ou médico (PCMSO/SESMT) e não demanda modelo de ementa operacional de 40h para ART[cite: 1].
+                        </p>
+                    </div>
+                `;
+            } else {
+                let modulesHtml = nr.syllabus.modulos.map((m, idx) => `
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-1">
+                        <div class="flex items-center justify-between gap-2">
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
+                                <span class="w-5 h-5 rounded-full bg-brand-700 text-white text-[10px] flex items-center justify-center font-extrabold shrink-0">${idx + 1}</span>
+                                ${m.titulo}
+                            </h4>
+                            <span class="bg-brand-100 text-brand-900 text-[10px] font-black px-2 py-0.5 rounded shrink-0">${m.horas}</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed pl-7">${m.ementa}</p>
+                    </div>
+                `).join('');
+
+                content.innerHTML = `
+                    <div class="space-y-1">
+                        <h3 class="text-[10px] uppercase font-black text-slate-400 tracking-wider">Objetivo Geral do Treinamento</h3>
+                        <div class="bg-brand-50 border border-brand-200 p-3 rounded-xl text-brand-950 font-medium text-xs leading-relaxed">
+                            <i class="fa-solid fa-bullseye text-brand-700 mr-1.5"></i> ${nr.syllabus.objetivo}
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 pt-1">
+                        <h3 class="text-[10px] uppercase font-black text-slate-400 tracking-wider">Matriz Programática (40 Horas Aula)</h3>
+                        <div class="space-y-2">
+                            ${modulesHtml}
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-950 flex items-start gap-2.5 mt-2">
+                        <i class="fa-solid fa-shield-halved text-amber-600 text-base mt-0.5 shrink-0"></i>
+                        <div class="text-[11px] leading-relaxed">
+                            <strong class="font-bold block text-amber-900">Responsabilidade Técnica:</strong>
+                            Treinamento habilitado para ministração por **Engenheiro de Segurança do Trabalho**, com emissão obrigatória de ART/CREA (Lei nº 5.194/66)[cite: 1].
+                        </div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('syllabusModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('syllabusModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function printCurrentSyllabus() {
+            if (!activeModalNr || !activeModalNr.syllabus) return;
+
+            const printArea = document.getElementById('printArea');
+            const nr = activeModalNr;
+
+            let modulesHtml = nr.syllabus.modulos.map((m, idx) => `
+                <div style="margin-bottom: 10px; padding: 8px; border: 1px solid #ccc; border-radius: 6px;">
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 11px; margin-bottom: 4px;">
+                        <span>Módulo ${idx + 1}: ${m.titulo}</span>
+                        <span>Carga Horária: ${m.horas}</span>
+                    </div>
+                    <p style="font-size: 10px; margin: 0; color: #333;">${m.ementa}</p>
+                </div>
+            `).join('');
+
+            printArea.innerHTML = `
+                <div style="font-family: Arial, sans-serif;">
+                    <div style="text-align: center; border-bottom: 2px solid #166534; padding-bottom: 10px; margin-bottom: 15px;">
+                        <h1 style="font-size: 16px; font-weight: bold; margin: 0; color: #166534;">PROGRAMA DE TREINAMENTO E EMENTA TÉCNICA (40H)</h1>
+                        <h2 style="font-size: 14px; margin: 5px 0 0 0; color: #333;">${nr.id} - ${nr.title}</h2>
+                        <p style="font-size: 10px; color: #666; margin-top: 4px;">Portaria MTE & CONFEA/CREA</p>
+                    </div>
+
+                    <div style="margin-bottom: 12px; background: #f9f9f9; padding: 10px; border-left: 4px solid #166534;">
+                        <strong style="font-size: 11px; display: block; margin-bottom: 2px;">Objetivo Geral:</strong>
+                        <p style="font-size: 10px; margin: 0; line-height: 1.4;">${nr.syllabus.objetivo}</p>
+                    </div>
+
+                    <h3 style="font-size: 12px; font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #ddd; padding-bottom: 4px;">CONTEÚDO PROGRAMÁTICO (40 HORAS)</h3>
+                    ${modulesHtml}
+
+                    <div style="margin-top: 25px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 10px; color: #555;">
+                        <p><strong>Responsável Técnico:</strong> Engenheiro de Segurança do Trabalho</p>
+                        <p><strong>Validade:</strong> Válido em todo território nacional mediante ART/CREA.</p>
+                    </div>
+                </div>
+            `;
+
+            window.print();
+        }
+
+        // Fechar Modal com toque fora da caixa
+        window.onclick = function(event) {
+            const modal = document.getElementById('syllabusModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        // Inicialização
+        window.onload = function() {
+            document.getElementById('totalNrBadge').innerText = nrData.length;
+            renderCards(nrData);
+        };
+    </script>
 </body>
 </html>
