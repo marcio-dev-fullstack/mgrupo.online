@@ -105,6 +105,31 @@
             font-size: 0.9rem;
             margin-top: 5px;
         }
+
+        /* Estilo do Botão Flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #20ba5a;
+        }
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
     </style>
 </head>
 <body>
@@ -114,15 +139,12 @@
     <!-- Logo Zentix Acadêmico -->
     <div class="logo-container">
         <svg class="logo-svg" width="380" height="110" viewBox="0 0 380 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Ícone de Capelo / Gradação Zentix -->
             <g transform="translate(10, 15)">
                 <path d="M40 10 L75 28 L40 46 L5 28 Z" fill="#3182ce" />
                 <path d="M20 40 L20 58 C20 66 60 66 60 58 L60 40" fill="none" stroke="#1a365d" stroke-width="4" stroke-linecap="round" />
                 <path d="M68 29.5 L68 55 L74 58 L74 29.5 Z" fill="#2b6cb0" />
             </g>
-            <!-- Texto ZENTIX -->
             <text x="95" y="55" font-family="Arial, sans-serif" font-weight="900" font-size="42" fill="#1a365d" letter-spacing="2">ZENTIX</text>
-            <!-- Subtítulo ACADÊMICO -->
             <text x="97" y="80" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#3182ce" letter-spacing="4">ACADÊMICO</text>
         </svg>
         <p>Soluções inteligentes para quem busca agilidade e excelência acadêmica.</p>
@@ -164,6 +186,15 @@
     </div>
 
 </div>
+
+<!-- Botão Flutuante do WhatsApp no canto inferior direito -->
+<a href="https://wa.me/5565996108749?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20acad%C3%AAmicos." 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   aria-label="Falar no WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
 
 </body>
 </html>
