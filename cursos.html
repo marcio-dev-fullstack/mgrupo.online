@@ -402,7 +402,7 @@
     <div class="controls-container">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Buscar por nome do curso ou área (ex: Engenharia Civil, NR-35, Python)...">
+            <input type="text" id="searchInput" placeholder="Buscar por nome do curso ou área (ex: DevOps, Engenharia Civil, NR-35)...">
         </div>
 
         <div class="category-tabs" id="categoryTabs">
@@ -495,7 +495,7 @@
             { area: "Normas Regulamentadoras (NRs)", title: "NR-37 - Segurança e Saúde em Plataformas de Petróleo", hours: "40h" },
             { area: "Normas Regulamentadoras (NRs)", title: "NR-38 - Segurança e Saúde na Limpeza Urbana e Resíduos Sólidos", hours: "8h" },
 
-            // --- 120 CURSOS DE ENGENHARIA (30 CIVIL, 30 ELÉTRICA, 30 MECÂNICA E 30 AMBIENTAL - CH 40h) ---
+            // --- ENGENHARIAS (30 CIVIL, 30 ELÉTRICA, 30 MECÂNICA E 30 AMBIENTAL - CH 40h) ---
             // 1. Engenharia Civil (30 Cursos)
             ...[
                 "Acústica Arquitetônica e Controle de Ruídos nas Edificações", "Alvenaria Estrutural: Projeto e Execução", "Análise Estrutural e Método dos Elementos Finitos",
@@ -531,7 +531,7 @@
                 "Dimensionamento de Redes de Ar Comprimido e Gases", "Dimensionamento de Tubulações Industriais (Piping)", "Elementos de Máquinas: Projetos e Seleção",
                 "Ensaios Não Destrutivos (END): Ultrassom, Partícula Magnética e Líquido Penetrante", "Gestão da Manutenção Computadorizada (CMMS)", "Gestão da Manutenção Industrial (PCM)",
                 "Hidráulica Industrial: Circuitos e Componentes", "Lubrificação Industrial e Análise de Óleo Lubrificante", "Manutenção de Compressores Industriais",
-                "Manutenção e Operação de Bombas Centrifugas", "Manutenção Preditiva, Preventiva e Corretiva", "Manutenção de Turbinas a Gás e a Vapor",
+                "Manutenção e Operação de Bombas Centrífugas", "Manutenção Preditiva, Preventiva e Corretiva", "Manutenção de Turbinas a Gás e a Vapor",
                 "Metalurgia Física e Tratamentos Térmicos dos Aços", "Metrologia Industrial e Tolerâncias Dimensionais (GD&T)", "Modelagem 3D Avançada e Projetos Mecânicos com SolidWorks",
                 "Motores de Combustão Interna: Diagnóstico e Manutenção", "Pneumática Industrial e Eletropneumática Avançada", "Processos de Usinagem CNC: Programação e Operação",
                 "Projetos de Esteiras Transportadoras e Movimentação de Carga", "Robótica Industrial e Manipuladores Mecânicos", "Sistemas de Exaustão e Ventilação Industrial",
@@ -596,25 +596,55 @@
                 "Word Básico: Formatação de Documentos", "Word Avançado: Normas ABNT Automáticas"
             ].map(title => ({ area: "Tecnologia - Informática Básica", title, hours: "40h" })),
 
-            // --- TECNOLOGIA - INFORMÁTICA AVANÇADA (50 Cursos - 40h) ---
+            // --- TECNOLOGIA - ENGENHARIA DE SOFTWARE (10 CURSOS - 40h) ---
             ...[
-                "Administração de Redes Linux", "Algoritmos e Estrutura de Dados Avançada", "Arquitetura de Microsserviços com Docker",
-                "Automação com Python e Web Scraping", "Banco de Dados NoSQL com MongoDB", "Banco de Dados SQL Avançado (PostgreSQL)",
-                "Big Data e Apache Spark", "Business Intelligence com Power BI", "Cibersegurança e Pentest Ético", "Cloud Computing AWS Fundamentals",
-                "Cloud Computing Microsoft Azure", "Computação Gráfica com Unreal Engine 5", "Configuração de Roteadores Mikrotik e Cisco",
-                "Criando APIs RESTful com Node.js", "Desenvolvimento Android com Kotlin", "Desenvolvimento Backend com C# .NET",
-                "Desenvolvimento Cross-Platform com Flutter", "Desenvolvimento Fullstack React e Node.js", "Desenvolvimento iOS com Swift",
-                "DevOps Pipelines com GitHub Actions", "Engenharia de Dados e ETL", "Engenharia de Prompt para IAs Generativas",
-                "Framework Angular Avançado", "Framework Laravel para PHP", "Framework Vue.js 3", "Gestão de TI com COBIT e ITIL v4",
-                "Git e GitHub Avançado para Equipes", "GraphQL para Sistemas Modernos", "Infraestrutura como Código com Terraform",
-                "Inteligência Artificial e Aprendizado de Máquina", "Internet das Coisas (IoT) com Arduino e ESP32", "Linguagem Go (Golang) para Alta Performance",
-                "Linguagem Java e Spring Boot", "Linguagem Python para Data Science", "Linguagem Rust para Sistemas",
-                "Metodologias Ágeis: Scrum e Kanban", "Modelagem de Dados Relacional", "Orquestração de Containers com Kubernetes",
-                "Programação C++ para Sistemas Embarcados", "Programação Orientada a Objetos em C#", "Reconhecimento Padrões com Visão Computacional",
-                "Redes TCP/IP Avançadas", "Robótica Industrial e Automação", "Segurança em Aplicações Web (OWASP)",
-                "Sistema Operacional Linux Kernel e Shell", "Testes Automatizados com Cypress", "TypeScript na Prática",
-                "UI/UX Design Avançado no Figma", "Virtualização com VMware e Proxmox", "Web Security e Criptografia"
-            ].map(title => ({ area: "Tecnologia - Informática Avançada", title, hours: "40h" }))
+                "Arquitetura de Microsserviços e APIs RESTful", "DevOps: CI/CD e Automação de Infraestrutura", "Engenharia de Requisitos e Histórias de Usuário",
+                "Estrutura de Dados e Algoritmos Avançados", "Gestão Ágil de Software com Scrum e Kanban", "Modelagem de Software com UML e DDD",
+                "Qualidade e Testes Automatizados de Software", "Segurança em Desenvolvimento de Software (DevSecOps)", "Sistemas Distribuídos e Computação em Nuvem",
+                "UX/UI Design Aplicado à Engenharia de Software"
+            ].map(title => ({ area: "Tecnologia - Engenharia de Software", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - DESENVOLVIMENTO (30 CURSOS DE ÚLTIMA GERAÇÃO - 40h) ---
+            ...[
+                "Aplicações Web de Alta Performance com Next.js 14 & App Router", "Arquitetura Front-End com Micro-Frontends e Module Federation", "Construção de APIs de Alta Performance com Go (Golang)",
+                "Construção de APIs com Node.js, Fastify e Prisma ORM", "Desenvolvimento Android Moderno com Jetpack Compose e Kotlin", "Desenvolvimento Backend com C# .NET 8 e Web APIs",
+                "Desenvolvimento Backend Escalável com Java 21 e Spring Boot 3", "Desenvolvimento Cross-Platform com Flutter e Riverpod", "Desenvolvimento Fullstack com Elixir e Phoenix Framework",
+                "Desenvolvimento iOS Moderno com SwiftUI e Concorrência", "Desenvolvimento Mobile com React Native e Expo", "Desenvolvimento Web com Python e FastAPI",
+                "Desenvolvimento Web Reativo com Vue.js 3 e Nuxt 3", "Desenvolvimento Web3 e Smart Contracts com Solidity e Hardhat", "Engenharia de Prompt e Integração de LLMs em Aplicações",
+                "Framework Angular 17+ com Signals e Standalone Components", "GraphQL Avançado com Apollo Server e Federation", "IA Generativa no Desenvolvimento: GitHub Copilot e ChatGPT",
+                "JavaScript Moderno ES2024 e TypeScript Avançado", "Programação Concorrente e Distribuída com Erlang", "Programação Funcional com Haskell",
+                "Programação Orientada a Objetos Avançada com Python 3", "Programação Web com Ruby on Rails 7", "Programação em Rust para Sistemas de Alta Performance",
+                "Programação em C++23 para Jogos e Aplicações Críticas", "Progressive Web Apps (PWA) de Alta Performance", "Sistemas em Tempo Real com WebSockets e gRPC",
+                "Testes Automatizados Front-End com Cypress e Playwright", "TypeScript Avançado: Generics, Decorators e Design Patterns", "WebAssembly (Wasm) na Prática com Rust e C++"
+            ].map(title => ({ area: "Tecnologia - Desenvolvimento", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - DEVOPS (30 CURSOS DE ÚLTIMA GERAÇÃO - 40h) ---
+            ...[
+                "Automação de Infraestrutura com Ansible e AWX", "Automação de Pipelines CI/CD com GitHub Actions", "Automação e Integração Contínua com Jenkins Enterprise",
+                "Cloud Native Observability com OpenTelemetry e Jaeger", "Containers Avançados com Docker, Podman e Buildah", "Despolitização e Governança FinOps em Nuvem",
+                "DevOps para Ambientes Multi-Cloud (AWS, Azure e GCP)", "DevSecOps: Integração de Segurança em Pipelines CI/CD", "Engenharia de Confiabilidade de Sites (SRE) na Prática",
+                "Gerenciamento de Segredos em Nuvem com HashiCorp Vault", "GitOps Avançado com ArgoCD e FluxCD no Kubernetes", "Gestão de Logs Centralizada com ELK Stack (Elasticsearch, Logstash, Kibana)",
+                "Infraestrutura como Código (IaC) Avançada com Terraform", "Infraestrutura como Código com Pulumi usando TypeScript e Python", "Kubernetes Administration e Certificação CKA",
+                "Kubernetes Security e Hardening de Clusters (CKS)", "Mesh de Serviços (Service Mesh) com Istio e Linkerd", "Monitoramento Avançado de Métricas com Prometheus e Grafana",
+                "Nuvem Privada com OpenStack e Ceph Storage", "Orquestração Serverless na AWS com Lambda e EventBridge", "Plataforma de Engenharia (Internal Developer Platforms - IDP)",
+                "Redes em Nuvem e VPCs Avançadas em AWS e Azure", "Segurança em Containers com Trivy, Falco e Grype", "Sistemas de Arquivos Distribuídos e Storage para Kubernetes",
+                "Técnicas de Deploy Contínuo: Blue-Green, Canary e Feature Flags", "Testes de Caos (Chaos Engineering) com LitmusChaos e Chaos Mesh", "Virtualização Moderna com Proxmox VE e KVM",
+                "Zero Trust Architecture em Ambientes DevOps", "DevOps e Integração de Sistemas de Mensageria (Kafka e RabbitMQ)", "Gerenciamento de Configurações e Compliance com Open Policy Agent (OPA)"
+            ].map(title => ({ area: "Tecnologia - DevOps", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - BANCO DE DADOS (30 CURSOS DE ÚLTIMA GERAÇÃO - 40h) ---
+            ...[
+                "Administração e Tunning de Banco de Dados PostgreSQL", "Administração e Otimização de Bancos de Dados Oracle 19c/21c", "Administração e Alta Disponibilidade com Microsoft SQL Server",
+                "Bancos de Dados NoSQL Documentais com MongoDB", "Bancos de Dados NoSQL Chave-Valor com Redis e KeyDB", "Bancos de Dados NoSQL Orientados a Colunas com Apache Cassandra",
+                "Bancos de Dados em Grafos com Neo4j e Amazon Neptune", "Bancos de Dados Vetoriais para IA (Pinecone, ChromaDB e Qdrant)", "Bancos de Dados Distribuídos com CockroachDB e YugabyteDB",
+                "Bancos de Dados de Séries Temporais com InfluxDB e TimescaleDB", "Bancos de Dados Serverless e Edge com Supabase e Turso", "Business Intelligence e Data Warehousing com Snowflake",
+                "Data Lakehouse Avançado com Databricks e Apache Iceberg", "Engenharia de Dados e Pipelines de Dados com Apache Airflow", "Modelagem Dimensional e Arquitetura de Dados com dbt (data build tool)",
+                "Processamento de Dados em Lote e Streaming com Apache Spark", "Processamento em Tempo Real com Apache Kafka e Flink", "Query Optimization e Análise de Planos de Execução SQL",
+                "Segurança, Criptografia e LGPD em Bancos de Dados", "Sistemas de Cache Distribuído e Invalidation Strategies", "Migração de Bancos de Dados On-Premise para a Nuvem",
+                "Backup, Disaster Recovery e Alta Disponibilidade em DBs", "Engenharia de Dados em Nuvem com AWS Redshift e BigQuery", "Bancos de Dados de Grafo com GraphQL e Dgraph",
+                "Arquitetura de Dados CQRS e Event Sourcing", "Governança de Dados, Linhagem e Catalogação com Apache Atlas", "Indexação Avançada e Busca Textual com OpenSearch e Elasticsearch",
+                "FinOps Aplicado a Bancos de Dados em Nuvem", "Modelagem Relacional Avançada e Normalização de Dados", "Gerenciamento de Transações ACID e Isolamento em Banco de Dados"
+            ].map(title => ({ area: "Tecnologia - Banco de Dados", title, hours: "40h" }))
         ];
 
         // AGRUPAMENTO E ORDENAÇÃO ALFABÉTICA POR ÁREA
