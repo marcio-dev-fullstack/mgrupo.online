@@ -495,86 +495,62 @@
             { area: "Normas Regulamentadoras (NRs)", title: "NR-37 - Segurança e Saúde em Plataformas de Petróleo", hours: "40h" },
             { area: "Normas Regulamentadoras (NRs)", title: "NR-38 - Segurança e Saúde na Limpeza Urbana e Resíduos Sólidos", hours: "8h" },
 
-            // --- 100 CURSOS DE ENGENHARIA DIVIDIDOS EM SUB-TÓPICOS (CH 40h) ---
-            // 1. Engenharia Civil (10 Cursos)
+            // --- 120 CURSOS DE ENGENHARIA (30 CIVIL, 30 ELÉTRICA, 30 MECÂNICA E 30 AMBIENTAL - CH 40h) ---
+            // 1. Engenharia Civil (30 Cursos)
             ...[
-                "Avaliação Imobiliária conforme NBR 14653", "Compatibilização de Projetos com Navisworks", "Dimensionamento de Estruturas em Concreto Armado",
-                "Drenagem Urbana e Manejo de Águas Pluviais", "Fundações e Mecânica dos Solos Aplicada", "Gestão e Planejamento de Obras com MS Project",
-                "Inspeção Predial e Perícia de Engenharia", "Modelagem BIM com Revit Structure", "Orçamento e Composição de Custos via SINAPI",
-                "Patologia e Recuperação das Construções"
+                "Acústica Arquitetônica e Controle de Ruídos nas Edificações", "Alvenaria Estrutural: Projeto e Execução", "Análise Estrutural e Método dos Elementos Finitos",
+                "Avaliação Imobiliária Urbana conforme NBR 14653", "Compatibilização de Projetos BIM com Navisworks", "Concreto Protendido: Teoria e Aplicações",
+                "Desempenho de Edificações de Acordo com a NBR 15575", "Dimensionamento de Estruturas em Concreto Armado", "Dimensionamento de Estruturas Metálicas",
+                "Drenagem Urbana e Manejo Sustentável de Águas Pluviais", "Estruturas de Madeira: Dimensionamento e Projeto", "Fundações Profundas e Superficiais",
+                "Geotecnia de Encostas e Contenção de Solos", "Gestão de Canteiro de Obras e Logística", "Gestão de Reformas Prediais (NBR 16280)",
+                "Gestão e Planejamento de Obras com MS Project", "Impermeabilização em Obras de Construção Civil", "Inspeção Predial e Perícia Técnica de Engenharia",
+                "Instalações Elétricas Prediais para Engenheiros Civis", "Instalações Hidrossanitárias e de Gás Prediais", "Lean Construction: Construção Enxuta na Prática",
+                "Mecânica dos Solos Aplicada a Obras Civis", "Modelagem BIM de Estruturas com Revit Structure", "Orçamento e Composição de Custos de Obras via SINAPI",
+                "Patologia, Diagnóstico e Recuperação de Estruturas", "Pavimentação Asfáltica e Geotecnia Rodoviária", "Pontes e Obras de Arte Especiais",
+                "Segurança Contra Incêndio e Pânico em Edificações", "Tecnologia do Concreto e Ensaios de Laboratório", "Topografia, Agrimensura e Georreferenciamento de Imóveis"
             ].map(title => ({ area: "Engenharia Civil", title, hours: "40h" })),
 
-            // 2. Engenharia Ambiental (10 Cursos)
+            // 2. Engenharia Elétrica (30 Cursos)
             ...[
-                "Auditoria e Perícia Ambiental", "Geoprocessamento e QGIS Aplicado", "Gestão de Recursos Hídricos e Bacias Hidrográficas",
-                "Gestão Integrada de Resíduos Sólidos (PGRS)", "Licenciamento Ambiental e Elaboração de EIA/RIMA", "Monitoramento e Qualidade do Ar",
-                "Recuperação de Áreas Degradadas (PRAD)", "Remediação de Solos Contaminados", "Sistema de Gestão Ambiental (ISO 14001)",
-                "Tratamento de Águas Residuárias e Esgoto"
-            ].map(title => ({ area: "Engenharia Ambiental", title, hours: "40h" })),
-
-            // 3. Engenharia Elétrica (10 Cursos)
-            ...[
-                "Automação Predial e Residencial (Domótica)", "Comandos Elétricos Industriais", "Dimensionamento de Redes de Distribuição Elétrica",
-                "Eficiência Energética Industrial", "Instalações Elétricas Prediais de Baixa Tensão", "Manutenção de Transformadores e Subestações",
-                "Proteção de Sistemas Elétricos", "Qualidade da Energia Elétrica e Harmônicas", "Sistemas de Aterramento e SPDA",
-                "Sistemas Fotovoltaicos Conectados à Rede (On-Grid)"
+                "Análise de Sistemas Elétricos de Potência (SEP)", "Automação Industrial com CLCs (Controladores Lógicos Programáveis)", "Automação Predial, Residencial e Domótica",
+                "Central de Monitoramento e Sistemas de Alarme e CFTV", "Comandos Elétricos Industriais e Chaves de Partida", "Dimensionamento de Redes de Distribuição Elétrica",
+                "Eficiência Energética Industrial e Auditoria Elétrica", "Geração Distribuída e Microredes Elétricas", "Instalações Elétricas de Baixa Tensão (NBR 5410)",
+                "Instalações Elétricas em Atmosferas Explosivas (Ex)", "Instalações Elétricas de Média e Alta Tensão", "Instrumentação Industrial e Sensores Avançados",
+                "Manutenção Preventiva e Preditiva em Subestações", "Manutenção e Operação de Transformadores de Potência", "Máquinas Elétricas, Motores e Geradores",
+                "Projetos de Iluminação Pública e Luminotécnica", "Proteção de Sistemas Elétricos e Relés Digitais", "Qualidade da Energia Elétrica e Análise de Harmônicas",
+                "Redes Elétricas Inteligentes (Smart Grids)", "Sistemas de Aterramento Elétrico e Medição de Resistividade", "Sistemas Eólicos: Projetos e Manutenção",
+                "Sistemas Fotovoltaicos Conectados à Rede (On-Grid)", "Sistemas Fotovoltaicos Isolados (Off-Grid) e Baterias", "Sistemas de Proteção contra Descargas Atmosféricas (SPDA - NBR 5419)",
+                "Sistemas UPS, No-Breaks e Bancos de Baterias Industriais", "Supervisórios SCADA para Controle de Processos", "Técnicas de Manutenção Elétrica Preditiva por Termografia",
+                "Tracionamento Elétrico e Mobilidade Elétrica (Veículos Elétricos)", "Transmissão de Energia Elétrica em Alta Tensão (CCAT e CAAT)", "Variadores de Frequência e Soft-Starters na Prática"
             ].map(title => ({ area: "Engenharia Elétrica", title, hours: "40h" })),
 
-            // 4. Engenharia Mecânica (10 Cursos)
+            // 3. Engenharia Mecânica (30 Cursos)
             ...[
-                "Análise de Vibrações em Máquinas", "Desenho Técnico Mecânico com AutoCAD 2D/3D", "Dimensionamento de Tubulações Industriais",
-                "Elemento de Máquinas e Projetos Mecânicos", "Gestão da Manutenção (PCM e TPMS)", "Hidráulica e Pneumática Industrial",
-                "Modelagem 3D e Simulação com SolidWorks", "Refrigeração e Climatização Industrial (HVAC)", "Sistemas de Bombas e Compressores",
-                "Tecnologia de Soldagem Industrial"
+                "Análise de Falhas Mecânicas e Fractografia", "Análise de Tensões e Elementos Finitos (FEA) com ANSYS", "Análise de Vibrações Industriais e Balanceamento Dinâmico",
+                "Caldeiras Industriais e Vasos de Pressão: Dimensionamento", "Climatização, Refrigeração e Sistemas HVAC", "Desenho Técnico Mecânico Avançado com AutoCAD",
+                "Dimensionamento de Redes de Ar Comprimido e Gases", "Dimensionamento de Tubulações Industriais (Piping)", "Elementos de Máquinas: Projetos e Seleção",
+                "Ensaios Não Destrutivos (END): Ultrassom, Partícula Magnética e Líquido Penetrante", "Gestão da Manutenção Computadorizada (CMMS)", "Gestão da Manutenção Industrial (PCM)",
+                "Hidráulica Industrial: Circuitos e Componentes", "Lubrificação Industrial e Análise de Óleo Lubrificante", "Manutenção de Compressores Industriais",
+                "Manutenção e Operação de Bombas Centrifugas", "Manutenção Preditiva, Preventiva e Corretiva", "Manutenção de Turbinas a Gás e a Vapor",
+                "Metalurgia Física e Tratamentos Térmicos dos Aços", "Metrologia Industrial e Tolerâncias Dimensionais (GD&T)", "Modelagem 3D Avançada e Projetos Mecânicos com SolidWorks",
+                "Motores de Combustão Interna: Diagnóstico e Manutenção", "Pneumática Industrial e Eletropneumática Avançada", "Processos de Usinagem CNC: Programação e Operação",
+                "Projetos de Esteiras Transportadoras e Movimentação de Carga", "Robótica Industrial e Manipuladores Mecânicos", "Sistemas de Exaustão e Ventilação Industrial",
+                "Tecnologia de Soldagem: Processos MIG/MAG, TIG e Eletrodo Revestido", "Tribologia: Desgaste, Atrito e Lubrificação", "Troca Térmica e Dimensionamento de Trocadores de Calor"
             ].map(title => ({ area: "Engenharia Mecânica", title, hours: "40h" })),
 
-            // 5. Engenharia de Segurança do Trabalho (10 Cursos)
+            // 4. Engenharia Ambiental (30 Cursos)
             ...[
-                "Análise Ergonômica do Trabalho (AET Avançada)", "Elaboração e Gestão do GRO e PGR", "Gestão de Segurança no eSocial",
-                "Higiene Ocupacional: Agentes Químicos e Poeiras", "Higiene Ocupacional: Ruído e Vibração", "Investigação e Análise de Acidentes de Trabalho",
-                "Laudos de Insalubridade e Periculosidade", "Plano de Emergência e Proteção Contra Incêndio", "Proteção Respiratória e Programa PPR",
-                "Segurança em Rigging e Plano de Içamento"
-            ].map(title => ({ area: "Engenharia de Segurança do Trabalho", title, hours: "40h" })),
-
-            // 6. Engenharia de Produção (10 Cursos)
-            ...[
-                "Controle Estatístico de Processos (CEP)", "Gestão da Cadeia de Suprimentos (Supply Chain)", "Gestão da Qualidade Total e ISO 9001",
-                "Gestão de Projetos baseada no PMBOK", "Lean Manufacturing e Eliminação de Desperdícios", "Logística de Armazenagem e Distribuição",
-                "Mapeamento de Fluxo de Valor (VSM)", "Metodologia 5S e Melhoria Contínua", "Planejamento e Controle da Produção (PCP)",
-                "Seis Sigma: Certificação Green Belt"
-            ].map(title => ({ area: "Engenharia de Produção", title, hours: "40h" })),
-
-            // 7. Engenharia Agronômica (10 Cursos)
-            ...[
-                "Agricultura de Precisão e Uso de Drones", "Adubação e Manejo de Fertilidade do Solo", "Agrometeorologia e Climatologia Agrícola",
-                "Fisiologia Vegetal Aplicada ao Cultivo", "Irriação e Drenagem Agrícola", "Manejo Integrado de Pragas e Doenças (MIP)",
-                "Mecanização Agrícola e Operação de Máquinas", "Produção e Tecnologia de Sementes", "Silvicultura e Manejo Florestal Agrícola",
-                "Tecnologia de Aplicação de Defensivos Agrícolas"
-            ].map(title => ({ area: "Engenharia Agronômica", title, hours: "40h" })),
-
-            // 8. Engenharia Florestal (10 Cursos)
-            ...[
-                "Avaliação de Impactos Florestais", "Colheita e Transporte Florestal", "Ecologia Florestal e Conservação",
-                "Geoprocessamento Aplicado ao Manejo Florestal", "Inventário Florestal e Biometria", "Legislação Florestal e Código Florestal",
-                "Manejo de Florestas Nativas", "Proteção Florestal Contra Incêndios", "Recuperação de Matas Ciliares",
-                "Silvicultura de Eucalipto e Pinus"
-            ].map(title => ({ area: "Engenharia Florestal", title, hours: "40h" })),
-
-            // 9. Engenharia Química (10 Cursos)
-            ...[
-                "Balanço de Massa e Energia em Processos", "Corrosão e Proteção de Materiais Industriais", "Engenharia das Reações Químicas",
-                "Fenômenos de Transporte: Fluidos e Calor", "Operações Unitárias na Indústria Química", "Petroquímica e Refino de Petróleo",
-                "Processamento de Polímeros e Plásticos", "Segurança em Processos Químicos Industriais", "Simulação de Processos com HYSYS/Aspen",
-                "Tratamento de Efluentes Industriais Químicos"
-            ].map(title => ({ area: "Engenharia Química", title, hours: "40h" })),
-
-            // 10. Engenharia de Software (10 Cursos)
-            ...[
-                "Arquitetura de Microsserviços e APIs", "Engenharia de Requisitos de Software", "DevOps: CI/CD e Automação de Infraestrutura",
-                "Estrutura de Dados e Algoritmos", "Gestão Ágil de Software com Scrum", "Modelagem de Software com UML",
-                "Qualidade e Testes Automatizados de Software", "Segurança em Desenvolvimento de Software (DevSecOps)", "Sistemas Distribuídos e Computação em Nuvem",
-                "UX/UI Design Aplicado à Engenharia de Software"
-            ].map(title => ({ area: "Engenharia de Software", title, hours: "40h" })),
+                "Auditoria Ambiental e Perícia de Danos Ambientais", "Avaliação de Impactos Ambientais (EIA/RIMA)", "Bioengenharia de Solos e Soluções Baseadas na Natureza",
+                "Biocombustíveis e Valoração Energética de Resíduos", "Créditos de Carbono e Mercados de Descarbonização", "Drenagem Sustentável e Soluções Pluviais Urbanas",
+                "Ecotoxicologia Aplicada e Análise de Risco Ambiental", "Energias Renováveis e Transição Energética Sustentável", "Geoprocessamento e Sensoriamento Remoto com QGIS",
+                "Gestão de Bacias Hidrográficas e Recursos Hídricos", "Gestão de Crimes Ambientais e Passivos Ambientais", "Gestão de Riscos e Desastres Naturais",
+                "Gestão Integrada de Resíduos Sólidos (PGRS)", "Investigação de Áreas Contaminadas e Análise de Risco", "Licenciamento Ambiental Federal, Estadual e Municipal",
+                "Manejo e Recuperação de Nascentes e Matas Ciliares", "Modelagem da Qualidade da Água e Recursos Hídricos", "Modelagem Hidrológica e Hidráulica com HEC-RAS",
+                "Monitoramento e Controle da Qualidade do Ar", "Mudanças Climáticas e Inventário de Gases de Efeito Estufa (GEE)", "Outorga de Uso de Recursos Hídricos",
+                "Potabilização e Sistemas de Tratamento de Água (ETA)", "Recuperação de Áreas Degradadas e Mineração (PRAD)", "Remediação de Solos e Águas Subterrâneas Contaminadas",
+                "Restauração Florestal e Ecologia Aplicada", "Sistema de Gestão Ambiental (ISO 14001:2015)", "Tecnologias Limpas e Produção Mais Limpa (P+L)",
+                "Tratamento de Águas Residuárias Industriais", "Tratamento de Esgoto Sanitário e Estações de Tratamento (ETE)", "Valoração Econômica de Serviços Ecossistêmicos"
+            ].map(title => ({ area: "Engenharia Ambiental", title, hours: "40h" })),
 
             // --- EDUCAÇÃO - MATEMÁTICA (20 Cursos - 40h) ---
             ...[
