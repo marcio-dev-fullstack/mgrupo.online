@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acadêmico - Soluções Inteligentes</title>
+    <title>Zentix Acadêmico - Soluções Inteligentes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,6 +20,16 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        /* Logo Zentix Acadêmico */
+        .logo-container {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        .logo-svg {
+            max-width: 100%;
+            height: auto;
         }
         /* Topo em destaque */
         .header-profile {
@@ -40,12 +50,6 @@
             color: #4a5568;
             font-size: 1rem;
         }
-        h1 {
-            color: #1a365d;
-            border-bottom: 2px solid #3182ce;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
         .service-card {
             border: 1px solid #e2e8f0;
             border-left: 4px solid #3182ce;
@@ -64,7 +68,7 @@
         }
         .contact-box {
             margin-top: 30px;
-            padding: 15px;
+            padding: 20px;
             background-color: #ebf8ff;
             border-radius: 6px;
             text-align: center;
@@ -73,11 +77,15 @@
             display: inline-block;
             background-color: #25d366;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
             margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
         }
         .btn-curriculo {
             display: inline-block;
@@ -92,20 +100,40 @@
         .btn-curriculo:hover {
             background-color: #2b6cb0;
         }
+        .location-tag {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+
+    <!-- Logo Zentix Acadêmico -->
+    <div class="logo-container">
+        <svg class="logo-svg" width="380" height="110" viewBox="0 0 380 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ícone de Capelo / Gradação Zentix -->
+            <g transform="translate(10, 15)">
+                <path d="M40 10 L75 28 L40 46 L5 28 Z" fill="#3182ce" />
+                <path d="M20 40 L20 58 C20 66 60 66 60 58 L60 40" fill="none" stroke="#1a365d" stroke-width="4" stroke-linecap="round" />
+                <path d="M68 29.5 L68 55 L74 58 L74 29.5 Z" fill="#2b6cb0" />
+            </g>
+            <!-- Texto ZENTIX -->
+            <text x="95" y="55" font-family="Arial, sans-serif" font-weight="900" font-size="42" fill="#1a365d" letter-spacing="2">ZENTIX</text>
+            <!-- Subtítulo ACADÊMICO -->
+            <text x="97" y="80" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#3182ce" letter-spacing="4">ACADÊMICO</text>
+        </svg>
+        <p>Soluções inteligentes para quem busca agilidade e excelência acadêmica.</p>
+    </div>
+
     <!-- Destaque no Topo -->
     <div class="header-profile">
         <h2>👨‍🏫 Profº Doutorando Márcio Oliveira</h2>
         <p>Consultoria & Orientação Acadêmica</p>
         <a href="https://mgrupo.online/professor-marcio.html" class="btn-curriculo" target="_blank" rel="noopener noreferrer">📄 Ver Currículo do Professor</a>
     </div>
-
-    <h1>🎓 ACADÊMICO</h1>
-    <p>Soluções inteligentes para quem busca agilidade e excelência acadêmica.</p>
 
     <!-- Serviço 1 -->
     <div class="service-card">
@@ -130,9 +158,11 @@
     <!-- Contato -->
     <div class="contact-box">
         <h3>📱 Fale Conosco</h3>
-        <p>WhatsApp: <strong>(62) 99646-6033</strong></p>
-        <a href="https://wa.me/5562996466033" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">Enviar Mensagem no WhatsApp</a>
+        <p>WhatsApp: <strong>(65) 99610-8749</strong></p>
+        <p class="location-tag">📍 Cuiabá - MT</p>
+        <a href="https://wa.me/5565996108749" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">Enviar Mensagem no WhatsApp</a>
     </div>
+
 </div>
 
 </body>
