@@ -36,7 +36,7 @@
 
         /* HEADER & LOGO ZENTIX */
         header {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
@@ -82,13 +82,15 @@
             gap: 15px;
         }
 
-        .location-badge {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px 14px;
+        .device-badge {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 6px 14px;
             border-radius: 20px;
-            border: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .btn-aluno {
@@ -115,15 +117,15 @@
         /* HERO SECTION */
         .hero {
             text-align: center;
-            padding: 3.5rem 1rem 2rem;
+            padding: 3rem 1rem 1.5rem;
             max-width: 900px;
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             background: linear-gradient(to right, #fff, var(--text-muted));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -131,8 +133,7 @@
 
         .hero p {
             color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            font-size: 1rem;
         }
 
         /* CONTROLES E BUSCA */
@@ -140,9 +141,10 @@
             max-width: 1200px;
             margin: 0 auto 2rem;
             padding: 0 1.5rem;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         .search-box {
@@ -187,12 +189,12 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
             white-space: nowrap;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
         }
 
@@ -202,59 +204,88 @@
             border-color: var(--accent-blue);
         }
 
-        /* GRID DE CURSOS */
-        .courses-container {
+        /* ESTRUTURA DAS ÁREAS E CURSOS */
+        .main-container {
             max-width: 1200px;
             margin: 0 auto 4rem;
             padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
+            width: 100%;
             flex: 1;
         }
 
-        .course-card {
+        .area-section {
+            margin-bottom: 3rem;
+        }
+
+        .area-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ESTILO DESKTOP (Grid de Cards) */
+        body.is-desktop .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.2rem;
+        }
+
+        body.is-desktop .course-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 1.2rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .course-card:hover {
-            transform: translateY(-4px);
+        body.is-desktop .course-card:hover {
+            transform: translateY(-3px);
             border-color: rgba(59, 130, 246, 0.4);
         }
 
-        .course-header-info {
+        /* ESTILO MOBILE (Lista Compacta & Touch-friendly) */
+        body.is-mobile .courses-grid {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
+            flex-direction: column;
+            gap: 0.8rem;
         }
 
-        .course-num {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 700;
+        body.is-mobile .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
         }
 
-        .course-category {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            color: var(--accent-green);
+        body.is-mobile .course-title {
+            font-size: 0.95rem;
         }
 
+        body.is-mobile .btn-enroll {
+            width: 100%;
+            text-align: center;
+            padding: 8px 0;
+            justify-content: center;
+        }
+
+        /* ELEMENTOS GERAIS DO CARD */
         .course-title {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 1rem;
             color: #fff;
+            margin-bottom: 0.8rem;
         }
 
         .course-footer {
@@ -262,27 +293,30 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
+            padding-top: 0.8rem;
             margin-top: auto;
         }
 
         .course-duration {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         .btn-enroll {
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(16, 185, 129, 0.15);
             color: var(--accent-green);
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.3);
             padding: 6px 12px;
             border-radius: 8px;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             transition: all 0.2s ease;
         }
 
@@ -291,11 +325,11 @@
             color: #fff;
         }
 
-        /* FOOTER ESTILIZADO */
+        /* FOOTER */
         footer {
             background-color: #0b1120;
             border-top: 1px solid var(--border-color);
-            padding: 4rem 1.5rem 2rem;
+            padding: 3rem 1.5rem 2rem;
             margin-top: auto;
         }
 
@@ -304,145 +338,44 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-brand p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            line-height: 1.6;
-        }
-
-        .footer-title {
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            position: relative;
-        }
-
-        .footer-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -6px;
-            width: 30px;
-            height: 2px;
-            background: var(--accent-green);
-            border-radius: 2px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease, padding-left 0.3s ease;
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-green);
-            padding-left: 5px;
-        }
-
-        .footer-contact li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-contact i {
-            color: var(--accent-green);
-            margin-top: 4px;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .footer-bottom {
             max-width: 1200px;
             margin: 0 auto;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            text-align: center;
             font-size: 0.85rem;
             color: var(--text-muted);
-        }
-
-        .footer-socials {
-            display: flex;
-            gap: 12px;
-        }
-
-        .footer-socials a {
-            width: 36px;
-            height: 36px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-socials a:hover {
-            background: var(--accent-blue);
-            color: #fff;
-            border-color: var(--accent-blue);
-            transform: translateY(-3px);
         }
 
         /* FLOATING WHATSAPP */
         .whatsapp-float {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 20px;
+            right: 20px;
             background-color: #25d366;
             color: #fff;
             border-radius: 50px;
-            padding: 12px 24px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             font-weight: 700;
             text-decoration: none;
             box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
             z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.05);
-        }
-
-        .whatsapp-float i {
-            font-size: 1.5rem;
         }
 
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2rem; }
-            header { flex-direction: column; gap: 12px; align-items: flex-start; }
+            header { flex-direction: column; gap: 10px; align-items: flex-start; }
             .header-actions { width: 100%; justify-content: space-between; }
+            .hero h1 { font-size: 1.8rem; }
             .whatsapp-float span { display: none; }
-            .whatsapp-float { padding: 15px; border-radius: 50%; }
-            .footer-bottom { flex-direction: column; text-align: center; }
+            .whatsapp-float { padding: 14px; border-radius: 50%; }
         }
     </style>
 </head>
@@ -454,7 +387,7 @@
             <div class="logo-text">ZENTIX<span> CURSOS</span></div>
         </a>
         <div class="header-actions">
-            <div class="location-badge"><i class="fa-solid fa-location-dot"></i> CUIABÁ-MT</div>
+            <div class="device-badge" id="deviceBadge">Detectando...</div>
             <a href="#" target="_blank" class="btn-aluno">
                 <i class="fa-solid fa-user-gear"></i> Área do Aluno / Admin
             </a>
@@ -463,103 +396,42 @@
 
     <section class="hero">
         <h1>Catálogo de Cursos de Excelência</h1>
-        <p>Explore nossas formações em Educação, BNCC, Humanas, Engenharia, IA, SST e Tecnologia. Capacitação técnica e profissional EAD.</p>
+        <p>Formações organizadas por áreas e sub-tópicos com carga horária padronizada e NRs em conformidade com o MTE.</p>
     </section>
 
     <div class="controls-container">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Busque por nome do curso ou área (ex: História, Geografia, BNCC, Python)...">
+            <input type="text" id="searchInput" placeholder="Buscar por nome do curso ou área (ex: Engenharia Civil, NR-35, Python)...">
         </div>
 
         <div class="category-tabs" id="categoryTabs">
-            <button class="tab-btn active" onclick="filterCategory('all', event)">Todos (338)</button>
-            <button class="tab-btn" onclick="filterCategory('Educação', event)">Educação (50)</button>
-            <button class="tab-btn" onclick="filterCategory('BNCC', event)">BNCC (10)</button>
-            <button class="tab-btn" onclick="filterCategory('História', event)">História (10)</button>
-            <button class="tab-btn" onclick="filterCategory('Geografia', event)">Geografia (10)</button>
-            <button class="tab-btn" onclick="filterCategory('Linguagens', event)">Linguagens (10)</button>
-            <button class="tab-btn" onclick="filterCategory('Matemática', event)">Matemática (10)</button>
-            <button class="tab-btn" onclick="filterCategory('Ciências da Natureza', event)">Ciências da Natureza (10)</button>
-            <button class="tab-btn" onclick="filterCategory('Ciências Humanas', event)">Ciências Humanas (10)</button>
-            <button class="tab-btn" onclick="filterCategory('Ensino Religioso', event)">Ensino Religioso (10)</button>
-            <button class="tab-btn" onclick="filterCategory('Engenharia Ambiental', event)">Eng. Ambiental (20)</button>
-            <button class="tab-btn" onclick="filterCategory('Engenharia Civil', event)">Eng. Civil (30)</button>
-            <button class="tab-btn" onclick="filterCategory('IA nas Engenharias', event)">IA nas Engenharias (50)</button>
-            <button class="tab-btn" onclick="filterCategory('NR-', event)">Normas Regulamentadoras (38)</button>
-            <button class="tab-btn" onclick="filterCategory('SST', event)">SST (20)</button>
-            <button class="tab-btn" onclick="filterCategory('Tecnologia', event)">Tecnologia (50)</button>
+            <!-- Abas geradas via JavaScript -->
         </div>
     </div>
 
-    <main class="courses-container" id="coursesGrid">
-        <!-- Cursos carregados via JavaScript -->
+    <main class="main-container" id="mainContainer">
+        <!-- Áreas e Cursos injetados via JS -->
     </main>
 
-    <!-- RODAPÉ PADRÃO ZENTIX -->
     <footer>
         <div class="footer-container">
-            <div class="footer-brand">
-                <a href="#" class="logo-zentix">
+            <div>
+                <a href="#" class="logo-zentix" style="margin-bottom: 1rem;">
                     <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
                     <div class="logo-text">ZENTIX</div>
                 </a>
-                <p>Plataforma de ensino e capacitação técnica continuada. Excelência em EAD para alavancar sua carreira profissional nas mais diversas áreas do mercado.</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Plataforma de ensino e capacitação técnica continuada. Excelência em EAD para alavancar sua carreira profissional.</p>
             </div>
-
             <div>
-                <h4 class="footer-title">Categorias</h4>
-                <ul class="footer-links">
-                    <li><a href="#" onclick="filterCategory('Educação', event)">Educação & Pedagogia</a></li>
-                    <li><a href="#" onclick="filterCategory('IA nas Engenharias', event)">IA & Engenharia</a></li>
-                    <li><a href="#" onclick="filterCategory('NR-', event)">Normas Regulamentadoras (NRs)</a></li>
-                    <li><a href="#" onclick="filterCategory('Tecnologia', event)">Tecnologia & Programação</a></li>
-                    <li><a href="#" onclick="filterCategory('SST', event)">Saúde e Segurança (SST)</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="footer-title">Links Úteis</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Área do Aluno</a></li>
-                    <li><a href="#">Validar Certificado</a></li>
-                    <li><a href="#">Sobre a Zentix</a></li>
-                    <li><a href="#">Perguntas Frequentes (FAQ)</a></li>
-                    <li><a href="#">Termos de Uso & Privacidade</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="footer-title">Atendimento</h4>
-                <ul class="footer-contact">
-                    <li>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Cuiabá - MT, Brasil</span>
-                    </li>
-                    <li>
-                        <i class="fa-brands fa-whatsapp"></i>
-                        <span>(65) 99610-8749</span>
-                    </li>
-                    <li>
-                        <i class="fa-regular fa-envelope"></i>
-                        <span>cda.marcio@gmail.com</span>
-                    </li>
-                    <li>
-                        <i class="fa-regular fa-clock"></i>
-                        <span>Seg a Sex: 08h às 18h</span>
-                    </li>
-                </ul>
+                <h4 style="color: #fff; margin-bottom: 1rem;">Atendimento</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;"><i class="fa-solid fa-location-dot"></i> Cuiabá - MT, Brasil</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"><i class="fa-brands fa-whatsapp"></i> (65) 99610-8749</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"><i class="fa-regular fa-envelope"></i> cda.marcio@gmail.com</p>
             </div>
         </div>
-
         <div class="footer-bottom">
             <p>&copy; 2026 ZENTIX Cursos. Todos os direitos reservados.</p>
-            <div class="footer-socials">
-                <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://wa.me/5565996108749" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
         </div>
     </footer>
 
@@ -569,449 +441,287 @@
     </a>
 
     <script>
-        const rawCoursesData = [
-            // 1 a 50 - EDUCAÇÃO
-            [1, "Educação: Alfabetização e Letramento na Educação Infantil", "40h"],
-            [2, "Educação: Aprendizagem Baseada em Problemas (PBL)", "40h"],
-            [3, "Educação: Avaliação da Aprendizagem e Formativa", "40h"],
-            [4, "Educação: BNCC na Prática Pedagógica", "40h"],
-            [5, "Educação: Comunicação Não Violenta na Escola", "40h"],
-            [6, "Educação: Design Instrucional para Cursos EAD", "60h"],
-            [7, "Educação: Didática do Ensino Superior", "60h"],
-            [8, "Educação: Dificuldades e Transtornos de Aprendizagem", "40h"],
-            [9, "Educação: Direitos Humanos e Cidadania na Escola", "40h"],
-            [10, "Educação: Docência no Ensino Técnico e Profissionalizante", "40h"],
-            [11, "Educação: Educação Ambiental e Projetos Interdisciplinares", "40h"],
-            [12, "Educação: Educação Anti-racista e Étnico-Racial", "40h"],
-            [13, "Educação: Educação Bilingue: Abordagens e Metodologias", "40h"],
-            [14, "Educação: Educação Corporativa e T&D", "40h"],
-            [15, "Educação: Educação de Jovens e Adultos (EJA)", "40h"],
-            [16, "Educação: Educação Especial e Inclusiva", "60h"],
-            [17, "Educação: Educação Financeira nas Escolas", "40h"],
-            [18, "Educação: Educação Infantil: Desenvolvimento e Ludicidade", "40h"],
-            [19, "Educação: Educação no Campo e Comunidades Tradicionais", "40h"],
-            [20, "Educação: Elaboração de Itinerários Formativos para o Novo Ensino Médio", "40h"],
-            [21, "Educação: Elaboração de Material Didático Impresso e Digital", "40h"],
-            [22, "Educação: Ensino de História e Cultura Afro-Brasileira e Indígena", "40h"],
-            [23, "Educação: Ensino Híbrido e Aprendizagem Ativa", "40h"],
-            [24, "Educação: Ferramentas Digitais e Google Classroom para Professores", "40h"],
-            [25, "Educação: Gamificação na Educação", "40h"],
-            [26, "Educação: Gestão Democrática e Participativa na Escola", "40h"],
-            [27, "Educação: Gestão e Coordenação Pedagógica", "60h"],
-            [28, "Educação: Gestão Escolar e Liderança Educacional", "60h"],
-            [29, "Educação: Inclusão do Aluno com Autismo (TEA) no Ambiente Escolar", "60h"],
-            [30, "Educação: Inteligência Artificial Aplicada à Educação", "40h"],
-            [31, "Educação: Jogos, Brincadeiras e Recreação Escolar", "40h"],
-            [32, "Educação: Legislação Educacional e LDB Atualizada", "40h"],
-            [33, "Educação: Libras Básica para Educadores", "60h"],
-            [34, "Educação: Literatura Infantil e Contação de Histórias", "40h"],
-            [35, "Educação: Mediação de Conflitos no Ambiente Escolar", "40h"],
-            [36, "Educação: Metodologia da Pesquisa Científica e Orientação de TCC", "40h"],
-            [37, "Educação: Metodologias Ativas de Aprendizagem", "40h"],
-            [38, "Educação: Neuroeducação e Processos de Aprendizagem", "60h"],
-            [39, "Educação: Neuropsicopedagogia Clínica e Institucional", "60h"],
-            [40, "Educação: Orientação Educacional e Vocacional", "40h"],
-            [41, "Educação: Pedagogia Hospitalar e Domiciliar", "40h"],
-            [42, "Educação: Pedagogia Social e Projetos Comunitários", "40h"],
-            [43, "Educação: Práticas de Leitura e Produção de Texto", "40h"],
-            [44, "Educação: Psicologia da Educação e do Desenvolvimento Infantil", "40h"],
-            [45, "Educação: Psychopedagogia Institucional", "60h"],
-            [46, "Educação: STEM/STEAM na Educação (Ciência, Tecnologia, Engenharia, Artes e Matemática)", "40h"],
-            [47, "Educação: Supervisionamento Escolar e Inspeção Escolar", "40h"],
-            [48, "Educação: Tecnologias Assistivas na Educação Inclusiva", "40h"],
-            [49, "Educação: Tecnologias Educacionais e Plataformas Virtuais", "40h"],
-            [50, "Educação: Tutoria e Mentoria em Ambientes EAD", "40h"],
+        // DETECÇÃO AUTOMÁTICA DE DISPOSITIVO (MOBILE / DESKTOP)
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        
+        if (isMobileDevice) {
+            document.body.classList.add('is-mobile');
+            document.getElementById('deviceBadge').innerHTML = '<i class="fa-solid fa-mobile-screen"></i> Modo Mobile';
+        } else {
+            document.body.classList.add('is-desktop');
+            document.getElementById('deviceBadge').innerHTML = '<i class="fa-solid fa-desktop"></i> Modo PC';
+        }
 
-            // 51 a 70 - ENGENHARIA AMBIENTAL
-            [51, "Engenharia Ambiental: Auditoria e Pericia Ambiental", "40h"],
-            [52, "Engenharia Ambiental: Bioengenharia de Solos", "40h"],
-            [53, "Engenharia Ambiental: Drenagem Sustentável e Soluções Baseadas na Natureza", "40h"],
-            [54, "Engenharia Ambiental: Ecotoxicología e Análise de Risco", "40h"],
-            [55, "Engenharia Ambiental: Energias Renováveis e Transição Energética", "40h"],
-            [56, "Engenharia Ambiental: Geoprocessamento e QGIS Aplicado", "60h"],
-            [57, "Engenharia Ambiental: Gestão Integrada de Residuos Sólidos (PGRS)", "40h"],
-            [58, "Engenharia Ambiental: Gestão de Recursos Hidricos e Bacias", "40h"],
-            [59, "Engenharia Ambiental: Gestão de Riscos e Desastres Naturais", "40h"],
-            [60, "Engenharia Ambiental: Hidrologia e Modelagem Hidráulica (HEC-RAS)", "60h"],
-            [61, "Engenharia Ambiental: Legislação Ambiental e Crimes Ambientais", "40h"],
-            [62, "Engenharia Ambiental: Licenciamento e Estudo de Impacto (EIA/RIMA)", "60h"],
-            [63, "Engenharia Ambiental: Monitoramento e Qualidade do Ar", "40h"],
-            [64, "Engenharia Ambiental: Mudanças Climáticas e Créditos de Carbono", "40h"],
-            [65, "Engenharia Ambiental: Potabilização e Tratamento de Água (ETA)", "60h"],
-            [66, "Engenharia Ambiental: Recuperação de Áreas Degradadas (PRAD)", "60h"],
-            [67, "Engenharia Ambiental: Remediação de Solos Contaminados", "60h"],
-            [68, "Engenharia Ambiental: Sistema de Gestão Ambiental (ISO 14001)", "40h"],
-            [69, "Engenharia Ambiental: Tratamento de Águas Residuárias e Esgoto", "80h"],
-            [70, "Engenharia Ambiental: Valoração Econômica Ambiental", "40h"],
+        // BASE DE DADOS COMPLETA REORGANIZADA POR ÁREAS E SUB-TÓPICOS
+        const rawDatabase = [
+            // --- NORMAS REGULAMENTADORAS (CH Conforme MTE) ---
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-01 - Disposições Gerais e Gerenciamento de Riscos Ocupacionais (GRO/PGR)", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-02 - Inspeção Prévia", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-03 - Embargo e Interdição", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-04 - SESMT - Serviço Especializado em Segurança e Medicina do Trabalho", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-05 - CIPA - Comissão Interna de Prevenção de Acidentes e Assédio", hours: "20h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-06 - Equipamentos de Proteção Individual (EPI)", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-07 - PCMSO - Programa de Controle Médico de Saúde Ocupacional", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-08 - Edificações e Condições de Conforto", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-09 - Avaliação e Controle das Exposições Ocupacionais", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-10 - Segurança em Instalações e Serviços em Eletricidade (Básico)", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-10 SEP - Sistema Elétrico de Potência (Complementar)", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-11 - Transporte, Movimentação, Manuseio e Armazenamento de Materiais", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-12 - Segurança no Trabalho em Máquinas e Equipamentos", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-13 - Caldeiras, Vasos de Pressão, Tubulações e Tanques de Processo", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-14 - Fornos Industriais", hours: "8h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-15 - Atividades e Operações Insalubres", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-16 - Atividades e Operações Perigosas", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-17 - Ergonomia no Ambiente de Trabalho", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-18 - Segurança e Saúde no Trabalho na Indústria da Construção", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-19 - Explosivos - Depósito, Manuseio e Transporte", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-20 - Inflamáveis e Combustíveis (Intermediário)", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-21 - Trabalhos a Céu Aberto", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-22 - Segurança e Saúde Ocupacional na Mineração", hours: "24h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-23 - Proteção Contra Incêndios e Brigada de Emergência", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-24 - Condições Sanitárias e de Conforto nos Locais de Trabalho", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-25 - Resíduos Industriais", hours: "8h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-26 - Sinalização de Segurança e Classificação GHS", hours: "8h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-28 - Fiscalização, Procedimentos e Multas", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-29 - Segurança e Saúde no Trabalho Portuário", hours: "24h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-30 - Segurança e Saúde no Trabalho Aquaviário", hours: "24h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-31 - Segurança e Saúde no Trabalho na Agricultura e Pecuária", hours: "24h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-32 - Segurança e Saúde no Trabalho em Serviços de Saúde", hours: "32h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-33 - Espaços Confinados para Trabalhadores e Vigias", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-33 - Espaços Confinados para Supervisores de Entrada", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-34 - Condições no Meio Ambiente de Trabalho na Naval", hours: "20h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-35 - Trabalho em Altura (Capacitação Básica)", hours: "8h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-36 - Segurança e Saúde no Abate e Processamento de Carnes", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-37 - Segurança e Saúde em Plataformas de Petróleo", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-38 - Segurança e Saúde na Limpeza Urbana e Resíduos Sólidos", hours: "8h" },
 
-            // 71 a 100 - ENGENHARIA CIVIL
-            [71, "Engenharia Civil: Acústica Arquitetônica e Edificações", "40h"],
-            [72, "Engenharia Civil: Avaliação Imobiliária pela NBR 14653", "40h"],
-            [73, "Engenharia Civil: Compatibilização de Projetos com Navisworks", "40h"],
-            [74, "Engenharia Civil: Concreto Protendido na Prática", "40h"],
-            [75, "Engenharia Civil: Desempenho de Edificações (NBR 15575)", "40h"],
-            [76, "Engenharia Civil: Dimensionamento de Estruturas Metálicas", "60h"],
-            [77, "Engenharia Civil: Drenagem Urbana e Manejo de Águas Pluviais", "40h"],
-            [78, "Engenharia Civil: Estruturas de Madeira e Alvenaria Estrutural", "40h"],
-            [79, "Engenharia Civil: Fundações e Mecânica dos Solos", "60h"],
-            [80, "Engenharia Civil: Gestão e Planejamento de Obras", "60h"],
-            [81, "Engenharia Civil: Gestão de Reformas Prediais (NBR 16280)", "40h"],
-            [82, "Engenharia Civil: Impermeabilização de Estruturas", "40h"],
-            [83, "Engenharia Civil: Inspeção Predial e Pericia de Engenharia", "60h"],
-            [84, "Engenharia Civil: Instalações Elétricas Prediais", "40h"],
-            [85, "Engenharia Civil: Instalações Hidrossanitárias Prediais", "40h"],
-            [86, "Engenharia Civil: Lean Construction (Construção Enxuta)", "40h"],
-            [87, "Engenharia Civil: Logistica de Canteiro de Obras", "40h"],
-            [88, "Engenharia Civil: Modelagem BIM com Revit Structure", "80h"],
-            [89, "Engenharia Civil: MS Project Avançado para Obras", "40h"],
-            [90, "Engenharia Civil: Orçamento e Composição de Custos (SINAPI)", "40h"],
-            [91, "Engenharia Civil: Patologia das Construções", "40h"],
-            [92, "Engenharia Civil: Pavimentação e Geotecnia Rodoviária", "60h"],
-            [93, "Engenharia Civil: Pontes e Obras de Arte Especiais", "80h"],
-            [94, "Engenharia Civil: Projetos Estruturais em Concreto Armado", "80h"],
-            [95, "Engenharia Civil: Recuperação e Reforço Estrutural", "40h"],
-            [96, "Engenharia Civil: Segurança Estrutural em Incêndios", "40h"],
-            [97, "Engenharia Civil: Sustentabilidade e Certificação LEED", "40h"],
-            [98, "Engenharia Civil: Tecnologia do Concreto e Argamassas", "40h"],
-            [99, "Engenharia Civil: Terraplenagem e Contenção de Encostas", "40h"],
-            [100, "Engenharia Civil: Topografia e Agrimensura Aplicada", "40h"],
+            // --- 100 CURSOS DE ENGENHARIA DIVIDIDOS EM SUB-TÓPICOS (CH 40h) ---
+            // 1. Engenharia Civil (10 Cursos)
+            ...[
+                "Avaliação Imobiliária conforme NBR 14653", "Compatibilização de Projetos com Navisworks", "Dimensionamento de Estruturas em Concreto Armado",
+                "Drenagem Urbana e Manejo de Águas Pluviais", "Fundações e Mecânica dos Solos Aplicada", "Gestão e Planejamento de Obras com MS Project",
+                "Inspeção Predial e Perícia de Engenharia", "Modelagem BIM com Revit Structure", "Orçamento e Composição de Custos via SINAPI",
+                "Patologia e Recuperação das Construções"
+            ].map(title => ({ area: "Engenharia Civil", title, hours: "40h" })),
 
-            // 101 a 150 - IA NAS ENGENHARIAS
-            [101, "IA nas Engenharias: Algoritmos Genéticos para Otimização de Projetos", "60h"],
-            [102, "IA nas Engenharias: Análise de Sobrevivência e Confiabilidade de Ativos", "40h"],
-            [103, "IA nas Engenharias: Automação CAD com Python e IA Generativa", "60h"],
-            [104, "IA nas Engenharias: Automação de Canteiros de Obras com Robótica e IA", "40h"],
-            [105, "IA nas Engenharias: Automação de Relatórios Técnicos e Perícias com IA", "40h"],
-            [106, "IA nas Engenharias: Chatbots e Assistentes Virtuais para Gestão de Obras", "40h"],
-            [107, "IA nas Engenharias: Computer Vision para Inspeção Predial com Drones", "60h"],
-            [108, "IA nas Engenharias: Controladores Inteligentes Lógicos Fuzzy na Indústria", "40h"],
-            [109, "IA nas Engenharias: Copilotos de Código Python e C++ para Engenheiros", "40h"],
-            [110, "IA nas Engenharias: Data Analytics em Engenharia de Petróleo e Gás", "60h"],
-            [111, "IA nas Engenharias: Deep Learning para Análise Geotécnica e Solos", "60h"],
-            [112, "IA nas Engenharias: Design Generativo Aplicado ao Projeto Estrutural", "60h"],
-            [113, "IA nas Engenharias: Design Paramétrico e IA com Grasshopper e Dynamo", "60h"],
-            [114, "IA nas Engenharias: Detecção de Anomalias Estruturais com Sensores IoT e IA", "40h"],
-            [115, "IA nas Engenharias: Detecção de Falhas Elétricas Usando Visão Computacional", "40h"],
-            [116, "IA nas Engenharias: Engenharia de Prompt para Engenheiros Civis e Mecânicos", "40h"],
-            [117, "IA nas Engenharias: Gêmeos Digitais (Digital Twins) e Aprendizado de Máquina", "80h"],
-            [118, "IA nas Engenharias: Geoprocessamento e Sensoriamento Remoto com IA", "60h"],
-            [119, "IA nas Engenharias: IA Aplicada à Eficiência Energética de Edificações", "40h"],
-            [120, "IA nas Engenharias: IA para Análise de Vibrações e Manutenção Preditiva", "60h"],
-            [121, "IA nas Engenharias: IA para Dimensionamento de Sistemas Fotovoltaicos", "40h"],
-            [122, "IA nas Engenharias: IA para Monitoramento de Barragens e Encostas", "60h"],
-            [123, "IA nas Engenharias: IA para Otimização de Traçados Rodoviários e Transporte", "40h"],
-            [124, "IA nas Engenharias: IA na Avaliação de Impacto Ambiental e Licenciamento", "40h"],
-            [125, "IA nas Engenharias: IA na Estimativa Automática de Custos e Orçamentos", "40h"],
-            [126, "IA nas Engenharias: IA na Indústria 4.0 e Sistemas de Manufatura", "60h"],
-            [127, "IA nas Engenharias: IA no Controle de Qualidade de Materiais de Construção", "40h"],
-            [128, "IA nas Engenharias: IA no Planejamento de Cargas e Içamentos (Rigging)", "40h"],
-            [129, "IA nas Engenharias: Integrando IA ao BIM (Building Information Modeling)", "60h"],
-            [130, "IA nas Engenharias: Machine Learning para Previsão de Cargas Elétricas", "40h"],
-            [131, "IA nas Engenharias: Machine Learning para Previsão de Riscos na Construção", "40h"],
-            [132, "IA nas Engenharias: Machine Learning na Mecânica dos Sólidos", "60h"],
-            [133, "IA nas Engenharias: Manutenção Preditiva Indústria 4.0 com Machine Learning", "60h"],
-            [134, "IA nas Engenharias: Modelagem Climática e Recursos Hidricos com IA", "40h"],
-            [135, "IA nas Engenharias: Modelagem Hidrológica e Fluido-Dinâmica (CFD) com IA", "80h"],
-            [136, "IA nas Engenharias: Modelagem de Tráfego e Mobilidade Urbana com IA", "40h"],
-            [137, "IA nas Engenharias: Otimização da Cadeia de Suprimentos em Obras com IA", "40h"],
-            [138, "IA nas Engenharias: Otimização de Redes de Água e Esgoto com Aprendizado de Máquina", "40h"],
-            [139, "IA nas Engenharias: Otimização Multiobjetivo de Estruturas Metálicas", "60h"],
-            [140, "IA nas Engenharias: Processamento de Linguagem Natural (PLN) para Normas Técnicas", "40h"],
-            [141, "IA nas Engenharias: Reconhecimento de Padrões em Dados de Escaneamento 3D (LIDAR)", "60h"],
-            [142, "IA nas Engenharias: Redes Neurais para Previsão de Resistência do Concreto", "40h"],
-            [143, "IA nas Engenharias: Redes Neurais para Previsão de Vento e Energia Eólica", "40h"],
-            [144, "IA nas Engenharias: Simulação de Processos Quimicos e Bioprocessos com IA", "60h"],
-            [145, "IA nas Engenharias: Simulação e Otimização Acústica com Algoritmos Inteligentes", "40h"],
-            [146, "IA nas Engenharias: Sistemas de Análise de Risco de Incêndio Baseados em IA", "40h"],
-            [147, "IA nas Engenharias: Visão Computacional para Monitoramento de EPIs e SST", "40h"],
-            [148, "IA nas Engenharias: Visão Computacional para Monitoramento do Avanço Físico de Obras", "60h"],
-            [149, "IA nas Engenharias: Visão Computacional para Percepção em Veículos Autônomos", "80h"],
-            [150, "IA nas Engenharias: Vision Transformers em Diagnóstico Pericial de Fachadas", "60h"],
+            // 2. Engenharia Ambiental (10 Cursos)
+            ...[
+                "Auditoria e Perícia Ambiental", "Geoprocessamento e QGIS Aplicado", "Gestão de Recursos Hídricos e Bacias Hidrográficas",
+                "Gestão Integrada de Resíduos Sólidos (PGRS)", "Licenciamento Ambiental e Elaboração de EIA/RIMA", "Monitoramento e Qualidade do Ar",
+                "Recuperação de Áreas Degradadas (PRAD)", "Remediação de Solos Contaminados", "Sistema de Gestão Ambiental (ISO 14001)",
+                "Tratamento de Águas Residuárias e Esgoto"
+            ].map(title => ({ area: "Engenharia Ambiental", title, hours: "40h" })),
 
-            // 151 a 188 - NORMAS REGULAMENTADORAS (NRs)
-            [151, "NR-01: Disposições Gerais e Gerenciamento de Riscos Ocupacionais (PGR)", "40h"],
-            [152, "NR-02: Inspeção Prévia", "40h"],
-            [153, "NR-03: Embargo e Interdição", "40h"],
-            [154, "NR-04: SESMT - Serviço Especializado em Segurança e Medicina", "40h"],
-            [155, "NR-05: CIPA Comissão Interna de Prevenção de Acidentes", "40h"],
-            [156, "NR-06: Equipamentos de Proteção Individual (EPI)", "40h"],
-            [157, "NR-07: PCMSO - Programas de Controle Médico de Saúde Ocupacional", "40h"],
-            [158, "NR-08: Edificações e Condições de Conforto", "40h"],
-            [159, "NR-09: Avaliação e Controle das Exposições Ocupacionais", "40h"],
-            [160, "NR-10: Segurança em Instalações e Serviços em Eletricidade - Básico", "40h"],
-            [161, "NR-10: Sistema Elétrico de Potência (SEP) - Complementar", "40h"],
-            [162, "NR-11: Transporte, Movimentação, Manuseio e Armazenamento de Materiais", "40h"],
-            [163, "NR-12: Segurança no Trabalho em Máquinas e Equipamentos", "40h"],
-            [164, "NR-13: Caldeiras, Vasos de Pressão, Tubulações e Tanques", "40h"],
-            [165, "NR-14: Fornos Industriais", "40h"],
-            [166, "NR-15: Atividades e Operações Insalubres", "40h"],
-            [167, "NR-16: Atividades e Operações Perigosas", "40h"],
-            [168, "NR-17: Ergonomia no Ambiente de Trabalho", "40h"],
-            [169, "NR-18: Segurança e Saúde no Trabalho na Indústria da Construção", "40h"],
-            [170, "NR-19: Explosivos - Depósito e Manuseio", "40h"],
-            [171, "NR-20: Inflamáveis e Combustiveis - Intermediário", "40h"],
-            [172, "NR-20: Inflamáveis e Combustíveis - Avançado", "40h"],
-            [173, "NR-21: Trabalhos a Céu Aberto", "40h"],
-            [174, "NR-22: Segurança e Saúde Ocupacional na Mineração", "40h"],
-            [175, "NR-23: Proteção Contra Incêndios e Brigada de Emergência", "40h"],
-            [176, "NR-24: Condições Sanitárias e de Conforto nos Locais de Trabalho", "40h"],
-            [177, "NR-25: Resíduos Industriais", "40h"],
-            [178, "NR-26: Sinalização de Segurança e GHS", "40h"],
-            [179, "NR-28: Fiscalização, Procedimentos e Multas", "40h"],
-            [180, "NR-29: Segurança e Saúde no Trabalho Portuário", "40h"],
-            [181, "NR-30: Segurança e Saúde no Trabalho Aquaviário", "40h"],
-            [182, "NR-31: Segurança no Trabalho na Agricultura e Pecuária", "40h"],
-            [183, "NR-32: Segurança e Saúde no Trabalho em Serviços de Saúde", "40h"],
-            [184, "NR-33: Espaços Confinados para Trabalhadores e Vigias", "40h"],
-            [185, "NR-33: Espaços Confinados para Supervisores de Entrada", "40h"],
-            [186, "NR-35: Trabalho em Altura - Capacitação Básica", "40h"],
-            [187, "NR-36: Segurança no Abate e Processamento de Carnes", "40h"],
-            [188, "NR-37: Segurança em Plataformas de Petróleo", "40h"],
+            // 3. Engenharia Elétrica (10 Cursos)
+            ...[
+                "Automação Predial e Residencial (Domótica)", "Comandos Elétricos Industriais", "Dimensionamento de Redes de Distribuição Elétrica",
+                "Eficiência Energética Industrial", "Instalações Elétricas Prediais de Baixa Tensão", "Manutenção de Transformadores e Subestações",
+                "Proteção de Sistemas Elétricos", "Qualidade da Energia Elétrica e Harmônicas", "Sistemas de Aterramento e SPDA",
+                "Sistemas Fotovoltaicos Conectados à Rede (On-Grid)"
+            ].map(title => ({ area: "Engenharia Elétrica", title, hours: "40h" })),
 
-            // 189 a 208 - SAÚDE E SEGURANÇA DO TRABALHO (SST)
-            [189, "SST: Análise Ergonômica do Trabalho (AET Avançada)", "40h"],
-            [190, "SST: Auditoria Interna ISO 45001 (Saúde e Segurança)", "40h"],
-            [191, "SST: Biossegurança em Laboratórios e Ambientes Criticos", "40h"],
-            [192, "SST: Conservação Auditiva e Programa PCA", "40h"],
-            [193, "SST: Gestão de Emergências e Plano de Resposta a Incidentes", "40h"],
-            [194, "SST: Gestão de Empreiteiras e Terceirizados", "40h"],
-            [195, "SST: Gestão do GRO e Elaboração do PGR", "40h"],
-            [196, "SST: Higiene Ocupacional Agentes Quimicos e Poeiras", "40h"],
-            [197, "SST: Higiene Ocupacional - Avaliação de Ruido e Vibração", "40h"],
-            [198, "SST: Implementação do eSocial para Segurança do Trabalho", "40h"],
-            [199, "SST: Indicadores de Desempenho e Metricas em SST", "40h"],
-            [200, "SST: Investigação e Análise de Acidentes de Trabalho (Método Árvore de Causas)", "40h"],
-            [201, "SST: Operação e Inspeção de Pontes Rolantes e Escavadeiras", "40h"],
-            [202, "SST: Pericia Judicial em Insalubridade e Periculosidade", "60h"],
-            [203, "SST: Primeiros Socorros e Atendimento Pré-Hospitalar Ocupacional", "40h"],
-            [204, "SST: Proteção Respiratória e Programa PPR", "40h"],
-            [205, "SST: Radioproteção Industrial", "40h"],
-            [206, "SST: Riscos Psicossociais e Saúde Mental no Trabalho", "40h"],
-            [207, "SST: Segurança em Rigging e Plano de Içamento", "40h"],
-            [208, "SST: Treinador e Instrutor de Segurança do Trabalho", "60h"],
+            // 4. Engenharia Mecânica (10 Cursos)
+            ...[
+                "Análise de Vibrações em Máquinas", "Desenho Técnico Mecânico com AutoCAD 2D/3D", "Dimensionamento de Tubulações Industriais",
+                "Elemento de Máquinas e Projetos Mecânicos", "Gestão da Manutenção (PCM e TPMS)", "Hidráulica e Pneumática Industrial",
+                "Modelagem 3D e Simulação com SolidWorks", "Refrigeração e Climatização Industrial (HVAC)", "Sistemas de Bombas e Compressores",
+                "Tecnologia de Soldagem Industrial"
+            ].map(title => ({ area: "Engenharia Mecânica", title, hours: "40h" })),
 
-            // 209 a 258 - TECNOLOGIA
-            [209, "Tecnologia: Arquitetura de Microsserviços", "60h"],
-            [210, "Tecnologia: Arquitetura de Nuvem AWS (Amazon Web Services)", "80h"],
-            [211, "Tecnologia: Automação Rpa com UiPath", "40h"],
-            [212, "Tecnologia: Banco de Dados SQL (PostgreSQL & MySQL)", "40h"],
-            [213, "Tecnologia: Bancos de Dados NoSQL com MongoDB", "40h"],
-            [214, "Tecnologia: Big Data com Apache Spark e Hadoop", "80h"],
-            [215, "Tecnologia: Blockchain e Contratos Inteligentes (Smart Contracts)", "60h"],
-            [216, "Tecnologia: Business Intelligence com Power BI Avançado", "60h"],
-            [217, "Tecnologia: CI/CD Pipelines com GitHub Actions e Jenkins", "40h"],
-            [218, "Tecnologia: Cloud Computing com Microsoft Azure", "60h"],
-            [219, "Tecnologia: Data Science e Machine Learning com Python", "100h"],
-            [220, "Tecnologia: Deep Learning com TensorFlow e PyTorch", "80h"],
-            [221, "Tecnologia: Desenvolvimento Backend em C# e .NET Core", "80h"],
-            [222, "Tecnologia: Desenvolvimento de Jogos com Unity e C#", "80h"],
-            [223, "Tecnologia: Desenvolvimento Mobile com React Native", "80h"],
-            [224, "Tecnologia: Desenvolvedor Front-End com React.js", "80h"],
-            [225, "Tecnologia: DevOps Fundamentals (Docker e Kubernetes)", "60h"],
-            [226, "Tecnologia: Engenharia de Dados e Pipelines ETL", "80h"],
-            [227, "Tecnologia: Engenharia de Prompt para Inteligência Artificial", "40h"],
-            [228, "Tecnologia: Estrutura de Dados e Algoritmos Avançados", "60h"],
-            [229, "Tecnologia: Flutter e Dart para Criação de Apps", "80h"],
-            [230, "Tecnologia: Git e GitHub para Controle de Versão", "40h"],
-            [231, "Tecnologia: Governança de TI com ITIL v4 e COBIT", "40h"],
-            [232, "Tecnologia: GraphQL para Construção de APIs Eficientes", "40h"],
-            [233, "Tecnologia: Gestão de Projetos de TI com PMBOK", "40h"],
-            [234, "Tecnologia: HTML5 e CSS3 Responsivo com Tailwind CSS", "40h"],
-            [235, "Tecnologia: Internet das Coisas (IoT) com Arduino e ESP32", "40h"],
-            [236, "Tecnologia: Java Orientado a Objetos e Spring Boot", "100h"],
-            [237, "Tecnologia: JavaScript Moderno (ES6+) do Zero ao Avançado", "60h"],
-            [238, "Tecnologia: LGPD e Proteção de Dados para Profissionais de TI", "40h"],
-            [239, "Tecnologia: Linguagem Go (Golang) para Sistemas Distribuidos", "40h"],
-            [240, "Tecnologia: Linux Administração de Sistemas e Shell Script", "60h"],
-            [241, "Tecnologia: Lógica de Programação e Algoritmos", "40h"],
-            [242, "Tecnologia: Metodologia Agil (Scrum e Kanban para Devs)", "40h"],
-            [243, "Tecnologia: Next.js para Aplicações React de Alta Performance", "50h"],
-            [244, "Tecnologia: Node.js e Construção de APIs RESTful", "60h"],
-            [245, "Tecnologia: PHP Moderno e Framework Laravel", "60h"],
-            [246, "Tecnologia: Programação em Rust para Alta Performance", "60h"],
-            [247, "Tecnologia: Python para Análise de Dados e Automação", "60h"],
-            [248, "Tecnologia: Redes de Computadores e Protocolos TCP/IP", "60h"],
-            [249, "Tecnologia: Segurança da Informação e Cibersegurança Básica", "40h"],
-            [250, "Tecnologia: Terraform para Infraestrutura como Código (laC)", "40h"],
-            [251, "Tecnologia: Testes Automatizados com Cypress e Jest", "40h"],
-            [252, "Tecnologia: Testes de Invasão e Pentest Ético", "80h"],
-            [253, "Tecnologia: TypeScript na Prática para Desenvolvedores", "40h"],
-            [254, "Tecnologia: UI/UX Design: Interfaces e Experiência do Usuário", "40h"],
-            [255, "Tecnologia: Unreal Engine 5 para Projetos Interativos", "80h"],
-            [256, "Tecnologia: Visualização de Dados com Tableau", "40h"],
-            [257, "Tecnologia: Vue.js 3 e Nuxt.js", "60h"],
-            [258, "Tecnologia: Web Scraping e Mineração de Dados Web", "40h"],
+            // 5. Engenharia de Segurança do Trabalho (10 Cursos)
+            ...[
+                "Análise Ergonômica do Trabalho (AET Avançada)", "Elaboração e Gestão do GRO e PGR", "Gestão de Segurança no eSocial",
+                "Higiene Ocupacional: Agentes Químicos e Poeiras", "Higiene Ocupacional: Ruído e Vibração", "Investigação e Análise de Acidentes de Trabalho",
+                "Laudos de Insalubridade e Periculosidade", "Plano de Emergência e Proteção Contra Incêndio", "Proteção Respiratória e Programa PPR",
+                "Segurança em Rigging e Plano de Içamento"
+            ].map(title => ({ area: "Engenharia de Segurança do Trabalho", title, hours: "40h" })),
 
-            // 259 a 268 - BNCC (EDUCAÇÃO INFANTIL)
-            [259, "BNCC: Linguagem e Expressão Infantil", "40h"],
-            [260, "BNCC: Corpo, Gestos e Movimentos na Prática", "40h"],
-            [261, "BNCC: Traços, Sons, Cores e Formas", "40h"],
-            [262, "BNCC: Escuta, Fala, Pensamento e Imaginação", "40h"],
-            [263, "BNCC: Espaços, Tempos, Quantidades e Transformações", "40h"],
-            [264, "BNCC: Desenvolvimento Socioemocional Infantil", "40h"],
-            [265, "BNCC: Neurociência e Primeira Infância", "40h"],
-            [266, "BNCC: Brincadeiras e Ludicidade na Educação Infantil", "40h"],
-            [267, "BNCC: Práticas de Inclusão na Educação Infantil", "40h"],
-            [268, "BNCC: Avaliação Qualitativa no Ensino Infantil", "40h"],
+            // 6. Engenharia de Produção (10 Cursos)
+            ...[
+                "Controle Estatístico de Processos (CEP)", "Gestão da Cadeia de Suprimentos (Supply Chain)", "Gestão da Qualidade Total e ISO 9001",
+                "Gestão de Projetos baseada no PMBOK", "Lean Manufacturing e Eliminação de Desperdícios", "Logística de Armazenagem e Distribuição",
+                "Mapeamento de Fluxo de Valor (VSM)", "Metodologia 5S e Melhoria Contínua", "Planejamento e Controle da Produção (PCP)",
+                "Seis Sigma: Certificação Green Belt"
+            ].map(title => ({ area: "Engenharia de Produção", title, hours: "40h" })),
 
-            // 269 a 278 - LINGUAGENS E SUAS TECNOLOGIAS
-            [269, "Linguagens: Leitura Critica e Produção Textual", "40h"],
-            [270, "Linguagens: Gramática Funcional e Análise Linguística", "40h"],
-            [271, "Linguagens: Cultura Digital e Letramento Midiático", "40h"],
-            [272, "Linguagens: Literatura Brasileira e Contemporânea", "40h"],
-            [273, "Linguagens: Inglês Instrumental e Comunicação Global", "40h"],
-            [274, "Linguagens: Espanhol para a Comunicação Intercultural", "40h"],
-            [275, "Linguagens: Artes Visuais e Performance na Escola", "40h"],
-            [276, "Linguagens: Educação Física e Saúde Escolar", "40h"],
-            [277, "Linguagens: Comunicação Não-Verbal e Linguagem Corporal", "40h"],
-            [278, "Linguagens: Multiletramentos e Novas Tecnologias", "40h"],
+            // 7. Engenharia Agronômica (10 Cursos)
+            ...[
+                "Agricultura de Precisão e Uso de Drones", "Adubação e Manejo de Fertilidade do Solo", "Agrometeorologia e Climatologia Agrícola",
+                "Fisiologia Vegetal Aplicada ao Cultivo", "Irriação e Drenagem Agrícola", "Manejo Integrado de Pragas e Doenças (MIP)",
+                "Mecanização Agrícola e Operação de Máquinas", "Produção e Tecnologia de Sementes", "Silvicultura e Manejo Florestal Agrícola",
+                "Tecnologia de Aplicação de Defensivos Agrícolas"
+            ].map(title => ({ area: "Engenharia Agronômica", title, hours: "40h" })),
 
-            // 279 a 288 - MATEMÁTICA E SUAS TECNOLOGIAS
-            [279, "Matemática: Resolução de Problemas Matemáticos", "40h"],
-            [280, "Matemática: Álgebra e Pensamento Computacional", "40h"],
-            [281, "Matemática: Estatística e Análise de Dados", "40h"],
-            [282, "Matemática: Geometria Espacial e Plana", "40h"],
-            [283, "Matemática: Matemática Financeira para Jovens", "40h"],
-            [284, "Matemática: Modelagem Matemática na Prática", "40h"],
-            [285, "Matemática: Jogos e Gamificação no Ensino da Matemática", "40h"],
-            [286, "Matemática: História da Matemática", "40h"],
-            [287, "Matemática: Cálculo e Funções no Cotidiano", "40h"],
-            [288, "Matemática: Tecnologia no Ensino da Matemática", "40h"],
+            // 8. Engenharia Florestal (10 Cursos)
+            ...[
+                "Avaliação de Impactos Florestais", "Colheita e Transporte Florestal", "Ecologia Florestal e Conservação",
+                "Geoprocessamento Aplicado ao Manejo Florestal", "Inventário Florestal e Biometria", "Legislação Florestal e Código Florestal",
+                "Manejo de Florestas Nativas", "Proteção Florestal Contra Incêndios", "Recuperação de Matas Ciliares",
+                "Silvicultura de Eucalipto e Pinus"
+            ].map(title => ({ area: "Engenharia Florestal", title, hours: "40h" })),
 
-            // 289 a 298 - CIÊNCIAS DA NATUREZA E SUAS TECNOLOGIAS
-            [289, "Ciências da Natureza: Ecologia e Sustentabilidade", "40h"],
-            [290, "Ciências da Natureza: Física do Cotidiano", "40h"],
-            [291, "Ciências da Natureza: Química Geral e Ambiental", "40h"],
-            [292, "Ciências da Natureza: Biologia Celular e Genética", "40h"],
-            [293, "Ciências da Natureza: Astronomia e Ciências Espaciais", "40h"],
-            [294, "Ciências da Natureza: Energias Renováveis e Transição Energética", "40h"],
-            [295, "Ciências da Natureza: Saúde e Biologia Humana", "40h"],
-            [296, "Ciências da Natureza: Práticas de Laboratório e Método Científico", "40h"],
-            [297, "Ciências da Natureza: Geologia e Dinâmica da Terra", "40h"],
-            [298, "Ciências da Natureza: Biotecnologia e Ética Científica", "40h"],
+            // 9. Engenharia Química (10 Cursos)
+            ...[
+                "Balanço de Massa e Energia em Processos", "Corrosão e Proteção de Materiais Industriais", "Engenharia das Reações Químicas",
+                "Fenômenos de Transporte: Fluidos e Calor", "Operações Unitárias na Indústria Química", "Petroquímica e Refino de Petróleo",
+                "Processamento de Polímeros e Plásticos", "Segurança em Processos Químicos Industriais", "Simulação de Processos com HYSYS/Aspen",
+                "Tratamento de Efluentes Industriais Químicos"
+            ].map(title => ({ area: "Engenharia Química", title, hours: "40h" })),
 
-            // 299 a 308 - CIÊNCIAS HUMANAS E SOCIAIS APLICADAS
-            [299, "Ciências Humanas: História do Brasil e do Mundo", "40h"],
-            [300, "Ciências Humanas: Geografia Geral e Geopolítica", "40h"],
-            [301, "Ciências Humanas: Sociologia do Mundo Contemporâneo", "40h"],
-            [302, "Ciências Humanas: Filosofia e Ética na Sociedade", "40h"],
-            [303, "Ciências Humanas: Direitos Humanos e Cidadania Ativa", "40h"],
-            [304, "Ciências Humanas: Educação Patrimonial e Memória", "40h"],
-            [305, "Ciências Humanas: Estudos Étnico-Raciais e Diversidade", "40h"],
-            [306, "Ciências Humanas: Cartografia e Sensoriamento Remoto", "40h"],
-            [307, "Ciências Humanas: História da América Latina", "40h"],
-            [308, "Ciências Humanas: Economia Politica e Sociedade", "40h"],
+            // 10. Engenharia de Software (10 Cursos)
+            ...[
+                "Arquitetura de Microsserviços e APIs", "Engenharia de Requisitos de Software", "DevOps: CI/CD e Automação de Infraestrutura",
+                "Estrutura de Dados e Algoritmos", "Gestão Ágil de Software com Scrum", "Modelagem de Software com UML",
+                "Qualidade e Testes Automatizados de Software", "Segurança em Desenvolvimento de Software (DevSecOps)", "Sistemas Distribuídos e Computação em Nuvem",
+                "UX/UI Design Aplicado à Engenharia de Software"
+            ].map(title => ({ area: "Engenharia de Software", title, hours: "40h" })),
 
-            // 309 a 318 - ENSINO RELIGIOSO
-            [309, "Ensino Religioso: Diversidade Cultural e Tradições Religiosas", "40h"],
-            [310, "Ensino Religioso: Ética e Valores Humanos", "40h"],
-            [311, "Ensino Religioso: Mitos, Ritos e Símbolos das Religiões", "40h"],
-            [312, "Ensino Religioso: Textos Sagrados e Suas Interpretações", "40h"],
-            [313, "Ensino Religioso: Cultura de Paz e Diálogo Inter-religioso", "40h"],
-            [314, "Ensino Religioso: A Filosofia das Religiões", "40h"],
-            [315, "Ensino Religioso: Religião e Sociedade na História", "40h"],
-            [316, "Ensino Religioso: A ARTE e a Arquitetura Sacra", "40h"],
-            [317, "Ensino Religioso: Liberdade de Crença e Legislação", "40h"],
-            [318, "Ensino Religioso: Espiritualidade e Saúde Mental", "40h"],
+            // --- EDUCAÇÃO - MATEMÁTICA (20 Cursos - 40h) ---
+            ...[
+                "Álgebra Linear e Geometria Analítica", "Análise Combinatória e Probabilidade", "Cálculo Diferencial e Integral Aplicado",
+                "Estatística Descritiva e Inferencial", "Estatística no Ensino Básico", "Funções Matemáticas e Suas Aplicações",
+                "Gamificação no Ensino da Matemática", "Geometria Espacial e Visualização Tridimensional", "Geometria Plana e Desenho Geométrico",
+                "História da Matemática e Educação", "Introdução à Teoria dos Números", "Jogos Didáticos no Ensino de Matemática",
+                "Matemática Financeira para Escolas", "Matemática para Educação Infantil", "Modelagem Matemática na Educação",
+                "O uso do GeoGebra na Sala de Aula", "Pensamento Computacional e Matemática", "Raciocínio Lógico-Matemático",
+                "Resolução de Problemas Matemáticos", "Tecnologias Digitais no Ensino de Matemática"
+            ].map(title => ({ area: "Educação - Matemática", title, hours: "40h" })),
 
-            // 319 a 328 - HISTÓRIA
-            [319, "História: História Antiga e as Primeiras Civilizações", "40h"],
-            [320, "História: Grécia e Roma Antiga", "40h"],
-            [321, "História: História Medieval e Feudalismo", "40h"],
-            [322, "História: História Moderna e Grandes Navegações", "40h"],
-            [323, "História: História Contemporânea e Século XX", "40h"],
-            [324, "História: História do Brasil Colonial", "40h"],
-            [325, "História: História do Brasil Império e República", "40h"],
-            [326, "História: História da África e Diáspora Africana", "40h"],
-            [327, "História: História da América Latina", "40h"],
-            [328, "História: Patrimônio Histórico e Historiografia", "40h"],
+            // --- EDUCAÇÃO - PORTUGUÊS / LINGUAGENS (20 Cursos - 40h) ---
+            ...[
+                "Alfabetização e Letramento na Idade Certa", "Análise do Discurso e Práticas de Leitura", "Análise Sintática na Prática",
+                "Cultura Digital e Letramento Midiático", "Didática da Língua Portuguesa", "Escrita Criativa e Oficina Literária",
+                "Fonética e Fonologia da Língua Portuguesa", "Gêneros Textuais e Sequências Didáticas", "Gramática Normativa e Funcional",
+                "Interpretação e Produção de Textos", "Linguística Aplicada ao Ensino", "Literatura Brasileira Contemporânea",
+                "Literatura Infanto-Juvenil", "Língua Portuguesa para Concursos e ENEM", "Metodologias de Ensino de Língua Estrangeira",
+                "Multiletramentos e Novas Tecnologias", "Nova Ortografia da Língua Portuguesa", "Redação Acadêmica e Científica",
+                "Semântica e Pragmática", "Variedades Linguísticas e Preconceito Linguístico"
+            ].map(title => ({ area: "Educação - Português e Linguagens", title, hours: "40h" })),
 
-            // 329 a 338 - GEOGRAFIA
-            [329, "Geografia: Geografia Física e Geomorfologia", "40h"],
-            [330, "Geografia: Climatologia e Meteorologia", "40h"],
-            [331, "Geografia: Hidrografia e Gestão de Bacias Hidrográficas", "40h"],
-            [332, "Geografia: Biogeografia e Domínios Morfoclimáticos", "40h"],
-            [333, "Geografia: Geografia Humana e Demografia", "40h"],
-            [334, "Geografia: Geografia Urbana e Metopolização", "40h"],
-            [335, "Geografia: Geografia Agrária e Uso da Terra", "40h"],
-            [336, "Geografia: Geopolítica Contemporânea", "40h"],
-            [337, "Geografia: Cartografia e Leitura de Mapas", "40h"],
-            [338, "Geografia: Geotecnologias e Sensoriamento Remoto", "40h"]
+            // --- EDUCAÇÃO - PEDAGOGIA E LICENCIATURAS (20 Cursos - 40h) ---
+            ...[
+                "Avaliação da Aprendizagem Escolar", "BNCC na Prática Pedagógica", "Didática Geral e Prática de Ensino",
+                "Direitos Humanos e Cidadania na Escola", "Educação Ambiental Interdisciplinar", "Educação Especial e Inclusiva",
+                "Educação Infantil: Desenvolvimento e Ludicidade", "Ensino de Ciências por Investigação", "Ensino de Geografia no Fundamental",
+                "Ensino de História do Brasil e Região", "Ensino Híbrido e Aprendizagem Ativa", "Gestão Escolar e Coordenação Pedagógica",
+                "Inclusão do Aluno com Autismo (TEA)", "Inteligência Artificial na Educação", "Jogos e Recreação no Ambiente Escolar",
+                "Libras Básica para Educadores", "Metodologias Ativas de Aprendizagem", "Neuroeducação e Aprendizagem",
+                "Psicologia do Desenvolvimento Infantil", "Tecnologias Assistivas na Escola"
+            ].map(title => ({ area: "Educação - Pedagogia e Licenciaturas", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - INFORMÁTICA BÁSICA (20 Cursos - 40h) ---
+            ...[
+                "Armazenamento em Nuvem (Google Drive & OneDrive)", "Canva para Criação de Conteúdo", "Digitação Rápida e Produtividade",
+                "Excel Básico: Fórmulas e Planilhas", "Excel Intermediário: Gráficos e Tabelas Dinâmicas", "Ferramentas do Google Workspace",
+                "Informática Fundamental para Concursos", "Introdução ao Computador e Sistemas Operacionais", "Introdução ao Sistema Operacional Windows 11",
+                "Navegação Segura e Pesquisa Eficiente na Web", "Noções de Hardware e Manutenção de PCs", "Pacote Office Completo do Zero",
+                "PowerPoint Básico: Apresentações de Impacto", "Práticas de E-mail Profissional e Etiqueta Digital", "Segurança da Informação para Usuários",
+                "Uso Acadêmico de Editores de Texto", "Uso Consciente das Redes Sociais", "Uso de Celulares e Smartphones no Trabalho",
+                "Word Básico: Formatação de Documentos", "Word Avançado: Normas ABNT Automáticas"
+            ].map(title => ({ area: "Tecnologia - Informática Básica", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - INFORMÁTICA AVANÇADA (50 Cursos - 40h) ---
+            ...[
+                "Administração de Redes Linux", "Algoritmos e Estrutura de Dados Avançada", "Arquitetura de Microsserviços com Docker",
+                "Automação com Python e Web Scraping", "Banco de Dados NoSQL com MongoDB", "Banco de Dados SQL Avançado (PostgreSQL)",
+                "Big Data e Apache Spark", "Business Intelligence com Power BI", "Cibersegurança e Pentest Ético", "Cloud Computing AWS Fundamentals",
+                "Cloud Computing Microsoft Azure", "Computação Gráfica com Unreal Engine 5", "Configuração de Roteadores Mikrotik e Cisco",
+                "Criando APIs RESTful com Node.js", "Desenvolvimento Android com Kotlin", "Desenvolvimento Backend com C# .NET",
+                "Desenvolvimento Cross-Platform com Flutter", "Desenvolvimento Fullstack React e Node.js", "Desenvolvimento iOS com Swift",
+                "DevOps Pipelines com GitHub Actions", "Engenharia de Dados e ETL", "Engenharia de Prompt para IAs Generativas",
+                "Framework Angular Avançado", "Framework Laravel para PHP", "Framework Vue.js 3", "Gestão de TI com COBIT e ITIL v4",
+                "Git e GitHub Avançado para Equipes", "GraphQL para Sistemas Modernos", "Infraestrutura como Código com Terraform",
+                "Inteligência Artificial e Aprendizado de Máquina", "Internet das Coisas (IoT) com Arduino e ESP32", "Linguagem Go (Golang) para Alta Performance",
+                "Linguagem Java e Spring Boot", "Linguagem Python para Data Science", "Linguagem Rust para Sistemas",
+                "Metodologias Ágeis: Scrum e Kanban", "Modelagem de Dados Relacional", "Orquestração de Containers com Kubernetes",
+                "Programação C++ para Sistemas Embarcados", "Programação Orientada a Objetos em C#", "Reconhecimento Padrões com Visão Computacional",
+                "Redes TCP/IP Avançadas", "Robótica Industrial e Automação", "Segurança em Aplicações Web (OWASP)",
+                "Sistema Operacional Linux Kernel e Shell", "Testes Automatizados com Cypress", "TypeScript na Prática",
+                "UI/UX Design Avançado no Figma", "Virtualização com VMware e Proxmox", "Web Security e Criptografia"
+            ].map(title => ({ area: "Tecnologia - Informática Avançada", title, hours: "40h" }))
         ];
 
-        // Mapeamento e estruturação dos dados
-        const coursesData = rawCoursesData.map(item => {
-            const id = item[0];
-            const fullName = item[1];
-            const hours = item[2];
+        // AGRUPAMENTO E ORDENAÇÃO ALFABÉTICA POR ÁREA
+        const groupedData = {};
 
-            let category = "Geral";
-            let title = fullName;
-
-            if (fullName.includes(": ")) {
-                const parts = fullName.split(": ");
-                category = parts[0];
-                title = parts.slice(1).join(": ");
-            } else if (fullName.startsWith("NR-")) {
-                category = "NR";
-                title = fullName;
+        rawDatabase.forEach(course => {
+            if (!groupedData[course.area]) {
+                groupedData[course.area] = [];
             }
-
-            return { id, category, title, fullName, hours };
+            groupedData[course.area].push(course);
         });
 
-        let activeCategory = 'all';
+        // Ordenar os cursos alfabeticamente dentro de cada área
+        Object.keys(groupedData).forEach(area => {
+            groupedData[area].sort((a, b) => a.title.localeCompare(b.title));
+        });
 
-        function renderCourses(filterText = '') {
-            const grid = document.getElementById('coursesGrid');
-            grid.innerHTML = '';
+        // RENDERIZAR ABAS DE CATEGORIAS
+        const categoryTabsContainer = document.getElementById('categoryTabs');
+        categoryTabsContainer.innerHTML = `<button class="tab-btn active" onclick="filterCategory('all', event)">Todas as Áreas (${rawDatabase.length})</button>`;
+        
+        Object.keys(groupedData).sort().forEach(area => {
+            const count = groupedData[area].length;
+            categoryTabsContainer.innerHTML += `<button class="tab-btn" onclick="filterCategory('${area}', event)">${area} (${count})</button>`;
+        });
 
-            const filtered = coursesData.filter(course => {
-                const matchesCat = activeCategory === 'all' || course.category.toLowerCase().includes(activeCategory.toLowerCase());
-                const matchesSearch = course.fullName.toLowerCase().includes(filterText.toLowerCase());
-                return matchesCat && matchesSearch;
-            });
+        let activeArea = 'all';
 
-            filtered.forEach(course => {
-                const card = document.createElement('div');
-                card.className = 'course-card';
+        // RENDERIZAR CONTEÚDO DOS CURSOS
+        function renderContent(filterText = '') {
+            const mainContainer = document.getElementById('mainContainer');
+            mainContainer.innerHTML = '';
+
+            const sortedAreas = Object.keys(groupedData).sort();
+
+            sortedAreas.forEach(area => {
+                if (activeArea !== 'all' && activeArea !== area) return;
+
+                const courses = groupedData[area].filter(c => 
+                    c.title.toLowerCase().includes(filterText.toLowerCase()) || 
+                    c.area.toLowerCase().includes(filterText.toLowerCase())
+                );
+
+                if (courses.length === 0) return;
+
+                const section = document.createElement('section');
+                section.className = 'area-section';
+
+                const titleHtml = `<h2 class="area-title"><i class="fa-solid fa-folder-open"></i> ${area} (${courses.length})</h2>`;
                 
-                const encodedMsg = encodeURIComponent(`Olá! Quero saber mais sobre o curso (#${course.id}): ${course.fullName}`);
-                const whatsappUrl = `https://wa.me/5565996108749?text=${encodedMsg}`;
-
-                card.innerHTML = `
-                    <div>
-                        <div class="course-header-info">
-                            <span class="course-category">${course.category}</span>
-                            <span class="course-num">#${course.id}</span>
+                let coursesHtml = '<div class="courses-grid">';
+                courses.forEach(c => {
+                    const msg = encodeURIComponent(`Olá! Quero me matricular no curso: ${c.title} (${c.area}) - CH: ${c.hours}`);
+                    coursesHtml += `
+                        <div class="course-card">
+                            <div class="course-title">${c.title}</div>
+                            <div class="course-footer">
+                                <span class="course-duration"><i class="fa-regular fa-clock"></i> ${c.hours}</span>
+                                <a href="https://wa.me/5565996108749?text=${msg}" target="_blank" class="btn-enroll">Matricular <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
                         </div>
-                        <div class="course-title">${course.title}</div>
-                    </div>
-                    <div class="course-footer">
-                        <div class="course-duration"><i class="fa-regular fa-clock"></i> ${course.hours}</div>
-                        <a href="${whatsappUrl}" target="_blank" class="btn-enroll">Matricular <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                `;
-                grid.appendChild(card);
+                    `;
+                });
+                coursesHtml += '</div>';
+
+                section.innerHTML = titleHtml + coursesHtml;
+                mainContainer.appendChild(section);
             });
         }
 
-        function filterCategory(cat, e) {
-            activeCategory = cat;
+        function filterCategory(area, e) {
+            activeArea = area;
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            if(e && e.currentTarget && e.currentTarget.classList.contains('tab-btn')) {
-                e.currentTarget.classList.add('active');
-            }
-            renderCourses(document.getElementById('searchInput').value);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if(e && e.currentTarget) e.currentTarget.classList.add('active');
+            renderContent(document.getElementById('searchInput').value);
         }
 
         document.getElementById('searchInput').addEventListener('input', (e) => {
-            renderCourses(e.target.value);
+            renderContent(e.target.value);
         });
 
-        // Inicialização
-        renderCourses();
+        // Inicializar aplicação
+        renderContent();
     </script>
 </body>
 </html>
