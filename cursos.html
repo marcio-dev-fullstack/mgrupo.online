@@ -512,7 +512,7 @@
     <div class="controls-container">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Buscar por nome do curso ou área (ex: IA, DevOps, Engenharia Civil, NR-35)...">
+            <input type="text" id="searchInput" placeholder="Buscar por nome do curso ou área (ex: História, Geografia, IA, DevOps)...">
         </div>
 
         <div class="category-tabs" id="categoryTabs">
@@ -532,7 +532,7 @@
                 <div class="modal-title" id="modalCursoNome">Ementa do Curso</div>
                 <div class="modal-subtitle">
                     <i class="fa-solid fa-layer-group"></i> <span id="modalCursoArea">Área do Curso</span> &bull; 
-                    <i class="fa-regular fa-clock"></i> Carga Horária Total: 40 horas
+                    <i class="fa-regular fa-clock"></i> Carga Horária Total: <span id="modalCursoHoras">40 horas</span>
                 </div>
             </div>
             <div class="modules-list">
@@ -613,7 +613,7 @@
             document.getElementById('deviceBadge').innerHTML = '<i class="fa-solid fa-desktop"></i> Modo PC';
         }
 
-        // BASE DE DADOS COMPLETA COM 50 NOVOS CURSOS DE IA INCLUÍDOS
+        // BASE DE DADOS COMPLETA
         const rawDatabase = [
             // --- IA APLICADA ÀS ENGENHARIAS (10 CURSOS - 40h) ---
             ...[
@@ -779,6 +779,54 @@
                 "Tratamento de Águas Residuárias Industriais", "Tratamento de Esgoto Sanitário e Estações de Tratamento (ETE)", "Valoração Econômica de Serviços Ecossistêmicos"
             ].map(title => ({ area: "Engenharia Ambiental", title, hours: "40h" })),
 
+            // --- EDUCAÇÃO - HISTÓRIA (20 CURSOS - 40h) ---
+            ...[
+                "Didática e Metodologia do Ensino de História",
+                "Historiografia e Teoria da História",
+                "História do Brasil Colônia e Império",
+                "História Contemporânea do Brasil: República e Ditadura",
+                "História da África e Cultura Afro-Brasileira (Lei 10.639/03)",
+                "História Indígena e Interculturalidade nas Américas",
+                "História Antiga e Clássica: Grécia e Roma",
+                "História Medieval e Transição para a Modernidade",
+                "História Moderna e Expansão Marítima",
+                "História Contemporânea e Conflitos do Século XX",
+                "História da América Latina e Movimentos Sociais",
+                "Patrimônio Histórico, Cultural e Museologia",
+                "Memória, Arquivos e Fontes Históricas",
+                "História Econômica e Social do Brasil",
+                "História das Religiões e Religiões Comparadas",
+                "História da Arte e Análise de Imagens no Ensino",
+                "História das Revoluções Industriais e Tecnológicas",
+                "História Global e Processos de Globalização",
+                "Fontes Orais e História do Tempo Presente",
+                "Uso de Tecnologias e Recursos Digitais no Ensino de História"
+            ].map(title => ({ area: "Educação - História", title, hours: "40h" })),
+
+            // --- EDUCAÇÃO - GEOGRAFIA (20 CURSOS - 40h) ---
+            ...[
+                "Didática e Metodologia do Ensino de Geografia",
+                "Geoprocessamento e Cartografia Digital",
+                "Sensoriamento Remoto e Uso do QGIS",
+                "Geografia Física e Geomorfologia Aplicada",
+                "Climatologia Urbana e Mudanças Climáticas",
+                "Biogeografia e Conservação Ambiental",
+                "Pedologia e Manejo Sustentável dos Solos",
+                "Hidrogeografia e Gestão de Bacias Hidrográficas",
+                "Geografia Urbana e Planejamento Territorial",
+                "Geografia Agrária e Dinâmicas do Agronegócio no Brasil",
+                "Geopolítica Contemporânea e Relações Internacionais",
+                "Geografia Econômica e Globalização",
+                "Geografia da População e Estudos Demográficos",
+                "Geografia Cultural e Percepção do Espaço",
+                "Ordenamento Territorial e Uso do Solo",
+                "Análise de Riscos Ambientais e Vulnerabilidade Social",
+                "Geografia do Turismo e Desenvolvimento Regional",
+                "Geografia Regional do Brasil e Integração Territorial",
+                "Pensamento Geográfico e Epistemologia da Geografia",
+                "Tecnologias Geospaciais e Metodologias Ativas no Ensino de Geografia"
+            ].map(title => ({ area: "Educação - Geografia", title, hours: "40h" })),
+
             // --- EDUCAÇÃO - MATEMÁTICA (20 Cursos - 40h) ---
             ...[
                 "Álgebra Linear e Geometria Analítica", "Análise Combinatória e Probabilidade", "Cálculo Diferencial e Integral Aplicado",
@@ -926,12 +974,13 @@
                 courses.forEach(c => {
                     const titleEscaped = c.title.replace(/'/g, "\\'");
                     const areaEscaped = c.area.replace(/'/g, "\\'");
+                    const hoursEscaped = c.hours;
                     coursesHtml += `
                         <div class="course-card">
                             <div class="course-title">${c.title}</div>
                             <div class="course-footer">
                                 <span class="course-duration"><i class="fa-regular fa-clock"></i> ${c.hours}</span>
-                                <button onclick="abrirEmenta('${titleEscaped}', '${areaEscaped}')" class="btn-enroll">
+                                <button onclick="abrirEmenta('${titleEscaped}', '${areaEscaped}', '${hoursEscaped}')" class="btn-enroll">
                                     Ementa <i class="fa-solid fa-book-open"></i>
                                 </button>
                             </div>
@@ -946,9 +995,10 @@
         }
 
         // FUNÇÕES DE CONTROLE DO MODAL DE EMENTA
-        function abrirEmenta(titulo, area) {
+        function abrirEmenta(titulo, area, horas) {
             document.getElementById('modalCursoNome').innerText = titulo;
             document.getElementById('modalCursoArea').innerText = area;
+            document.getElementById('modalCursoHoras').innerText = horas || '40h';
             document.getElementById('ementaModal').style.display = 'flex';
         }
 
