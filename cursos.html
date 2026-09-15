@@ -305,7 +305,7 @@
             gap: 5px;
         }
 
-        /* BOTÃO EMENTA (Substituindo o Matricular) */
+        /* BOTÃO EMENTA */
         .btn-enroll {
             background: rgba(59, 130, 246, 0.15);
             color: var(--accent-blue);
@@ -513,7 +513,7 @@
     <div class="controls-container">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Buscar por nome do curso ou área (ex: DevOps, Engenharia Civil, NR-35)...">
+            <input type="text" id="searchInput" placeholder="Buscar por nome do curso ou área (ex: IA, DevOps, Engenharia Civil, NR-35)...">
         </div>
 
         <div class="category-tabs" id="categoryTabs">
@@ -614,8 +614,74 @@
             document.getElementById('deviceBadge').innerHTML = '<i class="fa-solid fa-desktop"></i> Modo PC';
         }
 
-        // BASE DE DADOS COMPLETA REORGANIZADA POR ÁREAS E SUB-TÓPICOS
+        // BASE DE DADOS COMPLETA COM 50 NOVOS CURSOS DE IA INCLUÍDOS
         const rawDatabase = [
+            // --- IA APLICADA ÀS ENGENHARIAS (10 CURSOS - 40h) ---
+            ...[
+                "Inteligência Artificial Aplicada à Engenharia Civil e BIM",
+                "IA e Machine Learning em Engenharia Elétrica e Redes Inteligentes",
+                "Manutenção Preditiva com IA e IoT na Engenharia Mecânica",
+                "IA e Visão Computacional para Inspeção Estrutural",
+                "Inteligência Artificial e Gêmeos Digitais (Digital Twins) na Indústria",
+                "IA Aplicada ao Licenciamento e Monitoramento Ambiental",
+                "Algoritmos Genéticos e Otimização Estrutural na Engenharia",
+                "IA para Gestão de Segurança do Trabalho e Prevenção de Acidentes",
+                "Otimização Energética Industrial com Machine Learning",
+                "Robótica Inteligente e Automação de Processos Industriais"
+            ].map(title => ({ area: "IA - Aplicações nas Engenharias", title, hours: "40h" })),
+
+            // --- IA APLICADA À EDUCAÇÃO (10 CURSOS - 40h) ---
+            ...[
+                "Inteligência Artificial Generativa no Planejamento Pedagógico",
+                "Avaliação Automatizada e Feedback Personalizado com IA",
+                "IA para Tutoria Inteligente e Aprendizagem Adaptativa",
+                "Produção de Material Didático com IA Generativa (ChatGPT, Claude e Midjourney)",
+                "Criação de Assistentes Virtuais Educacionais e Chatbots",
+                "IA e Ciência de Dados Aplicadas à Gestão Escolar",
+                "Ética, Plágio e Integridade Acadêmica na Era da IA",
+                "Ferramentas de IA para Inclusão e Acessibilidade na Educação",
+                "Gamificação e IA no Ensino de Ciências e Matemática",
+                "IA Generativa para Professores das Licenciaturas"
+            ].map(title => ({ area: "IA - Aplicações na Educação", title, hours: "40h" })),
+
+            // --- IA APLICADA À GESTÃO E ADMINISTRAÇÃO (15 CURSOS - 40h) ---
+            ...[
+                "Inteligência Artificial para Tomada de Decisão Estratégica",
+                "IA Aplicada à Gestão de Pessoas e Recrutamento Inteligente (HR Tech)",
+                "Machine Learning e Modelos Preditivos no Setor Financeiro",
+                "IA Generativa para Marketing Digital e Criação de Conteúdo",
+                "Automação de Processos de Negócio com IA (Hyperautomation)",
+                "IA Aplicada à Gestão de Suprimentos e Logística",
+                "Análise de Sentimento e CRM Inteligente com IA",
+                "Governança, Risco e Compliance (GRC) na Era da Inteligência Artificial",
+                "IA para Gestão de Projetos e Previsão de Riscos",
+                "Business Intelligence Aumentado e Analytics com IA",
+                "IA Aplicada ao Planejamento Tributário e Contabilidade Preditiva",
+                "Estratégias de Vendas e Precificação Dinâmica com Machine Learning",
+                "Inteligência Artificial para Negócios e Modelos de Startups",
+                "Liderança e Gestão da Transformação Digital Impulsionada por IA",
+                "Proteção de Dados, LGPD e Responsabilidade Legal no Uso de IA"
+            ].map(title => ({ area: "IA - Gestão e Administração", title, hours: "40h" })),
+
+            // --- IA APLICADA À TECNOLOGIA E SOFTWARE (15 CURSOS - 40h) ---
+            ...[
+                "Engenharia de Prompt Avançada e Fine-Tuning de LLMs",
+                "Desenvolvimento de Agentes Autônomos de IA (AutoGPT, CrewAI, LangChain)",
+                "Arquitetura e Implementação de Sistemas RAG (Retrieval-Augmented Generation)",
+                "MLOps: Implantação e Monitoramento de Modelos de IA em Produção",
+                "Visão Computacional e Processamento de Imagens com OpenCV e PyTorch",
+                "Processamento de Linguagem Natural (PLN) Avançado com Transformers",
+                "Deep Learning com TensorFlow e PyTorch para Soluções Corporativas",
+                "IA Generativa de Código: GitHub Copilot, Amazon Q e Cursor na Prática",
+                "Bancos de Dados Vetoriais e Embeddings para Aplicações de IA",
+                "Segurança em Sistemas de IA (Adversarial Machine Learning e Red Teaming)",
+                "Edge AI: Inteligência Artificial em Dispositivos IoT e Embarcados",
+                "Reinforcement Learning (Aprendizado por Reforço) Aplicado a Sistemas",
+                "IA para Cibersegurança: Detecção de Ameaças em Tempo Real",
+                "Testes e Validação de Sistemas de Inteligência Artificial",
+                "Arquitetura de Software para Microserviços Orientados a IA"
+            ].map(title => ({ area: "IA - Tecnologia e Desenvolvimento de Software", title, hours: "40h" })),
+
             // --- NORMAS REGULAMENTADORAS (CH Conforme MTE) ---
             { area: "Normas Regulamentadoras (NRs)", title: "NR-01 - Disposições Gerais e Gerenciamento de Riscos Ocupacionais (GRO/PGR)", hours: "4h" },
             { area: "Normas Regulamentadoras (NRs)", title: "NR-02 - Inspeção Prévia", hours: "4h" },
