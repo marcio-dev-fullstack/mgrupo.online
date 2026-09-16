@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX | Catálogo Completo de Cursos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER & LOGO ZENTIX */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-zentix {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .logo-text span {
+            color: var(--accent-green);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .device-badge {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .btn-aluno {
+            background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-aluno:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(59, 130, 246, 0.5);
+            color: #fff;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(to right, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* CONTROLES E BUSCA */
+        .controls-container {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 1.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scroll-behavior: smooth;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--accent-blue);
+            color: #fff;
+            border-color: var(--accent-blue);
+        }
+
+        /* ESTRUTURA DAS ÁREAS E CURSOS */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 1.5rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .area-section {
+            margin-bottom: 3rem;
+        }
+
+        .area-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ESTILO DESKTOP (Grid de Cards) */
+        body.is-desktop .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.2rem;
+        }
+
+        body.is-desktop .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        body.is-desktop .course-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        /* ESTILO MOBILE (Lista Compacta & Touch-friendly) */
+        body.is-mobile .courses-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        body.is-mobile .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        body.is-mobile .course-title {
+            font-size: 0.95rem;
+        }
+
+        body.is-mobile .btn-enroll {
+            width: 100%;
+            text-align: center;
+            padding: 8px 0;
+            justify-content: center;
+        }
+
+        /* ELEMENTOS GERAIS DO CARD */
+        .course-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.8rem;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.8rem;
+            margin-top: auto;
+        }
+
+        .course-duration {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* BOTÃO EMENTA */
+        .btn-enroll {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent-blue);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 6px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-enroll:hover {
+            background: var(--accent-blue);
+            color: #fff;
+            border-color: var(--accent-blue);
+        }
+
+        /* MODAL DE EMENTA INTEGRADO AO TEMA ZENTIX */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+
+        .modal-subtitle {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+            background: transparent;
+            border: none;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .modules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .module-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .module-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .module-hours {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .module-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #0b1120;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 1.5rem 2rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* FLOATING WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+        }
+
+        @media (max-width: 600px) {
+            header { flex-direction: column; gap: 10px; align-items: flex-start; }
+            .header-actions { width: 100%; justify-content: space-between; }
+            .hero h1 { font-size: 1.8rem; }
+            .whatsapp-float span { display: none; }
+            .whatsapp-float { padding: 14px; border-radius: 50%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo-zentix">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="logo-text">ZENTIX<span> CURSOS</span></div>
+        </a>
+        <div class="header-actions">
+            <div class="device-badge" id="deviceBadge">Detectando...</div>
+            <a href="login.html" class="btn-aluno">
+                <i class="fa-solid fa-user-gear"></i> Área do Aluno / Admin
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Catálogo de Cursos de Excelência</h1>
+    </section>
+
+    <div class="controls-container">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Buscar por nome do curso ou área (ex: História, Geografia, IA, DevOps)...">
+        </div>
+
+        <div class="category-tabs" id="categoryTabs">
+            <!-- Abas geradas via JavaScript -->
+        </div>
+    </div>
+
+    <main class="main-container" id="mainContainer">
+        <!-- Áreas e Cursos injetados via JS -->
+    </main>
+
+    <!-- Modal Reutilizável de Ementa -->
+    <div id="ementaModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="fecharEmenta()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <div class="modal-title" id="modalCursoNome">Ementa do Curso</div>
+                <div class="modal-subtitle">
+                    <i class="fa-solid fa-layer-group"></i> <span id="modalCursoArea">Área do Curso</span> &bull; 
+                    <i class="fa-regular fa-clock"></i> Carga Horária Total: <span id="modalCursoHoras">40 horas</span>
+                </div>
+            </div>
+            <div class="modules-list">
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-title">Módulo 1: Fundamentos e Conceituação Teórica</span>
+                        <span class="module-hours">8 Horas</span>
+                    </div>
+                    <p class="module-desc">Nivelamento dos conceitos essenciais, contextualização mercadológica, aspectos normativos e regulamentares aplicados à área de atuação.</p>
+                </div>
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-title">Módulo 2: Metodologias e Táticas Operacionais</span>
+                        <span class="module-hours">8 Horas</span>
+                    </div>
+                    <p class="module-desc">Estudo das melhores práticas do setor, apresentação de ferramentas de trabalho, métodos de execução e padrões de desempenho.</p>
+                </div>
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-title">Módulo 3: Estudos de Caso e Resolução de Problemas</span>
+                        <span class="module-hours">8 Horas</span>
+                    </div>
+                    <p class="module-desc">Análise profunda de problemas reais do mercado, resolução orientada de desafios práticos e análise preditiva de cenários.</p>
+                </div>
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-title">Módulo 4: Gestão, Controle e Aplicação Avançada</span>
+                        <span class="module-hours">8 Horas</span>
+                    </div>
+                    <p class="module-desc">Planejamento e controle de processos técnicos, implementação de métricas de eficiência, segurança operacional e soluções avançadas.</p>
+                </div>
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-title">Módulo 5: Projeto Prático e Consolidação Final</span>
+                        <span class="module-hours">8 Horas</span>
+                    </div>
+                    <p class="module-desc">Desenvolvimento de um projeto integrador aplicável à rotina profissional, síntese dos conhecimentos e avaliação das competências técnicas adquiridas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <a href="#" class="logo-zentix" style="margin-bottom: 1rem;">
+                    <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="logo-text">ZENTIX</div>
+                </a>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Plataforma de ensino e capacitação técnica continuada. Excelência em EAD para alavancar sua carreira profissional.</p>
+            </div>
+            <div>
+                <h4 style="color: #fff; margin-bottom: 1rem;">Atendimento</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;"><i class="fa-solid fa-location-dot"></i> Cuiabá - MT, Brasil</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"><i class="fa-brands fa-whatsapp"></i> (65) 99610-8749</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"><i class="fa-regular fa-envelope"></i> cda.marcio@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ZENTIX Cursos. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5565996108749?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20cursos%20da%20ZENTIX." class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Fale Conosco</span>
+    </a>
+
+    <script>
+        // DETECÇÃO AUTOMÁTICA DE DISPOSITIVO (MOBILE / DESKTOP)
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        
+        if (isMobileDevice) {
+            document.body.classList.add('is-mobile');
+            document.getElementById('deviceBadge').innerHTML = '<i class="fa-solid fa-mobile-screen"></i> Modo Mobile';
+        } else {
+            document.body.classList.add('is-desktop');
+            document.getElementById('deviceBadge').innerHTML = '<i class="fa-solid fa-desktop"></i> Modo PC';
+        }
+
+        // BASE DE DADOS COMPLETA
+        const rawDatabase = [
+            // --- IA APLICADA ÀS ENGENHARIAS (10 CURSOS - 40h) ---
+            ...[
+                "Inteligência Artificial Aplicada à Engenharia Civil e BIM",
+                "IA e Machine Learning em Engenharia Elétrica e Redes Inteligentes",
+                "Manutenção Preditiva com IA e IoT na Engenharia Mecânica",
+                "IA e Visão Computacional para Inspeção Estrutural",
+                "Inteligência Artificial e Gêmeos Digitais (Digital Twins) na Indústria",
+                "IA Aplicada ao Licenciamento e Monitoramento Ambiental",
+                "Algoritmos Genéticos e Otimização Estrutural na Engenharia",
+                "IA para Gestão de Segurança do Trabalho e Prevenção de Acidentes",
+                "Otimização Energética Industrial com Machine Learning",
+                "Robótica Inteligente e Automação de Processos Industriais"
+            ].map(title => ({ area: "IA - Aplicações nas Engenharias", title, hours: "40h" })),
+
+            // --- IA APLICADA À EDUCAÇÃO (10 CURSOS - 40h) ---
+            ...[
+                "Inteligência Artificial Generativa no Planejamento Pedagógico",
+                "Avaliação Automatizada e Feedback Personalizado com IA",
+                "IA para Tutoria Inteligente e Aprendizagem Adaptativa",
+                "Produção de Material Didático com IA Generativa (ChatGPT, Claude e Midjourney)",
+                "Criação de Assistentes Virtuais Educacionais e Chatbots",
+                "IA e Ciência de Dados Aplicadas à Gestão Escolar",
+                "Ética, Plágio e Integridade Acadêmica na Era da IA",
+                "Ferramentas de IA para Inclusão e Acessibilidade na Educação",
+                "Gamificação e IA no Ensino de Ciências e Matemática",
+                "IA Generativa para Professores das Licenciaturas"
+            ].map(title => ({ area: "IA - Aplicações na Educação", title, hours: "40h" })),
+
+            // --- IA APLICADA À GESTÃO E ADMINISTRAÇÃO (15 CURSOS - 40h) ---
+            ...[
+                "Inteligência Artificial para Tomada de Decisão Estratégica",
+                "IA Aplicada à Gestão de Pessoas e Recrutamento Inteligente (HR Tech)",
+                "Machine Learning e Modelos Preditivos no Setor Financeiro",
+                "IA Generativa para Marketing Digital e Criação de Conteúdo",
+                "Automação de Processos de Negócio com IA (Hyperautomation)",
+                "IA Aplicada à Gestão de Suprimentos e Logística",
+                "Análise de Sentimento e CRM Inteligente com IA",
+                "Governança, Risco e Compliance (GRC) na Era da Inteligência Artificial",
+                "IA para Gestão de Projetos e Previsão de Riscos",
+                "Business Intelligence Aumentado e Analytics com IA",
+                "IA Aplicada ao Planejamento Tributário e Contabilidade Preditiva",
+                "Estratégias de Vendas e Precificação Dinâmica com Machine Learning",
+                "Inteligência Artificial para Negócios e Modelos de Startups",
+                "Liderança e Gestão da Transformação Digital Impulsionada por IA",
+                "Proteção de Dados, LGPD e Responsabilidade Legal no Uso de IA"
+            ].map(title => ({ area: "IA - Gestão e Administração", title, hours: "40h" })),
+
+            // --- IA APLICADA À TECNOLOGIA E SOFTWARE (15 CURSOS - 40h) ---
+            ...[
+                "Engenharia de Prompt Avançada e Fine-Tuning de LLMs",
+                "Desenvolvimento de Agentes Autônomos de IA (AutoGPT, CrewAI, LangChain)",
+                "Arquitetura e Implementação de Sistemas RAG (Retrieval-Augmented Generation)",
+                "MLOps: Implantação e Monitoramento de Modelos de IA em Produção",
+                "Visão Computacional e Processamento de Imagens com OpenCV e PyTorch",
+                "Processamento de Linguagem Natural (PLN) Avançado com Transformers",
+                "Deep Learning com TensorFlow e PyTorch para Soluções Corporativas",
+                "IA Generativa de Código: GitHub Copilot, Amazon Q e Cursor na Prática",
+                "Bancos de Dados Vetoriais e Embeddings para Aplicações de IA",
+                "Segurança em Sistemas de IA (Adversarial Machine Learning e Red Teaming)",
+                "Edge AI: Inteligência Artificial em Dispositivos IoT e Embarcados",
+                "Reinforcement Learning (Aprendizado por Reforço) Aplicado a Sistemas",
+                "IA para Cibersegurança: Detecção de Ameaças em Tempo Real",
+                "Testes e Validação de Sistemas de Inteligência Artificial",
+                "Arquitetura de Software para Microserviços Orientados a IA"
+            ].map(title => ({ area: "IA - Tecnologia e Desenvolvimento de Software", title, hours: "40h" })),
+
+            // --- NORMAS REGULAMENTADORAS (CH Conforme MTE) ---
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-01 - Disposições Gerais e Gerenciamento de Riscos Ocupacionais (GRO/PGR)", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-02 - Inspeção Prévia", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-03 - Embargo e Interdição", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-04 - SESMT - Serviço Especializado em Segurança e Medicina do Trabalho", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-05 - CIPA - Comissão Interna de Prevenção de Acidentes e Assédio", hours: "20h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-06 - Equipamentos de Proteção Individual (EPI)", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-07 - PCMSO - Programa de Controle Médico de Saúde Ocupacional", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-08 - Edificações e Condições de Conforto", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-09 - Avaliação e Controle das Exposições Ocupacionais", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-10 - Segurança em Instalações e Serviços em Eletricidade (Básico)", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-10 SEP - Sistema Elétrico de Potência (Complementar)", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-11 - Transporte, Movimentação, Manuseio e Armazenamento de Materiais", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-12 - Segurança no Trabalho em Máquinas e Equipamentos", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-13 - Caldeiras, Vasos de Pressão, Tubulações e Tanques de Processo", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-14 - Fornos Industriais", hours: "8h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-15 - Atividades e Operações Insalubres", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-16 - Atividades e Operações Perigosas", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-17 - Ergonomia no Ambiente de Trabalho", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-18 - Segurança e Saúde no Trabalho na Indústria da Construção", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-19 - Explosivos - Depósito, Manuseio e Transporte", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-20 - Inflamáveis e Combustíveis (Intermediário)", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-21 - Trabalhos a Céu Aberto", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-22 - Segurança e Saúde Ocupacional na Mineração", hours: "24h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-23 - Proteção Contra Incêndios e Brigada de Emergência", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-24 - Condições Sanitárias e de Conforto nos Locais de Trabalho", hours: "4h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-25 - Resíduos Industriais", hours: "8h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-26 - Sinalização de Segurança e Classificação GHS", hours: "8h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-28 - Fiscalização, Procedimentos e Multas", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-29 - Segurança e Saúde no Trabalho Portuário", hours: "24h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-30 - Segurança e Saúde no Trabalho Aquaviário", hours: "24h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-31 - Segurança e Saúde no Trabalho na Agricultura e Pecuária", hours: "24h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-32 - Segurança e Saúde no Trabalho em Serviços de Saúde", hours: "32h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-33 - Espaços Confinados para Trabalhadores e Vigias", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-33 - Espaços Confinados para Supervisores de Entrada", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-34 - Condições no Meio Ambiente de Trabalho na Naval", hours: "20h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-35 - Trabalho em Altura (Capacitação Básica)", hours: "8h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-36 - Segurança e Saúde no Abate e Processamento de Carnes", hours: "16h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-37 - Segurança e Saúde em Plataformas de Petróleo", hours: "40h" },
+            { area: "Normas Regulamentadoras (NRs)", title: "NR-38 - Segurança e Saúde na Limpeza Urbana e Resíduos Sólidos", hours: "8h" },
+
+            // --- ENGENHARIAS (30 CIVIL, 30 ELÉTRICA, 30 MECÂNICA E 30 AMBIENTAL - CH 40h) ---
+            // 1. Engenharia Civil (30 Cursos)
+            ...[
+                "Acústica Arquitetônica e Controle de Ruídos nas Edificações", "Alvenaria Estrutural: Projeto e Execução", "Análise Estrutural e Método dos Elementos Finitos",
+                "Avaliação Imobiliária Urbana conforme NBR 14653", "Compatibilização de Projetos BIM com Navisworks", "Concreto Protendido: Teoria e Aplicações",
+                "Desempenho de Edificações de Acordo com a NBR 15575", "Dimensionamento de Estruturas em Concreto Armado", "Dimensionamento de Estruturas Metálicas",
+                "Drenagem Urbana e Manejo Sustentável de Águas Pluviais", "Estruturas de Madeira: Dimensionamento e Projeto", "Fundações Profundas e Superficiais",
+                "Geotecnia de Encostas e Contenção de Solos", "Gestão de Canteiro de Obras e Logística", "Gestão de Reformas Prediais (NBR 16280)",
+                "Gestão e Planejamento de Obras com MS Project", "Impermeabilização em Obras de Construção Civil", "Inspeção Predial e Perícia Técnica de Engenharia",
+                "Instalações Elétricas Prediais para Engenheiros Civis", "Instalações Hidrossanitárias e de Gás Prediais", "Lean Construction: Construção Enxuta na Prática",
+                "Mecânica dos Solos Aplicada a Obras Civis", "Modelagem BIM de Estruturas com Revit Structure", "Orçamento e Composição de Custos de Obras via SINAPI",
+                "Patologia, Diagnóstico e Recuperação de Estruturas", "Pavimentação Asfáltica e Geotecnia Rodoviária", "Pontes e Obras de Arte Especiais",
+                "Segurança Contra Incêndio e Pânico em Edificações", "Tecnologia do Concreto e Ensaios de Laboratório", "Topografia, Agrimensura e Georreferenciamento de Imóveis"
+            ].map(title => ({ area: "Engenharia Civil", title, hours: "40h" })),
+
+            // 2. Engenharia Elétrica (30 Cursos)
+            ...[
+                "Análise de Sistemas Elétricos de Potência (SEP)", "Automação Industrial com CLCs (Controladores Lógicos Programáveis)", "Automação Predial, Residencial e Domótica",
+                "Central de Monitoramento e Sistemas de Alarme e CFTV", "Comandos Elétricos Industriais e Chaves de Partida", "Dimensionamento de Redes de Distribuição Elétrica",
+                "Eficiência Energética Industrial e Auditoria Elétrica", "Geração Distribuída e Microredes Elétricas", "Instalações Elétricas de Baixa Tensão (NBR 5410)",
+                "Instalações Elétricas em Atmosferas Explosivas (Ex)", "Instalações Elétricas de Média e Alta Tensão", "Instrumentação Industrial e Sensores Avançados",
+                "Manutenção Preventiva e Preditiva em Subestações", "Manutenção e Operação de Transformadores de Potência", "Máquinas Elétricas, Motores e Geradores",
+                "Projetos de Iluminação Pública e Luminotécnica", "Proteção de Sistemas Elétricos e Relés Digitais", "Qualidade da Energia Elétrica e Análise de Harmônicas",
+                "Redes Elétricas Inteligentes (Smart Grids)", "Sistemas de Aterramento Elétrico e Medição de Resistividade", "Sistemas Eólicos: Projetos e Manutenção",
+                "Sistemas Fotovoltaicos Conectados à Rede (On-Grid)", "Sistemas Fotovoltaicos Isolados (Off-Grid) e Baterias", "Sistemas de Proteção contra Descargas Atmosféricas (SPDA - NBR 5419)",
+                "Sistemas UPS, No-Breaks e Bancos de Baterias Industriais", "Supervisórios SCADA para Controle de Processos", "Técnicas de Manutenção Elétrica Preditiva por Termografia",
+                "Tracionamento Elétrico e Mobilidade Elétrica (Veículos Elétricos)", "Transmissão de Energia Elétrica em Alta Tensão (CCAT e CAAT)", "Variadores de Frequência e Soft-Starters na Prática"
+            ].map(title => ({ area: "Engenharia Elétrica", title, hours: "40h" })),
+
+            // 3. Engenharia Mecânica (30 Cursos)
+            ...[
+                "Análise de Falhas Mecânicas e Fractografia", "Análise de Tensões e Elementos Finitos (FEA) com ANSYS", "Análise de Vibrações Industriais e Balanceamento Dinâmico",
+                "Caldeiras Industriais e Vasos de Pressão: Dimensionamento", "Climatização, Refrigeração e Sistemas HVAC", "Desenho Técnico Mecânico Avançado com AutoCAD",
+                "Dimensionamento de Redes de Ar Comprimido e Gases", "Dimensionamento de Tubulações Industriais (Piping)", "Elementos de Máquinas: Projetos e Seleção",
+                "Ensaios Não Destrutivos (END): Ultrassom, Partícula Magnética e Líquido Penetrante", "Gestão da Manutenção Computadorizada (CMMS)", "Gestão da Manutenção Industrial (PCM)",
+                "Hidráulica Industrial: Circuitos e Componentes", "Lubrificação Industrial e Análise de Óleo Lubrificante", "Manutenção de Compressores Industriais",
+                "Manutenção e Operação de Bombas Centrífugas", "Manutenção Preditiva, Preventiva e Corretiva", "Manutenção de Turbinas a Gás e a Vapor",
+                "Metalurgia Física e Tratamentos Térmicos dos Aços", "Metrologia Industrial e Tolerâncias Dimensionais (GD&T)", "Modelagem 3D Avançada e Projetos Mecânicos com SolidWorks",
+                "Motores de Combustão Interna: Diagnóstico e Manutenção", "Pneumática Industrial e Eletropneumática Avançada", "Processos de Usinagem CNC: Programação e Operação",
+                "Projetos de Esteiras Transportadoras e Movimentação de Carga", "Robótica Industrial e Manipuladores Mecânicos", "Sistemas de Exaustão e Ventilação Industrial",
+                "Tecnologia de Soldagem: Processos MIG/MAG, TIG e Eletrodo Revestido", "Tribologia: Desgaste, Atrito e Lubrificação", "Troca Térmica e Dimensionamento de Trocadores de Calor"
+            ].map(title => ({ area: "Engenharia Mecânica", title, hours: "40h" })),
+
+            // 4. Engenharia Ambiental (30 Cursos)
+            ...[
+                "Auditoria Ambiental e Perícia de Danos Ambientais", "Avaliação de Impactos Ambientais (EIA/RIMA)", "Bioengenharia de Solos e Soluções Baseadas na Natureza",
+                "Biocombustíveis e Valoração Energética de Resíduos", "Créditos de Carbono e Mercados de Descarbonização", "Drenagem Sustentável e Soluções Pluviais Urbanas",
+                "Ecotoxicologia Aplicada e Análise de Risco Ambiental", "Energias Renováveis e Transição Energética Sustentável", "Geoprocessamento e Sensoriamento Remoto com QGIS",
+                "Gestão de Bacias Hidrográficas e Recursos Hídricos", "Gestão de Crimes Ambientais e Passivos Ambientais", "Gestão de Riscos e Desastres Naturais",
+                "Gestão Integrada de Resíduos Sólidos (PGRS)", "Investigação de Áreas Contaminadas e Análise de Risco", "Licenciamento Ambiental Federal, Estadual e Municipal",
+                "Manejo e Recuperação de Nascentes e Matas Ciliares", "Modelagem da Qualidade da Água e Recursos Hídricos", "Modelagem Hidrológica e Hidráulica com HEC-RAS",
+                "Monitoramento e Controle da Qualidade do Ar", "Mudanças Climáticas e Inventário de Gases de Efeito Estufa (GEE)", "Outorga de Uso de Recursos Hídricos",
+                "Potabilização e Sistemas de Tratamento de Água (ETA)", "Recuperação de Áreas Degradadas e Mineração (PRAD)", "Remediação de Solos e Águas Subterrâneas Contaminadas",
+                "Restauração Florestal e Ecologia Aplicada", "Sistema de Gestão Ambiental (ISO 14001:2015)", "Tecnologias Limpas e Produção Mais Limpa (P+L)",
+                "Tratamento de Águas Residuárias Industriais", "Tratamento de Esgoto Sanitário e Estações de Tratamento (ETE)", "Valoração Econômica de Serviços Ecossistêmicos"
+            ].map(title => ({ area: "Engenharia Ambiental", title, hours: "40h" })),
+
+            // --- EDUCAÇÃO - HISTÓRIA (20 CURSOS - 40h) ---
+            ...[
+                "Didática e Metodologia do Ensino de História",
+                "Historiografia e Teoria da História",
+                "História do Brasil Colônia e Império",
+                "História Contemporânea do Brasil: República e Ditadura",
+                "História da África e Cultura Afro-Brasileira (Lei 10.639/03)",
+                "História Indígena e Interculturalidade nas Américas",
+                "História Antiga e Clássica: Grécia e Roma",
+                "História Medieval e Transição para a Modernidade",
+                "História Moderna e Expansão Marítima",
+                "História Contemporânea e Conflitos do Século XX",
+                "História da América Latina e Movimentos Sociais",
+                "Patrimônio Histórico, Cultural e Museologia",
+                "Memória, Arquivos e Fontes Históricas",
+                "História Econômica e Social do Brasil",
+                "História das Religiões e Religiões Comparadas",
+                "História da Arte e Análise de Imagens no Ensino",
+                "História das Revoluções Industriais e Tecnológicas",
+                "História Global e Processos de Globalização",
+                "Fontes Orais e História do Tempo Presente",
+                "Uso de Tecnologias e Recursos Digitais no Ensino de História"
+            ].map(title => ({ area: "Educação - História", title, hours: "40h" })),
+
+            // --- EDUCAÇÃO - GEOGRAFIA (20 CURSOS - 40h) ---
+            ...[
+                "Didática e Metodologia do Ensino de Geografia",
+                "Geoprocessamento e Cartografia Digital",
+                "Sensoriamento Remoto e Uso do QGIS",
+                "Geografia Física e Geomorfologia Aplicada",
+                "Climatologia Urbana e Mudanças Climáticas",
+                "Biogeografia e Conservação Ambiental",
+                "Pedologia e Manejo Sustentável dos Solos",
+                "Hidrogeografia e Gestão de Bacias Hidrográficas",
+                "Geografia Urbana e Planejamento Territorial",
+                "Geografia Agrária e Dinâmicas do Agronegócio no Brasil",
+                "Geopolítica Contemporânea e Relações Internacionais",
+                "Geografia Econômica e Globalização",
+                "Geografia da População e Estudos Demográficos",
+                "Geografia Cultural e Percepção do Espaço",
+                "Ordenamento Territorial e Uso do Solo",
+                "Análise de Riscos Ambientais e Vulnerabilidade Social",
+                "Geografia do Turismo e Desenvolvimento Regional",
+                "Geografia Regional do Brasil e Integração Territorial",
+                "Pensamento Geográfico e Epistemologia da Geografia",
+                "Tecnologias Geospaciais e Metodologias Ativas no Ensino de Geografia"
+            ].map(title => ({ area: "Educação - Geografia", title, hours: "40h" })),
+
+            // --- EDUCAÇÃO - MATEMÁTICA (20 Cursos - 40h) ---
+            ...[
+                "Álgebra Linear e Geometria Analítica", "Análise Combinatória e Probabilidade", "Cálculo Diferencial e Integral Aplicado",
+                "Estatística Descritiva e Inferencial", "Estatística no Ensino Básico", "Funções Matemáticas e Suas Aplicações",
+                "Gamificação no Ensino da Matemática", "Geometria Espacial e Visualização Tridimensional", "Geometria Plana e Desenho Geométrico",
+                "História da Matemática e Educação", "Introdução à Teoria dos Números", "Jogos Didáticos no Ensino de Matemática",
+                "Matemática Financeira para Escolas", "Matemática para Educação Infantil", "Modelagem Matemática na Educação",
+                "O uso do GeoGebra na Sala de Aula", "Pensamento Computacional e Matemática", "Raciocínio Lógico-Matemático",
+                "Resolução de Problemas Matemáticos", "Tecnologias Digitais no Ensino de Matemática"
+            ].map(title => ({ area: "Educação - Matemática", title, hours: "40h" })),
+
+            // --- EDUCAÇÃO - PORTUGUÊS / LINGUAGENS (20 Cursos - 40h) ---
+            ...[
+                "Alfabetização e Letramento na Idade Certa", "Análise do Discurso e Práticas de Leitura", "Análise Sintática na Prática",
+                "Cultura Digital e Letramento Midiático", "Didática da Língua Portuguesa", "Escrita Criativa e Oficina Literária",
+                "Fonética e Fonologia da Língua Portuguesa", "Gêneros Textuais e Sequências Didáticas", "Gramática Normativa e Funcional",
+                "Interpretação e Produção de Textos", "Linguística Aplicada ao Ensino", "Literatura Brasileira Contemporânea",
+                "Literatura Infanto-Juvenil", "Língua Portuguesa para Concursos e ENEM", "Metodologias de Ensino de Língua Estrangeira",
+                "Multiletramentos e Novas Tecnologias", "Nova Ortografia da Língua Portuguesa", "Redação Acadêmica e Científica",
+                "Semântica e Pragmática", "Variedades Linguísticas e Preconceito Linguístico"
+            ].map(title => ({ area: "Educação - Português e Linguagens", title, hours: "40h" })),
+
+            // --- EDUCAÇÃO - PEDAGOGIA E LICENCIATURAS (20 Cursos - 40h) ---
+            ...[
+                "Avaliação da Aprendizagem Escolar", "BNCC na Prática Pedagógica", "Didática Geral e Prática de Ensino",
+                "Direitos Humanos e Cidadania na Escola", "Educação Ambiental Interdisciplinar", "Educação Especial e Inclusiva",
+                "Educação Infantil: Desenvolvimento e Ludicidade", "Ensino de Ciências por Investigação", "Ensino de Geografia no Fundamental",
+                "Ensino de História do Brasil e Região", "Ensino Híbrido e Aprendizagem Ativa", "Gestão Escolar e Coordenação Pedagógica",
+                "Inclusão do Aluno com Autismo (TEA)", "Inteligência Artificial na Educação", "Jogos e Recreação no Ambiente Escolar",
+                "Libras Básica para Educadores", "Metodologias Ativas de Aprendizagem", "Neuroeducação e Aprendizagem",
+                "Psicologia do Desenvolvimento Infantil", "Tecnologias Assistivas na Escola"
+            ].map(title => ({ area: "Educação - Pedagogia e Licenciaturas", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - INFORMÁTICA BÁSICA (20 Cursos - 40h) ---
+            ...[
+                "Armazenamento em Nuvem (Google Drive & OneDrive)", "Canva para Criação de Conteúdo", "Digitação Rápida e Produtividade",
+                "Excel Básico: Fórmulas e Planilhas", "Excel Intermediário: Gráficos e Tabelas Dinâmicas", "Ferramentas do Google Workspace",
+                "Informática Fundamental para Concursos", "Introdução ao Computador e Sistemas Operacionais", "Introdução ao Sistema Operacional Windows 11",
+                "Navegação Segura e Pesquisa Eficiente na Web", "Noções de Hardware e Manutenção de PCs", "Pacote Office Completo do Zero",
+                "PowerPoint Básico: Apresentações de Impacto", "Práticas de E-mail Profissional e Etiqueta Digital", "Segurança da Informação para Usuários",
+                "Uso Acadêmico de Editores de Texto", "Uso Consciente das Redes Sociais", "Uso de Celulares e Smartphones no Trabalho",
+                "Word Básico: Formatação de Documentos", "Word Avançado: Normas ABNT Automáticas"
+            ].map(title => ({ area: "Tecnologia - Informática Básica", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - ENGENHARIA DE SOFTWARE (10 CURSOS - 40h) ---
+            ...[
+                "Arquitetura de Microsserviços e APIs RESTful", "DevOps: CI/CD e Automação de Infraestrutura", "Engenharia de Requisitos e Histórias de Usuário",
+                "Estrutura de Dados e Algoritmos Avançados", "Gestão Ágil de Software com Scrum e Kanban", "Modelagem de Software com UML e DDD",
+                "Qualidade e Testes Automatizados de Software", "Segurança em Desenvolvimento de Software (DevSecOps)", "Sistemas Distribuídos e Computação em Nuvem",
+                "UX/UI Design Aplicado à Engenharia de Software"
+            ].map(title => ({ area: "Tecnologia - Engenharia de Software", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - DESENVOLVIMENTO (30 CURSOS DE ÚLTIMA GERAÇÃO - 40h) ---
+            ...[
+                "Aplicações Web de Alta Performance com Next.js 14 & App Router", "Arquitetura Front-End com Micro-Frontends e Module Federation", "Construção de APIs de Alta Performance com Go (Golang)",
+                "Construção de APIs com Node.js, Fastify e Prisma ORM", "Desenvolvimento Android Moderno com Jetpack Compose e Kotlin", "Desenvolvimento Backend com C# .NET 8 e Web APIs",
+                "Desenvolvimento Backend Escalável com Java 21 e Spring Boot 3", "Desenvolvimento Cross-Platform com Flutter e Riverpod", "Desenvolvimento Fullstack com Elixir e Phoenix Framework",
+                "Desenvolvimento iOS Moderno com SwiftUI e Concorrência", "Desenvolvimento Mobile com React Native e Expo", "Desenvolvimento Web com Python e FastAPI",
+                "Desenvolvimento Web Reativo com Vue.js 3 e Nuxt 3", "Desenvolvimento Web3 e Smart Contracts com Solidity e Hardhat", "Engenharia de Prompt e Integração de LLMs em Aplicações",
+                "Framework Angular 17+ com Signals e Standalone Components", "GraphQL Avançado com Apollo Server e Federation", "IA Generativa no Desenvolvimento: GitHub Copilot e ChatGPT",
+                "JavaScript Moderno ES2024 e TypeScript Avançado", "Programação Concorrente e Distribuída com Erlang", "Programação Funcional com Haskell",
+                "Programação Orientada a Objetos Avançada com Python 3", "Programação Web com Ruby on Rails 7", "Programação em Rust para Sistemas de Alta Performance",
+                "Programação em C++23 para Jogos e Aplicações Críticas", "Progressive Web Apps (PWA) de Alta Performance", "Sistemas em Tempo Real com WebSockets e gRPC",
+                "Testes Automatizados Front-End com Cypress e Playwright", "TypeScript Avançado: Generics, Decorators e Design Patterns", "WebAssembly (Wasm) na Prática com Rust e C++"
+            ].map(title => ({ area: "Tecnologia - Desenvolvimento", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - DEVOPS (30 CURSOS DE ÚLTIMA GERAÇÃO - 40h) ---
+            ...[
+                "Automação de Infraestrutura com Ansible e AWX", "Automação de Pipelines CI/CD com GitHub Actions", "Automação e Integração Contínua com Jenkins Enterprise",
+                "Cloud Native Observability com OpenTelemetry e Jaeger", "Containers Avançados com Docker, Podman e Buildah", "Despolitização e Governança FinOps em Nuvem",
+                "DevOps para Ambientes Multi-Cloud (AWS, Azure e GCP)", "DevSecOps: Integração de Segurança em Pipelines CI/CD", "Engenharia de Confiabilidade de Sites (SRE) na Prática",
+                "Gerenciamento de Segredos em Nuvem com HashiCorp Vault", "GitOps Avançado com ArgoCD e FluxCD no Kubernetes", "Gestão de Logs Centralizada com ELK Stack (Elasticsearch, Logstash, Kibana)",
+                "Infraestrutura como Código (IaC) Avançada com Terraform", "Infraestrutura como Código com Pulumi usando TypeScript e Python", "Kubernetes Administration e Certificação CKA",
+                "Kubernetes Security e Hardening de Clusters (CKS)", "Mesh de Serviços (Service Mesh) com Istio e Linkerd", "Monitoramento Avançado de Métricas com Prometheus e Grafana",
+                "Nuvem Privada com OpenStack e Ceph Storage", "Orquestração Serverless na AWS com Lambda e EventBridge", "Plataforma de Engenharia (Internal Developer Platforms - IDP)",
+                "Redes em Nuvem e VPCs Avançadas em AWS e Azure", "Segurança em Containers com Trivy, Falco e Grype", "Sistemas de Arquivos Distribuídos e Storage para Kubernetes",
+                "Técnicas de Deploy Contínuo: Blue-Green, Canary e Feature Flags", "Testes de Caos (Chaos Engineering) com LitmusChaos e Chaos Mesh", "Virtualização Moderna com Proxmox VE e KVM",
+                "Zero Trust Architecture em Ambientes DevOps", "DevOps e Integração de Sistemas de Mensageria (Kafka e RabbitMQ)", "Gerenciamento de Configurações e Compliance com Open Policy Agent (OPA)"
+            ].map(title => ({ area: "Tecnologia - DevOps", title, hours: "40h" })),
+
+            // --- TECNOLOGIA - BANCO DE DADOS (30 CURSOS DE ÚLTIMA GERAÇÃO - 40h) ---
+            ...[
+                "Administração e Tunning de Banco de Dados PostgreSQL", "Administração e Otimização de Bancos de Dados Oracle 19c/21c", "Administração e Alta Disponibilidade com Microsoft SQL Server",
+                "Bancos de Dados NoSQL Documentais com MongoDB", "Bancos de Dados NoSQL Chave-Valor com Redis e KeyDB", "Bancos de Dados NoSQL Orientados a Colunas com Apache Cassandra",
+                "Bancos de Dados em Grafos com Neo4j e Amazon Neptune", "Bancos de Dados Vetoriais para IA (Pinecone, ChromaDB e Qdrant)", "Bancos de Dados Distribuídos com CockroachDB e YugabyteDB",
+                "Bancos de Dados de Séries Temporais com InfluxDB e TimescaleDB", "Bancos de Dados Serverless e Edge com Supabase e Turso", "Business Intelligence e Data Warehousing com Snowflake",
+                "Data Lakehouse Avançado com Databricks e Apache Iceberg", "Engenharia de Dados e Pipelines de Dados com Apache Airflow", "Modelagem Dimensional e Arquitetura de Dados com dbt (data build tool)",
+                "Processamento de Dados em Lote e Streaming com Apache Spark", "Processamento em Tempo Real com Apache Kafka e Flink", "Query Optimization e Análise de Planos de Execução SQL",
+                "Segurança, Criptografia e LGPD em Bancos de Dados", "Sistemas de Cache Distribuído e Invalidation Strategies", "Migração de Bancos de Dados On-Premise para a Nuvem",
+                "Backup, Disaster Recovery e Alta Disponibilidade em DBs", "Engenharia de Dados em Nuvem com AWS Redshift e BigQuery", "Bancos de Dados de Grafo com GraphQL e Dgraph",
+                "Arquitetura de Dados CQRS e Event Sourcing", "Governança de Dados, Linhagem e Catalogação com Apache Atlas", "Indexação Avançada e Busca Textual com OpenSearch e Elasticsearch",
+                "FinOps Aplicado a Bancos de Dados em Nuvem", "Modelagem Relacional Avançada e Normalização de Dados", "Gerenciamento de Transações ACID e Isolamento em Banco de Dados"
+            ].map(title => ({ area: "Tecnologia - Banco de Dados", title, hours: "40h" }))
+        ];
+
+        // AGRUPAMENTO E ORDENAÇÃO ALFABÉTICA POR ÁREA
+        const groupedData = {};
+
+        rawDatabase.forEach(course => {
+            if (!groupedData[course.area]) {
+                groupedData[course.area] = [];
+            }
+            groupedData[course.area].push(course);
+        });
+
+        // Ordenar os cursos alfabeticamente dentro de cada área
+        Object.keys(groupedData).forEach(area => {
+            groupedData[area].sort((a, b) => a.title.localeCompare(b.title));
+        });
+
+        // RENDERIZAR ABAS DE CATEGORIAS
+        const categoryTabsContainer = document.getElementById('categoryTabs');
+        categoryTabsContainer.innerHTML = `<button class="tab-btn active" onclick="filterCategory('all', event)">Todas as Áreas (${rawDatabase.length})</button>`;
+        
+        Object.keys(groupedData).sort().forEach(area => {
+            const count = groupedData[area].length;
+            categoryTabsContainer.innerHTML += `<button class="tab-btn" onclick="filterCategory('${area}', event)">${area} (${count})</button>`;
+        });
+
+        let activeArea = 'all';
+
+        // RENDERIZAR CONTEÚDO DOS CURSOS COM O BOTÃO EMENTA
+        function renderContent(filterText = '') {
+            const mainContainer = document.getElementById('mainContainer');
+            mainContainer.innerHTML = '';
+
+            const sortedAreas = Object.keys(groupedData).sort();
+
+            sortedAreas.forEach(area => {
+                if (activeArea !== 'all' && activeArea !== area) return;
+
+                const courses = groupedData[area].filter(c => 
+                    c.title.toLowerCase().includes(filterText.toLowerCase()) || 
+                    c.area.toLowerCase().includes(filterText.toLowerCase())
+                );
+
+                if (courses.length === 0) return;
+
+                const section = document.createElement('section');
+                section.className = 'area-section';
+
+                const titleHtml = `<h2 class="area-title"><i class="fa-solid fa-folder-open"></i> ${area} (${courses.length})</h2>`;
+                
+                let coursesHtml = '<div class="courses-grid">';
+                courses.forEach(c => {
+                    const titleEscaped = c.title.replace(/'/g, "\\'");
+                    const areaEscaped = c.area.replace(/'/g, "\\'");
+                    const hoursEscaped = c.hours;
+                    coursesHtml += `
+                        <div class="course-card">
+                            <div class="course-title">${c.title}</div>
+                            <div class="course-footer">
+                                <span class="course-duration"><i class="fa-regular fa-clock"></i> ${c.hours}</span>
+                                <button onclick="abrirEmenta('${titleEscaped}', '${areaEscaped}', '${hoursEscaped}')" class="btn-enroll">
+                                    Ementa <i class="fa-solid fa-book-open"></i>
+                                </button>
+                                <a href="curso.html?id=${encodeURIComponent(c.title)}" class="btn-enroll" title="Abrir estrutura completa do curso">
+                                    Acessar curso <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+                coursesHtml += '</div>';
+
+                section.innerHTML = titleHtml + coursesHtml;
+                mainContainer.appendChild(section);
+            });
+        }
+
+        // FUNÇÕES DE CONTROLE DO MODAL DE EMENTA
+        function abrirEmenta(titulo, area, horas) {
+            document.getElementById('modalCursoNome').innerText = titulo;
+            document.getElementById('modalCursoArea').innerText = area;
+            document.getElementById('modalCursoHoras').innerText = horas || '40h';
+            document.getElementById('ementaModal').style.display = 'flex';
+        }
+
+        function fecharEmenta() {
+            document.getElementById('ementaModal').style.display = 'none';
+        }
+
+        // FECHAR MODAL AO CLICAR FORA
+        window.onclick = function(event) {
+            const modal = document.getElementById('ementaModal');
+            if (event.target === modal) {
+                fecharEmenta();
+            }
+        }
+
+        function filterCategory(area, e) {
+            activeArea = area;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if(e && e.currentTarget) e.currentTarget.classList.add('active');
+            renderContent(document.getElementById('searchInput').value);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderContent(e.target.value);
+        });
+
+        // Inicializar aplicação
+        renderContent();
+    </script>
+</body>
+</html>
