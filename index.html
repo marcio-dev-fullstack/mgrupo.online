@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MGRUPO - Educação | Concursos</title>
+    <!-- FontAwesome para os ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
             background-color: #000;
-            overflow-y: auto;
+            overflow-x: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
@@ -26,94 +27,126 @@
             z-index: 1;
         }
 
+        /* ---- CONTAINER GLASSMORPHISM ---- */
         .container {
             position: relative;
             z-index: 2;
             text-align: center;
-            width: 100%;
-            max-width: 440px;
-            padding: 20px;
+            width: 90%;
+            max-width: 420px;
+            padding: 35px 25px;
+            margin: 20px auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: auto;
+            box-sizing: border-box;
+
+            /* Efeito de Vidro Fosco */
+            background: rgba(10, 15, 10, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 65, 0.25);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 255, 65, 0.1);
+            
+            /* Animação suave de entrada */
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
-            font-size: 6rem;
+            font-size: 3.5rem;
             color: #00ff41;
             text-transform: uppercase;
-            letter-spacing: 10px;
-            margin: 0 0 30px 0;
+            letter-spacing: 8px;
+            margin: 0 0 25px 0;
             padding: 0;
-            text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
-            animation: flicker 1.5s infinite alternate;
+            text-shadow: 0 0 12px #00ff41, 0 0 30px rgba(0, 255, 65, 0.6);
+            animation: flicker 2s infinite alternate;
             user-select: none;
         }
 
         @keyframes flicker {
             0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
                 opacity: 1;
-                text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
+                text-shadow: 0 0 12px #00ff41, 0 0 30px rgba(0, 255, 65, 0.6);
             }
             20%, 24%, 55% {
-                opacity: 0.3;
+                opacity: 0.4;
                 text-shadow: none;
             }
         }
 
-        /* ---- CONTAINER DE LINKS ---- */
+        /* ---- WRAPPER DOS BOTÕES ---- */
         .links-wrapper-custom {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 14px; 
+            gap: 16px; 
             width: 100%;
-            margin: 0 auto;
         }
 
+        /* BASE DOS BOTÕES */
         .btn-custom {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 12px;
             width: 100%;
             box-sizing: border-box;
             padding: 16px 20px;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
             color: #ffffff !important;
             text-decoration: none;
             text-align: center;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             border: none;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Variação Laranja */
-        .btn-orange {
-            background-color: #FF8C00;
-        }
-        .btn-orange:hover {
-            background-color: #e07b00;
-            transform: scale(1.02);
-            box-shadow: 0 6px 12px rgba(255, 140, 0, 0.5);
+        /* Ícones dentro dos botões */
+        .btn-custom i {
+            font-size: 18px;
+            transition: transform 0.3s ease;
         }
 
-        /* Variação Azul */
+        .btn-custom:hover i {
+            transform: scale(1.15);
+        }
+
+        .btn-custom:active, .btn-whatsapp:active {
+            transform: scale(0.98);
+        }
+
+        /* VARIAÇÃO AZUL (GRADIENTE) */
         .btn-blue {
-            background-color: #007BFF;
-        }
-        .btn-blue:hover {
-            background-color: #0056b3;
-            transform: scale(1.02);
-            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+            background: linear-gradient(135deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* Botão do WhatsApp Estilo Oficial */
+        .btn-blue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 100, 247, 0.5), 0 0 12px rgba(67, 100, 247, 0.4);
+        }
+
+        /* BOTÃO WHATSAPP ESTILO PREMIUM */
         .btn-whatsapp {
             display: flex;
             align-items: center;
@@ -123,56 +156,82 @@
             box-sizing: border-box;
             padding: 16px 20px;
             margin-top: 6px;
-            background-color: #25D366; 
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             color: #ffffff !important;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
             text-decoration: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
-        }
-        .btn-whatsapp i {
-            font-size: 22px;
-        }
-        .btn-whatsapp:hover {
-            background-color: #20ba5a;
-            transform: scale(1.02);
-            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        @media (max-width: 768px) {
+        .btn-whatsapp i {
+            font-size: 22px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 239, 125, 0.5), 0 0 12px rgba(56, 239, 125, 0.4);
+        }
+
+        .btn-whatsapp:hover i {
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 18px;
+            }
             h1 {
-                font-size: 4rem;
-                letter-spacing: 6px;
-                margin-bottom: 25px;
+                font-size: 2.8rem;
+                letter-spacing: 5px;
             }
             .btn-custom, .btn-whatsapp {
-                font-size: 15px;
-                padding: 14px 15px;
+                font-size: 14px;
+                padding: 14px 16px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Fundo de código Matrix em Canvas -->
     <canvas id="matrix"></canvas>
 
+    <!-- Menu Principal -->
     <div class="container">      
         <h1>MGRUPO</h1>
 
         <div class="links-wrapper-custom">   
-            <a href="https://mgrupo.online/academico.html" target="_blank" class="btn-custom btn-blue">ACADÊMICO (TCCs - ESTÁGIOs)</a>  
-            <a href="https://mgrupo.online/cursos.html" target="_blank" class="btn-custom btn-blue">CURSOS & NRs</a> 
-            <a href="https://mgrupo.online/concursos.html" target="_blank" class="btn-custom btn-blue">CONCURSOS</a>  
+            <a href="https://mgrupo.online/academico.html" target="_blank" class="btn-custom btn-blue">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>ACADÊMICO (TCCs - ESTÁGIOS)</span>
+            </a>  
+
+            <a href="https://mgrupo.online/cursos.html" target="_blank" class="btn-custom btn-blue">
+                <i class="fa-solid fa-certificate"></i>
+                <span>CURSOS & NRs</span>
+            </a> 
+
+            <a href="https://mgrupo.online/concursos.html" target="_blank" class="btn-custom btn-blue">
+                <i class="fa-solid fa-user-ninja"></i>
+                <span>CONCURSOS</span>
+            </a>  
             
             <a href="https://wa.me/5565996108749" target="_blank" class="btn-whatsapp">
-                <i class="fa-brands fa-whatsapp"></i> Fale conosco pelo WhatsApp
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Fale conosco pelo WhatsApp</span>
             </a>
         </div>
     </div>
 
+    <!-- Script de animação do Matrix -->
     <script>
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
