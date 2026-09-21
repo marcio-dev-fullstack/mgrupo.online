@@ -28,9 +28,6 @@
     .auth-card { background:rgba(22,34,56,.88); border:1px solid var(--line); border-radius:24px; padding:34px; box-shadow:var(--shadow); backdrop-filter:blur(16px); }
     .auth-card h2 { font-size:1.55rem; margin-bottom:8px; }
     .auth-card .sub { color:var(--muted); font-size:.9rem; margin-bottom:28px; }
-    .tabs { display:grid; grid-template-columns:1fr 1fr; background:#0f1a2e; border-radius:10px; padding:4px; margin-bottom:24px; }
-    .tabs button { background:transparent; border:0; border-radius:8px; color:var(--muted); padding:10px; font-weight:700; }
-    .tabs button.active { color:white; background:var(--blue); }
     .field { margin-bottom:16px; }
     .field label { display:block; font-size:.78rem; color:#cbd5e1; margin-bottom:8px; font-weight:700; }
     .input-wrap { position:relative; }
@@ -71,26 +68,21 @@
     .panel-head { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:18px; }
     .panel-head h2 { font-size:1.1rem; }
     .panel-head p { color:var(--muted); font-size:.78rem; margin-top:4px; }
-    .add-btn { color:white; border:0; background:var(--green); border-radius:8px; padding:10px 14px; font-weight:800; font-size:.8rem; cursor:pointer; }
     .access-list { display:grid; gap:12px; }
-    .access-row { display:grid; grid-template-columns:2fr 1fr 1fr auto; gap:15px; align-items:center; padding:15px; border:1px solid var(--line); background:rgba(15,23,42,.55); border-radius:12px; }
+    .access-row { display:grid; grid-template-columns:2fr 1fr 1fr; gap:15px; align-items:center; padding:15px; border:1px solid var(--line); background:rgba(15,23,42,.55); border-radius:12px; }
     .course-name { font-weight:700; font-size:.87rem; }
     .course-meta { color:var(--muted); font-size:.74rem; margin-top:4px; }
-    .status { width:max-content; border-radius:30px; padding:5px 9px; font-size:.68rem; font-weight:800; }
+    .status { width:max-content; border-radius:30px; padding:5px 9px; font-size:.68rem; font-weight:800; display:inline-flex; align-items:center; gap:5px; }
     .status.ok { color:#6ee7b7; background:rgba(16,185,129,.12); }
     .status.wait { color:#fcd34d; background:rgba(245,158,11,.12); }
-    .status.off { color:#fca5a5; background:rgba(239,68,68,.12); }
-    .btn-access { display:inline-flex; align-items:center; gap:6px; color:#bfdbfe; background:rgba(59,130,246,.2); border:1px solid rgba(59,130,246,.4); padding:6px 12px; border-radius:8px; font-size:.78rem; font-weight:700; text-decoration:none; }
+    .btn-access { display:inline-flex; align-items:center; gap:6px; color:#bfdbfe; background:rgba(59,130,246,.2); border:1px solid rgba(59,130,246,.4); padding:8px 14px; border-radius:8px; font-size:.78rem; font-weight:700; text-decoration:none; transition:.2s; }
     .btn-access:hover { background:var(--blue); color:white; }
-    .row-actions { display:flex; gap:6px; justify-content:flex-end; }
-    .icon-btn { width:31px; height:31px; border:1px solid var(--line); color:var(--muted); background:transparent; border-radius:7px; cursor:pointer; }
-    .icon-btn:hover { color:white; border-color:var(--blue); }
-    .toast { position:fixed; right:22px; bottom:22px; background:#172b44; border:1px solid var(--green); color:#d1fae5; padding:14px 17px; border-radius:10px; box-shadow:var(--shadow); z-index:8; font-size:.82rem; }
+    @media(max-width:900px){ .login-shell{grid-template-columns:1fr; gap:25px; max-width:600px;}.welcome{padding:0}.welcome h1{font-size:3rem;margin:25px 0 15px}.sidebar{width:70px;padding:22px 12px}.sidebar .brand span,.sidebar .nav-item span,.sidebar .sidebar-bottom span{display:none}.sidebar .brand{justify-content:center}.sidebar nav{margin-top:45px}.nav-item{justify-content:center}.topbar{align-items:flex-start}.stats{grid-template-columns:1fr}.access-row{grid-template-columns:1fr; gap:10px} }
   </style>
 </head>
 <body>
 
-  <!-- TELA DE AUTENTICAÇÃO / LOGIN -->
+  <!-- TELA DE LOGIN -->
   <section id="authView" class="login-shell">
     <div class="welcome">
       <a class="brand" href="cursos.html"><i class="fa-solid fa-graduation-cap"></i><span>ZENTIX</span> CURSOS</a>
@@ -164,7 +156,7 @@
 
       <div class="stats">
         <div class="stat">
-          <div><span>Cursos com acesso</span><strong>2</strong></div>
+          <div><span>Cursos com acesso</span><strong id="activeCount">0</strong></div>
           <i class="fa-solid fa-book-open"></i>
         </div>
         <div class="stat">
@@ -184,30 +176,43 @@
             <p>Acesse o conteúdo das suas matrículas ativas.</p>
           </div>
         </div>
-        <div class="access-list">
-          <article class="access-row">
-            <div>
-              <div class="course-name">Inteligência Artificial Generativa no Planejamento Pedagógico</div>
-              <div class="course-meta"><i class="fa-regular fa-calendar"></i> Matrícula ativa</div>
-            </div>
-            <div><span class="status ok"><i class="fa-solid fa-unlock"></i> Acesso liberado</span></div>
-            <div><a href="#" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a></div>
-          </article>
-        </div>
+        <div class="access-list" id="accessList"></div>
       </section>
     </main>
   </section>
 
-  <div id="toast" class="toast hidden"></div>
-
+  <!-- CARREGAMENTO DOS DADOS DOS CURSOS -->
+  <script src="courses-data.js"></script>
   <script>
+    // Lista de cursos em que o aluno está matriculado
+    const matriculas = [
+      { 
+        id: '1', 
+        titulo: 'Inteligência Artificial Generativa no Planejamento Pedagógico', 
+        status: 'approved', 
+        data: '12/08/2026' 
+      },
+      { 
+        id: '2', 
+        titulo: 'NR-10 — Segurança em Instalações Elétricas e Serviços com Eletricidade', 
+        status: 'approved', 
+        data: '26/07/2026' 
+      },
+      { 
+        id: '3', 
+        titulo: 'Engenharia de Prompt Avançada e Fine-Tuning de LLMs', 
+        status: 'pending', 
+        data: '14/09/2026' 
+      }
+    ];
+
     function preencherDemo() {
       document.getElementById('email').value = 'aluno@zentix.com';
       document.getElementById('password').value = '123456';
     }
 
     function realizarLogin(e) {
-      if (e) e.preventDefault(); // Impede a atualização do navegador
+      if (e) e.preventDefault();
       
       var email = document.getElementById('email').value.trim().toLowerCase();
       var senha = document.getElementById('password').value.trim();
@@ -215,6 +220,7 @@
       if (email === 'aluno@zentix.com' && senha === '123456') {
         document.getElementById('authView').classList.add('hidden');
         document.getElementById('appView').classList.remove('hidden');
+        renderizarCursos();
       } else {
         alert('Credenciais incorretas! Clique em "Preencher dados de teste" para testar.');
       }
@@ -222,11 +228,44 @@
       return false;
     }
 
+    function renderizarCursos() {
+      const container = document.getElementById('accessList');
+      const aprovados = matriculas.filter(m => m.status === 'approved').length;
+      document.getElementById('activeCount').textContent = aprovados;
+
+      container.innerHTML = matriculas.map(item => {
+        const liberado = item.status === 'approved';
+        const badge = liberado 
+          ? '<span class="status ok"><i class="fa-solid fa-unlock"></i> Acesso liberado</span>'
+          : '<span class="status wait"><i class="fa-solid fa-clock"></i> Aguardando pagamento</span>';
+
+        // Redireciona diretamente para curso_2.html enviando o título/ID como parâmetro
+        const acao = liberado 
+          ? `<a href="curso_2.html?id=${encodeURIComponent(item.titulo)}" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a>`
+          : `<span class="course-meta">Aguardando liberação</span>`;
+
+        return `
+          <article class="access-row">
+            <div>
+              <div class="course-name">${escapeHtml(item.titulo)}</div>
+              <div class="course-meta"><i class="fa-regular fa-calendar"></i> Matrícula em ${item.data}</div>
+            </div>
+            <div>${badge}</div>
+            <div>${acao}</div>
+          </article>
+        `;
+      }).join('');
+    }
+
     function fazerLogout() {
       document.getElementById('appView').classList.add('hidden');
       document.getElementById('authView').classList.remove('hidden');
       document.getElementById('email').value = '';
       document.getElementById('password').value = '';
+    }
+
+    function escapeHtml(t) {
+      return String(t).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
     }
   </script>
 </body>
