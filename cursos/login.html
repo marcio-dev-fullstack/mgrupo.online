@@ -85,18 +85,7 @@
     .row-actions { display:flex; gap:6px; justify-content:flex-end; }
     .icon-btn { width:31px; height:31px; border:1px solid var(--line); color:var(--muted); background:transparent; border-radius:7px; cursor:pointer; }
     .icon-btn:hover { color:white; border-color:var(--blue); }
-    .icon-btn.delete:hover { color:#fca5a5; border-color:var(--red); }
-    .modal-backdrop { position:fixed; inset:0; background:rgba(2,6,23,.72); display:grid; place-items:center; padding:20px; z-index:4; }
-    .modal { width:min(500px,100%); background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:26px; box-shadow:var(--shadow); }
-    .modal-head { display:flex; justify-content:space-between; margin-bottom:22px; }
-    .modal-head h3 { font-size:1.2rem; }
-    .close { background:transparent; border:0; color:var(--muted); font-size:1.2rem; cursor:pointer; }
-    .form-grid { display:grid; gap:14px; }
-    .select { width:100%; background:#0f1a2e; color:white; border:1px solid var(--line); border-radius:9px; padding:12px; outline:0; }
-    .modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:22px; }
-    .secondary { border:1px solid var(--line); color:#cbd5e1; background:transparent; border-radius:9px; padding:11px 15px; font-weight:700; cursor:pointer; }
     .toast { position:fixed; right:22px; bottom:22px; background:#172b44; border:1px solid var(--green); color:#d1fae5; padding:14px 17px; border-radius:10px; box-shadow:var(--shadow); z-index:8; font-size:.82rem; }
-    @media(max-width:900px){ .login-shell{grid-template-columns:1fr; gap:25px; max-width:600px;}.welcome{padding:0}.welcome h1{font-size:3rem;margin:25px 0 15px}.sidebar{width:70px;padding:22px 12px}.sidebar .brand span,.sidebar .nav-item span,.sidebar .sidebar-bottom span{display:none}.sidebar .brand{justify-content:center}.sidebar nav{margin-top:45px}.nav-item{justify-content:center}.topbar{align-items:flex-start}.stats{grid-template-columns:1fr}.access-row{grid-template-columns:1fr 1fr auto}.access-row .date{display:none} }
   </style>
 </head>
 <body>
@@ -114,23 +103,10 @@
     </div>
     
     <div class="auth-card">
-      <h2 id="authTitle">Bem-vindo de volta</h2>
-      <p class="sub" id="authSubtitle">Entre para acessar seu ambiente do aluno.</p>
+      <h2>Bem-vindo de volta</h2>
+      <p class="sub">Entre para acessar seu ambiente do aluno.</p>
       
-      <div class="tabs">
-        <button class="active" id="loginTab" type="button">Entrar</button>
-        <button id="registerTab" type="button">Criar conta</button>
-      </div>
-      
-      <form id="authForm">
-        <div class="field hidden" id="nameField">
-          <label for="name">Nome completo</label>
-          <div class="input-wrap">
-            <i class="fa-regular fa-user"></i>
-            <input id="name" type="text" placeholder="Seu nome" />
-          </div>
-        </div>
-        
+      <form id="authForm" onsubmit="realizarLogin(event)">
         <div class="field">
           <label for="email">E-mail</label>
           <div class="input-wrap">
@@ -143,54 +119,52 @@
           <label for="password">Senha</label>
           <div class="input-wrap">
             <i class="fa-solid fa-lock"></i>
-            <input id="password" type="password" placeholder="Mínimo de 6 caracteres" required minlength="6" />
+            <input id="password" type="password" placeholder="Mínimo de 6 caracteres" required />
           </div>
         </div>
         
-        <a href="#" class="forgot" id="forgotLink">Esqueci minha senha</a>
-        <button class="primary" id="authSubmit" type="submit">Entrar no ambiente</button>
+        <a href="#" class="forgot" onclick="alert('Recuperação de senha enviada!')">Esqueci minha senha</a>
+        <button class="primary" type="submit">Entrar no ambiente</button>
       </form>
       
       <div class="hint">
         Demonstração: use <strong>aluno@zentix.com</strong> e <strong>123456</strong><br>
-        <button class="demo-btn" id="fillDemoBtn" type="button"><i class="fa-solid fa-bolt"></i> Preencher dados de teste</button>
+        <button class="demo-btn" type="button" onclick="preencherDemo()"><i class="fa-solid fa-bolt"></i> Preencher dados de teste</button>
       </div>
     </div>
   </section>
 
-  <!-- PAINEL DO ALUNO (SÓ É EXIBIDO APÓS O LOGIN) -->
+  <!-- PAINEL DO ALUNO -->
   <section id="appView" class="app hidden">
     <aside class="sidebar">
       <a class="brand" href="cursos.html"><i class="fa-solid fa-graduation-cap"></i><span>ZENTIX</span></a>
       <nav>
         <button class="nav-item active"><i class="fa-solid fa-chart-line"></i><span>Visão geral</span></button>
-        <button class="nav-item" onclick="showToast('A área de certificados estará disponível em breve.')"><i class="fa-solid fa-award"></i><span>Certificados</span></button>
-        <button class="nav-item" onclick="showToast('A central de suporte será conectada em breve.')"><i class="fa-regular fa-circle-question"></i><span>Suporte</span></button>
       </nav>
       <div class="sidebar-bottom">
-        <button class="nav-item" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></button>
+        <button class="nav-item" onclick="fazerLogout()"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></button>
       </div>
     </aside>
 
     <main class="main">
       <div class="topbar">
         <div>
-          <h1>Olá, <span id="studentName">Aluno</span>!</h1>
+          <h1>Olá, <span id="studentName">Márcio</span>!</h1>
           <p>Veja seus acessos e continue aprendendo hoje.</p>
         </div>
         <div class="profile">
-          <div class="avatar" id="avatar">AL</div>
+          <div class="avatar">MR</div>
           <div>
             <small>Aluno</small>
             <strong id="studentEmail">aluno@zentix.com</strong>
           </div>
-          <button class="logout" id="topLogout" title="Sair"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          <button class="logout" onclick="fazerLogout()" title="Sair"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
         </div>
       </div>
 
       <div class="stats">
         <div class="stat">
-          <div><span>Cursos com acesso</span><strong id="activeCount">0</strong></div>
+          <div><span>Cursos com acesso</span><strong>2</strong></div>
           <i class="fa-solid fa-book-open"></i>
         </div>
         <div class="stat">
@@ -209,215 +183,51 @@
             <h2>Meus Cursos e Acessos</h2>
             <p>Acesse o conteúdo das suas matrículas ativas.</p>
           </div>
-          <button class="add-btn" id="addBtn"><i class="fa-solid fa-plus"></i> Novo acesso</button>
         </div>
-        <div class="access-list" id="accessList"></div>
+        <div class="access-list">
+          <article class="access-row">
+            <div>
+              <div class="course-name">Inteligência Artificial Generativa no Planejamento Pedagógico</div>
+              <div class="course-meta"><i class="fa-regular fa-calendar"></i> Matrícula ativa</div>
+            </div>
+            <div><span class="status ok"><i class="fa-solid fa-unlock"></i> Acesso liberado</span></div>
+            <div><a href="#" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a></div>
+          </article>
+        </div>
       </section>
     </main>
   </section>
 
-  <!-- MODAL DE CADASTRO / EDIÇÃO DE CURSOS -->
-  <div id="modalBackdrop" class="modal-backdrop hidden">
-    <div class="modal">
-      <div class="modal-head">
-        <h3 id="modalTitle">Novo acesso</h3>
-        <button class="close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <form id="accessForm">
-        <input type="hidden" id="accessId" />
-        <div class="form-grid">
-          <div class="field">
-            <label for="course">Curso</label>
-            <div class="input-wrap">
-              <i class="fa-solid fa-book"></i>
-              <input id="course" type="text" placeholder="Nome do curso" required />
-            </div>
-          </div>
-          <div class="field">
-            <label for="payment">Status do pagamento</label>
-            <select class="select" id="payment">
-              <option value="approved">Pagamento aprovado — acesso liberado</option>
-              <option value="pending">Aguardando pagamento — acesso bloqueado</option>
-              <option value="cancelled">Pagamento cancelado — acesso bloqueado</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="purchaseDate">Data da matrícula</label>
-            <input class="select" id="purchaseDate" type="date" required />
-          </div>
-        </div>
-        <div class="modal-actions">
-          <button class="secondary" type="button" id="cancelModal">Cancelar</button>
-          <button class="primary" style="width:auto" type="submit">Salvar acesso</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
   <div id="toast" class="toast hidden"></div>
 
   <script>
-    // DADOS DE DEMONSTRAÇÃO
-    const DEMO_USER = { email: 'aluno@zentix.com', password: '123456', name: 'Márcio Rodrigues' };
-    const initialAccesses = [
-      { id: '1', course: 'Inteligência Artificial Generativa no Planejamento Pedagógico', payment: 'approved', date: '2026-08-12' },
-      { id: '2', course: 'NR-10 — Segurança em Instalações Elétricas', payment: 'approved', date: '2026-07-26' },
-      { id: '3', course: 'Engenharia de Prompt Avançada e Fine-Tuning de LLMs', payment: 'pending', date: '2026-09-14' }
-    ];
-
-    let mode = 'login';
-    let accesses = JSON.parse(localStorage.getItem('zentixAccesses') || 'null') || initialAccesses;
-
-    const $ = (id) => document.getElementById(id);
-    const saveAccesses = () => localStorage.setItem('zentixAccesses', JSON.stringify(accesses));
-    const formatDate = (date) => date ? new Date(date + 'T12:00:00').toLocaleDateString('pt-BR') : '—';
-    const statusInfo = (payment) => payment === 'approved' 
-      ? { label: 'Acesso liberado', cls: 'ok', icon: 'fa-unlock' } 
-      : payment === 'pending' 
-      ? { label: 'Aguardando pagamento', cls: 'wait', icon: 'fa-clock' } 
-      : { label: 'Acesso bloqueado', cls: 'off', icon: 'fa-lock' };
-
-    function showToast(message) {
-      $('toast').textContent = message;
-      $('toast').classList.remove('hidden');
-      setTimeout(() => $('toast').classList.add('hidden'), 2800);
+    function preencherDemo() {
+      document.getElementById('email').value = 'aluno@zentix.com';
+      document.getElementById('password').value = '123456';
     }
 
-    function setMode(next) {
-      mode = next;
-      const register = next === 'register';
-      $('loginTab').classList.toggle('active', !register);$('registerTab').classList.toggle('active', register);
-      $('nameField').classList.toggle('hidden', !register);$('authTitle').textContent = register ? 'Crie sua conta' : 'Bem-vindo de volta';
-      $('authSubtitle').textContent = register ? 'Cadastre-se para acompanhar suas matrículas.' : 'Entre para acessar seu ambiente do aluno.';
-      $('authSubmit').textContent = register ? 'Criar minha conta' : 'Entrar no ambiente';
-      $('forgotLink').classList.toggle('hidden', register);
-    }
+    function realizarLogin(e) {
+      if (e) e.preventDefault(); // Impede a atualização do navegador
+      
+      var email = document.getElementById('email').value.trim().toLowerCase();
+      var senha = document.getElementById('password').value.trim();
 
-    // BOTÃO AUXILIAR PARA PREENCHER O LOGIN DE TESTE
-    $('fillDemoBtn').onclick = () => {
-      setMode('login');
-      $('email').value = DEMO_USER.email;
-      $('password').value = DEMO_USER.password;
-      showToast('Campos preenchidos com os dados de demonstração!');
-    };
-
-    $('loginTab').onclick = () => setMode('login');
-    $('registerTab').onclick = () => setMode('register');$('forgotLink').onclick = (e) => {
-      e.preventDefault();
-      showToast('Link de recuperação enviado para seu e-mail.');
-    };
-
-    // PROCESSAMENTO DO FORMULÁRIO DE AUTENTICAÇÃO
-    $('authForm').onsubmit = (e) => {
-      e.preventDefault();
-      const email = $('email').value.trim().toLowerCase();
-      const password = $('password').value;
-
-      if (mode === 'login') {
-        if (email !== DEMO_USER.email.toLowerCase() || password !== DEMO_USER.password) {
-          showToast('E-mail ou senha inválidos. Clique em "Preencher dados de teste".');
-          return;
-        }
-        login({ name: DEMO_USER.name, email });
+      if (email === 'aluno@zentix.com' && senha === '123456') {
+        document.getElementById('authView').classList.add('hidden');
+        document.getElementById('appView').classList.remove('hidden');
       } else {
-        const nameInput = $('name').value.trim();
-        if (!nameInput) {
-          showToast('Informe seu nome completo.');
-          return;
-        }
-        login({ name: nameInput, email });
-        showToast('Conta criada com sucesso.');
+        alert('Credenciais incorretas! Clique em "Preencher dados de teste" para testar.');
       }
-    };
 
-    function login(user) {
-      localStorage.setItem('zentixUser', JSON.stringify(user));
-      $('authView').classList.add('hidden');$('appView').classList.remove('hidden');
-      $('studentName').textContent = user.name.split(' ')[0];$('studentEmail').textContent = user.email;
-      $('avatar').textContent = user.name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
-      renderAccesses();
+      return false;
     }
 
-    function logout() {
-      localStorage.removeItem('zentixUser');
-      $('appView').classList.add('hidden');
-      $('authView').classList.remove('hidden');$('authForm').reset();
-      setMode('login');
+    function fazerLogout() {
+      document.getElementById('appView').classList.add('hidden');
+      document.getElementById('authView').classList.remove('hidden');
+      document.getElementById('email').value = '';
+      document.getElementById('password').value = '';
     }
-
-    $('logoutBtn').onclick = logout;
-    $('topLogout').onclick = logout;
-
-    // RENDERIZAÇÃO DA LISTA DE CURSOS
-    function renderAccesses() {
-      $('activeCount').textContent = accesses.filter(a => a.payment === 'approved').length;
-      $('accessList').innerHTML = accesses.length ? accesses.map(a => {
-        const s = statusInfo(a.payment);
-        const linkCourse = a.payment === 'approved' 
-          ? `<a href="curso.html?id=${encodeURIComponent(a.course)}" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a>` 
-          : '<span class="course-meta">Aguardando liberação</span>';
-        
-        return `<article class="access-row">
-          <div>
-            <div class="course-name">${escapeHtml(a.course)}</div>
-            <div class="course-meta"><i class="fa-regular fa-calendar"></i> Matrícula em ${formatDate(a.date)}</div>
-          </div>
-          <div class="date"><span class="status ${s.cls}"><i class="fa-solid ${s.icon}"></i> ${s.label}</span></div>
-          <div>${linkCourse}</div>
-          <div class="row-actions">
-            <button class="icon-btn" title="Editar" onclick="editAccess('${a.id}')"><i class="fa-solid fa-pen"></i></button>
-            <button class="icon-btn delete" title="Excluir" onclick="deleteAccess('${a.id}')"><i class="fa-solid fa-trash"></i></button>
-          </div>
-        </article>`;
-      }).join('') : '<div style="padding:35px;text-align:center;color:var(--muted)">Nenhum acesso cadastrado. Clique em “Novo acesso” para começar.</div>';
-    }
-
-    function escapeHtml(text) {
-      return text.replace(/[&<>'"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[c]));
-    }
-
-    function openModal(access) {
-      $('modalBackdrop').classList.remove('hidden');$('modalTitle').textContent = access ? 'Editar acesso' : 'Novo acesso';
-      $('accessId').value = access?.id \vert{}\vert{} '';$('course').value = access?.course || '';
-      $('payment').value = access?.payment \vert{}\vert{} 'approved';$('purchaseDate').value = access?.date || new Date().toISOString().slice(0, 10);
-      setTimeout(() => $('course').focus(), 50);
-    }
-
-    function closeModal() {
-      $('modalBackdrop').classList.add('hidden');$('accessForm').reset();
-    }
-
-    $('addBtn').onclick = () => openModal();$('closeModal').onclick = closeModal;
-    $('cancelModal').onclick = closeModal;
-    $('modalBackdrop').onclick = (e) => { if (e.target ===$('modalBackdrop')) closeModal(); };
-
-    $('accessForm').onsubmit = (e) => {
-      e.preventDefault();
-      const id = $('accessId').value;
-      const item = { id: id || Date.now().toString(), course: $('course').value.trim(), payment: $('payment').value, date:$('purchaseDate').value };
-      if (id) accesses = accesses.map(a => a.id === id ? item : a);
-      else accesses.unshift(item);
-      saveAccesses();
-      renderAccesses();
-      closeModal();
-      showToast(item.payment === 'approved' ? 'Acesso salvo e liberado.' : 'Acesso salvo; aguardando confirmação do pagamento.');
-    };
-
-    window.editAccess = (id) => openModal(accesses.find(a => a.id === id));
-    window.deleteAccess = (id) => {
-      const item = accesses.find(a => a.id === id);
-      if (!item) return;
-      if (confirm(`Excluir o acesso a “${item.course}”?`)) {
-        accesses = accesses.filter(a => a.id !== id);
-        saveAccesses();
-        renderAccesses();
-        showToast('Acesso excluído.');
-      }
-    };
-
-    // RECUPERAR SESSÃO AO CARREGAR A PÁGINA
-    const session = JSON.parse(localStorage.getItem('zentixUser') || 'null');
-    if (session) login(session);
   </script>
 </body>
 </html>
