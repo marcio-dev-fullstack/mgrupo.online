@@ -184,27 +184,19 @@
   <!-- CARREGAMENTO DOS DADOS DOS CURSOS -->
   <script src="courses-data.js"></script>
   <script>
-    // Lista de cursos em que o aluno está matriculado
-    const matriculas = [
-      { 
-        id: '1', 
-        titulo: 'Inteligência Artificial Generativa no Planejamento Pedagógico', 
-        status: 'approved', 
-        data: '12/08/2026' 
-      },
-      { 
-        id: '2', 
-        titulo: 'NR-10 — Segurança em Instalações Elétricas e Serviços com Eletricidade', 
-        status: 'approved', 
-        data: '26/07/2026' 
-      },
-      { 
-        id: '3', 
-        titulo: 'Engenharia de Prompt Avançada e Fine-Tuning de LLMs', 
-        status: 'pending', 
-        data: '14/09/2026' 
-      }
+    // Carrega do courses-data.js ou usa fallback caso a variável não esteja definida
+    const baseCursos = window.ZENTIX_COURSES || [
+      { id: '1', title: 'Inteligência Artificial Generativa no Planejamento Pedagógico', area: 'Educação', hours: '40h' },
+      { id: '2', title: 'NR-10 — Segurança em Instalações Elétricas e Serviços com Eletricidade', area: 'Segurança', hours: '40h' }
     ];
+
+    // Mapeamento de matrículas ativas do aluno
+    const matriculas = baseCursos.map((c, index) => ({
+      id: c.id || String(index + 1),
+      titulo: c.title,
+      status: 'approved',
+      data: '12/08/2026'
+    }));
 
     function preencherDemo() {
       document.getElementById('email').value = 'aluno@zentix.com';
@@ -239,9 +231,9 @@
           ? '<span class="status ok"><i class="fa-solid fa-unlock"></i> Acesso liberado</span>'
           : '<span class="status wait"><i class="fa-solid fa-clock"></i> Aguardando pagamento</span>';
 
-        // Redireciona diretamente para curso_2.html enviando o título/ID como parâmetro
+        // Redireciona diretamente para curso_2.html enviando a chave 'id' na URL
         const acao = liberado 
-          ? `<a href="curso_2.html?id=${encodeURIComponent(item.titulo)}" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a>`
+          ? `<a href="curso_2.html?id=${encodeURIComponent(item.id || item.titulo)}" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a>`
           : `<span class="course-meta">Aguardando liberação</span>`;
 
         return `
