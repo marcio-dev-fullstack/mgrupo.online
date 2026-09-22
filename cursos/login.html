@@ -77,6 +77,7 @@
     .status.wait { color:#fcd34d; background:rgba(245,158,11,.12); }
     .btn-access { display:inline-flex; align-items:center; gap:6px; color:#bfdbfe; background:rgba(59,130,246,.2); border:1px solid rgba(59,130,246,.4); padding:8px 14px; border-radius:8px; font-size:.78rem; font-weight:700; text-decoration:none; transition:.2s; }
     .btn-access:hover { background:var(--blue); color:white; }
+    .btn-disabled { display:inline-flex; align-items:center; gap:6px; color:var(--muted); background:rgba(255,255,255,.05); border:1px solid var(--line); padding:8px 14px; border-radius:8px; font-size:.78rem; font-weight:600; cursor:not-allowed; }
     @media(max-width:900px){ .login-shell{grid-template-columns:1fr; gap:25px; max-width:600px;}.welcome{padding:0}.welcome h1{font-size:3rem;margin:25px 0 15px}.sidebar{width:70px;padding:22px 12px}.sidebar .brand span,.sidebar .nav-item span,.sidebar .sidebar-bottom span{display:none}.sidebar .brand{justify-content:center}.sidebar nav{margin-top:45px}.nav-item{justify-content:center}.topbar{align-items:flex-start}.stats{grid-template-columns:1fr}.access-row{grid-template-columns:1fr; gap:10px} }
   </style>
 </head>
@@ -156,7 +157,7 @@
 
       <div class="stats">
         <div class="stat">
-          <div><span>Cursos com acesso</span><strong id="activeCount">0</strong></div>
+          <div><span>Cursos liberados</span><strong id="activeCount">0</strong></div>
           <i class="fa-solid fa-book-open"></i>
         </div>
         <div class="stat">
@@ -173,7 +174,7 @@
         <div class="panel-head">
           <div>
             <h2>Meus Cursos e Acessos</h2>
-            <p>Acesse o conteúdo das suas matrículas ativas em ordem alfabética.</p>
+            <p>Listagem completa em ordem alfabética (modo de teste e desenvolvimento).</p>
           </div>
         </div>
         <div class="access-list" id="accessList"></div>
@@ -181,7 +182,7 @@
     </main>
   </section>
 
-  <!-- CARREGAMENTO DOS CURSOS OFERECIDOS NO CATÁLOGO -->
+  <!-- CARREGAMENTO DOS CURSOS -->
   <script src="courses-data.js"></script>
   <script>
     function preencherDemo() {
@@ -209,40 +210,45 @@
     function renderizarCursos() {
       const container = document.getElementById('accessList');
       
-      // Busca todos os cursos oferecidos no catálogo do site (courses-data.js)
+      // Obtém a lista global oferecida no site
       const todosCursos = window.ZENTIX_COURSES || [];
 
-      // Ordena todos os cursos em ordem alfabética (A-Z) pelo título
+      // Ordena todos os cursos em ordem alfabética (A-Z)
       const cursosOrdenados = [...todosCursos].sort((a, b) => 
         a.title.localeCompare(b.title, 'pt-BR', { sensitivity: 'base' })
       );
 
-      // Atualiza o contador de cursos disponíveis
-      document.getElementById('activeCount').textContent = cursosOrdenados.length;
+      // Simulação em ambiente DEV: Intercala entre Liberado (índices pares) e Aguardando pagamento (índices ímpares)
+      let liberadosCount = 0;
 
-      if (cursosOrdenados.length === 0) {
-        container.innerHTML = `<p style="color:var(--muted);font-size:0.85rem;">Nenhum curso disponível no momento.</p>`;
-        return;
-      }
-
-      container.innerHTML = cursosOrdenados.map(curso => {
+      container.innerHTML = cursosOrdenados.map((curso, index) => {
         const idOuTitulo = curso.id || curso.title;
-        
+        const estaLiberado = (index % 2 === 0); // alterna status para teste
+
+        if (estaLiberado) liberadosCount++;
+
+        const badgeStatus = estaLiberado
+          ? `<span class="status ok"><i class="fa-solid fa-unlock"></i> Acesso liberado</span>`
+          : `<span class="status wait"><i class="fa-solid fa-clock"></i> Aguardando pagamento</span>`;
+
+        const acaoBotao = estaLiberado
+          ? `<a href="curso_2.html?id=${encodeURIComponent(idOuTitulo)}" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a>`
+          : `<span class="btn-disabled"><i class="fa-solid fa-lock"></i> Bloqueado</span>`;
+
         return `
           <article class="access-row">
             <div>
               <div class="course-name">${escapeHtml(curso.title)}</div>
               <div class="course-meta"><i class="fa-solid fa-layer-group"></i> ${escapeHtml(curso.area || 'Formação profissional')} • ${escapeHtml(curso.hours || '40h')}</div>
             </div>
-            <div>
-              <span class="status ok"><i class="fa-solid fa-unlock"></i> Acesso liberado</span>
-            </div>
-            <div>
-              <a href="curso_2.html?id=${encodeURIComponent(idOuTitulo)}" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a>
-            </div>
+            <div>${badgeStatus}</div>
+            <div>${acaoBotao}</div>
           </article>
         `;
       }).join('');
+
+      // Atualiza o total de cursos liberados no card do topo
+      document.getElementById('activeCount').textContent = liberadosCount;
     }
 
     function fazerLogout() {
