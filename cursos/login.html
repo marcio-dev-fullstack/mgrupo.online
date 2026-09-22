@@ -85,7 +85,7 @@
   <!-- TELA DE LOGIN -->
   <section id="authView" class="login-shell">
     <div class="welcome">
-      <a class="brand" href="cursos.html"><i class="fa-solid fa-graduation-cap"></i><span>ZENTIX</span> CURSOS</a>
+      <a class="brand" href="https://mgrupo.online/cursos/index.html"><i class="fa-solid fa-graduation-cap"></i><span>ZENTIX</span> CURSOS</a>
       <h1>Seu próximo nível começa <em>aqui.</em></h1>
       <p>Acesse suas formações, acompanhe seu progresso e continue sua jornada de desenvolvimento profissional em um só lugar.</p>
       <div class="benefits">
@@ -129,7 +129,7 @@
   <!-- PAINEL DO ALUNO -->
   <section id="appView" class="app hidden">
     <aside class="sidebar">
-      <a class="brand" href="cursos.html"><i class="fa-solid fa-graduation-cap"></i><span>ZENTIX</span></a>
+      <a class="brand" href="https://mgrupo.online/cursos/index.html"><i class="fa-solid fa-graduation-cap"></i><span>ZENTIX</span></a>
       <nav>
         <button class="nav-item active"><i class="fa-solid fa-chart-line"></i><span>Visão geral</span></button>
       </nav>
@@ -173,7 +173,7 @@
         <div class="panel-head">
           <div>
             <h2>Meus Cursos e Acessos</h2>
-            <p>Acesse o conteúdo das suas matrículas ativas.</p>
+            <p>Acesse o conteúdo das suas matrículas ativas em ordem alfabética.</p>
           </div>
         </div>
         <div class="access-list" id="accessList"></div>
@@ -181,23 +181,9 @@
     </main>
   </section>
 
-  <!-- CARREGAMENTO DOS DADOS DOS CURSOS -->
+  <!-- CARREGAMENTO DOS CURSOS OFERECIDOS NO CATÁLOGO -->
   <script src="courses-data.js"></script>
   <script>
-    // Carrega do courses-data.js ou usa fallback caso a variável não esteja definida
-    const baseCursos = window.ZENTIX_COURSES || [
-      { id: '1', title: 'Inteligência Artificial Generativa no Planejamento Pedagógico', area: 'Educação', hours: '40h' },
-      { id: '2', title: 'NR-10 — Segurança em Instalações Elétricas e Serviços com Eletricidade', area: 'Segurança', hours: '40h' }
-    ];
-
-    // Mapeamento de matrículas ativas do aluno
-    const matriculas = baseCursos.map((c, index) => ({
-      id: c.id || String(index + 1),
-      titulo: c.title,
-      status: 'approved',
-      data: '12/08/2026'
-    }));
-
     function preencherDemo() {
       document.getElementById('email').value = 'aluno@zentix.com';
       document.getElementById('password').value = '123456';
@@ -222,28 +208,38 @@
 
     function renderizarCursos() {
       const container = document.getElementById('accessList');
-      const aprovados = matriculas.filter(m => m.status === 'approved').length;
-      document.getElementById('activeCount').textContent = aprovados;
+      
+      // Busca todos os cursos oferecidos no catálogo do site (courses-data.js)
+      const todosCursos = window.ZENTIX_COURSES || [];
 
-      container.innerHTML = matriculas.map(item => {
-        const liberado = item.status === 'approved';
-        const badge = liberado 
-          ? '<span class="status ok"><i class="fa-solid fa-unlock"></i> Acesso liberado</span>'
-          : '<span class="status wait"><i class="fa-solid fa-clock"></i> Aguardando pagamento</span>';
+      // Ordena todos os cursos em ordem alfabética (A-Z) pelo título
+      const cursosOrdenados = [...todosCursos].sort((a, b) => 
+        a.title.localeCompare(b.title, 'pt-BR', { sensitivity: 'base' })
+      );
 
-        // Redireciona diretamente para curso_2.html enviando a chave 'id' na URL
-        const acao = liberado 
-          ? `<a href="curso_2.html?id=${encodeURIComponent(item.id || item.titulo)}" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a>`
-          : `<span class="course-meta">Aguardando liberação</span>`;
+      // Atualiza o contador de cursos disponíveis
+      document.getElementById('activeCount').textContent = cursosOrdenados.length;
 
+      if (cursosOrdenados.length === 0) {
+        container.innerHTML = `<p style="color:var(--muted);font-size:0.85rem;">Nenhum curso disponível no momento.</p>`;
+        return;
+      }
+
+      container.innerHTML = cursosOrdenados.map(curso => {
+        const idOuTitulo = curso.id || curso.title;
+        
         return `
           <article class="access-row">
             <div>
-              <div class="course-name">${escapeHtml(item.titulo)}</div>
-              <div class="course-meta"><i class="fa-regular fa-calendar"></i> Matrícula em ${item.data}</div>
+              <div class="course-name">${escapeHtml(curso.title)}</div>
+              <div class="course-meta"><i class="fa-solid fa-layer-group"></i> ${escapeHtml(curso.area || 'Formação profissional')} • ${escapeHtml(curso.hours || '40h')}</div>
             </div>
-            <div>${badge}</div>
-            <div>${acao}</div>
+            <div>
+              <span class="status ok"><i class="fa-solid fa-unlock"></i> Acesso liberado</span>
+            </div>
+            <div>
+              <a href="curso_2.html?id=${encodeURIComponent(idOuTitulo)}" class="btn-access"><i class="fa-solid fa-play"></i> Acessar curso</a>
+            </div>
           </article>
         `;
       }).join('');
