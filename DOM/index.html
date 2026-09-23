@@ -3,194 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hub de Matérias DOM — 2026</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --card-hover: #334155;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
-            --border: #334155;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 760px;
-        }
-
-        header {
-            margin-bottom: 32px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            color: var(--text-main);
-            margin-bottom: 8px;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .badge {
-            display: inline-block;
-            background: var(--accent-glow);
-            color: var(--accent);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 4px 12px;
-            border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .links-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .link-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 16px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 1rem;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .link-card:hover {
-            background-color: var(--card-hover);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 0 15px var(--accent-glow);
-        }
-
-        .link-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            word-break: break-all;
-        }
-
-        .link-icon {
-            color: var(--accent);
-            flex-shrink: 0;
-        }
-
-        .arrow-icon {
-            color: var(--text-muted);
-            transition: transform 0.2s ease, color 0.2s ease;
-            flex-shrink: 0;
-            margin-left: 12px;
-        }
-
-        .link-card:hover .arrow-icon {
-            color: var(--accent);
-            transform: translateX(4px);
-        }
-
-        footer {
-            margin-top: 40px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-        }
-    </style>
+    <title>Diário Oficial dos Municípios | DOM 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
+<body class="bg-[#0b132b] text-slate-100 min-h-screen flex flex-col font-sans">
 
-    <div class="container">
-        <header>
-            <span class="badge">Diário Oficial dos Municípios</span>
-            <h1>Matérias de 2026</h1>
-            <p>Acesse as publicações oficiais em ordem cronológica decrescente</p>
-        </header>
+    <!-- CABEÇALHO -->
+    <header class="w-full py-10 px-4 text-center border-b border-slate-800/80">
+        <div class="max-w-4xl mx-auto space-y-3">
+            <span class="inline-block bg-blue-600/30 text-blue-400 text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-500/30 tracking-wide uppercase">
+                Diário Oficial dos Municípios
+            </span>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+                Matérias de 2026
+            </h1>
+            <p class="text-slate-400 text-sm md:text-base">
+                Acesse as publicações oficiais em ordem cronológica decrescente
+            </p>
+        </div>
+    </header>
 
-        <ul class="links-list" id="lista-materias"></ul>
+    <!-- CONTEÚDO PRINCIPAL (LISTA DE MATÉRIAS) -->
+    <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-10">
+        <div class="space-y-4">
 
-        <footer>
-            <p>&copy; 2026 DOM — Todos os direitos reservados</p>
-        </footer>
-    </div>
-
-    <script>
-        // Mapeamento dos códigos com seus nomes descritivos
-        const materiasData = [
-            { id: "2026-09-materia-70D62444.html", data: "2026-09-23", nome: "Licença de Extração Mineral" },
-            { id: "2026-09-materia-4D284C4E.html", data: "2026-09-23", nome: "Licença de Atividade Rural" },
-            { id: "2026-09-materia-368AD19D.html", data: "2026-09-23", nome: "Licença Ambiental - Renovação LO" },
-            { id: "2026-09-materia-235E66E0.html", data: "2026-09-23", nome: "Pregão Eletrônico Nº 004-2026 FMAS" },
-            { id: "2026-09-materia-09011462.html", data: "2026-09-23", nome: "Portaria Nº 097-2026-SEMIDU Fiscal de Contrato" }
-        ];
-
-        // Ordenação alfabética decrescente pelo id do arquivo
-        materiasData.sort((a, b) => b.id.localeCompare(a.id));
-
-        const containerLista = document.getElementById("lista-materias");
-
-        materiasData.forEach(item => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            
-            a.className = "link-card";
-            a.href = `DOM/${item.id}`;
-            
-            // Formato exigido: aaaa-mm-dd + nome da matéria
-            const textoExibicao = `${item.data} - ${item.nome}`;
-
-            a.innerHTML = `
-                <div class="link-title">
-                    <svg class="link-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    <span>${textoExibicao}</span>
+            <!-- MATÉRIA 1 -->
+            <a href="2026-09-materia-70D62444.html" 
+               class="flex items-center justify-between p-5 bg-[#1c2541]/60 hover:bg-[#1c2541] border border-slate-700/60 hover:border-blue-500/50 rounded-xl transition duration-200 group shadow-md hover:shadow-lg">
+                <div class="flex items-center gap-4">
+                    <i class="fa-regular fa-file-lines text-blue-400 text-xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-slate-200 group-hover:text-white transition-colors">
+                        2026-09-23 - Licença de Extração Mineral
+                    </span>
                 </div>
-                <svg class="arrow-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-            `;
+                <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
 
-            li.appendChild(a);
-            containerLista.appendChild(li);
-        });
-    </script>
+            <!-- MATÉRIA 2 -->
+            <a href="2026-09-23-Licenca-de-Atividade-Rural.html" 
+               class="flex items-center justify-between p-5 bg-[#1c2541]/60 hover:bg-[#1c2541] border border-slate-700/60 hover:border-blue-500/50 rounded-xl transition duration-200 group shadow-md hover:shadow-lg">
+                <div class="flex items-center gap-4">
+                    <i class="fa-regular fa-file-lines text-blue-400 text-xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-slate-200 group-hover:text-white transition-colors">
+                        2026-09-23 - Licença de Atividade Rural
+                    </span>
+                </div>
+                <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- MATÉRIA 3 -->
+            <a href="2026-09-23-Licenca-Ambiental-Renovacao-LO.html" 
+               class="flex items-center justify-between p-5 bg-[#1c2541]/60 hover:bg-[#1c2541] border border-slate-700/60 hover:border-blue-500/50 rounded-xl transition duration-200 group shadow-md hover:shadow-lg">
+                <div class="flex items-center gap-4">
+                    <i class="fa-regular fa-file-lines text-blue-400 text-xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-slate-200 group-hover:text-white transition-colors">
+                        2026-09-23 - Licença Ambiental - Renovação LO
+                    </span>
+                </div>
+                <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- MATÉRIA 4 -->
+            <a href="2026-09-23-Pregáo-Eletronico-N-004-2026-FMAS.html" 
+               class="flex items-center justify-between p-5 bg-[#1c2541]/60 hover:bg-[#1c2541] border border-slate-700/60 hover:border-blue-500/50 rounded-xl transition duration-200 group shadow-md hover:shadow-lg">
+                <div class="flex items-center gap-4">
+                    <i class="fa-regular fa-file-lines text-blue-400 text-xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-slate-200 group-hover:text-white transition-colors">
+                        2026-09-23 - Pregão Eletrônico Nº 004-2026 FMAS
+                    </span>
+                </div>
+                <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- MATÉRIA 5 -->
+            <a href="2026-09-23-Portaria-N-097-2026-SEMIDU-Fiscal-de-Contrato.html" 
+               class="flex items-center justify-between p-5 bg-[#1c2541]/60 hover:bg-[#1c2541] border border-slate-700/60 hover:border-blue-500/50 rounded-xl transition duration-200 group shadow-md hover:shadow-lg">
+                <div class="flex items-center gap-4">
+                    <i class="fa-regular fa-file-lines text-blue-400 text-xl group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-slate-200 group-hover:text-white transition-colors">
+                        2026-09-23 - Portaria Nº 097-2026-SEMIDU Fiscal de Contrato
+                    </span>
+                </div>
+                <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="w-full py-8 text-center text-xs text-slate-500 border-t border-slate-800/80 mt-auto">
+        <p>© 2026 DOM — Todos os direitos reservados</p>
+    </footer>
 
 </body>
 </html>
