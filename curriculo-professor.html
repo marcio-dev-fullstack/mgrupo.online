@@ -8,7 +8,1318 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Márcio Rodrigues de Oliveira - Currículo Profissional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #7b2cbf;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --light: #e0e0e0;
+            --accent: #ff006e;
+            --success: #00f5d4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Justificação global para blocos de texto genéricos */
+        p, .summary-box, .timeline-desc {
+            text-align: justify;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(123, 44, 191, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .profile-section {
+            text-align: center;
+        }
+
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            font-weight: bold;
+            color: #0a0a0a;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed var(--secondary);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 15px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--light) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .hero-content .title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 110px;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--light);
+            font-size: 0.9rem;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .contact-item span.icon {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .section {
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .section h2 {
+            font-size: 1.6rem;
+            color: var(--light);
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .summary-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            padding: 22px;
+            line-height: 1.8;
+            font-size: 0.98rem;
+            text-align: justify;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: scale(1.03);
+        }
+
+        .skill-tag.expert {
+            background: rgba(0, 245, 212, 0.1);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .skill-tag.expert:hover {
+            background: var(--success);
+            color: var(--dark);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 30px;
+            padding-left: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--dark);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.2);
+        }
+
+        .timeline-item.current::before {
+            background: var(--success);
+            border-color: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 1.15rem;
+            color: var(--light);
+            font-weight: 600;
+        }
+
+        .timeline-company {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .timeline-location {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .timeline-desc {
+            color: #aaa;
+            line-height: 1.7;
+            font-size: 0.92rem;
+            text-align: justify;
+        }
+
+        .timeline-desc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline-desc li {
+            padding-left: 18px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .timeline-desc li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 18px;
+        }
+
+        /* CENTRALIZAÇÃO DE CONTEÚDO DOS CARDS ACADÊMICOS E DE PÓS-GRADUAÇÃO */
+        .edu-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-align: center !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .edu-card div, .edu-card p, .edu-card span {
+            text-align: center !important;
+        }
+
+        .edu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .edu-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .edu-type {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .edu-title {
+            font-size: 1.05rem;
+            color: var(--light);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .edu-institution {
+            color: #888;
+            font-size: 0.88rem;
+            margin-bottom: 4px;
+        }
+
+        .edu-year {
+            color: var(--success);
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        .edu-status {
+            display: inline-block;
+            background: rgba(0, 245, 212, 0.1);
+            color: var(--success);
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            margin-top: 8px;
+            border: 1px solid var(--success);
+        }
+
+        /* ESTILIZAÇÃO E CENTRALIZADORES DO RODAPÉ */
+        .footer {
+            text-align: center !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 0;
+            color: #666;
+            font-size: 0.85rem;
+            width: 100%;
+        }
+
+        .footer p {
+            text-align: center !important;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.1rem;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .bg-animation, .particles, .profile-ring {
+                display: none;
+            }
+
+            .hero {
+                border-bottom: 2px solid #333;
+            }
+
+            .skill-tag, .timeline-date, .edu-card {
+                border: 1px solid #ccc;
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="profile-section">
+                <div class="profile-img-container">
+                    <div class="profile-ring"></div>
+                    <div class="profile-avatar">MRO</div>
+                </div>
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Disponível para Oportunidades Acadêmicas</span>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <h1>Márcio Rodrigues de Oliveira</h1>
+                <div class="title">&lt;Docente & Pesquisador em Educação, TI e Engenharias/&gt;</div>
+
+                <div class="hero-stats">    
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Graduações</span>
+                    </div> 
+                    <div class="stat-item">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Doutorado</span>
+                    </div>
+                     <div class="stat-item">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Mestrado</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">18+</span>
+                        <span class="stat-label">Pós-Graduações</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Cursos Extensivos</span>
+                    </div>
+                </div>
+
+                <div class="contact-grid">
+                    <a href="mailto:cda.marcio@gmail.com" class="contact-item">
+                        <span class="icon">✉</span>
+                        <span>cda.marcio@gmail.com</span>
+                    </a>
+                    <a href="tel:+5562996466033" class="contact-item">
+                        <span class="icon">☎</span>
+                        <span>(62) 99646-6033</span>
+                    </a>
+                    <div class="contact-item">
+                        <span class="icon">📍</span>
+                        <span>Cuiabá - MT, Brasil</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">🎓</span>
+                        <span>Lattes ID: 5752724756523880</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📖</div>
+                <h2>Resumo Profissional & Acadêmico</h2>
+            </div>
+            <div class="summary-box">
+                Doutorando em Ciências da Educação e Mestre em Administração pela 
+                <strong>Christian Business School (CBS, França)</strong>, instituição reconhecida pelo 
+                Ministério da Educação Nacional francês (UAI: 0756680D). Sua trajetória acadêmica e de 
+                pesquisa é centralizada na aplicação de <strong>Inteligência Artificial e Tecnologias 
+                Emergentes</strong> na gestão estratégica, análise de dados e processos educacionais. 
+                Desenvolve tese focada em Inovação Pedagógica e IA na Educação Profissional e Tecnológica (EPT), 
+                investigando o impacto de Tutores Virtuais inteligentes e sistemas de avaliação formativa personalizada. 
+                Possui vasta atuação no Ensino Superior, EPT e gestão de projetos tecnológicos.
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📚</div>
+                <h2>Competências & Áreas de Atuação</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>🤖 IA na Educação & Pesquisa</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag expert">Tutores Virtuais Inteligentes</span>
+                        <span class="skill-tag expert">IA Generativa no Ensino</span>
+                        <span class="skill-tag">Itinerários Personalizados</span>
+                        <span class="skill-tag">Avaliação Formativa</span>
+                        <span class="skill-tag">Chatbots Educacionais</span>
+                        <span class="skill-tag">Ética e Governança em IA</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>👨‍🏫 Práticas Docentes & EaD</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag expert">Design Instrucional</span>
+                        <span class="skill-tag expert">Moodle & LMS</span>
+                        <span class="skill-tag expert">Metodologias Ativas</span>
+                        <span class="skill-tag">Mediação Pedagógica</span>
+                        <span class="skill-tag">Produção de Videoaulas</span>
+                        <span class="skill-tag">Gamificação no Ensino</span>
+                        <span class="skill-tag">Tutoria Virtual</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>💻 Engenharia de Software & Dev</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag expert">Algoritmos & ED</span>
+                        <span class="skill-tag expert">DevOps & Contêineres</span>
+                        <span class="skill-tag">Python, Java & PHP</span>
+                        <span class="skill-tag">Desenvolvimento Web & Mobile</span>
+                        <span class="skill-tag">Arquitetura de Sistemas</span>
+                        <span class="skill-tag">POO</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🗄️ Dados, Infraestrutura & Segurança</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Banco de Dados & SQL</span>
+                        <span class="skill-tag">Perícia Forense Computacional</span>
+                        <span class="skill-tag">Cloud Computing & Kubernetes</span>
+                        <span class="skill-tag">Redes de Computadores</span>
+                        <span class="skill-tag">Gestão de Riscos & Cibersegurança</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>📐 Engenharia & Geoprocessamento</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">BIM & Gestão de Obras</span>
+                        <span class="skill-tag">Georreferenciamento Rural</span>
+                        <span class="skill-tag">Engenharia de Tráfego & Logística</span>
+                        <span class="skill-tag">Sistemas Construtivos</span>
+                        <span class="skill-tag">Segurança do Trabalho</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>📋 Gestão Acadêmica & Projetos</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Gestão de Projetos (Scrum/Agile)</span>
+                        <span class="skill-tag">Coordenação Pedagógica</span>
+                        <span class="skill-tag">Elaboração de PPC</span>
+                        <span class="skill-tag">Orientação de TCC</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">💼</div>
+                <h2>Trajetória Profissional & Docente</h2>
+            </div>         
+            <div class="timeline">
+                <div class="timeline-item current">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Analista Sênior de Projetos de TI</div>
+                            <div class="timeline-company">Governo do Estado de Mato Grosso</div>
+                        </div>
+                        <div class="timeline-date">2026 - Atual</div>
+                    </div>
+                    <div class="timeline-location">
+                        🏢 Cuiabá - MT
+                    </div>       
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Atuação estratégica na gestão de projetos computacionais, inovação tecnológica e suporte a sistemas públicos de segurança e governança.</li>
+                        </ul>
+                    </div>            
+                </div>
+
+                <div class="timeline-item current">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Coordenador / Professor Conteudista</div>
+                            <div class="timeline-company">ZENTIX Cursos</div>
+                        </div>
+                        <div class="timeline-date">2025 - Atual</div>
+                    </div>
+                    <div class="timeline-location">
+                        🏠 Ensino a Distância & Gestão Educacional
+                    </div>       
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Coordenação, estruturação e elaboração de conteúdos didáticos para formação tecnológica, EaD e programas educacionais.</li>
+                        </ul>
+                    </div>            
+                </div>
+
+                <div class="timeline-item current">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Engenheiro Civil</div>
+                            <div class="timeline-company">ZENTIX Projetos e Engenharia</div>
+                        </div>
+                        <div class="timeline-date">2024 - Atual</div>
+                    </div>
+                    <div class="timeline-location">
+                        🏗️ Engenharia & Consultoria Técnica
+                    </div>       
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Elaboração de laudos, fiscalização, gerenciamento de obras e projetos de engenharia e saneamento.</li>
+                        </ul>
+                    </div>            
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Professor de Ensino Superior (Substituto)</div>
+                            <div class="timeline-company">Universidade do Estado do Pará - UEPA</div>
+                        </div>
+                        <div class="timeline-date">2018</div>
+                    </div>
+                    <div class="timeline-location">
+                        🏛️ Ensino Superior Presencial
+                    </div>       
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Ministrou as disciplinas de <strong>Introdução à Computação</strong>, <strong>Informática Aplicada à Educação Matemática</strong>, <strong>Computação</strong> e <strong>Métodos Computacionais</strong>.</li>
+                            <li>Integração de metodologias computacionais ao ensino de matemática e ciências exatas.</li>
+                        </ul>
+                    </div>             
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Professor do Ensino Superior</div>
+                            <div class="timeline-company">IFPA | PARFOR (Plano Nacional de Formação de Professores)</div>
+                        </div>
+                        <div class="timeline-date">2011 - 2012</div>
+                    </div>
+                    <div class="timeline-location">
+                        🏛️ Graduação / Licenciatura em Informática
+                    </div>       
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Docente na Licenciatura Plena em Informática.</li>
+                            <li>Disciplinas ministradas: <strong>Estrutura de Dados</strong>, <strong>Projeto e Análise de Orientação a Objetos</strong> e <strong>Sistemas Operacionais</strong>.</li>
+                        </ul>
+                    </div>             
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Professor Formador / EPT</div>
+                            <div class="timeline-company">IFPA | PRONATEC</div>
+                        </div>
+                        <div class="timeline-date">2012 - 2014</div>
+                    </div>
+                    <div class="timeline-location">
+                        🏫 Educação Profissional e Tecnológica
+                    </div>       
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Docência nos cursos de Operador de Computador, Montagem e Manutenção de Computadores, e Instalador e Reparador de Redes.</li>
+                            <li>Disciplinas: Configurações de Redes Locais, Instalação de Sistemas Operacionais, Internet e Fundamentos Profissionais.</li>
+                        </ul>
+                    </div>             
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Instrutor de Cursos Livres e Técnicos</div>
+                            <div class="timeline-company">Microlins / Top Cursos Profissionalizantes</div>
+                        </div>
+                        <div class="timeline-date">2008 - 2012</div>                        
+                    </div>
+                    <div class="timeline-location">
+                        👨‍🏫 Formação Profissional Técnica
+                    </div>       
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Instrução em Pacote Office, Redes Cabeadas, Sistemas Operacionais Windows e Manutenção de Hardware.</li>
+                        </ul>
+                    </div>             
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Stricto Sensu -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🎓</div>                
+                <h2>Doutorado & Mestrado (Stricto Sensu)</h2>
+            </div>
+            
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <div class="edu-type">Doutorado em Ciências da Educação</div>
+                    <div class="edu-title">Doutorando em Ciências da Educação</div>
+                    <div class="edu-institution">Christian Business School (CBS, França)</div>
+                    <div class="edu-year">2029</div>
+                    <div style="font-size: 0.85rem; color: #aaa; margin-top: 6px; text-align: center;">
+                        <strong>Tese:</strong> "Exploração de como ferramentas de IA podem ser utilizadas para personalizar itinerários formativos, apoiar avaliações formativas ou criar tutores virtuais na EPT de forma ética e pedagógica"
+                    </div>
+                    <span class="edu-status">Em Andamento</span>
+                </div>
+       
+                <div class="edu-card">
+                    <div class="edu-type">Mestrado em Administração de Empresas</div>
+                    <div class="edu-title">Mestre em Administração de Empresas</div>
+                    <div class="edu-institution">Christian Business School (CBS, França)</div>
+                    <div class="edu-year">2027</div>
+                    <div style="font-size: 0.85rem; color: #aaa; margin-top: 6px; text-align: center;">
+                        <strong>Dissertação:</strong> "Adoção e Impactos da Inteligência Artificial na Gestão de Projetos: Uma Análise Comparativa entre os Setores de Tecnologia da Informação e Engenharia Civil"
+                    </div>
+                    <span class="edu-status">Em Andamento</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Graduations -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🏛️</div>
+                <h2>Graduações</h2>
+            </div>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <div class="edu-type">Bacharelado</div>
+                    <div class="edu-title">Engenharia Civil</div>     
+                    <div class="edu-institution">Faculdade Católica Paulista</div>
+                    <div class="edu-year">2023</div>               
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Licenciatura</div>
+                    <div class="edu-title">Licenciatura em Matemática</div>     
+                    <div class="edu-institution">Universidade Cruzeiro do Sul</div>
+                    <div class="edu-year">2022</div>              
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Bacharelado</div>
+                    <div class="edu-title">Sistemas de Informação</div>     
+                    <div class="edu-institution">IESAM - Inst. de Estudos Superiores da Amazônia</div>
+                    <div class="edu-year">2005</div>               
+                </div>
+            </div>
+        </section>
+
+        <!-- Post-Graduations (Centralizadas) -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📜</div>
+                <h2>Pós-Graduações (Lato Sensu)</h2>
+            </div>
+            <div class="edu-grid">
+                <!-- 2027 -->
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">EaD na Educação Profissional e Tecnológica</div>
+                    <div class="edu-institution">IFMT - Inst. Fed. de Mato Grosso</div>
+                    <div class="edu-year">2027</div>
+                    <span class="edu-status">Em Andamento</span>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Engenharia DevOps</div>
+                    <div class="edu-institution">IFMT - Inst. Fed. de Mato Grosso</div>
+                    <div class="edu-year">2027</div>
+                    <span class="edu-status">Em Andamento</span>
+                </div>
+
+                <!-- 2026 -->
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Engenharia de Tráfego</div>
+                    <div class="edu-institution">Faculdade Prisma</div>
+                    <div class="edu-year">2026</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Engenharia Sanitária e Ambiental</div>
+                    <div class="edu-institution">Facuminas</div>
+                    <div class="edu-year">2026</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Georreferenciamento de Imóveis Rurais</div>
+                    <div class="edu-institution">Faculdade Prisma</div>
+                    <div class="edu-year">2026</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Informática na Educação</div>
+                    <div class="edu-institution">IFMA - Inst. Fed. do Maranhão</div>
+                    <div class="edu-year">2026</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Logística e Modais de Transporte</div>
+                    <div class="edu-institution">Faculdade Prisma</div>
+                    <div class="edu-year">2026</div>
+                </div>
+
+                <!-- 2025 -->
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Desenvolvimento e Gerenciamento de Projetos</div>
+                    <div class="edu-institution">Facuminas</div>
+                    <div class="edu-year">2025</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Perícia Forense Aplicada à Informática</div>
+                    <div class="edu-institution">Facuminas</div>
+                    <div class="edu-year">2025</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Sistemas Construtivos</div>
+                    <div class="edu-institution">Facuminas</div>
+                    <div class="edu-year">2025</div>
+                </div>
+
+                <!-- 2023 -->
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">BIM em Gerenciamento de Projetos e Qualidade</div>
+                    <div class="edu-institution">Facuminas</div>
+                    <div class="edu-year">2023</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Engenharia de Segurança do Trabalho</div>
+                    <div class="edu-institution">Facuminas</div>
+                    <div class="edu-year">2023</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Engenharia de Software e Gestão de Projetos</div>
+                    <div class="edu-institution">Faculdade Estratego</div>
+                    <div class="edu-year">2023</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Redes de Computadores e Cloud Computing</div>
+                    <div class="edu-institution">Faculdade Estratego</div>
+                    <div class="edu-year">2023</div>
+                </div>
+
+                <!-- 2022 -->
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Algoritmos e Estrutura de Dados</div>
+                    <div class="edu-institution">Faculdade Focus</div>
+                    <div class="edu-year">2022</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Docência em Matemática e Práticas Pedagógicas</div>
+                    <div class="edu-institution">Faculdade Serra Geral</div>
+                    <div class="edu-year">2022</div>
+                </div>
+
+                <!-- 2020 -->
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Banco de Dados</div>
+                    <div class="edu-institution">UniBF</div>
+                    <div class="edu-year">2020</div>
+                </div>
+
+                <!-- 2015 -->
+                <div class="edu-card">
+                    <div class="edu-type">Especialização</div>
+                    <div class="edu-title">Engenharia de Sistemas</div>
+                    <div class="edu-institution">ESAB</div>
+                    <div class="edu-year">2015</div>
+                </div>
+            </div>
+        </section>      
+        
+        <!-- Formação Complementar Completa -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🎖️</div>
+                <h2>Formação Complementar & Cursos de Atualização (Todos)</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category" style="width: 100%;">
+                    <h3>🏆 Cursos Extensivos, Capacitações & Eventos por Ano</h3>
+                    <div class="skill-tags">
+                        <!-- 2026 -->
+                        <span class="skill-tag expert">Treinamento Operacional do Portal SESP (SEJUSP-MT - 2026)</span>
+                        
+                        <!-- 2025 -->
+                        <span class="skill-tag">Ciclo: Drones na Engenharia para Planejamento Urbano, Rural e Ambiental (CREA-SP - 2025)</span>
+                        <span class="skill-tag">Jornada de Engenharia de Dados (BIX Tecnologia - 2025)</span>
+                        <span class="skill-tag">Orçamento de Obras de Infraestrutura e Cálculo do BDI (CREA-MA / Inst. JK - 2025)</span>
+                        <span class="skill-tag">Palestra: A Indústria 4.0 e a Sociedade 5.0 (CREA-SP / AECB - 2025)</span>
+                        <span class="skill-tag">Palestra: Desafios da Inovação Tecnológica no Desenvolvimento Sustentável (CREA-SP - 2025)</span>
+                        <span class="skill-tag">Palestra: Desafios e Transformações das Engenharias no Século XXI (CREA-SP - 2025)</span>
+                        <span class="skill-tag">Palestra: Engenharias com Práticas ESG e ODS (CREA-SP / AECB - 2025)</span>
+                        <span class="skill-tag">Palestra: Técnicas de Negociação nas Engenharias (CREA-SP / ARET - 2025)</span>
+
+                        <!-- 2023 -->
+                        <span class="skill-tag">Análise e Visualização de Dados com Power BI (IFMG - 2023)</span>
+                        <span class="skill-tag">Arquitetura da Informação e Projeto de Sistemas (IFPA - 2023)</span>
+                        <span class="skill-tag">Big Data Avançado e Mineração de Dados (IFMG - 2023)</span>
+                        <span class="skill-tag">Big Data Básico (IFMG - 2023)</span>
+                        <span class="skill-tag">Boas Práticas de Segurança do Trabalho em Laboratórios (IFMG - 2023)</span>
+                        <span class="skill-tag">Como Produzir Videoaulas (UEMA - 2023)</span>
+                        <span class="skill-tag">Construções Sustentáveis (UEMA - 2023)</span>
+                        <span class="skill-tag">Criação de Site Utilizando Ferramentas Google (IFMG - 2023)</span>
+                        <span class="skill-tag">Criação de Videoaulas na Educação a Distância (IFRS - 2023)</span>
+                        <span class="skill-tag">Desenho de Jogos (IFPA - 2023)</span>
+                        <span class="skill-tag">Desenho Didático para o Ensino On-line (UEMA - 2023)</span>
+                        <span class="skill-tag">Desenvolvimento de Back-End Java e Android (IFPA - 2023)</span>
+                        <span class="skill-tag">Desenvolvimento de Front-End (IFPA - 2023)</span>
+                        <span class="skill-tag">Desenvolvimento Humano e Educação (UEMA - 2023)</span>
+                        <span class="skill-tag">Desenvolvimento Web com AngularJS (IFPA - 2023)</span>
+                        <span class="skill-tag">Desenvolvimento Web com Java e Apache Wicket (IFPA - 2023)</span>
+                        <span class="skill-tag">Desenvolvimento Web com Python e Framework Django (IFG - 2023)</span>
+                        <span class="skill-tag">Desenvolvimento Web PHP (IFPA - 2023)</span>
+                        <span class="skill-tag">Design de Interfaces com CSS3 (IFMG - 2023)</span>
+                        <span class="skill-tag">Educação a Distância (IFRS - 2023)</span>
+                        <span class="skill-tag">Engenharia de Estruturas de Concreto Armado (Faveni - 2023)</span>
+                        <span class="skill-tag">Ensinando com o Moodle (UEMA - 2023)</span>
+                        <span class="skill-tag">Ensino e Aprendizagem - Comunicação Professor-Aluno (IFMG - 2023)</span>
+                        <span class="skill-tag">Estatística Básica por meio do Excel (IFMG - 2023)</span>
+                        <span class="skill-tag">Ética Profissional (UEMA - 2023)</span>
+                        <span class="skill-tag">Gamificação Aplicada ao Ensino de Física (UEMA - 2023)</span>
+                        <span class="skill-tag">Gamificação no Moodle na EaD (IFRS - 2023)</span>
+                        <span class="skill-tag">Geografia Urbana (UEMA - 2023)</span>
+                        <span class="skill-tag">Gestão com Pessoas (UEMA - 2023)</span>
+                        <span class="skill-tag">Gestão de Projetos: Introdução ao Scrum (IFMG - 2023)</span>
+                        <span class="skill-tag">Gestão Escolar da Educação Básica (UEMA - 2023)</span>
+                        <span class="skill-tag">Introdução à Linguagem de Programação PHP (IFPA - 2023)</span>
+                        <span class="skill-tag">Introdução à Lógica de Programação (IFPA - 2023)</span>
+                        <span class="skill-tag">Introdução ao Uso de Banco de Dados e SQL (IFPA - 2023)</span>
+                        <span class="skill-tag">JavaScript (IFRS - 2023)</span>
+                        <span class="skill-tag">Matemática Financeira: Progressões e Funções (IFMG - 2023)</span>
+                        <span class="skill-tag">Mediação em EaD (UEMA - 2023)</span>
+                        <span class="skill-tag">Mediação Pedagógica na Educação a Distância (IFRS - 2023)</span>
+                        <span class="skill-tag">Metodologias Ativas em Sala de Aula (IFMG - 2023)</span>
+                        <span class="skill-tag">Metodologias Ativas na Educação (UEMA - 2023)</span>
+                        <span class="skill-tag">MOOC e Novas Formas de Aprendizagem (IFPA - 2023)</span>
+                        <span class="skill-tag">Moodle Básico para Professores (IFRS - 2023)</span>
+                        <span class="skill-tag">Multimeios Aplicados ao Ensino da Física (UEMA - 2023)</span>
+                        <span class="skill-tag">Multimeios em Educação (UEMA - 2023)</span>
+                        <span class="skill-tag">Orçamento e Contabilidade do Setor Público (IFMG - 2023)</span>
+                        <span class="skill-tag">Orientação de Projetos na Educação Básica (IFMG - 2023)</span>
+                        <span class="skill-tag">Palestra: NR10 em Edificações (CREA-SP - 2023)</span>
+                        <span class="skill-tag">Princípios de Mineração (UEMA - 2023)</span>
+                        <span class="skill-tag">Produção de Vídeos Educacionais para Web (IFPA - 2023)</span>
+                        <span class="skill-tag">Programação Básica com Java I (IFRS - 2023)</span>
+                        <span class="skill-tag">Programação Básica com Java II (IFRS - 2023)</span>
+                        <span class="skill-tag">Programação Básica com Java III (IFRS - 2023)</span>
+                        <span class="skill-tag">Programação para Dispositivos Móveis Avançado (IFMG - 2023)</span>
+                        <span class="skill-tag">Programação para Dispositivos Móveis Básico (IFMG - 2023)</span>
+                        <span class="skill-tag">Programador Web (IFRS - 2023)</span>
+                        <span class="skill-tag">Projeto de Sistemas Web (IFRS - 2023)</span>
+                        <span class="skill-tag">Projetos - Elaboração e Gestão (IFRS - 2023)</span>
+                        <span class="skill-tag">Python Avançado (IFMG - 2023)</span>
+                        <span class="skill-tag">Python Básico (IFMG - 2023)</span>
+                        <span class="skill-tag">Qualidade de Cursos em Educação a Distância (IFRS - 2023)</span>
+                        <span class="skill-tag">Renderizando com V-Ray Next para SketchUp (UEMA - 2023)</span>
+                        <span class="skill-tag">Repositórios de Materiais Didáticos Digitais (IFRS - 2023)</span>
+                        <span class="skill-tag">Segurança do Trabalho na Construção Civil (IFMG - 2023)</span>
+                        <span class="skill-tag">Sustentabilidade Ambiental na Comunidade Escolar (UEMA - 2023)</span>
+                        <span class="skill-tag">Técnicas de Escrita para Educação a Distância (IFRS - 2023)</span>
+                        <span class="skill-tag">Tecnologias na Educação: Visão Geral para Sala de Aula (IFMG - 2023)</span>
+                        <span class="skill-tag">Uso de Aplicativos Web na Construção de Materiais (IFRS - 2023)</span>
+                        <span class="skill-tag">UX e UI Design (IFPA - 2023)</span>
+
+                        <!-- 2022 -->
+                        <span class="skill-tag">3DS MAX (iEstudar - 2022)</span>
+                        <span class="skill-tag">Alvenaria Estrutural (Portal iDEA - 2022)</span>
+                        <span class="skill-tag">Capacitações Técnicas Intelbras (Energia Solar, CFTV, Inversores, NR35 - 2022)</span>
+                        <span class="skill-tag">Consultor BIM (EBPÓS - 2022)</span>
+                        <span class="skill-tag">Customização de Curso Moodle (MadriLab - 2022)</span>
+                        <span class="skill-tag">Desenho Arquitetônico e Construção Civil (iEstudar - 2022)</span>
+                        <span class="skill-tag">Eletrônica Industrial (Complementar Cursos - 2022)</span>
+                        <span class="skill-tag">Formação em Matemática e suas Tecnologias (MEC / AVAMEC - 2022)</span>
+                        <span class="skill-tag">HTML5 - Introdução ao Front-End (IFPA - 2022)</span>
+                        <span class="skill-tag">Introdução à Engenharia Civil (Complementar Cursos - 2022)</span>
+                        <span class="skill-tag">Introdução à Engenharia da Computação (iEstudar - 2022)</span>
+                        <span class="skill-tag">JavaScript: Conceitos e Bibliotecas (IFPA - 2022)</span>
+                        <span class="skill-tag">Leitura e Interpretação de Projetos (iEstudar - 2022)</span>
+                        <span class="skill-tag">Linguagem de Modelagem Unificada - UML (Fundação Bradesco - 2022)</span>
+                        <span class="skill-tag">Linguagem de Programação Java (iEstudar - 2022)</span>
+                        <span class="skill-tag">Linguagem de Programação Java - Básico (Fundação Bradesco - 2022)</span>
+                        <span class="skill-tag">MS Project Básico (Complementar Cursos - 2022)</span>
+                        <span class="skill-tag">Noções de AutoCAD (Complementar Cursos - 2022)</span>
+                        <span class="skill-tag">Node JS, React, VueJS, TypeScript, Bootstrap 5, GIT, jQuery (RL System - 2022)</span>
+                        <span class="skill-tag">Oportunidades para Engenheiros e Arquitetos: Gestão de Obras (BSSP - 2022)</span>
+                        <span class="skill-tag">PHP Fundamentos, Laravel Autenticação, Laravel BD (RL System - 2022)</span>
+                        <span class="skill-tag">Programação Java (iEstudar - 2022)</span>
+                        <span class="skill-tag">Projeto de Incêndio - AutoCAD Básico (Leiaut - 2022)</span>
+                        <span class="skill-tag">Projetos Eletrônicos (Complementar Cursos - 2022)</span>
+                        <span class="skill-tag">SketchUp Básico (iEstudar - 2022)</span>
+
+                        <!-- 2021 -->
+                        <span class="skill-tag">Avaliação de Simulação Energética em HIS (MDR / GIZ - 2021)</span>
+                        <span class="skill-tag">Desenvolvimento Sustentável e Negócios (CRA-SP - 2021)</span>
+                        <span class="skill-tag">Encontro de Conselheiros de Alimentação Escolar (UFPA / FNDE - 2021)</span>
+                        <span class="skill-tag">Geoinformação na SPU: conceitos, fundamentos e tecnologias (ENAP - 2021)</span>
+                        <span class="skill-tag">Gestão da Informação (ENAP - 2021)</span>
+                        <span class="skill-tag">Inteligência Artificial no Contexto do Serviço Público (ENAP - 2021)</span>
+                        <span class="skill-tag">Noções Básicas para Coordenar Cursos On-line (ENAP - 2021)</span>
+                        <span class="skill-tag">Segurança da Informação na Transformação Digital (ENAP - 2021)</span>
+
+                        <!-- 2020 e anteriores -->
+                        <span class="skill-tag">Formação de Atores na Execução do PNAE (CECANE / UFPA - 2020)</span>
+                        <span class="skill-tag">Protocolo AVC (Hospital Albert Einstein - 2020)</span>
+                        <span class="skill-tag">1ª Oficina e Treinamento em Linux Educacional 4.0 e LibreOffice (Org. MPCA - 2014)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <center>
+                <p>Perfil Acadêmico, Docente e Profissional</p>
+                <p style="margin-top: 8px; font-size: 0.8rem;">© 2026 Márcio Rodrigues de Oliveira. Todos os direitos reservados.</p>
+            </center>
+        </footer>
+    </div>
+
+    <script>
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section, .skill-category, .edu-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        const title = document.querySelector('.title');
+        const text = title.textContent;
+        title.textContent = '';
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                title.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 60);
+            }
+        }
+
+        setTimeout(typeWriter, 500);
+    </script>
+</body>
+</html>
         }
 
         :root {
