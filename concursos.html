@@ -55,29 +55,41 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #1a365d;
-            font-size: 1.8rem;
-            border-bottom: 3px solid #38a169;
-            display: inline-block;
-            padding-bottom: 0.3rem;
-        }
-
-        .title-wrapper {
-            text-align: center;
-        }
-
-        .cards-grid {
+        .main-columns {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .column {
+            background: #e2e8f0;
+            padding: 1.2rem;
+            border-radius: 10px;
+        }
+
+        .column-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #1a365d;
+            color: #1a365d;
+            font-size: 1.5rem;
+        }
+
+        .column-header.seletivo {
+            border-bottom-color: #d69e2e;
+        }
+
+        .cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
         }
 
         .card {
@@ -92,12 +104,16 @@
             justify-content: space-between;
         }
 
+        .card-seletivo {
+            border-top-color: #d69e2e;
+        }
+
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
         }
 
         .card-body {
-            padding: 1.5rem;
+            padding: 1.2rem;
         }
 
         .tag {
@@ -118,12 +134,13 @@
         .card h3 {
             margin: 0.8rem 0 0.5rem 0;
             color: #2d3748;
+            font-size: 1.1rem;
         }
 
         .card p {
             color: #718096;
-            font-size: 0.95rem;
-            margin-bottom: 1.2rem;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .card-buttons {
@@ -136,11 +153,11 @@
             display: block;
             width: 100%;
             text-align: center;
-            padding: 0.6rem 0;
+            padding: 0.5rem 0;
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .btn-primary {
@@ -200,105 +217,119 @@
 
     <section class="hero">
         <h2>Sua Aprovação Começa Aqui</h2>
-        <p>Acompanhe os principais editais abertos e prepare-se com quem entende.</p>
+        <p>Acompanhe os principais editais de 2026 e prepare-se com quem entende.</p>
     </section>
 
     <main class="container">
-        <div class="title-wrapper">
-            <h2 class="section-title">Concursos e Seletivos Abertos em Destaque</h2>
-        </div>
+        <div class="main-columns">
 
-        <div class="cards-grid">
-            <!-- Card SES-TO 2026 -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag">Concurso Público • 2026</span>
-                    <h3>SES-TO 2026</h3>
-                    <p>Concurso Público 2026 da Secretaria de Estado da Saúde do Tocantins. Oportunidades para diversos cargos de níveis médio e superior.</p>
-                    <div class="card-buttons">
-                        <a href="https://conhecimento.fgv.br/concursos/sesto26" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (FGV)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20SES-TO%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
-                </div>
-            </article>
+            <!-- COLUNA 1: CONCURSOS PÚBLICOS -->
+            <section class="column">
+                <h2 class="column-header">📌 Concursos Públicos 2026</h2>
+                <div class="cards-list">
 
-            <!-- Card SEDUC-PA 2026 -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag">Concurso Público • 2026</span>
-                    <h3>SEDUC-PA 2026</h3>
-                    <p>Concurso Público 2026 da Secretaria de Estado de Educação do Pará. Vagas para a área da educação e cargos administrativos.</p>
-                    <div class="card-buttons">
-                        <a href="https://conhecimento.fgv.br/concursos/seducpa26" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (FGV)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20SEDUC-PA%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
-                </div>
-            </article>
+                    <!-- SES-TO 2026 -->
+                    <article class="card">
+                        <div class="card-body">
+                            <span class="tag">Concurso Público • 2026</span>
+                            <h3>SES-TO 2026</h3>
+                            <p>Concurso Público 2026 da Secretaria de Estado da Saúde do Tocantins. Cargos de níveis médio e superior.</p>
+                            <div class="card-buttons">
+                                <a href="https://conhecimento.fgv.br/concursos/sesto26" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (FGV)</a>
+                                <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20SES-TO%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
+                            </div>
+                        </div>
+                    </article>
 
-            <!-- Card SEMA-MT 2026 -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag">Concurso Público • 2026</span>
-                    <h3>SEMA-MT 2026</h3>
-                    <p>Concurso Público 2026 da Secretaria de Estado de Meio Ambiente de Mato Grosso. Oportunidades para carreiras ambientais e técnicas.</p>
-                    <div class="card-buttons">
-                        <a href="https://www.cesgranrio.org.br/concurso/sema-mt-2026" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (Cesgranrio)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20SEMA-MT%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
-                </div>
-            </article>
+                    <!-- SEDUC-PA 2026 -->
+                    <article class="card">
+                        <div class="card-body">
+                            <span class="tag">Concurso Público • 2026</span>
+                            <h3>SEDUC-PA 2026</h3>
+                            <p>Concurso Público 2026 da Secretaria de Estado de Educação do Pará. Vagas educacionais e administrativas.</p>
+                            <div class="card-buttons">
+                                <a href="https://conhecimento.fgv.br/concursos/seducpa26" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (FGV)</a>
+                                <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20SEDUC-PA%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
+                            </div>
+                        </div>
+                    </article>
 
-            <!-- Card IFPA 2026 -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag">Concurso Público • 2026</span>
-                    <h3>IFPA 2026</h3>
-                    <p>Concurso Público 2026 do Instituto Federal do Pará. Vagas para Técnico-Administrativos em Educação (Níveis médio/técnico e superior).</p>
-                    <div class="card-buttons">
-                        <a href="https://www.institutoaocp.org.br/concursos/717" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (Instituto AOCP)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20IFPA%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
-                </div>
-            </article>
+                    <!-- SEMA-MT 2026 -->
+                    <article class="card">
+                        <div class="card-body">
+                            <span class="tag">Concurso Público • 2026</span>
+                            <h3>SEMA-MT 2026</h3>
+                            <p>Concurso Público 2026 da Secretaria de Estado de Meio Ambiente de Mato Grosso. Áreas ambiental e técnica.</p>
+                            <div class="card-buttons">
+                                <a href="https://www.cesgranrio.org.br/concurso/sema-mt-2026" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (Cesgranrio)</a>
+                                <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20SEMA-MT%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
+                            </div>
+                        </div>
+                    </article>
 
-            <!-- Card Chapada dos Guimarães e SAAE MT (Selecon 92) -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag">Concurso Público • 2026</span>
-                    <h3>Chapada dos Guimarães e SAAE-MT 2026</h3>
-                    <p>Concurso Público 2026 da Prefeitura Municipal de Chapada dos Guimarães e SAAE-MT. Oportunidades de nível médio, técnico e superior.</p>
-                    <div class="card-buttons">
-                        <a href="https://selecon-mt.selecao.net.br/informacoes/92/" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (Selecon)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20Chapada%20dos%20Guimarães%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
-                </div>
-            </article>
+                    <!-- IFPA 2026 -->
+                    <article class="card">
+                        <div class="card-body">
+                            <span class="tag">Concurso Público • 2026</span>
+                            <h3>IFPA 2026</h3>
+                            <p>Concurso Público 2026 do Instituto Federal do Pará. Vagas para Técnico-Administrativos em Educação.</p>
+                            <div class="card-buttons">
+                                <a href="https://www.institutoaocp.org.br/concursos/717" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (Instituto AOCP)</a>
+                                <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20IFPA%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
+                            </div>
+                        </div>
+                    </article>
 
-            <!-- Card SME Cuiabá (Selecon 97) -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag tag-seletivo">Processo Seletivo • 2026</span>
-                    <h3>SME Cuiabá 2026</h3>
-                    <p>Processo Seletivo Simplificado 2026 da Secretaria Municipal de Educação de Cuiabá - MT. Vagas temporárias para área educacional.</p>
-                    <div class="card-buttons">
-                        <a href="https://selecon-mt.selecao.net.br/informacoes/97/" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Seletivo (Selecon)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20seletivo%20SME%20Cuiabá%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
-                </div>
-            </article>
+                    <!-- Chapada dos Guimarães (Selecon 92) -->
+                    <article class="card">
+                        <div class="card-body">
+                            <span class="tag">Concurso Público • 2026</span>
+                            <h3>Chapada dos Guimarães e SAAE-MT 2026</h3>
+                            <p>Concurso Público 2026 da Prefeitura de Chapada dos Guimarães e SAAE-MT. Níveis médio, técnico e superior.</p>
+                            <div class="card-buttons">
+                                <a href="https://selecon-mt.selecao.net.br/informacoes/92/" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Concurso (Selecon)</a>
+                                <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20concurso%20Chapada%20dos%20Guimarães%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
+                            </div>
+                        </div>
+                    </article>
 
-            <!-- Card Processo Seletivo Selecon MT (Selecon 99) -->
-            <article class="card">
-                <div class="card-body">
-                    <span class="tag tag-seletivo">Processo Seletivo • 2026</span>
-                    <h3>Processo Seletivo Selecon MT 2026</h3>
-                    <p>Processo Seletivo Simplificado 2026 realizado pelo Instituto Selecon para contratação temporária em Mato Grosso.</p>
-                    <div class="card-buttons">
-                        <a href="https://selecon-mt.selecao.net.br/informacoes/99/#" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Seletivo (Selecon)</a>
-                        <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20Processo%20Seletivo%20Selecon%20MT%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
-                    </div>
                 </div>
-            </article>
+            </section>
+
+            <!-- COLUNA 2: PROCESSOS SELETIVOS -->
+            <section class="column">
+                <h2 class="column-header seletivo">📋 Processos Seletivos 2026</h2>
+                <div class="cards-list">
+
+                    <!-- SME Cuiabá (Selecon 97) -->
+                    <article class="card card-seletivo">
+                        <div class="card-body">
+                            <span class="tag tag-seletivo">Processo Seletivo • 2026</span>
+                            <h3>SME Cuiabá 2026</h3>
+                            <p>Processo Seletivo Simplificado 2026 da Secretaria Municipal de Educação de Cuiabá - MT. Vagas temporárias.</p>
+                            <div class="card-buttons">
+                                <a href="https://selecon-mt.selecao.net.br/informacoes/97/" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Seletivo (Selecon)</a>
+                                <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20seletivo%20SME%20Cuiabá%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Selecon MT (Selecon 99) -->
+                    <article class="card card-seletivo">
+                        <div class="card-body">
+                            <span class="tag tag-seletivo">Processo Seletivo • 2026</span>
+                            <h3>Processo Seletivo Selecon MT 2026</h3>
+                            <p>Processo Seletivo Simplificado 2026 do Instituto Selecon para contratação temporária em Mato Grosso.</p>
+                            <div class="card-buttons">
+                                <a href="https://selecon-mt.selecao.net.br/informacoes/99/#" target="_blank" rel="noopener noreferrer" class="btn-card btn-primary">🔗 Página do Seletivo (Selecon)</a>
+                                <a href="https://wa.me/5562996466033?text=Olá!%20Quero%20orientação%20para%20o%20Processo%20Seletivo%20Selecon%20MT%202026" target="_blank" class="btn-card btn-whatsapp">💬 Dúvidas no Zap</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
         </div>
     </main>
 
