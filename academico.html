@@ -76,27 +76,6 @@
             font-weight: bold;
         }
 
-        .contact-box {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #ebf8ff;
-            border-radius: 6px;
-            text-align: center;
-        }
-        .btn-whatsapp {
-            display: inline-block;
-            background-color: #25d366;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: background-color 0.2s;
-        }
-        .btn-whatsapp:hover {
-            background-color: #20ba5a;
-        }
         .btn-curriculo {
             display: inline-block;
             background-color: #3182ce;
@@ -110,10 +89,77 @@
         .btn-curriculo:hover {
             background-color: #2b6cb0;
         }
-        .location-tag {
-            color: #718096;
+
+        /* Novo Rodapé Aprimorado */
+        .site-footer {
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            color: #ffffff;
+            padding: 40px 30px 20px 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .footer-content p {
+            color: #e2e8f0;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-actions {
+            margin: 25px 0;
+        }
+
+        .btn-footer-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25d366;
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-footer-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .footer-divider {
+            border: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 30px 0 20px 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
             font-size: 0.9rem;
-            margin-top: 5px;
+            color: #cbd5e0;
+        }
+
+        .footer-bottom span {
+            margin: 5px auto;
         }
 
         /* Estilo do Botão Flutuante do WhatsApp */
@@ -190,12 +236,26 @@
         💬 Consultar valores no atendimento
     </div>
 
-    <!-- Contato -->
-    <div class="contact-box">
-        <h3>📱 Fale Conosco</h3>
-        <p>WhatsApp: <strong>(62) 99646-6033</strong></p>        
-        <p><strong>Goiânia-GO | Brasil</strong></p>  
-    </div>
+    <!-- Novo Rodapé Atraente -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <h3>🚀 Pronto para impulsionar a sua trajetória académica?</h3>
+            <p>Entre em contacto connosco agora mesmo e tire todas as suas dúvidas sobre mentorias, TCC e orientações.</p>
+            
+            <div class="footer-actions">
+                <a href="https://wa.me/5562996466033?text=Ol%C3%A1!%20Gostaria%20de%20iniciar%20um%20atendimento." class="btn-footer-whatsapp" target="_blank" rel="noopener noreferrer">
+                    💬 Conversar via WhatsApp (62) 99646-6033
+                </a>
+            </div>
+            
+            <hr class="footer-divider">
+            
+            <div class="footer-bottom">
+                <span>📍 Goiânia-GO | Brasil</span>
+                <span>© 2026 Zentix Acadêmico. Todos os direitos reservados.</span>
+            </div>
+        </div>
+    </footer>
 
 </div>
 
