@@ -168,8 +168,9 @@
 
         .category-tabs {
             display: flex;
+            justify-content: center; /* Centralizado para mobile e desktop */
+            flex-wrap: wrap;         /* Permite quebra elegante em telas menores */
             gap: 10px;
-            overflow-x: auto;
             padding-bottom: 8px;
             scroll-behavior: smooth;
         }
@@ -215,6 +216,8 @@
             padding-bottom: 0.5rem;
             display: flex;
             align-items: center;
+            justify-content: center; /* Centralizado */
+            text-align: center;
             gap: 10px;
         }
 
@@ -223,6 +226,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.2rem;
+            justify-content: center;
         }
 
         .course-card {
@@ -407,31 +411,37 @@
             color: var(--text-muted);
         }
 
-        /* FOOTER */
+        /* RODAPÉ CENTRALIZADO E OTIMIZADO PARA MOBILE */
         footer {
             background-color: #0b1120;
             border-top: 1px solid var(--border-color);
             padding: 3rem 1.5rem 2rem;
             margin-top: auto;
+            text-align: center;
         }
 
         .footer-container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
             margin-bottom: 2rem;
         }
 
         .footer-bottom {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
             font-size: 0.85rem;
             color: var(--text-muted);
+            text-align: center;
         }
 
         /* FLOATING WHATSAPP */
@@ -453,8 +463,8 @@
         }
 
         @media (max-width: 600px) {
-            header { flex-direction: column; gap: 10px; align-items: flex-start; }
-            .header-actions { width: 100%; justify-content: space-between; }
+            header { flex-direction: column; gap: 10px; align-items: center; text-align: center; }
+            .header-actions { width: 100%; justify-content: center; }
             .hero h1 { font-size: 1.8rem; }
             .whatsapp-float span { display: none; }
             .whatsapp-float { padding: 14px; border-radius: 50%; }
@@ -500,7 +510,7 @@
             <button class="close-btn" onclick="fecharEmenta()"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-header">
                 <div class="modal-title" id="modalCursoNome">Ementa da Norma</div>
-                <div class="modal-subtitle">
+                <div class="modal-subtitle" style="justify-content: center;">
                     <i class="fa-solid fa-layer-group"></i> <span id="modalCursoArea">Área da Norma</span> &bull; 
                     <i class="fa-regular fa-clock"></i> Carga Horária Total: <span id="modalCursoHoras">4 horas</span>
                 </div>
@@ -538,20 +548,16 @@
         </div>
     </div>
 
-     <!-- RODAPÉ -->
-    <footer id="contato" class="bg-slate-900 text-white py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h3 class="text-2xl font-bold mb-2">Quer dar vida ao seu projeto?</h3>
-            <p class="text-slate-400 mb-2">Entre em contato conosco e solicite uma avaliação técnica ou orçamento sem compromisso.</p>
-            
-            <a href="https://wa.me/5562996466033" target="_blank" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition mb-8 text-lg">
-                <i class="fa-brands fa-whatsapp text-2xl"></i> Falar no WhatsApp: (62) 99646-6033
+    <!-- RODAPÉ CENTRALIZADO -->
+    <footer id="contato">
+        <div class="footer-container">           
+            <a href="https://wa.me/5562996466033" target="_blank" class="inline-flex items-center gap-2" style="background-color: #f59e0b; hover: background-color: #d97706; color: #0f172a; font-weight: bold; padding: 12px 24px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> Falar no WhatsApp: (62) 99646-6033
             </a>
-
-            <div class="border-t border-slate-800 pt-6 mt-4 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-                <p>ZENTIX Projetos & Engenharia <br> Brasil &copy; 2026 Todos os direitos reservados</p>
-                <p>Desenvolvido por: <a href="http://zentix.eng.br/" target="_blank" class="text-amber-500 hover:underline font-bold">ZENTIX Tecnologia</a></p>
-            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>ZENTIX Projetos & Engenharia<br>Brasil &copy; 2026 Todos os direitos reservados</p>
+            <p>Desenvolvido por: <a href="http://zentix.eng.br/" target="_blank" style="color: #f59e0b; text-decoration: none; font-weight: bold;">ZENTIX Tecnologia</a></p>
         </div>
     </footer>
 
@@ -561,7 +567,6 @@
     </a>
 
     <script>
-        // BASE DE DADOS CONTENDO APENAS AS NORMAS REGULAMENTADORAS (NRs)
         const rawDatabase = [
             { area: "Normas Regulamentadoras (NRs)", title: "NR-01 - Disposições Gerais e Gerenciamento de Riscos Ocupacionais (GRO/PGR)", hours: "4h" },
             { area: "Normas Regulamentadoras (NRs)", title: "NR-02 - Inspeção Prévia", hours: "4h" },
@@ -604,7 +609,6 @@
             { area: "Normas Regulamentadoras (NRs)", title: "NR-38 - Segurança e Saúde na Limpeza Urbana e Resíduos Sólidos", hours: "8h" }
         ];
 
-        // AGRUPAMENTO E ORDENAÇÃO ALFABÉTICA POR ÁREA
         const groupedData = {};
 
         rawDatabase.forEach(course => {
@@ -618,7 +622,6 @@
             groupedData[area].sort((a, b) => a.title.localeCompare(b.title));
         });
 
-        // RENDERIZAR ABAS DE CATEGORIAS
         const categoryTabsContainer = document.getElementById('categoryTabs');
         categoryTabsContainer.innerHTML = `<button class="tab-btn active" onclick="filterCategory('all', event)">Todas as Normas (${rawDatabase.length})</button>`;
         
@@ -629,7 +632,6 @@
 
         let activeArea = 'all';
 
-        // RENDERIZAR CONTEÚDO DOS CURSOS COM O BOTÃO EMENTA
         function renderContent(filterText = '') {
             const mainContainer = document.getElementById('mainContainer');
             mainContainer.innerHTML = '';
@@ -680,7 +682,6 @@
             });
         }
 
-        // FUNÇÕES DE CONTROLE DO MODAL DE EMENTA
         function abrirEmenta(titulo, area, horas) {
             document.getElementById('modalCursoNome').innerText = titulo;
             document.getElementById('modalCursoArea').innerText = area;
@@ -710,7 +711,6 @@
             renderContent(e.target.value);
         });
 
-        // Inicializar aplicação
         renderContent();
     </script>
 </body>
