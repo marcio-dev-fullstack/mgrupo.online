@@ -168,8 +168,8 @@
 
         .category-tabs {
             display: flex;
-            justify-content: center; /* Centralizado para mobile e desktop */
-            flex-wrap: wrap;         /* Permite quebra elegante em telas menores */
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 10px;
             padding-bottom: 8px;
             scroll-behavior: smooth;
@@ -216,7 +216,7 @@
             padding-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            justify-content: center; /* Centralizado */
+            justify-content: center;
             text-align: center;
             gap: 10px;
         }
@@ -411,44 +411,108 @@
             color: var(--text-muted);
         }
 
-        /* RODAPÉ CENTRALIZADO E OTIMIZADO PARA MOBILE */
+        /* RODAPÉ COM TEXTO UNIFICADO E CENTRALIZADO */
         footer {
             background-color: #0b1120;
             border-top: 1px solid var(--border-color);
-            padding: 3rem 1.5rem 2rem;
+            padding: 3.5rem 1.5rem 3rem;
             margin-top: auto;
-            text-align: center;
+            color: var(--text-muted);
         }
 
         .footer-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer-col h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .footer-col ul {
+            list-style: none;
             display: flex;
             flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+            display: inline-flex;
             align-items: center;
-            gap: 1.2rem;
-            margin-bottom: 2rem;
+            gap: 6px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-green);
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact-info i {
+            color: var(--accent-green);
+            width: 18px;
         }
 
         .footer-bottom {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
             text-align: center;
+            font-size: 0.85rem;
         }
 
-        /* FLOATING WHATSAPP */
+        .footer-bottom p {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .footer-bottom a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* FLOATING WHATSAPP AJUSTADO */
         .whatsapp-float {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
             background-color: #25d366;
             color: #fff;
             border-radius: 50px;
@@ -460,14 +524,20 @@
             text-decoration: none;
             box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
             z-index: 1000;
+            transition: transform 0.3s ease;
         }
 
-        @media (max-width: 600px) {
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
             header { flex-direction: column; gap: 10px; align-items: center; text-align: center; }
             .header-actions { width: 100%; justify-content: center; }
             .hero h1 { font-size: 1.8rem; }
             .whatsapp-float span { display: none; }
-            .whatsapp-float { padding: 14px; border-radius: 50%; }
+            .whatsapp-float { padding: 14px; border-radius: 50%; bottom: 20px; right: 20px; }
+            .footer-bottom p { display: block; margin: 4px 0; }
         }
     </style>
 </head>
@@ -548,17 +618,40 @@
         </div>
     </div>
 
-     <!-- RODAPÉ CORRIGIDO -->
+    <!-- RODAPÉ COM TEXTO CENTRALIZADO -->
     <footer id="contato">
-        <div class="footer-content-wrapper">        
-            <div class="footer-bottom">
-                <p>ZENTIX NRs | (62) 99646-6033 <br> &copy; 2026 Todos os direitos reservados. <br> Desenvolvido por: <a href="http://zentix.eng.br/" target="_blank">ZENTIX Tecnologia</a</p>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3><i class="fa-solid fa-shield-halved" style="color: var(--accent-green);"></i> ZENTIX NRs</h3>
+                <p>Plataforma especializada em capacitação profissional e cumprimento de Normas Regulamentadoras, garantindo segurança e conformidade para empresas e trabalhadores.</p>
             </div>
+            
+            <div class="footer-col">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: var(--accent-blue);"></i> Início</a></li>
+                    <li><a href="https://mgrupo.online/cursos/login.html" target="_blank"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: var(--accent-blue);"></i> Área do Aluno</a></li>
+                    <li><a href="#contato"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; color: var(--accent-blue);"></i> Suporte Técnico</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <div class="footer-contact-info">
+                    <div><i class="fa-solid fa-phone"></i> (62) 99646-6033</div>
+                    <div><i class="fa-solid fa-location-dot"></i> Brasil</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 ZENTIX NRs. Todos os direitos reservados.</p>
+            <p>Desenvolvido por <a href="http://zentix.eng.br/" target="_blank">ZENTIX Tecnologia</a></p>
         </div>
     </footer>
 
     <a href="https://wa.me/5562996466033?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20as%20Normas%20Regulamentadoras%20(NRs)." class="whatsapp-float" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
+        <i class="fa-brands fa-whatsapp" style="font-size: 1.5rem;"></i>
         <span>Fale Conosco</span>
     </a>
 
