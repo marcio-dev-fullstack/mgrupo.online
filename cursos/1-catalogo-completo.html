@@ -462,7 +462,7 @@
             line-height: 1.7;
         }
 
-        /* FOOTER */
+        /* FOOTER CORRIGIDO */
         footer {
             background-color: var(--bg-card);
             border-top: 1px solid var(--border-color);
@@ -470,69 +470,73 @@
             margin-top: auto;
         }
 
-        .footer-container {
+        .footer-content-wrapper {
             max-width: 1000px;
             margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 2rem;
+            text-align: center;
+        }
+
+        footer h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
             margin-bottom: 2rem;
         }
 
-        .footer-col {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .footer-logo .logo-zentix {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-logo p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-
-        .footer-title {
-            color: #fff;
-            font-size: 1rem;
+        .footer-whatsapp-btn {
+            background: transparent;
+            border: 2px solid var(--neon-cian);
+            color: var(--neon-cian);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 3rem;
         }
 
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .footer-links li {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-links i {
-            color: var(--neon-cian);
-            width: 16px;
+        .footer-whatsapp-btn:hover {
+            background-color: var(--neon-cian);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-cian);
         }
 
         .footer-bottom {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding-top: 2rem;
             border-top: 1px solid var(--border-color);
-            text-align: center;
-            font-size: 0.8rem;
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            sm-flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
+        }
+
+        .footer-bottom a {
+            color: var(--neon-cian);
+            text-decoration: none;
+            font-weight: 700;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
         }
 
         /* WHATSAPP FLUTUANTE */
@@ -575,7 +579,6 @@
             .hero h1 { font-size: 2.3rem; }
             .controls-container, .main-container { padding: 0 1rem; }
             .courses-grid { grid-template-columns: 1fr; }
-            .footer-container { flex-direction: column; gap: 1.5rem; }
             .whatsapp-float span { display: none; }
             .whatsapp-float { padding: 15px; border-radius: 50%; }
         }
@@ -666,19 +669,19 @@
         </div>
     </div>
 
-     <!-- RODAPÉ -->
-    <footer id="contato" class="bg-slate-900 text-white py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h3 class="text-2xl font-bold mb-2">Quer dar vida ao seu projeto?</h3>
-            <p class="text-slate-400 mb-2">Entre em contato conosco e solicite uma avaliação técnica ou orçamento sem compromisso.</p>
+    <!-- RODAPÉ CORRIGIDO -->
+    <footer id="contato">
+        <div class="footer-content-wrapper">
+            <h3>Quer dar vida ao seu projeto?</h3>
+            <p>Entre em contato conosco e solicite uma avaliação técnica ou orçamento sem compromisso.</p>
             
-            <a href="https://wa.me/5562996466033" target="_blank" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition mb-8 text-lg">
-                <i class="fa-brands fa-whatsapp text-2xl"></i> Falar no WhatsApp: (62) 99646-6033
+            <a href="https://wa.me/5562996466033" target="_blank" class="footer-whatsapp-btn">
+                <i class="fa-brands fa-whatsapp text-xl"></i> Falar no WhatsApp: (62) 99646-6033
             </a>
 
-            <div class="border-t border-slate-800 pt-6 mt-4 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-                <p>ZENTIX Projetos & Engenharia <br> Brasil &copy; 2026 Todos os direitos reservados</p>
-                <p>Desenvolvido por: <a href="http://zentix.eng.br/" target="_blank" class="text-amber-500 hover:underline font-bold">ZENTIX Tecnologia</a></p>
+            <div class="footer-bottom">
+                <p>ZENTIX Projetos & Engenharia <br> Brasil <br> &copy; 2026 Todos os direitos reservados</p>
+                <p>Desenvolvido por: <a href="http://zentix.eng.br/" target="_blank">ZENTIX Tecnologia</a></p>
             </div>
         </div>
     </footer>
