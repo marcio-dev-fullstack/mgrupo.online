@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENTIX Concursos | Hub Oficial 2026</title>
+    <title>ZENTIX Concursos</title>
     <!-- Google Fonts & FontAwesome para ícones modernos -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -113,6 +113,69 @@
             margin: 0 auto 2rem auto;
         }
 
+        /* DESTAQUE DE COMPRA IMEDIATA */
+        .cta-destaque-wrapper {
+            max-width: 800px;
+            margin: -2rem auto 2.5rem auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 20;
+        }
+
+        .cta-destaque-card {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: var(--radius);
+            padding: 2rem;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.3), 0 8px 10px -6px rgba(16, 185, 129, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .cta-destaque-card h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cta-destaque-card p {
+            font-size: 1rem;
+            color: #ecfdf5;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-comprar-agora {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #ffffff;
+            color: #065f46;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-comprar-agora:hover {
+            background: #f0fdf4;
+            transform: scale(1.05);
+        }
+
         /* FILTROS INTELIGENTES */
         .filter-container {
             display: flex;
@@ -120,7 +183,7 @@
             gap: 0.5rem;
             flex-wrap: wrap;
             max-width: 900px;
-            margin: -1.5rem auto 2.5rem auto;
+            margin: 1.5rem auto 2.5rem auto;
             padding: 0 1rem;
             position: relative;
             z-index: 10;
@@ -346,7 +409,7 @@
     <!-- HEADER -->
     <header>
         <div class="logo">
-            <h1>ZENTIX <span>HUB</span></h1>
+            <h1>ZENTIX <span>CONCURSOS</span></h1>
         </div>
         <div class="header-badge">
             <i class="fa-solid fa-circle"></i> Atualizado 2026
@@ -358,6 +421,17 @@
         <h2>Sua Aprovação Começa Aqui</h2>
         <p>Explore editais abertos, previsões e seletores de Concursos e Processos Seletivos 2026 organizados por região.</p>
     </section>
+
+    <!-- DESTAQUE: COMPRE AGORA MESMO SEU MATERIAL COMPLETO -->
+    <div class="cta-destaque-wrapper">
+        <div class="cta-destaque-card">
+            <h3><i class="fa-solid fa-bolt"></i> Acelere sua Aprovação!</h3>
+            <p>Garanta acesso imediato a todas as apostilas, simulados direcionados e conteúdos estratégicos atualizados.</p>
+            <a href="https://wa.me/5562996466033?text=Quero%20comprar%20agora%20mesmo%20meu%20material%20completo" target="_blank" rel="noopener noreferrer" class="btn-comprar-agora">
+                <i class="fa-solid fa-cart-shopping"></i> COMPRE AGORA MESMO SEU MATERIAL COMPLETO
+            </a>
+        </div>
+    </div>
 
     <!-- FILTROS POR REGIÃO / FEDERAL -->
     <div class="filter-container">
