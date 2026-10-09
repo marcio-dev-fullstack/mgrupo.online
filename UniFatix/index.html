@@ -145,8 +145,18 @@
         .info-item.coordinator-featured .coordinator-title {
             font-size: 0.95rem;
             color: #cbd5e1;
-            margin-top: 2px;
+            margin-top: 4px;
             font-weight: 500;
+        }
+
+        .info-item.coordinator-featured .lattes-link {
+            color: #38bdf8;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+        .info-item.coordinator-featured .lattes-link:hover {
+            color: #7dd3fc;
         }
 
         table {
@@ -311,11 +321,16 @@
     </header>
 
     <div class="info-grid">
-        <!-- BLOCO DA COORDENAÇÃO EM DESTAQUE -->
+        <!-- BLOCO DA COORDENAÇÃO EM DESTAQUE COM LINK DO LATTES -->
         <div class="info-item coordinator-featured">
             <strong>Coordenação do Curso</strong>
             <div class="coordinator-name">Prof. Doutorando Márcio Rodrigues de Oliveira</div>
-            <div class="coordinator-title">Analista de Sistemas</div>
+            <div class="coordinator-title">
+                Analista de Sistemas | 
+                <a href="http://lattes.cnpq.br/5752724756523880" target="_blank" rel="noopener noreferrer" class="lattes-link">
+                    Currículo Lattes
+                </a>
+            </div>
         </div>
 
         <div class="info-item">
