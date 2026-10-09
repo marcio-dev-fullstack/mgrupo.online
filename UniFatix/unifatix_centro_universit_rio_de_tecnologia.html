@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniFATIX - Centro Universitário | Pós-Graduação em Tecnologia</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        uniblue: {
+                            900: '#0F2A4A',
+                            800: '#15365e',
+                            700: '#1b4372',
+                            600: '#0077b6',
+                            500: '#0096c7',
+                            400: '#48cae4',
+                            50: '#f0f9ff'
+                        },
+                        unicyan: {
+                            500: '#6fffe9',
+                            400: '#98fff0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-uniblue-600 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo UniFATIX fiel à identidade -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 flex items-center justify-center relative">
+                    <!-- SVG recriado idêntico ao prisma/livro azul e ciano da logo -->
+                    <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10L15 28L50 46L85 28L50 10Z" fill="#1b4372"/>
+                        <path d="M15 35L50 53V88L15 70V35Z" fill="#0F2A4A"/>
+                        <path d="M85 35L50 53V88L85 70V35Z" fill="#0077b6"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-extrabold tracking-tight text-uniblue-900 leading-none">Uni<span class="text-uniblue-600">FATIX</span></span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Centro Universitário</span>
+                </div>
+            </a>
+
+            <!-- Navegação Desktop -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                <a href="#inicio" class="hover:text-uniblue-600 transition">Início</a>
+                <a href="#cursos" class="hover:text-uniblue-600 transition">Cursos & Pós</a>
+                <a href="#ppc" class="hover:text-uniblue-600 transition">PPC & Matriz</a>
+                <a href="#diferenciais" class="hover:text-uniblue-600 transition">Diferenciais</a>
+                <a href="#contato" class="hover:text-uniblue-600 transition">Contato</a>
+            </nav>
+
+            <!-- Ações CTA -->
+            <div class="flex items-center gap-4">
+                <a href="#cursos" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl border border-uniblue-600 text-uniblue-600 font-semibold hover:bg-uniblue-50 transition">
+                    Área do Aluno
+                </a>
+                <a href="#cursos" class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-uniblue-900 text-white font-bold hover:bg-uniblue-800 shadow-lg shadow-uniblue-900/20 transition">
+                    Inscreva-se Já
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-slate-700 text-xl p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3">
+            <a href="#inicio" class="block text-slate-700 font-medium py-1">Início</a>
+            <a href="#cursos" class="block text-slate-700 font-medium py-1">Cursos & Pós</a>
+            <a href="#ppc" class="block text-slate-700 font-medium py-1">PPC & Matriz</a>
+            <a href="#diferenciais" class="block text-slate-700 font-medium py-1">Diferenciais</a>
+            <a href="#contato" class="block text-slate-700 font-medium py-1">Contato</a>
+        </div>
+    </header>
+
+    <section id="inicio" class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-uniblue-900 via-uniblue-800 to-uniblue-700 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-uniblue-600/30 border border-uniblue-400/40 text-unicyan-500 font-semibold text-xs tracking-wider uppercase">
+                        <i class="fa-solid fa-graduation-cap"></i> Pós-Graduação Lato Sensu em Tecnologia
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Formando os Líderes da <span class="text-unicyan-500">Próxima Era Tecnológica</span>
+                    </h1>
+                    <p class="text-lg text-slate-300 max-w-2xl leading-relaxed">
+                        Especializações de excelência em Engenharia de Software, Inteligência Artificial, Cibersegurança e Cloud Computing com metodologias ágeis e laboratórios em nuvem.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#cursos" class="px-8 py-4 rounded-xl bg-unicyan-500 text-uniblue-900 font-extrabold hover:bg-unicyan-400 shadow-xl shadow-unicyan-500/20 transition flex items-center gap-2">
+                            <span>Ver Cursos Disponíveis</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#ppc" class="px-8 py-4 rounded-xl bg-white/10 border border-white/20 text-white font-bold hover:bg-white/20 backdrop-blur-sm transition">
+                            Conhecer o PPC
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/15 shadow-2xl space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-uniblue-600 flex items-center justify-center text-white text-xl">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Destaque Acadêmico</h3>
+                                <p class="text-slate-300 text-sm">Engenharia de Software Avançada</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 pt-2 border-t border-white/10 text-sm">
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300">Coordenação:</span>
+                                <span class="font-semibold text-right">Prof. Márcio Rodrigues</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300">Modalidade:</span>
+                                <span class="font-semibold text-unicyan-500">100% EAD Interativo</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300">Carga Horária:</span>
+                                <span class="font-semibold">720 Horas-Aula</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300">Duração:</span>
+                                <span class="font-semibold">12 Meses</span>
+                            </div>
+                        </div>
+                        <a href="#ppc" class="w-full py-3 rounded-xl bg-white text-uniblue-900 font-bold text-center block hover:bg-slate-100 transition shadow">
+                            Ver Matriz Curricular Completa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white border-b border-slate-200 py-8 shadow-sm relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="space-y-1 p-4 rounded-2xl hover:bg-slate-50 transition">
+                <div class="text-3xl font-extrabold text-uniblue-600">100%</div>
+                <div class="text-sm font-semibold text-slate-700">EAD com Aulas Ao Vivo</div>
+                <p class="text-xs text-slate-500">Flexibilidade total para sua rotina</p>
+            </div>
+            <div class="space-y-1 p-4 rounded-2xl hover:bg-slate-50 transition">
+                <div class="text-3xl font-extrabold text-uniblue-600">720h</div>
+                <div class="text-sm font-semibold text-slate-700">Carga Horária Robusta</div>
+                <p class="text-xs text-slate-500">Foco em prática avançada</p>
+            </div>
+            <div class="space-y-1 p-4 rounded-2xl hover:bg-slate-50 transition">
+                <div class="text-3xl font-extrabold text-uniblue-600">12 Meses</div>
+                <div class="text-sm font-semibold text-slate-700">Duração Acelerada</div>
+                <p class="text-xs text-slate-500">Titulação ágil para o mercado</p>
+            </div>
+            <div class="space-y-1 p-4 rounded-2xl hover:bg-slate-50 transition">
+                <div class="text-3xl font-extrabold text-uniblue-600">MEC</div>
+                <div class="text-sm font-semibold text-slate-700">Reconhecimento Nacional</div>
+                <p class="text-xs text-slate-500">Certificado de alto padrão</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cursos" class="py-20 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-uniblue-600 bg-uniblue-50 px-3 py-1 rounded-full border border-uniblue-200">Portfólio Acadêmico</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-uniblue-900">Cursos de Pós-Graduação em Tecnologia</h2>
+                <p class="text-slate-600">Escolha a especialização que vai acelerar sua carreira para cargos de liderança, arquitetura e engenharia avançada.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div class="p-6 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-uniblue-50 text-uniblue-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-uniblue-900">Engenharia de Software Avançada</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Algoritmos avançados, microsserviços, design patterns, arquitetura cloud-native e machine learning aplicado.</p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700"><i class="fa-regular fa-clock mr-1"></i> 720h</span>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-uniblue-50 text-uniblue-600">100% EAD</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#ppc" class="w-full py-3 rounded-xl bg-uniblue-900 hover:bg-uniblue-800 text-white font-bold text-center block transition shadow">
+                            Ver Projeto Pedagógico (PPC)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Course Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div class="p-6 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-uniblue-50 text-uniblue-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-uniblue-900">Inteligência Artificial & Machine Learning</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Redes neurais, processamento de linguagem natural, engenharia de prompts e modelos preditivos em larga escala.</p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700"><i class="fa-regular fa-clock mr-1"></i> 360h</span>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-uniblue-50 text-uniblue-600">100% EAD</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#ppc" class="w-full py-3 rounded-xl bg-uniblue-900 hover:bg-uniblue-800 text-white font-bold text-center block transition shadow">
+                            Ver Projeto Pedagógico (PPC)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Course Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div class="p-6 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-uniblue-50 text-uniblue-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-uniblue-900">Cibersegurança & Ethical Hacking</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Segurança ofensiva e defensiva, pentest avançado, forense computacional e conformidade com LGPD.</p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700"><i class="fa-regular fa-clock mr-1"></i> 360h</span>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-uniblue-50 text-uniblue-600">100% EAD</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#ppc" class="w-full py-3 rounded-xl bg-uniblue-900 hover:bg-uniblue-800 text-white font-bold text-center block transition shadow">
+                            Ver Projeto Pedagógico (PPC)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Course Card 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div class="p-6 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-uniblue-50 text-uniblue-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-uniblue-900">Cloud Computing & DevOps</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Arquitetura AWS/Azure, Kubernetes, Terraform, automação de CI/CD e monitoramento de infraestruturas resilientes.</p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700"><i class="fa-regular fa-clock mr-1"></i> 360h</span>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-uniblue-50 text-uniblue-600">100% EAD</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#ppc" class="w-full py-3 rounded-xl bg-uniblue-900 hover:bg-uniblue-800 text-white font-bold text-center block transition shadow">
+                            Ver Projeto Pedagógico (PPC)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Course Card 5 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div class="p-6 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-uniblue-50 text-uniblue-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-uniblue-900">Data Science & Big Data Analytics</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Engenharia de dados, pipelines distribuídos (Spark/Hadoop), visualização avançada e business intelligence.</p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700"><i class="fa-regular fa-clock mr-1"></i> 360h</span>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-uniblue-50 text-uniblue-600">100% EAD</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#ppc" class="w-full py-3 rounded-xl bg-uniblue-900 hover:bg-uniblue-800 text-white font-bold text-center block transition shadow">
+                            Ver Projeto Pedagógico (PPC)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Course Card 6 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between">
+                    <div class="p-6 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-uniblue-50 text-uniblue-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-uniblue-900">Arquitetura Mobile & Multiplataforma</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Desenvolvimento avançado em Flutter, React Native, Kotlin e Swift com foco em performance e arquitetura limpa.</p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700"><i class="fa-regular fa-clock mr-1"></i> 360h</span>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-uniblue-50 text-uniblue-600">100% EAD</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#ppc" class="w-full py-3 rounded-xl bg-uniblue-900 hover:bg-uniblue-800 text-white font-bold text-center block transition shadow">
+                            Ver Projeto Pedagógico (PPC)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ppc" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-uniblue-600 bg-uniblue-50 px-3 py-1 rounded-full border border-uniblue-200">Transparência Acadêmica</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-uniblue-900">Projeto Pedagógico do Curso (PPC)</h2>
+                <p class="text-slate-600">Confira a estrutura curricular detalhada, coordenação acadêmica e diretrizes da Pós-Graduação.</p>
+            </div>
+
+            <!-- Coordenação Card (idêntico à imagem de referência) -->
+            <div class="bg-uniblue-900 text-white rounded-2xl p-8 shadow-xl border-l-8 border-unicyan-500 space-y-4">
+                <div class="text-xs font-bold uppercase tracking-wider text-unicyan-500">Coordenação do Curso</div>
+                <h3 class="text-2xl sm:text-3xl font-extrabold">Prof. Márcio Rodrigues de Oliveira, Doutorando em Ciências da Educação</h3>
+                <p class="text-slate-300 text-sm font-medium">Engenheiro de Software | <a href="#" class="text-unicyan-400 underline hover:text-unicyan-300">Currículo Lattes</a></p>
+            </div>
+
+            <!-- Informações Rápidas do PPC -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-2">
+                    <span class="text-xs font-bold uppercase text-slate-500">Modalidade</span>
+                    <h4 class="font-bold text-uniblue-900 text-lg">100% EAD (Educação a Distância)</h4>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-2">
+                    <span class="text-xs font-bold uppercase text-slate-500">Carga Horária Total</span>
+                    <h4 class="font-bold text-uniblue-900 text-lg">720 Horas-Aula</h4>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-2">
+                    <span class="text-xs font-bold uppercase text-slate-500">Duração Estimada</span>
+                    <h4 class="font-bold text-uniblue-900 text-lg">12 Meses</h4>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-2">
+                    <span class="text-xs font-bold uppercase text-slate-500">Público-Alvo</span>
+                    <h4 class="font-bold text-uniblue-900 text-base">Devs, Analistas, Arquitetos e Profissionais de TI</h4>
+                </div>
+            </div>
+
+            <!-- Tabela de Matriz Curricular Resumida -->
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold text-uniblue-900 flex items-center gap-3">
+                    <i class="fa-solid fa-book-open text-uniblue-600"></i> Matriz Curricular Resumida (720h)
+                </h3>
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-uniblue-900 text-white">
+                                <th class="p-4 sm:p-5 font-bold text-sm sm:text-base">Módulo</th>
+                                <th class="p-4 sm:p-5 font-bold text-sm sm:text-base">Disciplina</th>
+                                <th class="p-4 sm:p-5 font-bold text-sm sm:text-base text-right">Carga Horária</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 bg-white text-slate-700 text-sm sm:text-base">
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-900">Módulo I: Algoritmos, Estruturas & Desempenho</td>
+                                <td class="p-4 sm:p-5">1. Algoritmos Avançados, Tipagem e Estruturas de Controle</td>
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-600 text-right">60h</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 sm:p-5 font-bold text-slate-500">Módulo I (Cont.)</td>
+                                <td class="p-4 sm:p-5">2. Estruturas de Dados Lineares e Não-Lineares Avançadas</td>
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-600 text-right">90h</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-900">Módulo II: Arquitetura & Cloud</td>
+                                <td class="p-4 sm:p-5">3. Microsserviços, Design Patterns e Cloud Native</td>
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-600 text-right">120h</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-900">Módulo III: Inteligência Aplicada</td>
+                                <td class="p-4 sm:p-5">4. Machine Learning para Engenharia de Software</td>
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-600 text-right">150h</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-900">Módulo IV: Qualidade & DevOps</td>
+                                <td class="p-4 sm:p-5">5. Testes Automatizados, CI/CD e DevOps Avançado</td>
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-600 text-right">150h</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-900">Módulo V: Trabalho de Conclusão</td>
+                                <td class="p-4 sm:p-5">6. Metodologia Científica e TCC Aplicado</td>
+                                <td class="p-4 sm:p-5 font-bold text-uniblue-600 text-right">150h</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="diferenciais" class="py-20 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-uniblue-600 bg-uniblue-50 px-3 py-1 rounded-full border border-uniblue-200">Por que escolher o UniFATIX?</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-uniblue-900">Inovação e Tecnologia em Cada Detalhe</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-14 h-14 rounded-xl bg-uniblue-50 text-uniblue-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-uniblue-900">Corpo Docente de Mercado</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Professores atuantes nas maiores empresas de tecnologia do Brasil e exterior, trazendo cases reais para a sala de aula virtual.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-14 h-14 rounded-xl bg-uniblue-50 text-uniblue-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-uniblue-900">Laboratórios Virtuais em Nuvem</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Ambientes de desenvolvimento provisionados sob demanda para você praticar sem barreiras de hardware em seu computador.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-14 h-14 rounded-xl bg-uniblue-50 text-uniblue-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-uniblue-900">Networking & Empregabilidade</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Conecte-se com uma comunidade vibrante de engenheiros e líderes de TI, além de parcerias exclusivas de recrutamento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-20 bg-uniblue-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-unicyan-500 bg-uniblue-800 px-3 py-1 rounded-full border border-uniblue-700">Fale Conosco</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Pronto para dar o próximo passo na sua carreira tech?</h2>
+                <p class="text-slate-300 leading-relaxed">Preencha o formulário e nossa equipe de consultores educacionais entrará em contato para tirar todas as suas dúvidas sobre bolsas, financiamento e matrículas.</p>
+                <div class="space-y-4 pt-2">
+                    <div class="flex items-center gap-3 text-slate-300">
+                        <i class="fa-solid fa-phone text-unicyan-500"></i>
+                        <span>0800 555 3284 / (11) 4002-8922</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-slate-300">
+                        <i class="fa-solid fa-envelope text-unicyan-500"></i>
+                        <span>contato@unifatix.online</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-slate-300">
+                        <i class="fa-solid fa-location-dot text-unicyan-500"></i>
+                        <span>Campus Tecnológico Digital • Av. Inovação, 1000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white text-slate-800 p-8 sm:p-10 rounded-3xl shadow-2xl space-y-6">
+                <h3 class="text-2xl font-bold text-uniblue-900">Inscreva-se no Processo Seletivo</h3>
+                <form onsubmit="event.preventDefault(); showNotification();" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nome Completo</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-uniblue-600 focus:outline-none" placeholder="Ex: Ana Souza">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">E-mail Profissional</label>
+                        <input type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-uniblue-600 focus:outline-none" placeholder="ana@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">WhatsApp / Telefone</label>
+                        <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-uniblue-600 focus:outline-none" placeholder="(11) 99999-9999">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Curso de Interesse</label>
+                        <select class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-uniblue-600 focus:outline-none bg-white">
+                            <option>Engenharia de Software Avançada</option>
+                            <option>Inteligência Artificial & Machine Learning</option>
+                            <option>Cibersegurança & Ethical Hacking</option>
+                            <option>Cloud Computing & DevOps</option>
+                            <option>Data Science & Big Data Analytics</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-uniblue-900 hover:bg-uniblue-800 text-white font-bold text-center transition shadow-lg">
+                        Enviar Inscrição
+                    </button>
+                </form>
+                <div id="success-msg" class="hidden text-center p-3 rounded-xl bg-emerald-50 text-emerald-700 font-semibold text-sm">
+                    Inscrição realizada com sucesso! Entraremos em contato em breve.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div class="space-y-4 md:col-span-1">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 10L15 28L50 46L85 28L50 10Z" fill="#1b4372"/>
+                            <path d="M15 35L50 53V88L15 70V35Z" fill="#0F2A4A"/>
+                            <path d="M85 35L50 53V88L85 70V35Z" fill="#0077b6"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-extrabold text-white">Uni<span class="text-unicyan-500">FATIX</span></span>
+                </div>
+                <p class="text-sm">Centro Universitário de Tecnologia focado na excelência acadêmica e na transformação digital do mercado.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Pós-Graduação</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#cursos" class="hover:text-white transition">Engenharia de Software</a></li>
+                    <li><a href="#cursos" class="hover:text-white transition">Inteligência Artificial</a></li>
+                    <li><a href="#cursos" class="hover:text-white transition">Cibersegurança</a></li>
+                    <li><a href="#cursos" class="hover:text-white transition">Cloud Computing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Institucional</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#ppc" class="hover:text-white transition">Projeto Pedagógico (PPC)</a></li>
+                    <li><a href="#diferenciais" class="hover:text-white transition">Corpo Docente</a></li>
+                    <li><a href="#contato" class="hover:text-white transition">Processo Seletivo</a></li>
+                    <li><a href="#" class="hover:text-white transition">Portal do Aluno</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Redes Sociais</h4>
+                <div class="flex gap-4 text-xl">
+                    <a href="#" class="hover:text-unicyan-500 transition"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-unicyan-500 transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-unicyan-500 transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="hover:text-unicyan-500 transition"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+            © 2026 UniFATIX - Centro Universitário de Tecnologia. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Toggle mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Form submission notification
+        function showNotification() {
+            const msg = document.getElementById('success-msg');
+            if (msg) {
+                msg.classList.remove('hidden');
+                setTimeout(() => {
+                    msg.classList.add('hidden');
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
