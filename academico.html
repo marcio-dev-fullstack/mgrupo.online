@@ -6,7 +6,7 @@
     <title>Zentix Acadêmico - Soluções Inteligentes</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
@@ -18,13 +18,13 @@
             margin: 0 auto;
             background: #fff;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
         /* Logo Zentix Acadêmico */
         .logo-container {
             text-align: center;
-            padding: 20px 0;
+            padding: 10px 0 20px 0;
             margin-bottom: 20px;
         }
         .logo-svg {
@@ -36,7 +36,7 @@
             background-color: #ebf8ff;
             border: 1px solid #bee3f8;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             text-align: center;
             margin-bottom: 25px;
         }
@@ -53,27 +53,91 @@
         .service-card {
             border: 1px solid #e2e8f0;
             border-left: 4px solid #3182ce;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
+            padding: 18px;
+            margin: 15px 0;
+            border-radius: 6px;
             background-color: #f7fafc;
         }
         .service-card h2 {
             margin-top: 0;
             color: #2b6cb0;
+            font-size: 1.25rem;
         }
-        
-        /* Destaque para Consulta de Valores */
-        .price-highlight {
-            background-color: #e6fffa;
-            border: 2px dashed #319795;
-            padding: 15px;
-            margin: 30px 0 20px 0;
-            border-radius: 8px;
+        .service-card p {
+            margin-bottom: 0;
+            color: #4a5568;
+        }
+
+        /* Seção Tabela de Preços */
+        .pricing-section {
+            margin: 35px 0 25px 0;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .pricing-header {
+            background-color: #1a365d;
+            color: #ffffff;
+            padding: 15px 20px;
             text-align: center;
-            color: #234e52;
-            font-size: 1.2rem;
-            font-weight: bold;
+        }
+        .pricing-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+        }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .price-table th, .price-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .price-table th {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+        .price-table tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+        .price-table tr:hover {
+            background-color: #edf2f7;
+        }
+        .service-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .price-tag {
+            font-weight: 700;
+            color: #2b6cb0;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .price-tag.consult {
+            color: #d69e2e;
+            font-style: italic;
+        }
+        .pricing-notice {
+            background-color: #fffaf0;
+            border-top: 1px solid #feebc8;
+            padding: 12px 20px;
+            color: #744210;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-curriculo {
@@ -82,7 +146,7 @@
             color: white;
             padding: 10px 20px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             transition: background-color 0.2s;
         }
@@ -95,7 +159,7 @@
             background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
             color: #ffffff;
             padding: 40px 30px 20px 30px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-top: 40px;
             text-align: center;
         }
@@ -162,7 +226,7 @@
             margin: 5px auto;
         }
 
-        /* Estilo do Botão Flutuante do WhatsApp */
+        /* Botão Flutuante do WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -231,16 +295,55 @@
         <p>Suporte para estruturação de relatórios técnicos, artigos e produções científicas. Qualidade e rigor metodológico garantidos.</p>
     </div>
 
-    <!-- Destaque Único de Valores -->
-    <div class="price-highlight">
-        💬 Consultar valores no atendimento
+    <!-- Tabela de Preços -->
+    <div class="pricing-section">
+        <div class="pricing-header">
+            <h2>🏷️ Tabela de Investimento</h2>
+        </div>
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>Serviço / Produção Acadêmica</th>
+                    <th style="text-align: right;">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="service-name">Trabalhos Acadêmicos</td>
+                    <td class="price-tag">A partir de R$ 50,00</td>
+                </tr>
+                <tr>
+                    <td class="service-name">TCC / Artigo Científico</td>
+                    <td class="price-tag">A partir de R$ 600,00</td>
+                </tr>
+                <tr>
+                    <td class="service-name">TCC / Projeto Integrador</td>
+                    <td class="price-tag">A partir de R$ 600,00</td>
+                </tr>
+                <tr>
+                    <td class="service-name">TCC / Monografia</td>
+                    <td class="price-tag">A partir de R$ 800,00</td>
+                </tr>
+                <tr>
+                    <td class="service-name">Mestrado / Dissertação</td>
+                    <td class="price-tag consult">Consultar valor</td>
+                </tr>
+                <tr>
+                    <td class="service-name">Doutorado / Tese</td>
+                    <td class="price-tag consult">Consultar valor</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pricing-notice">
+            ⚠️ <span><strong>Observação:</strong> Trabalhos voltados para Instituições Públicas (IF / UF / UE) possuem requisitos específicos e valores diferenciados.</span>
+        </div>
     </div>
 
-    <!-- Novo Rodapé Atraente -->
+    <!-- Rodapé -->
     <footer class="site-footer">
         <div class="footer-content">
-            <h3>🚀 Pronto para impulsionar a sua trajetória académica?</h3>
-            <p>Entre em contacto connosco agora mesmo e tire todas as suas dúvidas sobre mentorias, TCC e orientações.</p>
+            <h3>🚀 Pronto para impulsionar a sua trajetória acadêmica?</h3>
+            <p>Entre em contato conosco agora mesmo e tire todas as suas dúvidas sobre mentorias, TCC e orientações.</p>
             
             <div class="footer-actions">
                 <a href="https://wa.me/5562996466033?text=Ol%C3%A1!%20Gostaria%20de%20iniciar%20um%20atendimento." class="btn-footer-whatsapp" target="_blank" rel="noopener noreferrer">
@@ -259,7 +362,7 @@
 
 </div>
 
-<!-- Botão Flutuante do WhatsApp no canto inferior direito -->
+<!-- Botão Flutuante do WhatsApp -->
 <a href="https://wa.me/5565999231273?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20acad%C3%AAmicos." 
    class="whatsapp-float" 
    target="_blank" 
