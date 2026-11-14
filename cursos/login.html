@@ -1,68 +1,47 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENTIX | Área do Aluno - Login</title>
+    <title>ZENTIX Cursos - Autenticação Segura</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="auth.js"></script>
 </head>
-<body class="dark-theme login-page">
-    <div class="login-wrapper">
-        <!-- Lado Esquerdo - Slogan / Branding -->
-        <div class="login-branding">
-            <div class="brand-logo">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <span>ZENTIX <strong>CURSOS</strong></span>
+<body>
+    <div class="login-container">
+        <div class="brand" style="justify-content: center;">⚡ ZENTIX CURSOS</div>
+        <h2 style="text-align: center; margin-bottom: 0.5rem;">Área de Acesso</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Selecione seu perfil de teste para acessar</p>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label>E-mail do Usuário</label>
+                <input type="email" id="email" class="form-control" value="aluno@zentix.com" required>
             </div>
-            <div class="hero-text">
-                <h1>Seu próximo<br><span class="highlight">nclsível começa</span><br>aqui.</h1>
-                <p>Acesse suas formações, acompanhe seu progresso e continue sua jornada de desenvolvimento profissional em um só lugar.</p>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="password" class="form-control" value="••••••••" required>
             </div>
-            <div class="brand-features">
-                <div class="feature-item"><i class="fa-solid fa-circle-check"></i> Cursos liberados após pagamento</div>
-                <div class="feature-item"><i class="fa-solid fa-shield-halved"></i> Ambiente seguro e certificado</div>
+            <div class="form-group">
+                <label>Perfil de Acesso (RBAC)</label>
+                <select id="roleSelect" class="form-control">
+                    <option value="aluno">🎓 Aluno (Leitura / Sem Permissão de Exclusão)</option>
+                    <option value="admin">🛡️ Administrador (Acesso Total + Gestão)</option>
+                </select>
             </div>
-        </div>
-
-        <!-- Lado Direito - Card de Login -->
-        <div class="login-card-container">
-            <div class="login-card">
-                <h3>Bem-vindo de volta</h3>
-                <p class="subtitle">Entre para acessar seu ambiente do aluno.</p>
-
-                <form id="login-form" action="index.html">
-                    <div class="input-group">
-                        <label for="email">E-mail</label>
-                        <div class="input-with-icon">
-                            <i class="fa-regular fa-envelope"></i>
-                            <input type="email" id="email" required placeholder="Seu e-mail cadastrado" value="aluno@zentix.com">
-                        </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="password">Senha</label>
-                        <div class="input-with-icon">
-                            <i class="fa-solid fa-lock"></i>
-                            <input type="password" id="password" required placeholder="Sua senha" value="123456">
-                        </div>
-                        <a href="#" class="forgot-link">Esqueci minha senha</a>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fa-solid fa-right-to-bracket"></i> Entrar no ambiente
-                    </button>
-
-                    <div class="demo-box">
-                        <p>Demonstração: use <strong>aluno@zentix.com</strong> e <strong>123456</strong></p>
-                        <button type="button" class="btn btn-test" id="fill-test-btn">
-                            <i class="fa-solid fa-bolt"></i> Preencher dados de teste
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Entrar na Plataforma</button>
+        </form>
     </div>
-    <script src="app.js"></script>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const role = document.getElementById('roleSelect').value;
+            const name = role === 'admin' ? 'Administrador Sistema' : 'Marcio Silva (Aluno)';
+
+            ZentixAuth.login(email, role, name);
+            window.location.href = 'index.html';
+        });
+    </script>
 </body>
 </html>

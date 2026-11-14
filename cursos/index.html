@@ -2,122 +2,69 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENTIX | Área do Aluno - Dashboard</title>
+    <title>ZENTIX - Painel Principal</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="auth.js"></script>
 </head>
-<body class="dark-theme">
-    <header class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-graduation-cap logo-icon"></i>
-            <span class="logo-title">ZENTIX <strong>CURSOS</strong></span>
+<body>
+    <script>ZentixAuth.protectPage('aluno');</script>
+
+    <aside class="sidebar">
+        <div>
+            <div class="brand">⚡ ZENTIX</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">🏠 Dashboard</a></li>
+                <li><a href="curso.html" class="nav-link">📚 Minhas Aulas</a></li>
+                <li><a href="certificados.html" class="nav-link">📜 Certificados</a></li>
+                <li><a href="cronograma.html" class="nav-link">📅 Cronograma</a></li>
+                <li class="admin-only"><a href="admin.html" class="nav-link" style="color: var(--danger);">🛡️ Painel Admin</a></li>
+            </ul>
         </div>
-        <nav class="nav-links">
-            <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Visão Geral</a>
-            <a href="1-catalogo-completo.html"><i class="fa-solid fa-book-open"></i> Catálogo</a>
-            <a href="cronograma.html"><i class="fa-solid fa-calendar-days"></i> Cronograma</a>
-            <a href="certificados.html"><i class="fa-solid fa-certificate"></i> Certificados</a>
-            <a href="admin.html"><i class="fa-solid fa-user-shield"></i> Admin</a>
-        </nav>
-        <div class="user-menu">
-            <div class="avatar-circle">MR</div>
-            <div class="user-info">
-                <span class="user-name">Márcio</span>
-                <span class="user-email">aluno@zentix.com</span>
-            </div>
-            <a href="login.html" class="logout-btn" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <div class="user-profile-widget">
+            <div class="user-name-display" style="font-weight: 600;">Carregando...</div>
+            <div class="user-role-badge">...</div>
+            <button onclick="ZentixAuth.logout()" class="btn btn-danger" style="width: 100%; margin-top: 0.75rem; padding: 0.4rem;">Sair</button>
         </div>
-    </header>
+    </aside>
 
-    <main class="dashboard-container">
-        <!-- Banner Boas-vindas -->
-        <section class="welcome-card">
-            <div class="welcome-text">
-                <h2>Olá, <span>Márcio</span>! 👋</h2>
-                <p>Veja seus acessos, acompanhe seu progresso e continue aprendendo hoje.</p>
-                <div class="badges">
-                    <span class="badge"><i class="fa-solid fa-circle-check"></i> Cursos liberados após pagamento</span>
-                    <span class="badge"><i class="fa-solid fa-shield-halved"></i> Ambiente seguro</span>
-                </div>
+    <main class="main-content">
+        <header class="header-bar">
+            <div>
+                <h1>Área do Aluno & Treinamentos</h1>
+                <p style="color: var(--text-muted);">Acompanhe seu progresso e certificações regulatórias.</p>
             </div>
-            <div class="cta-continue">
-                <a href="curso.html" class="btn btn-primary"><i class="fa-solid fa-play"></i> Continuar Aula Atual</a>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div style="color: var(--text-muted);">Cursos Ativos</div>
+                <div class="stat-val">3</div>
+            </div>
+            <div class="stat-card">
+                <div style="color: var(--text-muted);">Aulas Concluídas</div>
+                <div class="stat-val">24/30</div>
+            </div>
+            <div class="stat-card">
+                <div style="color: var(--text-muted);">Certificados Emitidos</div>
+                <div class="stat-val">2</div>
             </div>
         </section>
 
-        <!-- KPI Metrics -->
-        <section class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-icon blue"><i class="fa-solid fa-book-bookmark"></i></div>
-                <div class="metric-details">
-                    <span class="metric-value" id="count-courses">3</span>
-                    <span class="metric-label">Cursos liberados</span>
-                </div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-icon green"><i class="fa-solid fa-circle-check"></i></div>
-                <div class="metric-details">
-                    <span class="metric-value" id="count-lessons">12</span>
-                    <span class="metric-label">Aulas concluídas</span>
-                </div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-icon gold"><i class="fa-solid fa-award"></i></div>
-                <div class="metric-details">
-                    <span class="metric-value" id="count-certs">1</span>
-                    <span class="metric-label">Certificados conquistados</span>
-                </div>
-            </div>
+        <section class="card">
+            <h2>▶️ Continuar de Onde Parou</h2>
+            <p style="color: var(--text-muted); margin: 0.5rem 0 1rem 0;">Treinamento NR-10: Segurança em Instalações Elétricas (Módulo 3)</p>
+            <a href="curso.html" class="btn btn-primary">Assistir Aula PENDENTE</a>
         </section>
 
-        <!-- Continuar de onde parou -->
-        <section class="continue-section">
-            <div class="section-header">
-                <h3><i class="fa-solid fa-clock-rotate-left"></i> Continuar de Onde Parou</h3>
+        <section class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>📋 Gestão de Cursos Inscritos</h2>
+                <button class="btn btn-danger admin-only btn-delete">🗑️ Excluir Todos os Dados (Apenas Admin)</button>
             </div>
-            <div class="resume-card">
-                <div class="resume-info">
-                    <span class="tag">Normas Regulamentadoras</span>
-                    <h4>NR-10 - Segurança em Instalações e Serviços em Eletricidade</h4>
-                    <p>Módulo 2: Princípios Básicos de Proteção Elétrica • Aula 3 de 8</p>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 45%;"></div>
-                    </div>
-                    <span class="progress-text">45% concluído</span>
-                </div>
-                <div class="resume-action">
-                    <a href="curso.html?id=nr10" class="btn btn-secondary"><i class="fa-solid fa-circle-play"></i> Retomar Aula</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Meus Cursos -->
-        <section class="courses-section">
-            <div class="section-header">
-                <h3><i class="fa-solid fa-layer-group"></i> Meus Cursos e Acessos</h3>
-                <div class="search-filter">
-                    <input type="text" id="course-search" placeholder="Buscar nos meus cursos...">
-                    <select id="category-filter">
-                        <option value="all">Todas as Categorias</option>
-                        <option value="sst">Segurança do Trabalho (SST)</option>
-                        <option value="topografia">Topografia e Engenharia</option>
-                        <option value="saude">Saúde & Harmonização</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="courses-grid" id="courses-container">
-                <!-- Inserido dinamicamente via JS -->
-            </div>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">
+                * Perfil <strong>Aluno</strong> possui acesso de leitura e conclusão de aulas. Ações destrutivas são restritas ao <strong>Admin</strong>.
+            </p>
         </section>
     </main>
-
-    <footer class="footer">
-        <p>&copy; 2026 ZENTIX Cursos • Plataforma de Formação Profissional • Desenvolvido para Márcio</p>
-    </footer>
-
-    <script src="courses-data.js"></script>
-    <script src="app.js"></script>
 </body>
 </html>

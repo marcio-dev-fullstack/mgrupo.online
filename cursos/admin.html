@@ -2,56 +2,53 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENTIX | Painel de Administração</title>
+    <title>ZENTIX - Painel Administrativo</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="auth.js"></script>
 </head>
-<body class="dark-theme">
-    <header class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-sliders logo-icon"></i>
-            <span class="logo-title">ZENTIX <strong>ADMIN</strong></span>
+<body>
+    <script>ZentixAuth.protectPage('admin');</script>
+
+    <aside class="sidebar">
+        <div>
+            <div class="brand">⚡ ZENTIX ADMIN</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">🏠 Dashboard</a></li>
+                <li><a href="admin.html" class="nav-link active">🛡️ Gestão Global</a></li>
+            </ul>
         </div>
-        <a href="index.html" class="btn btn-secondary"><i class="fa-solid fa-house"></i> Área do Aluno</a>
-    </header>
+        <div class="user-profile-widget">
+            <div class="user-name-display">Admin</div>
+            <div class="user-role-badge badge-admin">🛡️ Admin</div>
+            <button onclick="ZentixAuth.logout()" class="btn btn-danger" style="width: 100%; margin-top: 0.75rem;">Sair</button>
+        </div>
+    </aside>
 
-    <main class="dashboard-container">
-        <section class="page-header">
-            <h2><i class="fa-solid fa-user-gear"></i> Gerenciamento da Plataforma</h2>
-            <p>Controle de liberação de alunos, cadastro de cursos e acompanhamento de matrículas.</p>
-        </section>
+    <main class="main-content">
+        <h1>🛡️ Painel de Controle Administrativo</h1>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Acesso Restrito: Gerenciamento de Alunos, Cursos e Exclusões</p>
 
-        <section class="admin-grid">
-            <div class="admin-card">
-                <h3><i class="fa-solid fa-user-plus"></i> Liberar Acesso Manual</h3>
-                <div class="form-group">
-                    <label>E-mail do Aluno</label>
-                    <input type="email" placeholder="aluno@email.com">
-                    <label>Curso a Liberar</label>
-                    <select>
-                        <option>NR-10 - Segurança em Eletricidade</option>
-                        <option>Topografia Aplicada e Cadastral</option>
-                        <option>Harmonização Orofacial Full Face</option>
-                    </select>
-                    <button class="btn btn-primary btn-block"><i class="fa-solid fa-key"></i> Confirmar Liberação</button>
-                </div>
-            </div>
-
-            <div class="admin-card">
-                <h3><i class="fa-solid fa-users"></i> Alunos Ativos no Sistema</h3>
-                <ul class="user-list">
-                    <li>
-                        <span><strong>Márcio Rodrigues</strong> (aluno@zentix.com)</span>
-                        <span class="badge green">3 Cursos Ativos</span>
-                    </li>
-                    <li>
-                        <span><strong>Késia Silva</strong> (kesia@zentix.com)</span>
-                        <span class="badge blue">1 Curso Ativo</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
+        <div class="card">
+            <h2>👥 Alunos Cadastrados</h2>
+            <table style="width: 100%; margin-top: 1rem; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <th style="padding: 0.75rem;">Nome</th>
+                        <th>E-mail</th>
+                        <th>Perfil</th>
+                        <th>Ação Administrativa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 0.75rem;">Marcio Silva</td>
+                        <td>aluno@zentix.com</td>
+                        <td><span class="user-role-badge badge-aluno">Aluno</span></td>
+                        <td><button onclick="alert('Aluno removido pelo administrador.')" class="btn btn-danger" style="padding: 0.3rem 0.6rem;">Deletar Aluno</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
 </body>
 </html>
