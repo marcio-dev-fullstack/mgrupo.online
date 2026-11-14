@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX | Sala de Aula Virtual</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme classroom-body">
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Voltar ao Dashboard</a>
+        </div>
+        <div class="course-header-title">
+            <span id="current-course-title">NR-10 - Segurança em Eletricidade</span>
+        </div>
+        <div class="user-menu">
+            <div class="avatar-circle">MR</div>
+        </div>
+    </header>
+
+    <div class="classroom-container">
+        <!-- Coluna Esquerda: Player de Vídeo e Material -->
+        <main class="video-main">
+            <div class="video-player-box">
+                <div class="video-screen" id="video-placeholder">
+                    <i class="fa-solid fa-circle-play play-big-icon"></i>
+                    <p>Vídeo Aula: <strong>Introdução às Normas Regulamentadoras e NR-10</strong></p>
+                </div>
+            </div>
+
+            <div class="lesson-details">
+                <div class="lesson-header">
+                    <h2 id="lesson-title">Aula 1: Conceitos Fundamentais de Risco Elétrico</h2>
+                    <button class="btn btn-success" id="btn-complete-lesson"><i class="fa-solid fa-check-double"></i> Marcar como Concluída</button>
+                </div>
+
+                <!-- Tabs de Anotações e Materiais -->
+                <div class="classroom-tabs">
+                    <button class="tab-btn active" onclick="switchTab('notes')"><i class="fa-solid fa-pen-to-square"></i> Minhas Anotações</button>
+                    <button class="tab-btn" onclick="switchTab('quiz')"><i class="fa-solid fa-list-check"></i> Quiz de Fixação</button>
+                    <button class="tab-btn" onclick="switchTab('material')"><i class="fa-solid fa-file-pdf"></i> Material Complementar</button>
+                </div>
+
+                <div class="tab-content active" id="tab-notes">
+                    <p class="small-desc">Escreva suas anotações pessoais durante a aula. Elas ficam salvas automaticamente no seu navegador.</p>
+                    <textarea id="student-notes" placeholder="Digite aqui suas observações sobre esta aula..."></textarea>
+                    <button class="btn btn-secondary" onclick="saveNotes()"><i class="fa-solid fa-floppy-disk"></i> Salvar Anotações</button>
+                    <span id="notes-status" class="status-msg"></span>
+                </div>
+
+                <div class="tab-content" id="tab-quiz" style="display:none;">
+                    <h4>Quiz de Teste de Conhecimento</h4>
+                    <p>Qual é o objetivo principal da norma NR-10?</p>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q1" value="a"> A) Definir salários de eletricistas</label>
+                        <label><input type="radio" name="q1" value="b"> B) Garantir a segurança e saúde dos trabalhadores em instalações elétricas</label>
+                        <label><input type="radio" name="q1" value="c"> C) Regular a venda de cabos e condutores</label>
+                    </div>
+                    <button class="btn btn-primary" onclick="checkQuiz()"><i class="fa-solid fa-paper-plane"></i> Enviar Resposta</button>
+                    <div id="quiz-result"></div>
+                </div>
+
+                <div class="tab-content" id="tab-material" style="display:none;">
+                    <h4>Apostilas e PDFs do Curso</h4>
+                    <ul class="file-list">
+                        <li><i class="fa-solid fa-file-pdf"></i> Apostila_Oficial_NR10_Zentix.pdf <a href="#" class="download-link">Baixar</a></li>
+                        <li><i class="fa-solid fa-file-lines"></i> Tabela_de_EPIs_Recomendados.pdf <a href="#" class="download-link">Baixar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <!-- Coluna Direita: Grade de Módulos e Aulas -->
+        <aside class="modules-sidebar">
+            <h3><i class="fa-solid fa-list-ul"></i> Módulos do Curso</h3>
+            <div class="modules-accordion" id="modules-list">
+                <!-- Gerado dinamicamente -->
+            </div>
+        </aside>
+    </div>
+
+    <script src="courses-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

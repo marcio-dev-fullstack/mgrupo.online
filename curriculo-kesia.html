@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo Técnico - Késia de Oliveira Quadros</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Fundo Matrix Verde com temática ambiental */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #031107;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .page-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        @media print {
+            body {
+                background-color: #ffffff;
+            }
+            #matrix-canvas {
+                display: none;
+            }
+            .page-container {
+                box-shadow: none !important;
+                background-color: #ffffff !important;
+            }
+        }
+    </style>
+</head>
+<body class="py-8 px-4 sm:px-6 lg:px-8">
+
+    <!-- Canvas do Efeito Matrix Verde Ambiental -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <div class="max-w-4xl mx-auto shadow-2xl rounded-2xl overflow-hidden border border-emerald-800/30 page-container relative z-10">              
+
+        <!-- Header / Hero Section -->
+        <header class="bg-gradient-to-r from-emerald-950 via-teal-900 to-slate-950 text-white p-8 sm:p-10 border-b border-emerald-700/40">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mt-2 text-white">
+                        Késia de Oliveira Quadros
+                    </h1>
+                    <p class="text-emerald-300 text-sm mt-1 font-light">
+                        Gestora Ambiental | Geográfa
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 text-xs space-y-1.5 text-emerald-100">
+                    <p class="flex items-center gap-2">
+                        <span class="font-semibold text-emerald-400">📍</span> Cuiabá - MT
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <span class="font-semibold text-emerald-400">📞</span> (65) 99231-2739
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <span class="font-semibold text-emerald-400">✉️</span> kesiaquadros2017@gmail.com
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+            
+            <!-- Sidebar (Left Column - 4 Cols) -->
+            <aside class="lg:col-span-4 bg-emerald-50/70 p-6 sm:p-8 border-r border-emerald-200 space-y-6">
+                
+                <!-- Competências -->
+                <div>
+                    <h2 class="text-xs uppercase font-bold tracking-wider text-emerald-900 mb-3 border-b border-emerald-300 pb-1.5">
+                        Competências
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Educação & EAD -->
+                        <div>
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block mb-1.5">Educação & EAD</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Mediação (AVA)</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Planejamento Pedagógico</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Metodologias Ativas</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Avaliação Formativa</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Tutoria Ativa</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Design Instrucional Básico</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Suporte Síncrono e Assíncrono</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Retenção e Engajamento Escolar</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Educação Ambiental Transversal</span>
+                            </div>
+                        </div>
+
+                        <!-- Engenharia e Gestão Ambiental -->
+                        <div>
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block mb-1.5">Gestão & Ambiental</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Legislação Ambiental</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Gestão de Projetos</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Geoprocessamento e Análise Espacial</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Licenciamento Ambiental</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Gestão e Manejo de Resíduos</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Avaliação de Impacto Ambiental (AIA)</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Educação Ambiental Corporativa</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Controle de Qualidade Operacional</span>
+                            </div>
+                        </div>
+
+                        <!-- Administrativas & Comportamentais -->
+                        <div>
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block mb-1.5">Administrativas & Gerais</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Gestão Documental</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Pacote Office</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Organização e Planejamento</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Comunicação Empática</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Elaboração de Relatórios Técnicos</span>
+                                <span class="bg-white text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-md font-medium shadow-sm">Visão Sistêmica e Multidisciplinar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Main Content Area (Right Column - 8 Cols) -->
+            <main class="lg:col-span-8 p-6 sm:p-8 space-y-8 bg-white/95">
+                
+                <!-- Perfil Profissional -->
+                <section>
+                    <h2 class="text-sm uppercase font-bold tracking-wider text-emerald-950 mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Perfil Profissional
+                    </h2>
+                    <p class="text-slate-700 text-sm leading-relaxed text-justify bg-emerald-50/60 p-4 rounded-xl border border-emerald-200">
+                        Profissional graduada em Tecnologia em Gestão Ambiental e Licenciatura em Geografia, com sólida experiência nas áreas acadêmica, administrativa e ambiental. Detentora de excelente facilidade de aprendizagem, organização exemplar, responsabilidade e postura colaborativa. Atuante no ensino a distância (EAD) com foco na mediação pedagógica e engajamento estudantil, bem como na gestão de processos administrativos e conformidade socioambiental em projetos de engenharia.
+                    </p>
+                </section>
+
+                <!-- Experiência Profissional -->
+                <section>
+                    <h2 class="text-sm uppercase font-bold tracking-wider text-emerald-950 mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Experiência Profissional
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        
+                        <!-- Job 1 -->
+                        <div class="relative pl-4 border-l-2 border-emerald-600">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                                <h3 class="font-bold text-slate-900 text-base">ZENTIX Cursos</h3>
+                                <span class="text-xs font-semibold bg-emerald-100 text-emerald-900 px-2.5 py-0.5 rounded-full w-fit mt-1 sm:mt-0">2025 – atual</span>
+                            </div>
+                            <p class="text-xs font-semibold text-emerald-700 mb-2">Professora EAD</p>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-2">
+                                Atuação pedagógica e virtual focada no engajamento dos estudantes e na mediação de conteúdos educacionais:
+                            </p>
+                            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+                                <li>Tutoria ativa e mediação de aprendizagem no Ambiente Virtual de Aprendizagem (AVA);</li>
+                                <li>Facilitação de debates e estímulo à participação crítica em fóruns temáticos;</li>
+                                <li>Emissão de feedback qualificado e avaliação personalizada de atividades;</li>
+                                <li>Suporte síncrono e assíncrono aos alunos para esclarecimento de dúvidas conceituais;</li>
+                                <li>Acompanhamento do progresso discente e suporte estratégico para retenção.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Job 2 -->
+                        <div class="relative pl-4 border-l-2 border-emerald-600">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                                <h3 class="font-bold text-slate-900 text-base">ZENTIX Engenharia &amp; Tecnologia</h3>
+                                <span class="text-xs font-semibold bg-emerald-100 text-emerald-900 px-2.5 py-0.5 rounded-full w-fit mt-1 sm:mt-0">2022 – atual</span>
+                            </div>
+                            <p class="text-xs font-semibold text-emerald-700 mb-2">Gestora Administrativa e Ambiental</p>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-2">
+                                Atuação estratégica em processos administrativos e de engenharia, garantindo excelência operacional e conformidade socioambiental:
+                            </p>
+                            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+                                <li>Gestão completa de processos administrativos e controle documental técnico;</li>
+                                <li>Elaboração, revisão e acompanhamento de relatórios gerenciais e operacionais;</li>
+                                <li>Suporte administrativo ao público e interlocução com equipes técnicas;</li>
+                                <li>Apoio direto a projetos ambientais e de engenharia civil/geotécnica;</li>
+                                <li>Organização e manutenção de arquivos físicos e digitais seguros.</li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </section>
+
+                <!-- Formação Acadêmica -->
+                <section>
+                    <h2 class="text-sm uppercase font-bold tracking-wider text-emerald-950 mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Formação Acadêmica
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-200">
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider">Licenciatura</span>
+                            <h3 class="font-bold text-slate-900 text-sm mt-0.5">Geografia</h3>
+                            <p class="text-xs text-slate-600 mt-1">Centro Universitário Cidade Verde (UniCV)</p>
+                            <p class="text-xs text-emerald-800 font-medium mt-2">Conclusão: 12/2025</p>
+                        </div>
+
+                        <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-200">
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider">Tecnologia Superior</span>
+                            <h3 class="font-bold text-slate-900 text-sm mt-0.5">Gestão Ambiental</h3>
+                            <p class="text-xs text-slate-600 mt-1">Instituto Federal do Pará (IFPA)</p>
+                            <p class="text-xs text-emerald-800 font-medium mt-2">Conclusão: 06/2024</p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-slate-950 text-emerald-400 px-8 py-4 text-xs text-center border-t border-emerald-900">
+            <p class="font-medium">Cuiabá-MT, 2026</p>
+        </footer>
+
+    </div>
+
+    <!-- Script JavaScript para o efeito Matrix Verde com Símbolos Ambientais -->
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Caracteres estilo Matrix misturados com símbolos de ecologia e floresta
+        const chars = '01🌲🌿🌱🍃🌳♻️🌍💧☀️🌱🍃';
+        const fontSize = 16;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(3, 17, 7, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00FF66'; // Verde Matrix brilhante
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+    </script>
+</body>
+</html>

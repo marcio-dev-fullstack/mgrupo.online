@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUPO - Educação | Engenharia | Tecnologia</title>
+    <!-- FontAwesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        canvas {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* ---- CONTAINER GLASSMORPHISM ---- */
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 90%;
+            max-width: 420px;
+            padding: 35px 25px 25px 25px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+
+            /* Efeito de Vidro Fosco */
+            background: rgba(10, 15, 10, 0.78);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 65, 0.25);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 255, 65, 0.1);
+            
+            /* Animação suave de entrada */
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #00ff41;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 0 0 25px 0;
+            padding: 0;
+            text-shadow: 0 0 12px #00ff41, 0 0 30px rgba(0, 255, 65, 0.6);
+            animation: flicker 2s infinite alternate;
+            user-select: none;
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 12px #00ff41, 0 0 30px rgba(0, 255, 65, 0.6);
+            }
+            20%, 24%, 55% {
+                opacity: 0.4;
+                text-shadow: none;
+            }
+        }
+
+        /* ---- WRAPPER DOS BOTÕES ---- */
+        .links-wrapper-custom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px; 
+            width: 100%;
+        }
+
+        /* BASE DOS BOTÕES */
+        .btn-custom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 20px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #ffffff !important;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-custom i {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-custom:hover i {
+            transform: scale(1.15);
+        }
+
+        .btn-custom:active, .btn-whatsapp:active {
+            transform: scale(0.98);
+        }
+
+        /* VARIAÇÃO AZUL (GRADIENTE) */
+        .btn-blue {
+            background: linear-gradient(135deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-blue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 100, 247, 0.5), 0 0 12px rgba(67, 100, 247, 0.4);
+        }
+
+        /* BOTÃO WHATSAPP ESTILO PREMIUM */
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 20px;
+            margin-top: 6px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: #ffffff !important;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-whatsapp i {
+            font-size: 22px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 239, 125, 0.5), 0 0 12px rgba(56, 239, 125, 0.4);
+        }
+
+        .btn-whatsapp:hover i {
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        /* ---- RODAPÉ ZENTIX ---- */
+        .footer-credits {
+            width: 100%;
+            margin-top: 14px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            text-align: center;
+        }
+
+        .footer-credits p {
+            margin: 0;
+            font-size: 13px;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-credits a {
+            color: #fbbf24;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+
+        .footer-credits a:hover {
+            color: #fde68a;
+            text-decoration: underline;
+            text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 18px 20px 18px;
+            }
+            h1 {
+                font-size: 2.8rem;
+                letter-spacing: 5px;
+            }
+            .btn-custom, .btn-whatsapp {
+                font-size: 14px;
+                padding: 14px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fundo de código Matrix em Canvas -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Menu Principal -->
+    <div class="container">      
+        <h1>SERVIÇOS</h1>
+
+        <div class="links-wrapper-custom">   
+            <a href="https://mgrupo.online/academico.html" target="_blank" rel="noopener noreferrer" class="btn-custom btn-blue">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>TRABALHOS ACADÊMICOS</span>
+            </a> 
+
+            <a href="https://mgrupo.online/cursos/index.html" target="_blank" rel="noopener noreferrer" class="btn-custom btn-blue">
+                <i class="fa-solid fa-certificate"></i>
+                <span>CURSOS & NRs</span>
+            </a> 
+
+            <a href="https://mgrupo.online/concursos.html" target="_blank" rel="noopener noreferrer" class="btn-custom btn-blue">
+                <i class="fa-solid fa-user-ninja"></i>
+                <span>CONCURSOS</span>
+            </a>  
+            
+            <a href="https://wa.me/5562996466033" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Fale conosco pelo WhatsApp</span>
+            </a>
+
+            <footer class="footer-credits">
+                <div class="text-slate-300 text-xs mb-3 flex items-center justify-center gap-1.5" style="color: #cbd5e1;"></div>
+                <p>
+                    Desenvolvido por: 
+                    <a href="https://zentix.eng.br/" target="_blank" rel="noopener noreferrer">ZENTIX</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Script de animação do Matrix -->
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+        const fontSize = 16;
+
+        let columns = 0;
+        let rainDrops = [];
+
+        function initMatrix() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            columns = Math.floor(canvas.width / fontSize);
+            rainDrops = Array.from({ length: columns }, () => Math.floor(Math.random() * -20));
+        }
+
+        initMatrix();
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 30);
+        window.addEventListener('resize', initMatrix);
+    </script>
+</body>
+</html>

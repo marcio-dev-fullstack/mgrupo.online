@@ -1,0 +1,291 @@
+/* --- 1. CONFIGURAÇÕES GERAIS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- 2. HEADER E NAVBAR (MENU ESTILO APP) --- */
+header {
+    background-color: #1a1a1a;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    color: #ffb400;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 20px;
+    position: relative;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { color: #ffb400; }
+
+/* Dropdown PC */
+.dropdown-content {
+    display: none;       /* Esconde por padrão */
+    position: absolute;  /* Faz flutuar sobre o conteúdo */
+    list-style: none;    /* Remove as bolinhas da lista interna */
+    background-color: #1a1a1a;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content { 
+    display: block;      /* Mostra ao passar o mouse */
+}
+
+#menu-check { display: none; }
+.menu-btn { display: none; color: #ffb400; font-size: 1.6rem; cursor: pointer; }
+
+/* --- 3. HERO PADRÃO --- */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 0 20px;
+}
+.hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
+/* --- 4. GRIDS DE 2 COLUNAS (SERVIÇOS E EQUIPE - PC) --- */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.grid-servicos, .equipe-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Força 2 por linha no PC */
+    gap: 30px;
+    margin-top: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Membros da Equipe (SOBRE) */
+.membro-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-bottom: 5px solid #ffb400;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza tudo abaixo da foto */
+    text-align: center;
+}
+
+.foto-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #ffb400;
+    margin-bottom: 20px;
+}
+
+.foto-membro {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.membro-info h2 { font-size: 1.3rem; margin-bottom: 8px; color: #1a1a1a; }
+.membro-info p { font-size: 0.9rem; margin: 2px 0; color: #555; }
+
+.crea-box {
+    margin-top: 12px;
+    background: #eee;
+    padding: 4px 10px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+/* --- 5. GRID DE CONTATO (3 COLUNAS - PC) --- */
+.contato-grid {
+    display: flex; /* Ativa alinhamento horizontal */
+    flex-direction: row;
+    justify-content: center;
+    gap: 25px;
+    margin: 50px auto;
+    max-width: 1100px;
+    flex-wrap: nowrap; /* Impede quebrar linha no PC */
+}
+
+.contato-card {
+    background: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-bottom: 5px solid #ffb400;
+    flex: 1; /* Divide o espaço igualmente em 3 */
+    max-width: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contato-icon { font-size: 3rem; color: #ffb400; margin-bottom: 15px; }
+
+.btn-contato {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #1a1a1a;
+    color: #ffb400;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-contato:hover { background-color: #ffb400; color: #1a1a1a; }
+
+/* --- 6. RODAPÉ E WHATSAPP --- */
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    margin-top: 60px;
+    width: 100%;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    z-index: 2000;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* --- 7. RESPONSIVIDADE MOBILE (PADRÃO APP) --- */
+@media (max-width: 768px) {
+    /* Botão Hambúrguer no Canto Superior Direito */
+    .menu-btn {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        z-index: 1001;
+        font-size: 1.8rem; /* Aumentado para facilitar o toque */
+        color: #ffb400;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Escondido à direita */
+        background-color: rgba(26, 26, 26, 0.98); /* Fundo quase opaco */
+        width: 80%; /* Ocupa a maior parte da tela */
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center; /* Centraliza os links verticalmente */
+        align-items: center;
+        transition: 0.4s ease-in-out;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    /* Quando o checkbox é marcado, o menu desliza para a tela */
+    #menu-check:checked ~ .nav-links {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 20px 0; /* Mais espaçamento entre os links */
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 1.4rem; /* Letras maiores para leitura no celular */
+        display: block;
+        padding: 10px;
+        width: 100%;
+    }
+
+    /* Ajuste para o Dropdown no Mobile */
+    .dropdown-content {
+        position: static; /* No mobile, ele empilha abaixo do link pai */
+        display: none;
+        background-color: #222;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .dropdown:active .dropdown-content, 
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Grids de conteúdo no celular */
+    .grid-servicos, .equipe-grid, .contato-grid {
+        grid-template-columns: 1fr !important;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

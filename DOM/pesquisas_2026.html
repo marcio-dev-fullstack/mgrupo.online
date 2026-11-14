@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panorama Eleitoral 2026 - Pesquisas da Véspera</title>
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --primary: #1a73e8;
+      --text-main: #202124;
+      --text-muted: #5f6368;
+      --border: #dadce0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      margin: 0;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    header {
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin: 0 0 8px 0;
+      color: var(--text-main);
+    }
+
+    .date-badge {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      margin-top: 0;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin: 16px 0 8px 0;
+      color: var(--text-main);
+      border-bottom: 1px solid #f1f3f4;
+      padding-bottom: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px 4px;
+      font-size: 0.95rem;
+    }
+
+    th {
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td:last-child, th:last-child {
+      text-align: right;
+    }
+
+    tr:not(:last-child) td {
+      border-bottom: 1px solid #f1f3f4;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Panorama das Pesquisas Eleitorais 2026</h1>
+    <div class="date-badge">Dados consolidados na véspera do 1º Turno (03/10/2026)</div>
+  </header>
+
+  <div class="grid">
+    <!-- Presidência da República -->
+    <div class="card">
+      <h2>Presidência da República (1º Turno - Votos Válidos)</h2>
+      
+      <h3>Pesquisa Quaest (03/10/2026)</h3>
+      <table>
+        <thead>
+          <tr><th>Candidato</th><th>Intenção</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Luiz Inácio Lula da Silva (PT)</td><td><strong>46%</strong></td></tr>
+          <tr><td>Flávio Bolsonaro (PL)</td><td><strong>45%</strong></td></tr>
+          <tr><td>Augusto Cury (Avante)</td><td>3%</td></tr>
+          <tr><td>Ronaldo Caiado (PSD)</td><td>3%</td></tr>
+          <tr><td>Renan Santos (Missão)</td><td>3%</td></tr>
+          <tr><td>Outros Candidatos</td><td>0%</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Pesquisa Datafolha (03/10/2026)</h3>
+      <table>
+        <thead>
+          <tr><th>Candidato</th><th>Intenção</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Luiz Inácio Lula da Silva (PT)</td><td><strong>45%</strong></td></tr>
+          <tr><td>Flávio Bolsonaro (PL)</td><td><strong>42%</strong></td></tr>
+          <tr><td>Ronaldo Caiado (PSD)</td><td>4%</td></tr>
+          <tr><td>Augusto Cury (Avante)</td><td>3%</td></tr>
+          <tr><td>Renan Santos (Missão)</td><td>3%</td></tr>
+          <tr><td>Romeu Zema (Novo)</td><td>1%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Governo do Pará -->
+    <div class="card">
+      <h2>Governo do Pará</h2>
+      
+      <h3>Quaest - 1º Turno (Votos Válidos - 03/10/2026)</h3>
+      <table>
+        <thead>
+          <tr><th>Candidato</th><th>Intenção</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dr. Daniel (Podemos)</td><td><strong>57%</strong></td></tr>
+          <tr><td>Hana Ghassan (MDB)</td><td><strong>40%</strong></td></tr>
+          <tr><td>Araceli Lemos (PSOL)</td><td>2%</td></tr>
+          <tr><td>Ruth Reis (Democrata)</td><td>1%</td></tr>
+          <tr><td>Gal Leite (UP) / Well Macedo (PSTU)</td><td>0%</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Quaest - Simulação de 2º Turno (Votos Totais)</h3>
+      <table>
+        <thead>
+          <tr><th>Opção</th><th>Intenção</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dr. Daniel (Podemos)</td><td><strong>48%</strong></td></tr>
+          <tr><td>Hana Ghassan (MDB)</td><td><strong>37%</strong></td></tr>
+          <tr><td>Brancos / Nulos / Nenhum</td><td>5%</td></tr>
+          <tr><td>Indecisos</td><td>10%</td></tr>
+        </tbody>
+      </table>
+
+      <div class="footer-note">
+        * Pesquisa Quaest Pará: Registro TSE nº PA-04580/2026. Entrevistou 1.800 eleitores entre 2 e 3 de outubro. Margem de erro: ±2 pontos percentuais.
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

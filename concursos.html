@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX Concursos</title>
+    <!-- Google Fonts & FontAwesome para ícones modernos -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent-concurso: #0ea5e9;
+            --accent-seletivo: #f59e0b;
+            --radius: 16px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #818cf8;
+        }
+
+        .header-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .header-badge i {
+            color: #22c55e;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e293b 100%);
+            color: #fff;
+            text-align: center;
+            padding: 4rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to top, #f8fafc, transparent);
+        }
+
+        .hero h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* DESTAQUE DE COMPRA IMEDIATA */
+        .cta-destaque-wrapper {
+            max-width: 800px;
+            margin: -2rem auto 2.5rem auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 20;
+        }
+
+        .cta-destaque-card {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: var(--radius);
+            padding: 2rem;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.3), 0 8px 10px -6px rgba(16, 185, 129, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .cta-destaque-card h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cta-destaque-card p {
+            font-size: 1rem;
+            color: #ecfdf5;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-comprar-agora {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #ffffff;
+            color: #065f46;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-comprar-agora:hover {
+            background: #f0fdf4;
+            transform: scale(1.05);
+        }
+
+        /* FILTROS INTELIGENTES */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 1.5rem auto 2.5rem auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .filter-btn {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem 1.5rem;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .section-column {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+        }
+
+        .column-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .column-header i {
+            font-size: 1.4rem;
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .column-header.concursos i {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .column-header.seletivos i {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .column-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* CARDS */
+        .cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.2rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.25rem 0.7rem;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .tag.concurso {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .tag.seletivo {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-uf {
+            font-size: 0.75rem;
+            font-weight: 800;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .btn-card {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 0.7rem;
+            background: #f8fafc;
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
+        }
+
+        .card:hover .btn-card {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            padding: 14px 24px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            background: #22bf5b;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media(max-width: 768px) {
+            header { padding: 1rem; }
+            .hero { padding: 3rem 1rem; }
+            .section-column { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <h1>ZENTIX <span>CONCURSOS</span></h1>
+        </div>
+        <div class="header-badge">
+            <i class="fa-solid fa-circle"></i> Atualizado 2026
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h2>Sua Aprovação Começa Aqui</h2>
+        <p>Explore editais abertos, previsões e seletores de Concursos e Processos Seletivos 2026 organizados por região.</p>
+    </section>
+
+    <!-- DESTAQUE: COMPRE AGORA MESMO SEU MATERIAL COMPLETO -->
+    <div class="cta-destaque-wrapper">
+        <div class="cta-destaque-card">
+            <h3><i class="fa-solid fa-bolt"></i> Acelere sua Aprovação!</h3>
+            <p>Garanta acesso imediato a todas as apostilas, simulados direcionados e conteúdos estratégicos atualizados.</p>
+            <a href="https://wa.me/5562996466033?text=Quero%20comprar%20agora%20mesmo%20meu%20material%20completo" target="_blank" rel="noopener noreferrer" class="btn-comprar-agora">
+                <i class="fa-solid fa-cart-shopping"></i> COMPRE AGORA MESMO SEU MATERIAL COMPLETO
+            </a>
+        </div>
+    </div>
+
+    <!-- FILTROS POR REGIÃO / FEDERAL -->
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterCards('todos')">🌐 Todos os Editais</button>
+        <button class="filter-btn" onclick="filterCards('FEDERAL')">🏛️ Federais</button>
+        <button class="filter-btn" onclick="filterCards('PA')">📍 Pará (PA)</button>
+        <button class="filter-btn" onclick="filterCards('GO')">📍 Goiás (GO)</button>
+        <button class="filter-btn" onclick="filterCards('MT')">📍 Mato Grosso (MT)</button>
+        <button class="filter-btn" onclick="filterCards('TO')">📍 Tocantins (TO)</button>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+        <div class="main-grid">
+
+            <!-- COLUNA 1: CONCURSOS PÚBLICOS 2026 -->
+            <section class="section-column">
+                <div class="column-header concursos">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <div>
+                        <h3>Concursos Públicos 2026</h3>
+                        <small style="color: var(--text-muted); font-size: 0.8rem;">Vagas efetivas e cadastro de reserva</small>
+                    </div>
+                </div>
+
+                <div class="cards-list">
+
+                    <!-- CARD: SES-TO -->
+                    <article class="card" data-category="TO">
+                        <div class="card-meta">
+                            <span class="tag concurso">Concurso Público</span>
+                            <span class="badge-uf">TO</span>
+                        </div>
+                        <h4>GOVERNO DO ESTADO DO TO - SAÚDE</h4>
+                        <p>Secretaria de Estado da Saúde do Tocantins. Cargos de níveis médio e superior.</p>
+                        <a href="https://conhecimento.fgv.br/concursos/sesto26" target="_blank" rel="noopener noreferrer" class="btn-card">
+                            Ver Edital (FGV) <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                    <!-- CARD: SEDUC-PA -->
+                    <article class="card" data-category="PA">
+                        <div class="card-meta">
+                            <span class="tag concurso">Concurso Público</span>
+                            <span class="badge-uf">PA</span>
+                        </div>
+                        <h4>GOVERNO DO ESTADO DO PA - SEDUC</h4>
+                        <p>Secretaria de Estado de Educação do Pará. Vagas educacionais e administrativas.</p>
+                        <a href="https://conhecimento.fgv.br/concursos/seducpa26" target="_blank" rel="noopener noreferrer" class="btn-card">
+                            Ver Edital (FGV) <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                    <!-- CARD: SEMA-MT -->
+                    <article class="card" data-category="MT">
+                        <div class="card-meta">
+                            <span class="tag concurso">Concurso Público</span>
+                            <span class="badge-uf">MT</span>
+                        </div>
+                        <h4>GOVERNO DO ESTADO DO MT - SEMA</h4>
+                        <p>Secretaria de Estado de Meio Ambiente de Mato Grosso. Áreas ambiental e técnica.</p>
+                        <a href="https://www.cesgranrio.org.br/concurso/sema-mt-2026" target="_blank" rel="noopener noreferrer" class="btn-card">
+                            Ver Edital (Cesgranrio) <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                    <!-- CARD: IFPA (FEDERAL) -->
+                    <article class="card" data-category="FEDERAL">
+                        <div class="card-meta">
+                            <span class="tag concurso">Concurso Público</span>
+                            <span class="badge-uf">FEDERAL</span>
+                        </div>
+                        <h4>GOVERNO FEDERAL - IFPA</h4>
+                        <p>Instituto Federal do Pará. Vagas para Técnico-Administrativos em Educação.</p>
+                        <a href="https://www.institutoaocp.org.br/concursos/717" target="_blank" rel="noopener noreferrer" class="btn-card">
+                            Ver Edital (AOCP) <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                    <!-- CARD: Chapada dos Guimarães -->
+                    <article class="card" data-category="MT">
+                        <div class="card-meta">
+                            <span class="tag concurso">Concurso Público</span>
+                            <span class="badge-uf">MT</span>
+                        </div>
+                        <h4>Prefeitura de Chapada dos Guimarães - MT</h4>
+                        <p>Prefeitura Municipal e SAAE-MT. Oportunidades de níveis médio, técnico e superior.</p>
+                        <a href="https://selecon-mt.selecao.net.br/informacoes/92/" target="_blank" rel="noopener noreferrer" class="btn-card">
+                            Ver Edital (Selecon) <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- COLUNA 2: PROCESSOS SELETIVOS 2026 -->
+            <section class="section-column">
+                <div class="column-header seletivos">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <div>
+                        <h3>Processos Seletivos 2026</h3>
+                        <small style="color: var(--text-muted); font-size: 0.8rem;">Contratações temporárias e editais rápidos</small>
+                    </div>
+                </div>
+
+                <div class="cards-list">
+
+                    <!-- CARD: Boa Esperança do Norte -->
+                    <article class="card" data-category="MT">
+                        <div class="card-meta">
+                            <span class="tag seletivo">Processo Seletivo</span>
+                            <span class="badge-uf">MT</span>
+                        </div>
+                        <h4>Prefeitura de Boa Esperança do Norte - MT</h4>
+                        <p>Processo Seletivo gerenciado via Selecon (Anexo oficial atualizado).</p>
+                        <a href="https://anexos-r2.selecao.net.br/uploads/851/concursos/27/anexos/9748eab4-3e40-4a9a-926c-b3ada2526887.pdf" target="_blank" rel="noopener noreferrer" class="btn-card">
+                            Ver Anexo/Edital <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                    <!-- CARD: SME Cuiabá -->
+                    <article class="card" data-category="MT">
+                        <div class="card-meta">
+                            <span class="tag seletivo">Processo Seletivo</span>
+                            <span class="badge-uf">MT</span>
+                        </div>
+                        <h4>Prefeitura de Cuiabá - MT (SME)</h4>
+                        <p>Seleção temporária para a rede municipal de ensino de Cuiabá.</p>
+                        <a href="https://selecon-mt.selecao.net.br/informacoes/97/" target="_blank" rel="noopener noreferrer" class="btn-card">
+                            Ver Página do Seletivo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                    <!-- CARD: Nova Mutum -->
+                    <article class="card" data-category="MT">
+                        <div class="card-meta">
+                            <span class="tag seletivo">Processo Seletivo</span>
+                            <span class="badge-uf">MT</span>
+                        </div>
+                        <h4>Prefeitura de Nova Mutum - MT</h4>
+                        <p>Processo Seletivo Simplificado - Edital nº 001/2026.</p>
+                        <a href="https://selecon-mt.selecao.net.br/informacoes/99/#" target="_blank" rel="noopener noreferrer" class="btn-card">
+                            Ver Página do Seletivo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </article>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5562996466033" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp fa-lg"></i> Fale no WhatsApp
+    </a>
+
+    <!-- FOOTER -->
+    <footer>
+        <div style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <i class="fa-solid fa-location-dot" style="color: #fbbf24;"></i>
+            <span>Av. Portugal, 1148, Quadra L29, Lote 1E, Sala C2501, Setor Marista, Goiânia - GO, CEP 74150-030</span>
+        </div>
+        <p>&copy; 2025. ZENTIX CONCURSOS. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- SCRIPT DE FILTRAGEM DINÂMICA -->
+    <script>
+        function filterCards(category) {
+            // Atualizar estado ativo dos botões
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filtrar cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'todos' || cardCategory === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

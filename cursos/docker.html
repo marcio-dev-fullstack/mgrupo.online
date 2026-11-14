@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Masterclass - Do Zero ao Top | Guia Completo 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --docker-blue: #0db7ed;
+            --docker-dark: #1d63ed;
+            --docker-navy: #0d1b2a;
+            --docker-light: #e0f7ff;
+            --accent: #ff6b35;
+            --success: #00c853;
+            --warning: #ffc107;
+            --danger: #ff1744;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--gray-100); }
+        ::-webkit-scrollbar-thumb { background: var(--docker-blue); border-radius: 4px; }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--docker-dark);
+            text-decoration: none;
+        }
+        .logo img { height: 40px; }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a:hover { color: var(--docker-blue); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--docker-blue);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--docker-navy) 0%, #1a3a5c 50%, var(--docker-dark) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(13,183,237,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        .hero h1 span { color: var(--docker-blue); }
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: var(--docker-blue);
+            color: white;
+            box-shadow: 0 4px 15px rgba(13,183,237,0.4);
+        }
+        .btn-primary:hover {
+            background: #0aa8d8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(13,183,237,0.5);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--docker-blue);
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-tag {
+            display: inline-block;
+            background: var(--docker-light);
+            color: var(--docker-dark);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--docker-blue);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--docker-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--docker-dark);
+            margin-bottom: 1.5rem;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--gray-900);
+        }
+        .card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--docker-blue), var(--docker-dark));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 16px;
+            height: 16px;
+            background: var(--docker-blue);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--docker-blue);
+        }
+        .timeline-badge {
+            display: inline-block;
+            background: var(--docker-light);
+            color: var(--docker-dark);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .timeline-item h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+        .timeline-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        .timeline-content li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray-600);
+        }
+        .timeline-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        .code-block {
+            background: var(--gray-900);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .code-title {
+            color: var(--gray-300);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .code-lang {
+            background: rgba(255,255,255,0.1);
+            color: var(--docker-blue);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .code-block pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+        .code-block code { font-family: 'JetBrains Mono', monospace; }
+        .comment { color: #6a9955; }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .function { color: #dcdcaa; }
+        .number { color: #b5cea8; }
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .faq-item:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .faq-question {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--gray-900);
+            transition: background 0.3s;
+        }
+        .faq-question:hover { background: var(--gray-100); }
+        .faq-icon {
+            font-size: 1.2rem;
+            color: var(--docker-blue);
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s;
+            padding: 0 2rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 1.5rem;
+        }
+        .faq-answer p {
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+        .faq-answer code {
+            background: var(--gray-100);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--docker-dark);
+        }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .resource-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .resource-card:hover {
+            border-color: var(--docker-blue);
+            box-shadow: 0 5px 20px rgba(13,183,237,0.15);
+            transform: translateY(-3px);
+        }
+        .resource-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .type-video { background: #ffe0e0; color: #c62828; }
+        .type-doc { background: #e0f2f1; color: #00695c; }
+        .type-tool { background: #e3f2fd; color: #1565c0; }
+        .type-course { background: #f3e5f5; color: #6a1b9a; }
+        .resource-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+        .resource-card p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        .resource-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--gray-900);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .slide {
+            display: none;
+            padding: 3rem;
+            min-height: 400px;
+            animation: fadeIn 0.5s;
+        }
+        .slide.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .slide-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .slide h3 {
+            color: var(--docker-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .slide p, .slide li {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        .slide ul {
+            list-style: none;
+            padding: 0;
+        }
+        .slide li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .slide li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--docker-blue);
+        }
+        .slide-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.3);
+        }
+        .slide-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .slide-btn:hover { background: var(--docker-blue); }
+        .slide-dots {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dot.active {
+            background: var(--docker-blue);
+            width: 30px;
+            border-radius: 5px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table th {
+            background: var(--docker-navy);
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .comparison-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .comparison-table tr:hover td { background: var(--gray-100); }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .video-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+        .video-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+        .video-thumbnail {
+            position: relative;
+            padding-top: 56.25%;
+            background: var(--gray-800);
+            overflow: hidden;
+        }
+        .video-thumbnail iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .video-info { padding: 1.5rem; }
+        .video-info h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+        .video-info p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        .video-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+        .progress-container {
+            background: var(--gray-100);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .progress-item { margin-bottom: 1.5rem; }
+        .progress-item:last-child { margin-bottom: 0; }
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .progress-bar {
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--docker-blue), var(--docker-dark));
+            border-radius: 4px;
+            transition: width 1s ease;
+            position: relative;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
+        }
+        footer {
+            background: var(--docker-navy);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--docker-blue);
+        }
+        .footer-section ul { list-style: none; }
+        .footer-section li { margin-bottom: 0.75rem; }
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover { color: var(--docker-blue); }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        .dark-section {
+            background: var(--docker-navy);
+            color: white;
+            padding: 5rem 2rem;
+        }
+        .dark-section .section-title { color: white; }
+        .dark-section .section-subtitle { color: rgba(255,255,255,0.7); }
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .image-caption {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+        .alert {
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .alert-info {
+            background: var(--docker-light);
+            border-left: 4px solid var(--docker-blue);
+        }
+        .alert-warning {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+        }
+        .alert-success {
+            background: #d4edda;
+            border-left: 4px solid var(--success);
+        }
+        .alert-icon { font-size: 1.2rem; flex-shrink: 0; }
+        .alert-info .alert-icon { color: var(--docker-blue); }
+        .alert-warning .alert-icon { color: var(--warning); }
+        .alert-success .alert-icon { color: var(--success); }
+        .alert-content { flex: 1; }
+        .alert-content strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: var(--gray-900);
+        }
+        .terminal {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #e6e6e6;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .terminal-btn.red { background: #ff5f56; }
+        .terminal-btn.yellow { background: #ffbd2e; }
+        .terminal-btn.green { background: #27c93f; }
+        .terminal-line { line-height: 1.8; }
+        .terminal-prompt { color: var(--docker-blue); }
+        .terminal-command { color: #e6e6e6; }
+        .terminal-output { color: #858585; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .hero-stats { gap: 1.5rem; }
+            .timeline { padding-left: 2rem; }
+            .timeline-item::before { left: -1.8rem; }
+            .slide { padding: 2rem 1.5rem; min-height: 300px; }
+        }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="logo">
+            <img src="https://1000logos.net/wp-content/uploads/2021/11/Docker-Logo-500x281.png" alt="Docker">
+            <span>Docker Masterclass</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#conceitos">Conceitos</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#comandos">Comandos</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+            <li><a href="#videos">Vídeos</a></li>
+        </ul>
+        <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-rocket"></i> Atualizado para 2026</div>
+        <h1>Docker <span>Do Zero ao Top</span></h1>
+        <p>Domine a containerização com o guia mais completo em português. Do básico à produção, com exemplos reais, comandos práticos e melhores práticas profissionais.</p>
+        <div class="hero-buttons">
+            <a href="#roadmap" class="btn btn-primary"><i class="fas fa-play"></i> Começar Agora</a>
+            <a href="#comandos" class="btn btn-secondary"><i class="fas fa-code"></i> Ver Comandos</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Comandos</div></div>
+            <div class="stat-item"><div class="stat-number">30+</div><div class="stat-label">Perguntas FAQ</div></div>
+            <div class="stat-item"><div class="stat-number">15+</div><div class="stat-label">Recursos</div></div>
+            <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Gratuito</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="conceitos">
+    <div class="section-header">
+        <div class="section-tag">Fundamentos</div>
+        <h2 class="section-title">O que é Docker?</h2>
+        <p class="section-subtitle">Entenda os conceitos fundamentais da containerização e por que ela revolucionou o desenvolvimento de software.</p>
+    </div>
+
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-box-open"></i></div>
+            <h3>Containers</h3>
+            <p>Containers são pacotes leves e portáteis que incluem tudo o que uma aplicação precisa para rodar: código, runtime, ferramentas, bibliotecas e configurações. Diferente de VMs, containers compartilham o kernel do SO, tornando-os extremamente eficientes.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-image"></i></div>
+            <h3>Imagens</h3>
+            <p>Imagens Docker são templates imutáveis e read-only que servem como base para criar containers. Cada imagem é construída em camadas (layers), permitindo reutilização eficiente e versionamento. São armazenadas em registries como Docker Hub.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+            <h3>Networks</h3>
+            <p>Redes Docker permitem que containers se comuniquem entre si e com o mundo exterior. O driver bridge é o padrão para comunicação local, overlay para clusters multi-host, host para máxima performance e none para isolamento total.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-hdd"></i></div>
+            <h3>Volumes</h3>
+            <p>Volumes são o mecanismo preferido para persistir dados gerados por containers. Gerenciados pelo Docker, eles sobrevivem à recriação de containers e podem ser compartilhados entre múltiplos containers, garantindo integridade dos dados.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-file-code"></i></div>
+            <h3>Dockerfile</h3>
+            <p>Um arquivo de texto com instruções para construir uma imagem Docker automatizada. Define a imagem base, dependências, variáveis de ambiente, portas expostas e comandos de inicialização. Suporta multi-stage builds para otimização.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-cubes"></i></div>
+            <h3>Docker Compose</h3>
+            <p>Ferramenta para definir e executar aplicações multi-container. Utiliza um arquivo YAML para configurar serviços, redes e volumes. Com um único comando (docker-compose up), toda a stack é provisionada.</p>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="https://miro.medium.com/v2/resize:fit:1400/0*0d68c5f28f088f63726bdcb49767525cd235aa15.png" alt="Docker Architecture" style="max-width: 700px;">
+        <p class="image-caption">Figura 1: Arquitetura Docker - Containers compartilhando volumes e redes</p>
+    </div>
+
+    <div class="alert alert-info">
+        <div class="alert-icon"><i class="fas fa-lightbulb"></i></div>
+        <div class="alert-content">
+            <strong>Dica Profissional:</strong> Containers não são VMs! Eles compartilham o kernel do host, tornando-se mais leves (MB vs GB) e com startup em segundos. Use containers para aplicações e VMs quando precisar de isolamento completo de kernel.
+        </div>
+    </div>
+</section>
+
+<section class="dark-section">
+    <div class="section-header">
+        <div class="section-tag" style="background: rgba(255,255,255,0.1); color: white;">Apresentação</div>
+        <h2 class="section-title">Docker em Slides</h2>
+        <p class="section-subtitle">Navegue pelos conceitos essenciais de forma visual e didática.</p>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="slide active">
+            <div class="slide-number">1 / 8</div>
+            <h3><i class="fas fa-ship"></i> O que é Containerização?</h3>
+            <p>Containerização é a tecnologia de empacotar uma aplicação e todas as suas dependências em um único pacote padronizado. Isso garante que a aplicação rode de forma idêntica em qualquer ambiente: desenvolvimento, staging ou produção.</p>
+            <ul style="margin-top: 1rem;">
+                <li>Isolamento de processos</li>
+                <li>Portabilidade entre ambientes</li>
+                <li>Eficiência de recursos</li>
+                <li>Escalabilidade horizontal</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <div class="slide-number">2 / 8</div>
+            <h3><i class="fas fa-layer-group"></i> Camadas (Layers)</h3>
+            <p>Imagens Docker são construídas em camadas sobrepostas. Cada instrução no Dockerfile cria uma nova camada. Camadas são cacheadas e reutilizadas, tornando builds rápidos e eficientes em disco.</p>
+            <ul style="margin-top: 1rem;">
+                <li>Base Layer: Sistema operacional mínimo</li>
+                <li>Dependency Layer: Bibliotecas e pacotes</li>
+                <li>Application Layer: Código fonte</li>
+                <li>Container Layer: Camada writable em runtime</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <div class="slide-number">3 / 8</div>
+            <h3><i class="fas fa-network-wired"></i> Tipos de Rede</h3>
+            <p>Docker oferece múltiplos drivers de rede para diferentes cenários de comunicação entre containers e com o host.</p>
+            <ul style="margin-top: 1rem;">
+                <li><strong>Bridge:</strong> Padrão. Comunicação isolada entre containers</li>
+                <li><strong>Host:</strong> Compartilha stack de rede do host</li>
+                <li><strong>Overlay:</strong> Comunicação multi-host (Swarm)</li>
+                <li><strong>Macvlan:</strong> Atribui MAC address real ao container</li>
+                <li><strong>None:</strong> Isolamento total de rede</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <div class="slide-number">4 / 8</div>
+            <h3><i class="fas fa-hdd"></i> Persistência de Dados</h3>
+            <p>Por padrão, dados em containers são efêmeros. Docker oferece três métodos para persistência:</p>
+            <ul style="margin-top: 1rem;">
+                <li><strong>Volumes:</strong> Gerenciados pelo Docker, melhor opção para produção</li>
+                <li><strong>Bind Mounts:</strong> Mapeiam diretórios específicos do host</li>
+                <li><strong>tmpfs:</strong> Armazenamento em memória RAM (temporário)</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <div class="slide-number">5 / 8</div>
+            <h3><i class="fas fa-shield-alt"></i> Segurança</h3>
+            <p>Segurança em Docker é multicamadas e deve ser considerada desde o desenvolvimento até a produção.</p>
+            <ul style="margin-top: 1rem;">
+                <li>Execute containers como non-root user</li>
+                <li>Use imagens oficiais e escaneie vulnerabilidades</li>
+                <li>Implemente multi-stage builds para reduzir superfície de ataque</li>
+                <li>Configure limites de recursos (CPU/Memória)</li>
+                <li>Isole redes com policies e firewalls</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <div class="slide-number">6 / 8</div>
+            <h3><i class="fas fa-rocket"></i> Docker Compose</h3>
+            <p>Orchestrando aplicações multi-serviço com um único arquivo YAML declarativo.</p>
+            <ul style="margin-top: 1rem;">
+                <li>Define serviços, redes e volumes em um só lugar</li>
+                <li>Gerencia dependências entre serviços</li>
+                <li>Facilita replicação de ambientes</li>
+                <li>Suporta overrides para diferentes ambientes</li>
+                <li>Integração nativa com Docker Swarm</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <div class="slide-number">7 / 8</div>
+            <h3><i class="fas fa-chart-line"></i> Monitoramento</h3>
+            <p>Containers precisam de observabilidade. Ferramentas essenciais:</p>
+            <ul style="margin-top: 1rem;">
+                <li><strong>docker stats:</strong> Métricas em tempo real</li>
+                <li><strong>docker logs:</strong> Coleta de logs centralizada</li>
+                <li><strong>Prometheus + Grafana:</strong> Métricas e dashboards</li>
+                <li><strong>cAdvisor:</strong> Análise de uso de recursos</li>
+                <li><strong>Health Checks:</strong> Verificação de saúde nativa</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <div class="slide-number">8 / 8</div>
+            <h3><i class="fas fa-cloud"></i> Produção & Cloud</h3>
+            <p>Deploy de containers em ambientes cloud-native:</p>
+            <ul style="margin-top: 1rem;">
+                <li><strong>AWS:</strong> ECS, EKS, Fargate, App Runner</li>
+                <li><strong>Azure:</strong> ACI, AKS, Container Apps</li>
+                <li><strong>GCP:</strong> Cloud Run, GKE</li>
+                <li><strong>On-Premise:</strong> Docker Swarm, Kubernetes</li>
+                <li><strong>CI/CD:</strong> GitHub Actions, GitLab CI, Jenkins</li>
+            </ul>
+        </div>
+
+        <div class="slide-nav">
+            <button class="slide-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i> Anterior</button>
+            <div class="slide-dots">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+                <span class="dot" onclick="goToSlide(3)"></span>
+                <span class="dot" onclick="goToSlide(4)"></span>
+                <span class="dot" onclick="goToSlide(5)"></span>
+                <span class="dot" onclick="goToSlide(6)"></span>
+                <span class="dot" onclick="goToSlide(7)"></span>
+            </div>
+            <button class="slide-btn" onclick="changeSlide(1)">Próximo <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="roadmap">
+    <div class="section-header">
+        <div class="section-tag">Learning Path</div>
+        <h2 class="section-title">Roadmap Docker 2026</h2>
+        <p class="section-subtitle">Siga este caminho estruturado para dominar Docker em 8 semanas, do básico ao avançado.</p>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-badge">Semana 1-2</div>
+            <h3><i class="fas fa-seedling"></i> Fundamentos</h3>
+            <div class="timeline-content">
+                <ul>
+                    <li>Instalação do Docker Desktop (Windows/Mac) ou Docker Engine (Linux)</li>
+                    <li>Primeiro container: docker run hello-world</li>
+                    <li>Comandos essenciais: run, ps, stop, rm, images, pull, push</li>
+                    <li>Port mapping e variáveis de ambiente</li>
+                    <li>Entendendo o ciclo de vida de containers</li>
+                    <li>Diferença entre Images e Containers</li>
+                </ul>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-badge">Semana 3-4</div>
+            <h3><i class="fas fa-file-code"></i> Dockerfile & Images</h3>
+            <div class="timeline-content">
+                <ul>
+                    <li>Sintaxe completa do Dockerfile</li>
+                    <li>Instruções: FROM, RUN, COPY, ADD, CMD, ENTRYPOINT, ENV, EXPOSE</li>
+                    <li>Otimização de camadas (layer caching)</li>
+                    <li>Multi-stage builds para reduzir tamanho</li>
+                    <li>Imagens Alpine vs Debian vs Distroless</li>
+                    <li>Publicação no Docker Hub e registries privados</li>
+                </ul>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-badge">Semana 5-6</div>
+            <h3><i class="fas fa-cubes"></i> Docker Compose & Networks</h3>
+            <div class="timeline-content">
+                <ul>
+                    <li>Arquivo docker-compose.yml estruturado</li>
+                    <li>Serviços, networks, volumes e depends_on</li>
+                    <li>Comunicação entre containers via DNS interno</li>
+                    <li>Variáveis de ambiente e arquivos .env</li>
+                    <li>Override files para diferentes ambientes</li>
+                    <li>Health checks e restart policies</li>
+                </ul>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-badge">Semana 7-8</div>
+            <h3><i class="fas fa-rocket"></i> Avançado & Produção</h3>
+            <div class="timeline-content">
+                <ul>
+                    <li>Docker Swarm: clustering e orquestração nativa</li>
+                    <li>Services, stacks, replicas e rolling updates</li>
+                    <li>Segurança: secrets, non-root users, scanning</li>
+                    <li>Limitação de recursos: --cpus, -m, --pids-limit</li>
+                    <li>Logging drivers e monitoramento</li>
+                    <li>Integração CI/CD: GitHub Actions, GitLab CI</li>
+                    <li>Preparação para Kubernetes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-item">
+            <div class="progress-header"><span>Progresso do Curso</span><span>100%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+        </div>
+        <div class="progress-item">
+            <div class="progress-header"><span>Dificuldade</span><span>Progressivo</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
+        </div>
+        <div class="progress-item">
+            <div class="progress-header"><span>Praticidade</span><span>90%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="comandos" style="background: var(--gray-100);">
+    <div class="section-header">
+        <div class="section-tag">Prática</div>
+        <h2 class="section-title">Comandos Essenciais</h2>
+        <p class="section-subtitle">Guia de referência rápida com os comandos mais utilizados no dia a dia profissional.</p>
+    </div>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--gray-900);"><i class="fas fa-terminal"></i> Gerenciamento de Containers</h3>
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-title">Containers - Comandos Básicos</span>
+            <span class="code-lang">BASH</span>
+        </div>
+        <pre><code><span class="comment"># Criar e executar um container</span>
+<span class="function">docker run</span> -d -p 80:80 --name meu-nginx nginx
+
+<span class="comment"># Listar containers em execução</span>
+<span class="function">docker ps</span>
+
+<span class="comment"># Listar todos os containers (incluindo parados)</span>
+<span class="function">docker ps</span> -a
+
+<span class="comment"># Parar um container</span>
+<span class="function">docker stop</span> meu-nginx
+
+<span class="comment"># Iniciar um container parado</span>
+<span class="function">docker start</span> meu-nginx
+
+<span class="comment"># Reiniciar um container</span>
+<span class="function">docker restart</span> meu-nginx
+
+<span class="comment"># Remover um container (deve estar parado)</span>
+<span class="function">docker rm</span> meu-nginx
+
+<span class="comment"># Forçar remoção (running)</span>
+<span class="function">docker rm</span> -f meu-nginx
+
+<span class="comment"># Executar comando dentro do container</span>
+<span class="function">docker exec</span> -it meu-nginx bash
+
+<span class="comment"># Ver logs em tempo real</span>
+<span class="function">docker logs</span> -f meu-nginx
+
+<span class="comment"># Estatísticas de uso de recursos</span>
+<span class="function">docker stats</span></code></pre>
+    </div>
+
+    <h3 style="margin: 2rem 0 1.5rem; color: var(--gray-900);"><i class="fas fa-image"></i> Gerenciamento de Imagens</h3>
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-title">Images - Build & Registry</span>
+            <span class="code-lang">BASH</span>
+        </div>
+        <pre><code><span class="comment"># Construir imagem a partir do Dockerfile</span>
+<span class="function">docker build</span> -t minha-app:v1 .
+
+<span class="comment"># Construir sem cache (build limpo)</span>
+<span class="function">docker build</span> --no-cache -t minha-app:v1 .
+
+<span class="comment"># Listar imagens locais</span>
+<span class="function">docker images</span>
+
+<span class="comment"># Remover uma imagem</span>
+<span class="function">docker rmi</span> minha-app:v1
+
+<span class="comment"># Remover imagens dangling (sem tag)</span>
+<span class="function">docker image prune</span>
+
+<span class="comment"># Taggear imagem para push</span>
+<span class="function">docker tag</span> minha-app:v1 usuario/minha-app:latest
+
+<span class="comment"># Enviar para Docker Hub</span>
+<span class="function">docker push</span> usuario/minha-app:latest
+
+<span class="comment"># Baixar imagem do registry</span>
+<span class="function">docker pull</span> nginx:alpine
+
+<span class="comment"># Inspecionar metadados da imagem</span>
+<span class="function">docker inspect</span> nginx:alpine
+
+<span class="comment"># Histórico de camadas da imagem</span>
+<span class="function">docker history</span> minha-app:v1
+
+<span class="comment"># Salvar imagem como arquivo tar</span>
+<span class="function">docker save</span> -o minha-app.tar minha-app:v1
+
+<span class="comment"># Carregar imagem de arquivo tar</span>
+<span class="function">docker load</span> -i minha-app.tar</code></pre>
+    </div>
+
+    <h3 style="margin: 2rem 0 1.5rem; color: var(--gray-900);"><i class="fas fa-hdd"></i> Volumes & Networks</h3>
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-title">Volumes e Networks</span>
+            <span class="code-lang">BASH</span>
+        </div>
+        <pre><code><span class="comment"># Criar um volume</span>
+<span class="function">docker volume create</span> meu-volume
+
+<span class="comment"># Listar volumes</span>
+<span class="function">docker volume ls</span>
+
+<span class="comment"># Inspecionar volume</span>
+<span class="function">docker volume inspect</span> meu-volume
+
+<span class="comment"># Remover volume não utilizado</span>
+<span class="function">docker volume rm</span> meu-volume
+
+<span class="comment"># Remover volumes não utilizados</span>
+<span class="function">docker volume prune</span>
+
+<span class="comment"># Criar rede bridge customizada</span>
+<span class="function">docker network create</span> --driver bridge minha-rede
+
+<span class="comment"># Listar redes</span>
+<span class="function">docker network ls</span>
+
+<span class="comment"># Conectar container à rede</span>
+<span class="function">docker network connect</span> minha-rede meu-container
+
+<span class="comment"># Desconectar container da rede</span>
+<span class="function">docker network disconnect</span> minha-rede meu-container
+
+<span class="comment"># Inspecionar rede</span>
+<span class="function">docker network inspect</span> minha-rede</code></pre>
+    </div>
+
+    <h3 style="margin: 2rem 0 1.5rem; color: var(--gray-900);"><i class="fas fa-cubes"></i> Docker Compose</h3>
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-title">Docker Compose - Comandos</span>
+            <span class="code-lang">BASH</span>
+        </div>
+        <pre><code><span class="comment"># Iniciar todos os serviços em background</span>
+<span class="function">docker-compose up</span> -d
+
+<span class="comment"># Parar e remover containers, networks e volumes</span>
+<span class="function">docker-compose down</span>
+
+<span class="comment"># Parar sem remover volumes</span>
+<span class="function">docker-compose down</span> -v
+
+<span class="comment"># Reconstruir imagens antes de subir</span>
+<span class="function">docker-compose up</span> -d --build
+
+<span class="comment"># Escalar um serviço para 3 réplicas</span>
+<span class="function">docker-compose up</span> -d --scale web=3
+
+<span class="comment"># Ver logs de todos os serviços</span>
+<span class="function">docker-compose logs</span> -f
+
+<span class="comment"># Ver logs de serviço específico</span>
+<span class="function">docker-compose logs</span> -f web
+
+<span class="comment"># Executar comando em serviço</span>
+<span class="function">docker-compose exec</span> web bash
+
+<span class="comment"># Listar containers do compose</span>
+<span class="function">docker-compose ps</span>
+
+<span class="comment"># Validar arquivo compose</span>
+<span class="function">docker-compose config</span></code></pre>
+    </div>
+
+    <div class="alert alert-success">
+        <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="alert-content">
+            <strong>Cheat Sheet:</strong> Guarde esta página nos favoritos para consulta rápida. Todos os comandos são testados e validados para produção.
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-header">
+        <div class="section-tag">Exemplos Reais</div>
+        <h2 class="section-title">Dockerfile Profissional</h2>
+        <p class="section-subtitle">Exemplos de Dockerfiles otimizados para diferentes cenários de produção.</p>
+    </div>
+
+    <h3 style="margin-bottom: 1.5rem; color: var(--gray-900);"><i class="fas fa-code"></i> Aplicação Node.js (Multi-Stage)</h3>
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-title">Dockerfile - Node.js Production</span>
+            <span class="code-lang">DOCKERFILE</span>
+        </div>
+        <pre><code><span class="comment"># Estágio 1: Build</span>
+<span class="keyword">FROM</span> node:18-alpine <span class="keyword">AS</span> builder
+<span class="function">WORKDIR</span> /app
+
+<span class="comment"># Copiar dependências primeiro (cache otimizado)</span>
+<span class="function">COPY</span> package*.json ./
+<span class="function">RUN</span> npm ci --only=production
+
+<span class="comment"># Copiar código fonte e buildar</span>
+<span class="function">COPY</span> . .
+<span class="function">RUN</span> npm run build
+
+<span class="comment"># Estágio 2: Produção (imagem mínima)</span>
+<span class="keyword">FROM</span> node:18-alpine
+<span class="function">WORKDIR</span> /app
+
+<span class="comment"># Criar usuário não-root para segurança</span>
+<span class="function">RUN</span> addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
+
+<span class="comment"># Copiar apenas artefatos do build</span>
+<span class="function">COPY</span> --from=builder --chown=nodejs:nodejs /app/dist ./dist
+<span class="function">COPY</span> --from=builder --chown=nodejs:nodejs /app/node_modules ./node_modules
+<span class="function">COPY</span> --from=builder --chown=nodejs:nodejs /app/package.json ./
+
+<span class="function">USER</span> nodejs
+
+<span class="function">EXPOSE</span> 3000
+
+<span class="function">HEALTHCHECK</span> --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  <span class="function">CMD</span> node healthcheck.js || exit 1
+
+<span class="function">CMD</span> ["node", "dist/main.js"]</code></pre>
+    </div>
+
+    <h3 style="margin: 2rem 0 1.5rem; color: var(--gray-900);"><i class="fas fa-python"></i> Aplicação Python (Django/Flask)</h3>
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-title">Dockerfile - Python</span>
+            <span class="code-lang">DOCKERFILE</span>
+        </div>
+        <pre><code><span class="keyword">FROM</span> python:3.11-slim
+
+<span class="function">WORKDIR</span> /app
+
+<span class="comment"># Variáveis de ambiente</span>
+<span class="function">ENV</span> PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+<span class="comment"># Instalar dependências do sistema</span>
+<span class="function">RUN</span> apt-get update && apt-get install -y --no-install-recommends \
+    build-essential libpq-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+<span class="comment"># Instalar dependências Python</span>
+<span class="function">COPY</span> requirements.txt .
+<span class="function">RUN</span> pip install --no-cache-dir -r requirements.txt
+
+<span class="comment"># Copiar aplicação</span>
+<span class="function">COPY</span> . .
+
+<span class="comment"># Usuário não-root</span>
+<span class="function">RUN</span> useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+<span class="function">USER</span> appuser
+
+<span class="function">EXPOSE</span> 8000
+
+<span class="function">CMD</span> ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "app:application"]</code></pre>
+    </div>
+
+    <h3 style="margin: 2rem 0 1.5rem; color: var(--gray-900);"><i class="fas fa-database"></i> Docker Compose - Stack Completa</h3>
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-title">docker-compose.yml - Full Stack</span>
+            <span class="code-lang">YAML</span>
+        </div>
+        <pre><code><span class="function">version</span>: <span class="string">'3.8'</span>
+
+<span class="function">services</span>:
+  <span class="function">web</span>:
+    <span class="function">build</span>:
+      <span class="function">context</span>: ./web
+      <span class="function">dockerfile</span>: Dockerfile.prod
+    <span class="function">container_name</span>: web-app
+    <span class="function">restart</span>: unless-stopped
+    <span class="function">ports</span>:
+      - <span class="string">"80:80"</span>
+    <span class="function">environment</span>:
+      - <span class="string">NODE_ENV=production</span>
+      - <span class="string">DATABASE_URL=postgres://db:5432/app</span>
+    <span class="function">depends_on</span>:
+      <span class="function">db</span>:
+        <span class="function">condition</span>: service_healthy
+      <span class="function">redis</span>:
+        <span class="function">condition</span>: service_started
+    <span class="function">networks</span>:
+      - <span class="string">frontend</span>
+      - <span class="string">backend</span>
+    <span class="function">deploy</span>:
+      <span class="function">resources</span>:
+        <span class="function">limits</span>:
+          <span class="function">cpus</span>: <span class="string">'1.0'</span>
+          <span class="function">memory</span>: <span class="string">512M</span>
+
+  <span class="function">db</span>:
+    <span class="function">image</span>: <span class="string">postgres:15-alpine</span>
+    <span class="function">container_name</span>: postgres-db
+    <span class="function">restart</span>: unless-stopped
+    <span class="function">environment</span>:
+      <span class="function">POSTGRES_USER</span>: <span class="string">appuser</span>
+      <span class="function">POSTGRES_PASSWORD</span>: <span class="string">${DB_PASSWORD}</span>
+      <span class="function">POSTGRES_DB</span>: <span class="string">app</span>
+    <span class="function">volumes</span>:
+      - <span class="string">postgres_data:/var/lib/postgresql/data</span>
+      - <span class="string">./init.sql:/docker-entrypoint-initdb.d/init.sql</span>
+    <span class="function">healthcheck</span>:
+      <span class="function">test</span>: [<span class="string">"CMD-SHELL"</span>, <span class="string">"pg_isready -U appuser -d app"</span>]
+      <span class="function">interval</span>: <span class="string">10s</span>
+      <span class="function">timeout</span>: <span class="string">5s</span>
+      <span class="function">retries</span>: <span class="number">5</span>
+    <span class="function">networks</span>:
+      - <span class="string">backend</span>
+
+  <span class="function">redis</span>:
+    <span class="function">image</span>: <span class="string">redis:7-alpine</span>
+    <span class="function">container_name</span>: redis-cache
+    <span class="function">restart</span>: unless-stopped
+    <span class="function">volumes</span>:
+      - <span class="string">redis_data:/data</span>
+    <span class="function">command</span>: <span class="string">redis-server --appendonly yes --maxmemory 256mb</span>
+    <span class="function">networks</span>:
+      - <span class="string">backend</span>
+
+  <span class="function">nginx</span>:
+    <span class="function">image</span>: <span class="string">nginx:alpine</span>
+    <span class="function">container_name</span>: reverse-proxy
+    <span class="function">restart</span>: unless-stopped
+    <span class="function">ports</span>:
+      - <span class="string">"443:443"</span>
+    <span class="function">volumes</span>:
+      - <span class="string">./nginx.conf:/etc/nginx/nginx.conf:ro</span>
+      - <span class="string">./ssl:/etc/nginx/ssl:ro</span>
+    <span class="function">depends_on</span>:
+      - <span class="string">web</span>
+    <span class="function">networks</span>:
+      - <span class="string">frontend</span>
+
+<span class="function">volumes</span>:
+  <span class="function">postgres_data</span>:
+    <span class="function">driver</span>: <span class="string">local</span>
+  <span class="function">redis_data</span>:
+    <span class="function">driver</span>: <span class="string">local</span>
+
+<span class="function">networks</span>:
+  <span class="function">frontend</span>:
+    <span class="function">driver</span>: <span class="string">bridge</span>
+  <span class="function">backend</span>:
+    <span class="function">driver</span>: <span class="string">bridge</span>
+    <span class="function">internal</span>: <span class="keyword">true</span></code></pre>
+    </div>
+</section>
+
+<section class="section" id="faq">
+    <div class="section-header">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">Perguntas & Respostas</h2>
+        <p class="section-subtitle">As dúvidas mais comuns sobre Docker, respondidas de forma clara e objetiva.</p>
+    </div>
+
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>1. Qual a diferença entre Docker e Máquina Virtual (VM)?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>VMs virtualizam o hardware inteiro, incluindo um sistema operacional completo (hipervisor + Guest OS), consumindo GBs de RAM e minutos para iniciar. Docker utiliza containerização no nível do sistema operacional, compartilhando o kernel do host. Containers são medidos em MB, iniciam em segundos e oferecem densidade muito maior (você pode rodar centenas de containers onde cabem poucas VMs). VMs são ideais quando você precisa de isolamento completo de kernel ou rodar diferentes SOs.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>2. O que é uma camada (layer) em uma imagem Docker?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Cada instrução em um Dockerfile (RUN, COPY, ADD) cria uma nova camada read-only sobre a imagem base. Camadas são cacheadas e reutilizadas entre builds. Quando um container é executado, uma camada writable é adicionada no topo. Se dois containers usam a mesma imagem base, eles compartilham as camadas subjacentes, economizando espaço em disco. A ordem das instruções importa: coloque comandos que mudam com menos frequência no topo do Dockerfile para maximizar o cache.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>3. Como persistir dados quando um container é removido?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Use <strong>Volumes</strong> (recomendado para produção), gerenciados pelo Docker em /var/lib/docker/volumes/, ou <strong>Bind Mounts</strong> para mapear diretórios específicos do host. Volumes são independentes do ciclo de vida do container, podem ser nomeados, compartilhados entre múltiplos containers e facilmente backupados. Para dados temporários sensíveis, use <strong>tmpfs</strong> mounts (armazenamento em RAM). Nunca armazene dados importantes na camada writable do container.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>4. Como containers se comunicam entre si?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Por padrão, containers na mesma rede bridge customizada podem se comunicar usando os nomes dos containers como hostname (DNS interno do Docker). No Docker Compose, serviços resolvem automaticamente pelo nome do serviço. Para comunicação entre hosts diferentes, use redes <strong>overlay</strong> (Docker Swarm) ou orquestradores como Kubernetes. A porta exposta no container (EXPOSE) deve ser mapeada para o host (-p host:container) apenas quando necessário acesso externo.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>5. O que é Docker Compose e quando usar?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Docker Compose é uma ferramenta para definir e gerenciar aplicações multi-container através de um arquivo YAML declarativo. Use quando sua aplicação depende de múltiplos serviços (ex: web + API + banco + cache). Com um único docker-compose up, toda a stack é provisionada com redes e volumes configurados automaticamente. É ideal para desenvolvimento local, testes de integração e ambientes de staging. Para produção em grande escala, considere Docker Swarm ou Kubernetes.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>6. Como otimizar o tamanho das imagens Docker?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Use <strong>Multi-stage builds</strong> para separar ambiente de build e produção. Prefira imagens base <strong>Alpine</strong> ou <strong>Distroless</strong> ao invés de Debian/Ubuntu full. Combine comandos RUN em uma única camada para reduzir layers. Remova caches de pacotes (rm -rf /var/cache/apk/*). Use .dockerignore para excluir arquivos desnecessários do contexto de build. Ordene instruções do menos mutável ao mais mutável para maximizar cache.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>7. É seguro rodar containers como root?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p><strong>Não.</strong> Sempre crie e use um usuário não-root no Dockerfile (USER appuser). Containers como root que sofrem escape de container comprometem o host inteiro. Configure --security-opt=no-new-privileges, limite capabilities com --cap-drop ALL, use read-only filesystem (--read-only) quando possível e defina limites de recursos. Ferramentas como Docker Scout e Trivy ajudam a escanear vulnerabilidades em imagens.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>8. Como fazer backup de volumes Docker?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Use um container temporário para criar tarballs dos volumes: docker run --rm -v meu-volume:/data -v $(pwd):/backup alpine tar czf /backup/backup.tar.gz -C /data . Para restore: docker run --rm -v meu-volume:/data -v $(pwd):/backup alpine sh -c "cd /data && tar xzf /backup/backup.tar.gz". Para automação, considere plugins como docker-volume-backup ou integre com ferramentas de backup corporativas.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>9. O que fazer quando o Docker consome muito disco?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Execute docker system df para diagnosticar. Limpe com docker system prune -a (remove tudo não utilizado: containers parados, imagens dangling, networks não usadas, cache de build). Para limpeza seletiva: docker volume prune, docker image prune, docker container prune. Configure políticas de retenção de logs no daemon.json. Monitore regularmente o uso de disco em produção para evitar interrupções.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>10. Docker Swarm vs Kubernetes: qual escolher?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p><strong>Docker Swarm</strong> é mais simples, nativo no Docker, ideal para times pequenos e clusters menores (até ~50 nós). <strong>Kubernetes</strong> é o padrão de fato da indústria, oferece ecossistema vasto, auto-scaling avançado, service mesh, operators e suporte multi-cloud. Para aprendizado e pequenos projetos, comece com Swarm. Para produção enterprise, Kubernetes é indispensável. Certificações: DCA (Docker), CKA/CKAD (Kubernetes).</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>11. Como implementar Health Checks?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>No Dockerfile: HEALTHCHECK --interval=30s --timeout=3s --retries=3 CMD curl -f http://localhost:8080/health || exit 1. No docker-compose: use a seção healthcheck com test, interval, timeout, retries. O Docker monitora o status (starting, healthy, unhealthy). Orquestradores usam essa informação para restart automático e load balancing. Health checks devem ser leves e verificar dependências críticas (banco, cache) sem sobrecarregar.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>12. Como passar variáveis sensíveis (secrets) para containers?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Nunca commite secrets em imagens! Use: (1) <strong>Variáveis de ambiente</strong> em runtime (-e ou arquivo .env no host, não no container). (2) <strong>Docker Secrets</strong> (Swarm mode): echo "senha" | docker secret create db_password -. (3) <strong>Vaults externos</strong>: HashiCorp Vault, AWS Secrets Manager, Azure Key Vault. (4) <strong>tmpfs mounts</strong> para montar secrets em memória RAM. (5) Ferramentas de runtime como docker-credential-helpers.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>13. O que é Docker Hub e registries privados?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p><strong>Docker Hub</strong> é o registry público padrão da Docker, com milhões de imagens oficiais e da comunidade. Para imagens proprietárias, use <strong>registries privados</strong>: Docker Hub Private, AWS ECR, Azure ACR, GCP GCR, GitHub Container Registry, Harbor (open-source self-hosted), ou docker registry básico. Registries privados oferecem controle de acesso, scanning de vulnerabilidades, retenção de imagens e compliance.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>14. Como escalar containers horizontalmente?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Com Docker Compose: docker-compose up -d --scale web=5. Com Docker Swarm: docker service scale meu-servico=10. Com Kubernetes: kubectl scale deployment meu-app --replicas=10. O load balancer distribui tráfego entre réplicas. Para auto-scaling automático baseado em métricas (CPU, memória, requisições), use Kubernetes HPA (Horizontal Pod Autoscaler) ou soluções cloud como AWS ECS Service Auto Scaling.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>15. Como debugar um container que não inicia?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Passos sistemáticos: (1) docker logs container_id - verifique erros de aplicação. (2) docker inspect container_id - examine config, mounts, env vars, estado. (3) docker events - acompanhe eventos em tempo real. (4) Execute com --entrypoint sh para inspecionar manualmente. (5) Verifique portas em conflito (netstat). (6) Teste localmente fora do Docker. (7) Use docker exec -it container_id sh se o container estiver rodando mas com problemas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--gray-100);">
+    <div class="section-header">
+        <div class="section-tag">Comparação</div>
+        <h2 class="section-title">Tipos de Mounts: Quando Usar?</h2>
+        <p class="section-subtitle">Entenda as diferenças entre volumes, bind mounts e tmpfs para escolher a solução correta.</p>
+    </div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Característica</th>
+                <th>Volume (Named)</th>
+                <th>Bind Mount</th>
+                <th>tmpfs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Localização</strong></td>
+                <td>Gerenciado pelo Docker<br>/var/lib/docker/volumes/</td>
+                <td>Qualquer path do host</td>
+                <td>Memória RAM apenas</td>
+            </tr>
+            <tr>
+                <td><strong>Persistência</strong></td>
+                <td>Sim (sobrevive ao container)</td>
+                <td>Sim (dados no host)</td>
+                <td>Não (volátil)</td>
+            </tr>
+            <tr>
+                <td><strong>Performance</strong></td>
+                <td>Boa (nativo Docker)</td>
+                <td>Depende do filesystem host</td>
+                <td>Excelente (RAM)</td>
+            </tr>
+            <tr>
+                <td><strong>Portabilidade</strong></td>
+                <td>Alta (independente de path)</td>
+                <td>Baixa (path específico do host)</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td><strong>Caso de Uso</strong></td>
+                <td>Bancos de dados, dados de produção</td>
+                <td>Desenvolvimento, hot-reload de código</td>
+                <td>Secrets temporários, cache sensível</td>
+            </tr>
+            <tr>
+                <td><strong>Comando</strong></td>
+                <td>-v nome:/data</td>
+                <td>-v /host:/container</td>
+                <td>--tmpfs /app/tmp</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="section" id="recursos">
+    <div class="section-header">
+        <div class="section-tag">Materiais</div>
+        <h2 class="section-title">Recursos & Links</h2>
+        <p class="section-subtitle">Cursos, documentação, ferramentas e comunidades para aprofundar seus conhecimentos.</p>
+    </div>
+
+    <div class="resources-grid">
+        <a href="https://docs.docker.com" target="_blank" class="resource-card">
+            <div class="resource-type type-doc">Documentação</div>
+            <h4>Docker Docs Oficial</h4>
+            <p>A documentação oficial mais completa e atualizada sobre Docker, com guias, referência de API e tutoriais.</p>
+            <div class="resource-meta"><i class="fas fa-external-link-alt"></i> docs.docker.com</div>
+        </a>
+
+        <a href="https://labs.play-with-docker.com" target="_blank" class="resource-card">
+            <div class="resource-type type-tool">Laboratório</div>
+            <h4>Play With Docker</h4>
+            <p>Ambiente online gratuito para praticar Docker diretamente no browser sem instalar nada localmente.</p>
+            <div class="resource-meta"><i class="fas fa-external-link-alt"></i> labs.play-with-docker.com</div>
+        </a>
+
+        <a href="https://www.coursera.org/resources/docker-learning-roadmap" target="_blank" class="resource-card">
+            <div class="resource-type type-course">Roadmap</div>
+            <h4>Docker Learning Roadmap 2026</h4>
+            <p>Roadmap estruturado do Coursera cobrindo do básico à especialização em DevOps e Cloud.</p>
+            <div class="resource-meta"><i class="fas fa-external-link-alt"></i> coursera.org</div>
+        </a>
+
+        <a href="https://hub.docker.com" target="_blank" class="resource-card">
+            <div class="resource-type type-tool">Registry</div>
+            <h4>Docker Hub</h4>
+            <p>Registry público com milhões de imagens oficiais. Crie sua conta para publicar imagens próprias.</p>
+            <div class="resource-meta"><i class="fas fa-external-link-alt"></i> hub.docker.com</div>
+        </a>
+
+        <a href="https://github.com/veggiemonk/awesome-docker" target="_blank" class="resource-card">
+            <div class="resource-type type-doc">Curadoria</div>
+            <h4>Awesome Docker</h4>
+            <p>Lista curada no GitHub com as melhores ferramentas, projetos e recursos do ecossistema Docker.</p>
+            <div class="resource-meta"><i class="fab fa-github"></i> github.com</div>
+        </a>
+
+        <a href="https://www.youtube.com/c/Docker" target="_blank" class="resource-card">
+            <div class="resource-type type-video">Vídeos</div>
+            <h4>Canal Oficial Docker</h4>
+            <p>Vídeos oficiais da Docker Inc. com tutoriais, webinars e anúncios de novas features.</p>
+            <div class="resource-meta"><i class="fab fa-youtube"></i> youtube.com/c/Docker</div>
+        </a>
+
+        <a href="https://trivy.dev" target="_blank" class="resource-card">
+            <div class="resource-type type-tool">Segurança</div>
+            <h4>Trivy Scanner</h4>
+            <p>Scanner de vulnerabilidades para imagens Docker, filesystems e repos. Open-source e gratuito.</p>
+            <div class="resource-meta"><i class="fas fa-external-link-alt"></i> trivy.dev</div>
+        </a>
+
+        <a href="https://portainer.io" target="_blank" class="resource-card">
+            <div class="resource-type type-tool">UI</div>
+            <h4>Portainer</h4>
+            <p>Interface web leve para gerenciar ambientes Docker e Kubernetes. Ideal para quem prefere GUI.</p>
+            <div class="resource-meta"><i class="fas fa-external-link-alt"></i> portainer.io</div>
+        </a>
+    </div>
+</section>
+
+<section class="section" id="videos">
+    <div class="section-header">
+        <div class="section-tag">Vídeos</div>
+        <h2 class="section-title">Vídeos Recomendados</h2>
+        <p class="section-subtitle">Conteúdo em vídeo selecionado para aprender visualmente.</p>
+    </div>
+
+    <div class="video-grid">
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe src="https://www.youtube.com/embed/3c-iBn73dDE" title="Docker Tutorial" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h4>Docker Tutorial for Beginners</h4>
+                <p>Introdução completa aos conceitos básicos de Docker, containers e imagens.</p>
+                <div class="video-meta">
+                    <span><i class="fab fa-youtube"></i> TechWorld with Nana</span>
+                    <span><i class="fas fa-clock"></i> 2h+</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe src="https://www.youtube.com/embed/HG6yIjZapSA" title="Docker Compose" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h4>Docker Compose Tutorial</h4>
+                <p>Aprenda a orquestrar múltiplos containers com Docker Compose na prática.</p>
+                <div class="video-meta">
+                    <span><i class="fab fa-youtube"></i> Programming with Mosh</span>
+                    <span><i class="fas fa-clock"></i> 45min</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe src="https://www.youtube.com/embed/suH7zvdF8wk" title="Dockerfile Best Practices" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h4>Dockerfile Best Practices</h4>
+                <p>Como escrever Dockerfiles profissionais, otimizados e seguros para produção.</p>
+                <div class="video-meta">
+                    <span><i class="fab fa-youtube"></i> Bret Fisher</span>
+                    <span><i class="fas fa-clock"></i> 1h</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dark-section">
+    <div class="section-header">
+        <div class="section-tag" style="background: rgba(255,255,255,0.1); color: white;">Simulação</div>
+        <h2 class="section-title">Terminal Interativo</h2>
+        <p class="section-subtitle">Exemplo de sessão de terminal com comandos Docker comuns.</p>
+    </div>
+
+    <div class="terminal" style="max-width: 800px; margin: 0 auto;">
+        <div class="terminal-header">
+            <div class="terminal-btn red"></div>
+            <div class="terminal-btn yellow"></div>
+            <div class="terminal-btn green"></div>
+            <span style="margin-left: 1rem; color: #858585; font-size: 0.85rem;">user@docker-master:~</span>
+        </div>
+        <div class="terminal-line">
+            <span class="terminal-prompt">$</span> <span class="terminal-command">docker --version</span><br>
+            <span class="terminal-output">Docker version 26.1.0, build 9714adc</span>
+        </div>
+        <div class="terminal-line">
+            <span class="terminal-prompt">$</span> <span class="terminal-command">docker run hello-world</span><br>
+            <span class="terminal-output">Hello from Docker!<br>This message shows that your installation appears to be working correctly.</span>
+        </div>
+        <div class="terminal-line">
+            <span class="terminal-prompt">$</span> <span class="terminal-command">docker ps -a</span><br>
+            <span class="terminal-output">CONTAINER ID   IMAGE          COMMAND    CREATED         STATUS                     PORTS     NAMES<br>
+            a1b2c3d4e5f6   hello-world    "/hello"   2 minutes ago   Exited (0) 2 minutes ago             dreamy_curie</span>
+        </div>
+        <div class="terminal-line">
+            <span class="terminal-prompt">$</span> <span class="terminal-command">docker images</span><br>
+            <span class="terminal-output">REPOSITORY    TAG       IMAGE ID       CREATED        SIZE<br>
+            hello-world   latest    d2c94e258dcb   3 months ago   13.3kB<br>
+            nginx         alpine    8c9e3c2f1a4b   2 weeks ago    23.5MB</span>
+        </div>
+        <div class="terminal-line">
+            <span class="terminal-prompt">$</span> <span class="terminal-command">docker system df</span><br>
+            <span class="terminal-output">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE<br>
+            Images          5         2         1.234GB   890MB (72%)<br>
+            Containers      3         1         45.2MB    0B (0%)<br>
+            Local Volumes   2         2         156.3MB   0B (0%)</span>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="text-align: center; padding: 6rem 2rem;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--gray-900);">Pronto para Containerizar?</h2>
+        <p style="font-size: 1.2rem; color: var(--gray-600); margin-bottom: 2rem;">Comece hoje mesmo a praticar com projetos reais. A melhor forma de aprender Docker é construindo containers.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://docs.docker.com/get-started/" target="_blank" class="btn btn-primary" style="padding: 1rem 2rem;">
+                <i class="fas fa-book"></i> Documentação Oficial
+            </a>
+            <a href="https://labs.play-with-docker.com" target="_blank" class="btn btn-secondary" style="background: var(--gray-800); color: white; border: none; padding: 1rem 2rem;">
+                <i class="fas fa-laptop-code"></i> Praticar Online
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Docker Masterclass</h4>
+            <p style="color: rgba(255,255,255,0.7); line-height: 1.7; margin-top: 1rem;">
+                Guia completo e gratuito para dominar Docker do zero ao nível profissional. Atualizado constantemente com as melhores práticas da indústria.
+            </p>
+        </div>
+        <div class="footer-section">
+            <h4>Navegação Rápida</h4>
+            <ul>
+                <li><a href="#conceitos">Conceitos</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#comandos">Comandos</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Recursos Oficiais</h4>
+            <ul>
+                <li><a href="https://docs.docker.com" target="_blank">Docker Docs</a></li>
+                <li><a href="https://hub.docker.com" target="_blank">Docker Hub</a></li>
+                <li><a href="https://www.docker.com/certification" target="_blank">Certificação DCA</a></li>
+                <li><a href="https://dockercommunity.slack.com" target="_blank">Comunidade Slack</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Ferramentas Recomendadas</h4>
+            <ul>
+                <li><a href="https://portainer.io" target="_blank">Portainer</a></li>
+                <li><a href="https://trivy.dev" target="_blank">Trivy Security</a></li>
+                <li><a href="https://www.sonarqube.org" target="_blank">SonarQube</a></li>
+                <li><a href="https://prometheus.io" target="_blank">Prometheus</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p> Docker Masterclass - Guia Completo. Conteúdo educacional baseado na documentação oficial Docker.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">Última atualização: Maio 2026</p>
+    </div>
+</footer>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        dots[i].classList.remove('active');
+    });
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentSlide = index;
+}
+
+function changeSlide(direction) {
+    let newIndex = currentSlide + direction;
+    if (newIndex < 0) newIndex = slides.length - 1;
+    if (newIndex >= slides.length) newIndex = 0;
+    showSlide(newIndex);
+}
+
+function goToSlide(index) {
+    showSlide(index);
+}
+
+setInterval(() => { changeSlide(1); }, 8000);
+
+function toggleFaq(element) {
+    const item = element.parentElement;
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(faq => { faq.classList.remove('active'); });
+    if (!isActive) { item.classList.add('active'); }
+}
+
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+    } else {
+        navbar.style.boxShadow = 'none';
+    }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+
+document.querySelector('.mobile-menu').addEventListener('click', () => {
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks.style.display === 'flex') {
+        navLinks.style.display = 'none';
+    } else {
+        navLinks.style.display = 'flex';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '70px';
+        navLinks.style.left = '0';
+        navLinks.style.right = '0';
+        navLinks.style.background = 'white';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.padding = '2rem';
+        navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+    }
+});
+</script>
+
+</body>
+</html>

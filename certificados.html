@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Certificados - ZENTIX Cursos e Capacitações</title>
+    <!-- Biblioteca externa para QR Code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Biblioteca para conversão do HTML em PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #c59b27;
+            --bg: #f4f6f8;
+            --text: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 20px;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .form-container h2 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .input-group-code {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-gen-code {
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            padding: 0 12px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-gen-code:hover {
+            background: #ab851e;
+        }
+
+        .btn-action {
+            width: 100%;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-save {
+            background: var(--primary);
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .certificate-page {
+            width: 297mm;
+            height: 210mm;
+            background: #fff;
+            padding: 10mm 18mm 8mm 18mm;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-sizing: border-box;
+            overflow: hidden;
+            background-image: radial-gradient(circle, #fbfbfb 0%, #fff 100%);
+        }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45%;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .certificate-page > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .border-frame {
+            position: absolute;
+            top: 8mm;
+            left: 8mm;
+            right: 8mm;
+            bottom: 8mm;
+            border: 2px solid var(--primary);
+            outline: 1px solid var(--secondary);
+            outline-offset: -4px;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .cert-logo {
+            max-width: 125px;
+            height: auto;
+            margin: 0 auto 2px auto;
+            display: block;
+        }
+
+        .cert-header {
+            text-align: center;
+            margin-top: 2mm;
+            margin-bottom: 12px;
+        }
+
+        .cert-header h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .cert-header p {
+            font-size: 0.95rem;
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .cert-body {
+            text-align: justify;
+            padding: 0 40px;
+            margin: 0 auto 25px auto;
+            max-width: 90%;
+        }
+
+        .cert-body p {
+            font-size: 1.2rem;
+            line-height: 1.75;
+            color: #444;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .cert-body strong {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .cert-footer {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 4px;
+            padding-bottom: 4mm;
+        }
+
+        .signature-direction {
+            text-align: center;
+            width: 220px;
+        }
+
+        .signature-img {
+            max-height: 38px;
+            margin: 0 auto -4px auto;
+            display: block;
+        }
+
+        .signature-line {
+            border-top: 1px solid #777;
+            margin-bottom: 2px;
+        }
+
+        .signature-direction p {
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        .company-info {
+            text-align: center;
+        }
+
+        .company-info p {
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        .date-location {
+            font-size: 0.88rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        .verso-container-top {
+            margin-top: 2mm;
+        }
+
+        .verso-title {
+            color: var(--primary);
+            font-size: 1.25rem;
+            text-align: center;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 3px;
+            margin-bottom: 10px;
+        }
+
+        .verso-info {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .ementa-box {
+            border: 1px solid #ddd;
+            padding: 10px 14px;
+            border-radius: 5px;
+            background: #fafafa;
+            min-height: 120px;
+            font-size: 0.88rem;
+            white-space: pre-line;
+            line-height: 1.4;
+        }
+
+        .verso-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 8px;
+            padding-bottom: 4mm;
+        }
+
+        .validation-info {
+            max-width: 65%;
+            font-size: 0.78rem;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .qr-code-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #qrcode img {
+            border: 3px solid #fff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.15);
+        }
+
+        @media print {
+            @page {
+                margin: 0;
+            }
+
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .form-container, .no-print {
+                display: none !important;
+            }
+
+            .container {
+                display: block;
+            }
+
+            .preview-container {
+                gap: 0;
+            }
+
+            .certificate-page {
+                box-shadow: none;
+                page-break-after: always;
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h2>Dados do Certificado</h2>
+        
+        <div class="form-group">
+            <label>Logo da Empresa (Arquivo)</label>
+            <input type="file" id="inLogoFile" accept="image/*" onchange="loadFile(event, 'outLogo')">
+        </div>
+
+        <div class="form-group">
+            <label>Assinatura da Direção (Arquivo)</label>
+            <input type="file" id="inAssinaturaFile" accept="image/*" onchange="loadFile(event, 'outAssinatura')">
+        </div>
+
+        <div class="form-group">
+            <label>Nome do Aluno</label>
+            <input type="text" id="inAluno" value="" placeholder="Digite o nome do aluno" oninput="updateCert()">
+        </div>
+
+        <div class="form-group">
+            <label>Nome do Curso</label>
+            <input type="text" id="inCurso" value="" placeholder="Digite o nome do curso" oninput="updateCert()">
+        </div>
+
+        <div class="form-group">
+            <label>Carga Horária (Horas)</label>
+            <input type="number" id="inCH" value="40" placeholder="Ex: 40" oninput="updateCert()">
+        </div>
+
+        <div class="form-group">
+            <label>Professor</label>
+            <input type="text" id="inProfessor" value="Márcio Rodrigues de Oliveira, Engenheiro, CREA: 1522223070PA" placeholder="Nome e titulação do professor" oninput="updateCert()">
+        </div>
+
+        <div class="form-group">
+            <label>Data de Conclusão / Emissão</label>
+            <input type="date" id="inDataConclusao" value="" onchange="updateCert()">
+        </div>
+
+        <div class="form-group">
+            <label>Código de Registro (Gerado Automático)</label>
+            <div class="input-group-code">
+                <input type="text" id="inCodigo" value="" placeholder="Ex: ZENTIX-2026-0000001" oninput="updateCert()">
+                <button type="button" class="btn-gen-code" title="Gerar Novo Código" onclick="generateRandomCode()">🔄</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Conteúdo Programático</label>
+            <textarea id="inEmenta" placeholder="Insira o conteúdo programático..." oninput="updateCert()"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="button" class="btn-action btn-save" onclick="salvarCertificadoPDF()">Salvar Certificado em PDF</button>
+            <button type="button" class="btn-action" style="background:#555;" onclick="window.print()">Imprimir Diretamente</button>
+        </div>
+    </div>
+
+    <div class="preview-container" id="certPreview">
+        
+        <!-- FRENTE -->
+        <div class="certificate-page">
+            <div class="border-frame"></div>
+            <img src="04.png" alt="Marca D'água" class="watermark">
+            
+            <div class="cert-header">
+                <img id="outLogo" src="img/022.png" alt="ZENTIX Logo" class="cert-logo">
+                <p>Cursos e Capacitações</p>
+                <h1>Certificado de Conclusão</h1><br><br><br><br>
+            </div>
+
+            <div class="cert-body">
+                <p>
+                    Certificamos que <strong id="outAluno"></strong> concluiu com êxito o curso de 
+                    <strong id="outCurso"></strong>, 
+                    ministrado pelo(a) professor(a) <span id="outProfessorDisplay" style="font-weight:600; color:var(--primary);"></span>, 
+                    com carga horária total de <strong id="outCH"></strong> horas, finalizado em <span id="outDataConclusaoFrente"></span>.
+                </p>
+            </div>
+
+            <div class="cert-footer">
+                <div class="signature-direction">
+                    <img id="outAssinatura" src="" alt="" class="signature-img" style="display: none;">
+                    <div class="signature-line"></div>
+                    <p><strong>Direção Geral</strong></p>
+                </div>
+
+                <div class="company-info">
+                    <p><strong>ZENTIX Cursos e Capacitações</strong></p>
+                    <p style="font-size: 0.8rem; color: #555;">CNPJ: 68.664.946/0001-96</p>
+                </div>
+
+                <div class="date-location">
+                    Goiânia - GO, <span id="outDataAtualExtenso"></span>.
+                </div>
+            </div>
+        </div>
+
+        <!-- VERSO -->
+        <div class="certificate-page">
+            <div class="border-frame"></div>
+            <img src="04.png" alt="Marca D'água" class="watermark">
+
+            <div class="verso-container-top">
+                <h2 class="verso-title">Conteúdo Programático</h2><br><br>
+                <div class="verso-info">
+                    <p><strong>Curso:</strong> <span id="outCursoVerso"></span></p>
+                    <p><strong>Carga Horária:</strong> <span id="outCHVerso"></span>h</p>
+                </div><br><br>
+
+                <div class="ementa-box" id="outEmenta"></div>
+            </div>
+
+            <div class="verso-footer">
+                <div class="validation-info">
+                    <p><strong>Autenticidade do Documento:</strong></p>
+                    <p>Para verificar a validade deste certificado, aponte a câmera para o QR Code ao lado.</p>
+                    <br>
+                    <p style="font-size: 0.72rem; color: #888;">ZENTIX Cursos e Capacitações – CNPJ 68.664.946/0001-96 – Goiânia/GO</p>
+                </div>
+
+                <div class="qr-code-box">
+                    <div id="qrcode"></div>
+                    <span style="font-size: 0.7rem; color: #555; margin-top: 2px;">Validação Oficial</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let qrcodeObj = null;
+
+    function generateRandomCode() {
+        const year = new Date().getFullYear();
+        const randomNumber = Math.floor(Math.random() * 10000000).toString().padStart(7, '0');
+        const code = `ZENTIX-${year}-${randomNumber}`;
+        document.getElementById('inCodigo').value = code;
+        updateCert();
+    }
+
+    function formatDate(dateString) {
+        if (!dateString) return '';
+        const parts = dateString.split('-');
+        if (parts.length !== 3) return dateString;
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+
+    function formatDateExtenso(dateString) {
+        if (!dateString) return '';
+        const date = new Date(dateString + 'T00:00:00');
+        if (isNaN(date.getTime())) return '';
+        const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        return `${date.getDate()} de ${meses[date.getMonth()]} de ${date.getFullYear()}`;
+    }
+
+    function loadFile(event, targetId) {
+        const input = event.target;
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgElement = document.getElementById(targetId);
+                imgElement.src = e.target.result;
+                imgElement.style.display = 'block';
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function updateCert() {
+        const aluno = document.getElementById('inAluno').value;
+        const curso = document.getElementById('inCurso').value;
+        const ch = document.getElementById('inCH').value;
+        const prof = document.getElementById('inProfessor').value;
+        const dataConclusao = document.getElementById('inDataConclusao').value;
+        const codigo = document.getElementById('inCodigo').value.trim();
+        const ementa = document.getElementById('inEmenta').value;
+
+        // Atualizar visualização
+        document.getElementById('outAluno').innerText = aluno;
+        document.getElementById('outCurso').innerText = curso;
+        document.getElementById('outCH').innerText = ch;
+        document.getElementById('outProfessorDisplay').innerText = prof;
+        document.getElementById('outDataConclusaoFrente').innerText = formatDate(dataConclusao);
+        document.getElementById('outDataAtualExtenso').innerText = formatDateExtenso(dataConclusao);
+
+        document.getElementById('outCursoVerso').innerText = curso;
+        document.getElementById('outCHVerso').innerText = ch;
+        document.getElementById('outEmenta').innerText = ementa;
+
+        // Salvar no localStorage local
+        if (codigo !== "") {
+            const certData = {
+                aluno: aluno,
+                curso: curso,
+                ch: ch,
+                professor: prof,
+                dataConclusao: formatDate(dataConclusao),
+                codigo: codigo
+            };
+            localStorage.setItem(codigo, JSON.stringify(certData));
+        }
+
+        // URL com parâmetros
+        const params = new URLSearchParams({
+            codigo: codigo,
+            aluno: aluno,
+            curso: curso,
+            ch: ch,
+            prof: prof,
+            data: formatDate(dataConclusao)
+        });
+
+        const urlValida = `https://mgrupo.online/valida.html?${params.toString()}`;
+
+        // Gerar QR Code
+        document.getElementById('qrcode').innerHTML = "";
+        if (codigo !== "") {
+            qrcodeObj = new QRCode(document.getElementById("qrcode"), {
+                text: urlValida,
+                width: 85,
+                height: 85,
+                colorDark : "#1a365d",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.M
+            });
+        }
+    }
+
+    // Gerar e Baixar o PDF com nome do arquivo no padrão: Aluno - Curso - Data.pdf
+    function salvarCertificadoPDF() {
+        const aluno = document.getElementById('inAluno').value.trim();
+        const curso = document.getElementById('inCurso').value.trim();
+        const dataConclusao = document.getElementById('inDataConclusao').value;
+
+        if (!aluno || !curso) {
+            alert("Por favor, preencha o Nome do Aluno e o Nome do Curso antes de salvar.");
+            return;
+        }
+
+        // Formata data para DD-MM-AAAA (substitui barras por traços para compatibilidade de arquivo)
+        const dataFormatada = formatDate(dataConclusao).replace(/\//g, '-');
+
+        // Cria o nome do arquivo final
+        let nomeArquivo = `${aluno} - ${curso}`;
+        if (dataFormatada) {
+            nomeArquivo += ` - ${dataFormatada}`;
+        }
+        
+        // Remove caracteres especiais não permitidos em nomes de arquivos
+        nomeArquivo = nomeArquivo.replace(/[\\/:*?"<>|]/g, '') + '.pdf';
+
+        const element = document.getElementById('certPreview');
+        const opt = {
+            margin: 0,
+            filename: nomeArquivo,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+        };
+
+        html2pdf().set(opt).from(element).save();
+    }
+
+    window.onload = function() {
+        generateRandomCode();
+    };
+</script>
+
+</body>
+</html>

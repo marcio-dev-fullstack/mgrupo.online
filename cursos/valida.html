@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX | Validação de Certificados</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-graduation-cap logo-icon"></i>
+            <span class="logo-title">ZENTIX <strong>VALIDAÇÃO</strong></span>
+        </div>
+        <a href="index.html" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Voltar à Plataforma</a>
+    </header>
+
+    <main class="dashboard-container center-content">
+        <div class="validate-box">
+            <i class="fa-solid fa-shield-check validate-icon"></i>
+            <h2>Validação Pública de Certificados</h2>
+            <p>Informe o código do certificado impresso para verificar sua autenticidade oficial.</p>
+
+            <div class="input-group">
+                <input type="text" id="cert-code-input" placeholder="Ex: ZNX-2026-8891" value="ZNX-2026-8891">
+                <button class="btn btn-primary" onclick="verifyCertificate()"><i class="fa-solid fa-magnifying-glass"></i> Validar Certificado</button>
+            </div>
+
+            <div id="verify-result" class="verify-result-card" style="display:none;">
+                <div class="status-badge valid"><i class="fa-solid fa-circle-check"></i> CERTIFICADO VÁLIDO</div>
+                <h3>NR-10 - Segurança em Instalações Elétricas</h3>
+                <p>Emitido para: <strong>Márcio Rodrigues de Oliveira</strong></p>
+                <p>Data de Emissão: 12/11/2026 • Carga Horária: 40 Horas</p>
+                <span class="hash-text">Hash SHA256: 8f9a2b1c4e6d3f5a7b8c9d0e1f2a3b4c</span>
+            </div>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

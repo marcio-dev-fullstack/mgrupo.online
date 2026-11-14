@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zentix Acadêmico - Soluções Inteligentes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        /* Logo Zentix Acadêmico */
+        .logo-container {
+            text-align: center;
+            padding: 10px 0 20px 0;
+            margin-bottom: 20px;
+        }
+        .logo-svg {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Topo em destaque */
+        .header-profile {
+            background-color: #ebf8ff;
+            border: 1px solid #bee3f8;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .header-profile h2 {
+            margin: 0 0 5px 0;
+            color: #1a365d;
+            font-size: 1.8rem;
+        }
+        .header-profile p {
+            margin: 0 0 15px 0;
+            color: #4a5568;
+            font-size: 1rem;
+        }
+        .service-card {
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #3182ce;
+            padding: 18px;
+            margin: 15px 0;
+            border-radius: 6px;
+            background-color: #f7fafc;
+        }
+        .service-card h2 {
+            margin-top: 0;
+            color: #2b6cb0;
+            font-size: 1.25rem;
+        }
+        .service-card p {
+            margin-bottom: 0;
+            color: #4a5568;
+        }
+
+        /* Seção Tabela de Preços */
+        .pricing-section {
+            margin: 35px 0 25px 0;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .pricing-header {
+            background-color: #1a365d;
+            color: #ffffff;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .pricing-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+        }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .price-table th, .price-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .price-table th {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+        .price-table tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+        .price-table tr:hover {
+            background-color: #edf2f7;
+        }
+        .service-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .price-tag {
+            font-weight: 700;
+            color: #2b6cb0;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .price-tag.consult {
+            color: #d69e2e;
+            font-style: italic;
+        }
+        .pricing-notice {
+            background-color: #fffaf0;
+            border-top: 1px solid #feebc8;
+            padding: 12px 20px;
+            color: #744210;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-curriculo {
+            display: inline-block;
+            background-color: #3182ce;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .btn-curriculo:hover {
+            background-color: #2b6cb0;
+        }
+
+        /* Novo Rodapé Aprimorado */
+        .site-footer {
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            color: #ffffff;
+            padding: 40px 30px 24px 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .footer-content p {
+            color: #e2e8f0;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-actions {
+            margin: 25px 0;
+        }
+
+        .btn-footer-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25d366;
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-footer-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .footer-divider {
+            border: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 30px 0 20px 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #cbd5e0;
+        }
+
+        .footer-dev {
+            margin-top: 6px;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-dev a {
+            color: #fbbf24;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-dev a:hover {
+            color: #fde68a;
+            text-decoration: underline;
+        }
+
+        /* Botão Flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #20ba5a;
+        }
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Logo Zentix Acadêmico -->
+    <div class="logo-container">
+        <svg class="logo-svg" width="380" height="110" viewBox="0 0 380 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(10, 15)">
+                <path d="M40 10 L75 28 L40 46 L5 28 Z" fill="#3182ce" />
+                <path d="M20 40 L20 58 C20 66 60 66 60 58 L60 40" fill="none" stroke="#1a365d" stroke-width="4" stroke-linecap="round" />
+                <path d="M68 29.5 L68 55 L74 58 L74 29.5 Z" fill="#2b6cb0" />
+            </g>
+            <text x="95" y="55" font-family="Arial, sans-serif" font-weight="900" font-size="42" fill="#1a365d" letter-spacing="2">ZENTIX</text>
+            <text x="97" y="80" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#3182ce" letter-spacing="4">ACADÊMICO</text>
+        </svg>
+        <p>Soluções inteligentes para quem busca agilidade e excelência acadêmica.</p>
+    </div>
+
+    <!-- Destaque no Topo -->
+    <div class="header-profile">
+        <h2>👨‍🏫 Profº Márcio Oliveira</h2>
+        <p>Consultoria & Orientação Acadêmica</p>
+        <a href="https://unifatix.com.br/curriculo-prof-marcio.html" class="btn-curriculo" target="_blank" rel="noopener noreferrer">📄 Ver Currículo do Professor</a>
+    </div>
+
+    <!-- Serviço 1 -->
+    <div class="service-card">
+        <h2>📚 Mentoria e Orientação em TCC</h2>
+        <p>Auxílio completo na estruturação, aplicação de normas ABNT, formatação e desenvolvimento metodológico para você apresentar seu trabalho com segurança.</p>
+    </div>
+
+    <!-- Serviço 2 -->
+    <div class="service-card">
+        <h2>💼 Carreiras e Oportunidades de Estágio</h2>
+        <p>Conectamos estudantes a vagas de estágio presenciais ou home office (remoto) na sua área de atuação.</p>
+    </div>
+
+    <!-- Serviço 3 -->
+    <div class="service-card">
+        <h2>🛠️ Suporte Acadêmico Especializado</h2>
+        <p>Suporte para estruturação de relatórios técnicos, artigos e produções científicas. Qualidade e rigor metodológico garantidos.</p>
+    </div>
+
+    <!-- Tabela de Preços -->
+    <div class="pricing-section">
+        <div class="pricing-header">
+            <h2>🏷️ Tabela de Investimento</h2>
+        </div>
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>Serviço / Produção Acadêmica</th>
+                    <th style="text-align: right;">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="service-name">Trabalhos Acadêmicos</td>
+                    <td class="price-tag">A partir de R$ 50,00</td>
+                </tr>
+                <tr>
+                    <td class="service-name">TCC / Artigo Científico</td>
+                    <td class="price-tag">A partir de R$ 600,00</td>
+                </tr>
+                <tr>
+                    <td class="service-name">TCC / Projeto Integrador</td>
+                    <td class="price-tag">A partir de R$ 800,00</td>
+                </tr>
+                <tr>
+                    <td class="service-name">TCC / Monografia</td>
+                    <td class="price-tag">A partir de R$ 800,00</td>
+                </tr>
+                <tr>
+                    <td class="service-name">Mestrado / Dissertação</td>
+                    <td class="price-tag consult">Consultar valor</td>
+                </tr>
+                <tr>
+                    <td class="service-name">Doutorado / Tese</td>
+                    <td class="price-tag consult">Consultar valor</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pricing-notice">
+            ⚠️ <span><strong>Observação:</strong> Trabalhos voltados para Instituições Públicas (IF / UF / UE) possuem requisitos específicos e valores diferenciados.</span>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <h3>🚀 Pronto para impulsionar a sua trajetória acadêmica?</h3>
+            <p>Entre em contato conosco agora mesmo e tire todas as suas dúvidas sobre mentorias, TCC e orientações.</p>
+            
+            <div class="footer-actions">
+                <a href="https://wa.me/5562996466033?text=Ol%C3%A1!%20Gostaria%20de%20iniciar%20um%20atendimento." class="btn-footer-whatsapp" target="_blank" rel="noopener noreferrer">
+                    💬 Conversar via WhatsApp (62) 99646-6033
+                </a>
+            </div>
+            
+            <div style="color: #e2e8f0; font-size: 0.95rem; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <i class="fa-solid fa-location-dot" style="color: #fbbf24;"></i>
+                <span>Av. Portugal, 1148, Quadra L29, Lote 1E, Sala C2501, Setor Marista, <br> Goiânia - GO, CEP 74150-030</span>
+            </div>
+
+            <hr class="footer-divider">
+            
+            <div class="footer-bottom">
+                <span>© 2024. Zentix Acadêmico. Todos os direitos reservados.</span>
+                <span class="footer-dev">
+                    Desenvolvido por: <a href="https://zentix.eng.br/" target="_blank" rel="noopener noreferrer">ZENTIX</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Botão Flutuante do WhatsApp -->
+<a href="https://wa.me/5565999231273?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20acad%C3%AAmicos." 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   aria-label="Falar no WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+
+</body>
+</html>

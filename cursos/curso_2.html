@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZENTIX | Player do Aluno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #162238;
+      --panel-2: #1e293b;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, .09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: .2s;
+    }
+
+    .back-btn:hover {
+      color: #fff;
+    }
+
+    .course-title-head {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .player-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      min-height: calc(100vh - 65px);
+    }
+
+    .video-section {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: auto;
+    }
+
+    .iframe-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .lesson-details {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .lesson-details h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .lesson-details p {
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .materials {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .materials h4 {
+      font-size: .85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .material-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59, 130, 246, .15);
+      color: #bfdbfe;
+      border: 1px solid rgba(59, 130, 246, .3);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: .8rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .playlist-section {
+      background: var(--panel);
+      border-left: 1px solid var(--line);
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .module-block {
+      margin-bottom: 20px;
+    }
+
+    .module-title {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .lesson-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--muted);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: .85rem;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: .2s;
+      margin-bottom: 6px;
+    }
+
+    .lesson-btn:hover {
+      background: rgba(255, 255, 255, .04);
+      color: #fff;
+    }
+
+    .lesson-btn.active {
+      background: rgba(59, 130, 246, .18);
+      border-color: rgba(59, 130, 246, .4);
+      color: #fff;
+    }
+
+    .lesson-btn small {
+      font-size: .72rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    @media(max-width: 960px) {
+      .player-container {
+        grid-template-columns: 1fr;
+      }
+      .playlist-section {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="login.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Painel</a>
+    <div class="course-title-head" id="headerCourseTitle">Carregando curso...</div>
+  </header>
+
+  <div class="player-container">
+    <main class="video-section">
+      <div class="iframe-wrapper">
+        <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+      </div>
+      <div class="lesson-details">
+        <h2 id="currentLessonTitle">Selecione uma aula</h2>
+        <p id="currentLessonDesc">O conteúdo da aula será exibido aqui.</p>
+        <div class="materials">
+          <h4>Materiais Complementares</h4>
+          <div id="materialsList"></div>
+        </div>
+      </div>
+    </main>
+
+    <aside class="playlist-section" id="playlistContainer"></aside>
+  </div>
+
+  <script src="courses-data.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const cursoId = urlParams.get('id') || 'ia-seguranca-do-trabalho';
+
+    const todosCursos = window.ZENTIX_COURSES || [];
+    let cursoAtual = todosCursos.find(c => c.id === cursoId || c.title === cursoId);
+
+    function inicializarPlayer() {
+      if (!cursoAtual || !cursoAtual.modules) {
+        document.getElementById('headerCourseTitle').textContent = "Curso não encontrado";
+        return;
+      }
+
+      document.getElementById('headerCourseTitle').textContent = cursoAtual.title;
+      renderizarPlaylist();
+
+      if (cursoAtual.modules[0] && cursoAtual.modules[0].lessons[0]) {
+        carregarAula(cursoAtual.modules[0].lessons[0]);
+      }
+    }
+
+    function renderizarPlaylist() {
+      const playlistEl = document.getElementById('playlistContainer');
+      
+      playlistEl.innerHTML = cursoAtual.modules.map(mod => `
+        <div class="module-block">
+          <div class="module-title">${escapeHtml(mod.title)}</div>
+          ${mod.lessons.map(aula => `
+            <button class="lesson-btn" id="btn-${aula.id}" onclick='carregarAula(${JSON.stringify(aula)})'>
+              <span><i class="fa-regular fa-circle-play"></i> ${escapeHtml(aula.title)}</span>
+              <small><i class="fa-regular fa-clock"></i> ${aula.duration}</small>
+            </button>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    function carregarAula(aula) {
+      document.getElementById('videoPlayer').src = aula.videoUrl;
+      document.getElementById('currentLessonTitle').textContent = aula.title;
+      document.getElementById('currentLessonDesc').textContent = aula.description;
+
+      document.querySelectorAll('.lesson-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-${aula.id}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const matEl = document.getElementById('materialsList');
+      if (aula.materials && aula.materials.length > 0) {
+        matEl.innerHTML = aula.materials.map(m => `
+          <a href="${m.url}" class="material-item" target="_blank"><i class="fa-solid fa-file-pdf"></i> ${escapeHtml(m.name)}</a>
+        `).join('');
+      } else {
+        matEl.innerHTML = `<span style="color:var(--muted);font-size:0.8rem;">Nenhum material anexo para esta aula.</span>`;
+      }
+    }
+
+    function escapeHtml(t) {
+      return String(t).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+    }
+
+    window.onload = inicializarPlayer;
+  </script>
+</body>
+</html>

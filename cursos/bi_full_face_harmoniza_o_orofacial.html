@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BI Dashboard: Protocolo Full Face & Anatomia Aplicada</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            usp: {
+              gold: '#C89332',
+              navy: '#0F172A',
+              blue: '#1E3A8A',
+              accent: '#3B82F6',
+              bg: '#0B0F17'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #070A10;
+      color: #E2E8F0;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.75rem;
+    }
+    .tab-active {
+      border-bottom: 2px solid #C89332;
+      color: #C89332;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/90 sticky top-0 z-50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="p-2 bg-gradient-to-tr from-yellow-600 to-amber-500 rounded-lg text-slate-950 font-bold">
+          <i data-lucide="dna" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-white tracking-wide">FULL FACE BI SYSTEM</h1>
+          <p class="text-xs text-amber-500 font-medium">Docência & Pesquisa Avançada | Prof. Dr. Biomedicina USP</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
+          <span class="w-2 h-2 rounded-full bg-amber-400 mr-1.5 animate-pulse"></span>
+          Painel Acadêmico-Clínico
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+    
+    <!-- Top Stats Bar -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="glass-card p-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Toxina Botulínica A</p>
+          <p class="text-2xl font-bold text-white mt-1">SNAP-25</p>
+          <p class="text-xs text-emerald-400 mt-1 flex items-center">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1"></i> Inibição Pré-sináptica
+          </p>
+        </div>
+        <div class="p-3 bg-blue-500/10 text-blue-400 rounded-xl">
+          <i data-lucide="zap" class="w-6 h-6"></i>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Ácido Hialurônico</p>
+          <p class="text-2xl font-bold text-amber-400 mt-1">High G' / Low G'</p>
+          <p class="text-xs text-amber-300 mt-1 flex items-center">
+            <i data-lucide="layers" class="w-3.5 h-3.5 mr-1"></i> Modulação Reológica
+          </p>
+        </div>
+        <div class="p-3 bg-amber-500/10 text-amber-400 rounded-xl">
+          <i data-lucide="droplet" class="w-6 h-6"></i>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Durabilidade Média</p>
+          <p class="text-2xl font-bold text-white mt-1">4 - 18 Meses</p>
+          <p class="text-xs text-slate-400 mt-1">Toxina: 4-6m | AH: 12-18m</p>
+        </div>
+        <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl">
+          <i data-lucide="clock" class="w-6 h-6"></i>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 flex items-center justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Índice de Segurança</p>
+          <p class="text-2xl font-bold text-emerald-400 mt-1">99.2%</p>
+          <p class="text-xs text-slate-400 mt-1">Com uso de Microcânulas</p>
+        </div>
+        <div class="p-3 bg-purple-500/10 text-purple-400 rounded-xl">
+          <i data-lucide="activity" class="w-6 h-6"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="border-b border-slate-800 mb-6">
+      <nav class="flex space-x-8" aria-label="Tabs">
+        <button onclick="switchTab('visao-geral')" id="tab-visao-geral" class="tab-btn py-3 text-sm font-medium text-slate-300 hover:text-white transition-colors tab-active">
+          Visão Geral & Métricas
+        </button>
+        <button onclick="switchTab('fisiologia')" id="tab-fisiologia" class="tab-btn py-3 text-sm font-medium text-slate-400 hover:text-white transition-colors">
+          Mecanismos Fisiológicos
+        </button>
+        <button onclick="switchTab('anatomia')" id="tab-anatomia" class="tab-btn py-3 text-sm font-medium text-slate-400 hover:text-white transition-colors">
+          Anatomia & Zonas de Risco
+        </button>
+        <button onclick="switchTab('simulador')" id="tab-simulador" class="tab-btn py-3 text-sm font-medium text-slate-400 hover:text-white transition-colors">
+          Simulador de Dosagem
+        </button>
+      </nav>
+    </div>
+
+    <!-- TAB 1: VISÃO GERAL -->
+    <div id="content-visao-geral" class="tab-content space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Main Chart: Distribution of Treatments -->
+        <div class="glass-card p-5 lg:col-span-2">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-base font-semibold text-white flex items-center">
+              <i data-lucide="bar-chart-3" class="w-5 h-5 mr-2 text-amber-500"></i>
+              Distribuição de Aplicação Por Terço Facial
+            </h2>
+            <span class="text-xs text-slate-400">Proporções do Protocolo Full Face</span>
+          </div>
+          <div class="h-64">
+            <canvas id="tercosChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Donut Chart: Reology Types -->
+        <div class="glass-card p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-base font-semibold text-white flex items-center">
+              <i data-lucide="pie-chart" class="w-5 h-5 mr-2 text-blue-400"></i>
+              Perfil Reológico do AH
+            </h2>
+          </div>
+          <div class="h-64 flex items-center justify-center">
+            <canvas id="reologiaChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparative Table -->
+      <div class="glass-card p-5">
+        <h2 class="text-base font-semibold text-white mb-4 flex items-center">
+          <i data-lucide="git-compare" class="w-5 h-5 mr-2 text-emerald-400"></i>
+          Comparativo Terapêutico: Toxina Botulínica A vs. Ácido Hialurônico
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left text-slate-300">
+            <thead class="text-xs uppercase bg-slate-800/80 text-amber-400 border-b border-slate-700">
+              <tr>
+                <th class="py-3 px-4">Parâmetro</th>
+                <th class="py-3 px-4">Toxina Botulínica Tipo A</th>
+                <th class="py-3 px-4">Ácido Hialurônico (AH)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800">
+              <tr class="hover:bg-slate-800/30">
+                <td class="py-3 px-4 font-semibold text-white">Mecanismo Primário</td>
+                <td class="py-3 px-4">Bloqueio neuromuscular da Acetilcolina (SNAP-25)</td>
+                <td class="py-3 px-4">Preenchimento, hidratação e sustentação volométrica</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30">
+                <td class="py-3 px-4 font-semibold text-white">Alvo Anatômico</td>
+                <td class="py-3 px-4">Junção Neuromuscular / Músculo Esquelético</td>
+                <td class="py-3 px-4">Plano Periostal, Subcutâneo e Derme Provedora</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30">
+                <td class="py-3 px-4 font-semibold text-white">Objetivo Clínico</td>
+                <td class="py-3 px-4">Modulação da dinâmica de rugas e vetorização miofuncional</td>
+                <td class="py-3 px-4">Restauração de volume, vetorização e lifting estático</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30">
+                <td class="py-3 px-4 font-semibold text-white">Início da Ação</td>
+                <td class="py-3 px-4">48-72h (Pico fisiológico em 14 dias)</td>
+                <td class="py-3 px-4">Imediato (Acomodação tecidual em 15-30 dias)</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30">
+                <td class="py-3 px-4 font-semibold text-white">Agente Reversor</td>
+                <td class="py-3 px-4">Não há reversor imediato (Aguardar metabolização)</td>
+                <td class="py-3 px-4">Hialuronidase (Enzima de Degradação)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: FISIOLOGIA -->
+    <div id="content-fisiologia" class="tab-content hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Dynamic Balance -->
+        <div class="glass-card p-5">
+          <h2 class="text-base font-semibold text-white mb-3 flex items-center">
+            <i data-lucide="scale" class="w-5 h-5 mr-2 text-amber-400"></i>
+            Equilíbrio Dinâmico: Elevadores vs. Depressores
+          </h2>
+          <p class="text-sm text-slate-300 leading-relaxed mb-4">
+            O envelhecimento causa uma hipertonia compensatória dos músculos depressores da face. A estratégia *Full Face* modula as forças para reequilibrar o tom muscular global.
+          </p>
+          <div class="space-y-3">
+            <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700">
+              <div class="flex justify-between font-semibold text-xs text-emerald-400 mb-1">
+                <span>MÚSCULOS ELEVADORES (Ex: Zygomaticus Major, Frontal)</span>
+                <span>Ativos</span>
+              </div>
+              <p class="text-xs text-slate-400">Promovem tração superior e rejuvenescimento. Preservar tônus base.</p>
+            </div>
+            <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700">
+              <div class="flex justify-between font-semibold text-xs text-rose-400 mb-1">
+                <span>MÚSCULOS DEPRESSORES (Ex: DAO, Platisma, Corrugadores)</span>
+                <span>Inibidos por Botox</span>
+              </div>
+              <p class="text-xs text-slate-400">Tracionam as estruturas para baixo. Alvos prioritários para relaxamento muscular.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rheology Card -->
+        <div class="glass-card p-5">
+          <h2 class="text-base font-semibold text-white mb-3 flex items-center">
+            <i data-lucide="microscope" class="w-5 h-5 mr-2 text-blue-400"></i>
+            Fundamentos Biomecânicos & Reologia
+          </h2>
+          <div class="space-y-3 text-sm text-slate-300">
+            <div class="border-l-2 border-amber-500 pl-3">
+              <p class="font-semibold text-white">G-Prime (G') - Módulo Elástico</p>
+              <p class="text-xs text-slate-400">Mede a capacidade de resistência à deformação. Alto G' é indicado para plano justo-ósseo (sustentação e efeito bola de basquete no zigomático).</p>
+            </div>
+            <div class="border-l-2 border-blue-500 pl-3">
+              <p class="font-semibold text-white">Viscosidade & Coesividade</p>
+              <p class="text-xs text-slate-400">Determinam a capacidade de integração tecidual sem migração. Essencial para áreas de alta movimentação dinâmica, como lábios e sulco nasogeniano.</p>
+            </div>
+            <div class="border-l-2 border-emerald-500 pl-3">
+              <p class="font-semibold text-white">Reticulação (Cross-linking)</p>
+              <p class="text-xs text-slate-400">Densidade de ligações por BDDE que estipulam o tempo de biodegradação pelas hialuronidases endógenas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: ANATOMIA & SEGURANÇA -->
+    <div id="content-anatomia" class="tab-content hidden space-y-6">
+      <div class="glass-card p-5">
+        <h2 class="text-base font-semibold text-white mb-2 flex items-center">
+          <i data-lucide="alert-triangle" class="w-5 h-5 mr-2 text-rose-500"></i>
+          Anatomia Vascular e Zonas Críticas de Risco
+        </h2>
+        <p class="text-xs text-slate-400 mb-6">Mapeamento de estruturas arteriais com risco de embolia e oclusão tecidual.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 bg-rose-950/20 border border-rose-500/30 rounded-lg">
+            <div class="flex items-center space-x-2 text-rose-400 font-semibold text-sm mb-2">
+              <i data-lucide="shield-alert" class="w-4 h-4"></i>
+              <span>Artéria Supratroclear / Supraorbital</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              **Região:** Glabela e Testa.<br>
+              **Risco:** Amaurose (cegueira) e necrose cutânea central.<br>
+              **Plano Recomendado:** Subcutâneo superficial ou injeção com microcânula 22G/25G.
+            </p>
+          </div>
+
+          <div class="p-4 bg-amber-950/20 border border-amber-500/30 rounded-lg">
+            <div class="flex items-center space-x-2 text-amber-400 font-semibold text-sm mb-2">
+              <i data-lucide="shield-alert" class="w-4 h-4"></i>
+              <span>Artéria Facial / Labial Superior</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              **Região:** Sulco Nasogeniano e Lábios.<br>
+              **Risco:** Necrose da asa nasal e do lábio superior.<br>
+              **Técnica:** Aspiração prévia obrigatória (5s) em agulha, ou preferencialmente uso de cânula no plano submucoso.
+            </p>
+          </div>
+
+          <div class="p-4 bg-yellow-950/20 border border-yellow-500/30 rounded-lg">
+            <div class="flex items-center space-x-2 text-yellow-400 font-semibold text-sm mb-2">
+              <i data-lucide="shield-alert" class="w-4 h-4"></i>
+              <span>Artéria Infraorbitária</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              **Região:** Calha Lagrimal / Goteira Olhar Cansado.<br>
+              **Risco:** Isquemia tecidual e alteração do retorno venoso.<br>
+              **Plano Recomendado:** Estritamente subperiósteo profundo com agulha ou retroinjeção lenta com microcânula.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: SIMULADOR -->
+    <div id="content-simulador" class="tab-content hidden space-y-6">
+      <div class="glass-card p-5">
+        <h2 class="text-base font-semibold text-white mb-2 flex items-center">
+          <i data-lucide="calculator" class="w-5 h-5 mr-2 text-amber-500"></i>
+          Simulador Acadêmico de Estimativa de Insumos Full Face
+        </h2>
+        <p class="text-xs text-slate-400 mb-6">Calcule as unidades estimadas com base no grau de perda estrutural do paciente.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Grau de Reabsorção Óssea / Perda de Volumetria</label>
+              <select id="sim-grau" class="w-full bg-slate-800 border border-slate-700 text-white rounded-lg p-2.5 text-sm focus:border-amber-500 focus:outline-none" onchange="calcularSimulacao()">
+                <option value="1">Leve (25-35 anos) - Prevenção / Estruturação Mínima</option>
+                <option value="2" selected>Moderado (36-50 anos) - Reposição Volumétrica Média</option>
+                <option value="3">Avançado (> 50 anos) - Reestruturação Global Profunda</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Foco do Tratamento</label>
+              <div class="space-y-2">
+                <label class="flex items-center text-sm text-slate-300">
+                  <input type="checkbox" id="check-terco-sup" checked class="rounded border-slate-700 text-amber-500 focus:ring-0 bg-slate-800 mr-2" onchange="calcularSimulacao()"> Terço Superior (Frontal, Glabela, Periocular)
+                </label>
+                <label class="flex items-center text-sm text-slate-300">
+                  <input type="checkbox" id="check-terco-médio" checked class="rounded border-slate-700 text-amber-500 focus:ring-0 bg-slate-800 mr-2" onchange="calcularSimulacao()"> Terço Médio (Malar, Zygomático, Sulco Nasogeniano)
+                </label>
+                <label class="flex items-center text-sm text-slate-300">
+                  <input type="checkbox" id="check-terco-inf" checked class="rounded border-slate-700 text-amber-500 focus:ring-0 bg-slate-800 mr-2" onchange="calcularSimulacao()"> Terço Inferior e Contorno (Mento, Mandíbula, Lábios, Platisma)
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-900/90 p-5 rounded-lg border border-slate-800 flex flex-col justify-between">
+            <h3 class="text-xs uppercase font-bold text-amber-400 tracking-wider">Estimativa dos Insumos do Protocolo</h3>
+            
+            <div class="my-4 space-y-4">
+              <div>
+                <p class="text-xs text-slate-400">Toxina Botulínica (Unidades Estimadas):</p>
+                <p class="text-3xl font-bold text-white mt-1" id="res-botox">50 - 65 UI</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400">Ácido Hialurônico (Volume Total Estimado):</p>
+                <p class="text-3xl font-bold text-amber-400 mt-1" id="res-ah">4.0 - 6.0 mL</p>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-500 italic">
+              *Nota: Valoração meramente acadêmica com base em diretrizes de planejamento clínico e anatômico individualizado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900/50 py-4 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+      <p>© 2026 Módulo de Biomedicina Estética e Harmonização Orofacial - USP. Conteúdo Científico Institucional.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Tab Switching Logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(el => {
+        el.classList.remove('tab-active');
+        el.classList.add('text-slate-400');
+      });
+
+      document.getElementById('content-' + tabId).classList.remove('hidden');
+      const activeTab = document.getElementById('tab-' + tabId);
+      activeTab.classList.add('tab-active');
+      activeTab.classList.remove('text-slate-400');
+    }
+
+    // Initialize Charts
+    document.addEventListener("DOMContentLoaded", function() {
+      // Bar Chart: Tercos
+      const ctxTercos = document.getElementById('tercosChart').getContext('2d');
+      new Chart(ctxTercos, {
+        type: 'bar',
+        data: {
+          labels: ['Terço Superior', 'Terço Médio', 'Terço Inferior', 'Pescoço / Contorno'],
+          datasets: [
+            {
+              label: 'Toxina Botulínica (% Ação)',
+              data: [65, 10, 15, 10],
+              backgroundColor: '#3B82F6',
+              borderRadius: 4
+            },
+            {
+              label: 'Ácido Hialurônico (% Ação)',
+              data: [5, 45, 40, 10],
+              backgroundColor: '#C89332',
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: { color: '#94A3B8', font: { family: 'Inter', size: 12 } }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#94A3B8' },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' }
+            },
+            y: {
+              ticks: { color: '#94A3B8' },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' }
+            }
+          }
+        }
+      });
+
+      // Pie Chart: Rheology
+      const ctxReologia = document.getElementById('reologiaChart').getContext('2d');
+      new Chart(ctxReologia, {
+        type: 'doughnut',
+        data: {
+          labels: ['Alto G\' (Periosteal/Suporte)', 'Médio G\' (Sulcos/Subcutâneo)', 'Baixo G\' (Lábios/Superficial)'],
+          datasets: [{
+            data: [45, 35, 20],
+            backgroundColor: ['#C89332', '#3B82F6', '#10B981'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#94A3B8', font: { family: 'Inter', size: 11 } }
+            }
+          },
+          cutout: '70%'
+        }
+      });
+    });
+
+    // Simulation Logic
+    function calcularSimulacao() {
+      const grau = parseInt(document.getElementById('sim-grau').value);
+      const sup = document.getElementById('check-terco-sup').checked;
+      const medio = document.getElementById('check-terco-médio').checked;
+      const inf = document.getElementById('check-terco-inf').checked;
+
+      let botoxMin = 0, botoxMax = 0;
+      let ahMin = 0.0, ahMax = 0.0;
+
+      if (sup) {
+        botoxMin += 25 * grau * 0.7;
+        botoxMax += 35 * grau * 0.7;
+        ahMin += 0.5;
+        ahMax += 1.0;
+      }
+      if (medio) {
+        botoxMin += 5;
+        botoxMax += 10;
+        ahMin += 1.5 * grau;
+        ahMax += 2.5 * grau;
+      }
+      if (inf) {
+        botoxMin += 15 * grau * 0.6;
+        botoxMax += 25 * grau * 0.6;
+        ahMin += 1.5 * grau;
+        ahMax += 2.5 * grau;
+      }
+
+      document.getElementById('res-botox').innerText = `${Math.round(botoxMin)} - ${Math.round(botoxMax)} UI`;
+      document.getElementById('res-ah').innerText = `${ahMin.toFixed(1)} - ${ahMax.toFixed(1)} mL`;
+    }
+  </script>
+</body>
+</html>

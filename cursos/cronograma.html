@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX | Cronograma do Aluno</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-graduation-cap logo-icon"></i>
+            <span class="logo-title">ZENTIX <strong>CURSOS</strong></span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Visão Geral</a>
+            <a href="1-catalogo-completo.html"><i class="fa-solid fa-book-open"></i> Catálogo</a>
+            <a href="cronograma.html" class="active"><i class="fa-solid fa-calendar-days"></i> Cronograma</a>
+            <a href="certificados.html"><i class="fa-solid fa-certificate"></i> Certificados</a>
+            <a href="admin.html"><i class="fa-solid fa-user-shield"></i> Admin</a>
+        </nav>
+        <div class="user-menu">
+            <div class="avatar-circle">MR</div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <section class="page-header">
+            <h2><i class="fa-solid fa-calendar-check"></i> Cronograma de Estudos</h2>
+            <p>Planeje sua rotina de aprendizado e acompanhe os prazos de conclusão das suas etapas.</p>
+        </section>
+
+        <section class="timeline-wrapper">
+            <div class="timeline-item completed">
+                <div class="timeline-icon"><i class="fa-solid fa-check"></i></div>
+                <div class="timeline-content">
+                    <span class="date">Concluído • 10/Nov</span>
+                    <h4>Módulo 1: Fundamentos de Segurança do Trabalho</h4>
+                    <p>NR-10 • 4 aulas finalizadas</p>
+                </div>
+            </div>
+
+            <div class="timeline-item active">
+                <div class="timeline-icon"><i class="fa-solid fa-play"></i></div>
+                <div class="timeline-content">
+                    <span class="date">Em Andamento • Prazo: 18/Nov</span>
+                    <h4>Módulo 2: Procedimentos de Medição em Topografia</h4>
+                    <p>Nocões de Topografia Aplicada • 3 aulas restantes</p>
+                </div>
+            </div>
+
+            <div class="timeline-item upcoming">
+                <div class="timeline-icon"><i class="fa-solid fa-lock"></i></div>
+                <div class="timeline-content">
+                    <span class="date">Próximo Módulo</span>
+                    <h4>Módulo 3: Avaliação Prática e Emissão de Certificado</h4>
+                    <p>Avaliação final de 10 questões</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

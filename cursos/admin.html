@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX | Painel de Administração</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-sliders logo-icon"></i>
+            <span class="logo-title">ZENTIX <strong>ADMIN</strong></span>
+        </div>
+        <a href="index.html" class="btn btn-secondary"><i class="fa-solid fa-house"></i> Área do Aluno</a>
+    </header>
+
+    <main class="dashboard-container">
+        <section class="page-header">
+            <h2><i class="fa-solid fa-user-gear"></i> Gerenciamento da Plataforma</h2>
+            <p>Controle de liberação de alunos, cadastro de cursos e acompanhamento de matrículas.</p>
+        </section>
+
+        <section class="admin-grid">
+            <div class="admin-card">
+                <h3><i class="fa-solid fa-user-plus"></i> Liberar Acesso Manual</h3>
+                <div class="form-group">
+                    <label>E-mail do Aluno</label>
+                    <input type="email" placeholder="aluno@email.com">
+                    <label>Curso a Liberar</label>
+                    <select>
+                        <option>NR-10 - Segurança em Eletricidade</option>
+                        <option>Topografia Aplicada e Cadastral</option>
+                        <option>Harmonização Orofacial Full Face</option>
+                    </select>
+                    <button class="btn btn-primary btn-block"><i class="fa-solid fa-key"></i> Confirmar Liberação</button>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <h3><i class="fa-solid fa-users"></i> Alunos Ativos no Sistema</h3>
+                <ul class="user-list">
+                    <li>
+                        <span><strong>Márcio Rodrigues</strong> (aluno@zentix.com)</span>
+                        <span class="badge green">3 Cursos Ativos</span>
+                    </li>
+                    <li>
+                        <span><strong>Késia Silva</strong> (kesia@zentix.com)</span>
+                        <span class="badge blue">1 Curso Ativo</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
