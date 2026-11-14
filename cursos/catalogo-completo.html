@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX Cursos | Catálogo Geral e Normas Reguladoras (NR)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0b1120;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0ea5e9;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            transition: color 0.2s;
+        }
+        .back-btn:hover {
+            color: #38bdf8;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .header-top h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            margin: 0 0 0.4rem 0;
+            color: #ffffff;
+        }
+        .header-top p {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin: 0;
+        }
+        .total-badge {
+            background-color: rgba(14, 165, 233, 0.15);
+            border: 1px solid #0ea5e9;
+            color: #38bdf8;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .controls-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background-color: #131c31;
+            border: 1px solid #1e293b;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .search-box {
+            flex: 1;
+            min-width: 260px;
+            position: relative;
+        }
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background-color: #0b1120;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #f8fafc;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .search-box input:focus {
+            border-color: #0ea5e9;
+        }
+        .area-select {
+            min-width: 260px;
+            padding: 0.75rem 1rem;
+            background-color: #0b1120;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #f8fafc;
+            font-size: 0.95rem;
+            outline: none;
+            cursor: pointer;
+        }
+        .area-section {
+            max-width: 1240px;
+            margin: 0 auto 3rem auto;
+            padding: 0 1.5rem;
+        }
+        .area-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #38bdf8;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .area-count {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+        .course-card {
+            background-color: #131c31;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .course-card:hover {
+            transform: translateY(-3px);
+            border-color: #0ea5e9;
+        }
+        .course-tag {
+            display: inline-block;
+            background-color: rgba(14, 165, 233, 0.12);
+            color: #38bdf8;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+        }
+        .course-tag.nr {
+            background-color: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+        }
+        .course-card h3 {
+            font-size: 1.05rem;
+            color: #f8fafc;
+            margin: 0 0 0.5rem 0;
+            line-height: 1.35;
+        }
+        .course-card p {
+            font-size: 0.86rem;
+            color: #94a3b8;
+            margin: 0 0 1.1rem 0;
+            line-height: 1.4;
+        }
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #1e293b;
+            padding-top: 0.9rem;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+        .mte-badge {
+            color: #34d399;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-curso {
+            background-color: #0284c7;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.82rem;
+            transition: background-color 0.2s;
+        }
+        .btn-curso:hover {
+            background-color: #0369a1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Voltar ao Portal
+        </a>
+        <div class="header-top">
+            <div>
+                <h1>Catálogo Geral de Cursos e Normas Reguladoras</h1>
+                <p>Capacitação profissional completa e treinamentos oficiais de SST certificados pelo MTE.</p>
+            </div>
+            <span class="total-badge" id="totalCoursesBadge">Carregando...</span>
+        </div>
+
+        <div class="controls-bar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por nome do curso ou norma (ex: NR-10, Gestão, etc)...">
+            </div>
+            <select id="areaFilter" class="area-select">
+                <option value="ALL">Todas as Áreas e NRs</option>
+                <option value="Normas Reguladoras (NR)">Normas Reguladoras (NR - MTE)</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="catalogContainer"></div>
+
+    <!-- Importa o banco de dados courses-data.js -->
+    <script src="courses-data.js"></script>
+    <script>
+        // Lista completa de Normas Reguladoras (NR 01 a 38)
+        const nrList = [
+            { id: "nr-01", title: "NR-01: Disposições Gerais e Gerenciamento de Riscos", description: "Diretrizes e requisitos para gerenciamento de riscos ocupacionais e PGR.", hours: "4h a 8h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-02", title: "NR-02: Inspeção Prévia (Histórica)", description: "Estudo normativo sobre histórico e conformidade de instalações novas.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-03", title: "NR-03: Embargo e Interdição", description: "Critérios para caracterização de grave e iminente risco e procedimentos.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-04", title: "NR-04: SESMT", description: "Dimensionamento e organização dos serviços de segurança nas empresas.", hours: "12h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-05", title: "NR-05: CIPA", description: "Formação obrigatória para prevenção de acidentes e combate ao assédio.", hours: "20h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-06", title: "NR-06: EPI", description: "Critérios de fornecimento, uso, guarda e higienização de EPIs.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-07", title: "NR-07: PCMSO", description: "Diretrizes e exames médicos ocupacionais obrigatórios.", hours: "8h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-08", title: "NR-08: Edificações", description: "Requisitos técnicos mínimos observados nas edificações.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-09", title: "NR-09: Avaliação e Controle de Exposições", description: "Identificação e controle de agentes físicos, químicos e biológicos.", hours: "8h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-10", title: "NR-10: Segurança em Eletricidade", description: "Segurança básica e complementar para serviços em eletricidade.", hours: "40h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-11", title: "NR-11: Transporte e Movimentação de Materiais", description: "Operação segura de empilhadeiras, pontes rolantes e guindastes.", hours: "16h a 40h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-12", title: "NR-12: Máquinas e Equipamentos", description: "Medidas de proteção para operação e manutenção de maquinário.", hours: "8h a 16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-13", title: "NR-13: Caldeiras e Vasos de Pressão", description: "Segurança na operação, inspeção e manutenção de tanques e caldeiras.", hours: "40h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-14", title: "NR-14: Fornos Industriais", description: "Requisitos de segurança na construção e operação de fornos.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-15", title: "NR-15: Atividades e Operações Insalubres", description: "Limites de tolerância e caracterização de agentes insalubres.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-16", title: "NR-16: Atividades e Operações Perigosas", description: "Caracterização de exposições e atividades perigosas.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-17", title: "NR-17: Ergonomia", description: "Adaptação das condições de trabalho às características psicofisiológicas.", hours: "8h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-18", title: "NR-18: Indústria da Construção", description: "Planejamento e organização para segurança em canteiros de obras.", hours: "6h a 40h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-19", title: "NR-19: Explosivos", description: "Armazenagem, manuseio e fabricação segura de explosivos.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-20", title: "NR-20: Inflamáveis e Combustíveis", description: "Capacitação para manuseio e armazenamento de inflamáveis.", hours: "4h a 16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-21", title: "NR-21: Trabalhos a Céu Aberto", description: "Medidas protetivas e abrigos para intempéries climáticas.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-22", title: "NR-22: Mineração", description: "Segurança e saúde ocupacional na lavra subterrânea e a céu aberto.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-23", title: "NR-23: Proteção Contra Incêndios", description: "Medidas de prevenção e combate a princípios de incêndio.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-24", title: "NR-24: Condições Sanitárias e de Conforto", description: "Requisitos de banheiros, vestiários e refeitórios.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-25", title: "NR-25: Resíduos Industriais", description: "Gerenciamento e descarte seguro de resíduos industriais.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-26", title: "NR-26: Sinalização de Segurança", description: "Padrões de cores e rotulagem preventiva.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-28", title: "NR-28: Fiscalização e Penalidades", description: "Critérios de autuação, penalidades e prazos trabalhistas.", hours: "4h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-29", title: "NR-29: Trabalho Portuário", description: "Normas específicas para operações em portos.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-30", title: "NR-30: Trabalho Aquaviário", description: "Proteção à integridade em embarcações comerciais.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-31", title: "NR-31: Agricultura e Pecuária", description: "Diretrizes de SST aplicadas ao setor rural e agronegócio.", hours: "20h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-32", title: "NR-32: Estabelecimentos de Saúde", description: "Prevenção de riscos biológicos e químicos em hospitais.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-33", title: "NR-33: Espaços Confinados", description: "Procedimentos para entrada e resgate em locais confinados.", hours: "16h a 40h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-34", title: "NR-34: Indústria Naval", description: "Segurança em estaleiros e reparos navais.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-35", title: "NR-35: Trabalho em Altura", description: "Execução segura para atividades acima de 2 metros.", hours: "8h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-36", title: "NR-36: Abate e Processamento de Carnes", description: "Ergonomia e riscos biológicos em frigoríficos.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-37", title: "NR-37: Plataformas de Petróleo", description: "Requisitos de segurança para instalações marítimas.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true },
+            { id: "nr-38", title: "NR-38: Limpeza Urbana e Resíduos", description: "Prevenção de acidentes na coleta de lixo e varrição.", hours: "16h", area: "Normas Reguladoras (NR)", mte: true }
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const externalCourses = window.coursesData || window.COURSES || window.courses || (typeof coursesData !== "undefined" ? coursesData : (typeof courses !== "undefined" ? courses : []));
+            
+            // Junta os cursos externos com as Normas Reguladoras
+            const allCourses = [...externalCourses, ...nrList];
+
+            const catalogContainer = document.getElementById("catalogContainer");
+            const areaFilter = document.getElementById("areaFilter");
+            const searchInput = document.getElementById("searchInput");
+            const totalBadge = document.getElementById("totalCoursesBadge");
+
+            // Popula o select de áreas
+            const areasSet = new Set();
+            allCourses.forEach(c => {
+                const area = c.area || c.category || c.categoria || "Formação Geral";
+                areasSet.add(area);
+            });
+
+            Array.from(areasSet).sort().forEach(area => {
+                if (area !== "Normas Reguladoras (NR)") {
+                    const opt = document.createElement("option");
+                    opt.value = area;
+                    opt.textContent = area;
+                    areaFilter.appendChild(opt);
+                }
+            });
+
+            function renderCatalog() {
+                const term = searchInput.value.trim().toLowerCase();
+                const selectedArea = areaFilter.value;
+
+                const filtered = allCourses.filter(c => {
+                    const title = (c.title || c.nome || c.name || "").toLowerCase();
+                    const desc = (c.description || c.descricao || "").toLowerCase();
+                    const area = c.area || c.category || c.categoria || "Formação Geral";
+
+                    const matchesSearch = !term || title.includes(term) || desc.includes(term) || area.toLowerCase().includes(term);
+                    const matchesArea = selectedArea === "ALL" || area === selectedArea;
+
+                    return matchesSearch && matchesArea;
+                });
+
+                totalBadge.textContent = `${filtered.length} treinamentos disponíveis`;
+
+                const grouped = {};
+                filtered.forEach(c => {
+                    const area = c.area || c.category || c.categoria || "Formação Geral";
+                    if (!grouped[area]) grouped[area] = [];
+                    grouped[area].push(c);
+                });
+
+                catalogContainer.innerHTML = "";
+
+                Object.keys(grouped).sort().forEach(area => {
+                    const items = grouped[area];
+                    const section = document.createElement("section");
+                    section.className = "area-section";
+
+                    const cardsHtml = items.map(c => {
+                        const title = c.title || c.nome || c.name || "Curso Profissionalizante";
+                        const desc = c.description || c.descricao || "Capacitação profissional com certificado válido em todo o território nacional.";
+                        const hours = c.hours || c.cargaHoraria || c.workload || "40h";
+                        const id = c.id || c.slug || "";
+                        const link = c.url || c.link || (id ? `curso.html?id=${encodeURIComponent(id)}` : "curso.html");
+                        const isNR = area === "Normas Reguladoras (NR)";
+
+                        return `
+                            <div class="course-card">
+                                <div>
+                                    <span class="course-tag ${isNR ? 'nr' : ''}">${area}</span>
+                                    <h3>${title}</h3>
+                                    <p>${desc}</p>
+                                </div>
+                                <div class="course-footer">
+                                    <span><i class="fa-regular fa-clock"></i> ${hours}</span>
+                                    ${isNR ? '<span class="mte-badge"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>' : `<a href="${link}" class="btn-curso">Acessar Curso</a>`}
+                                </div>
+                            </div>
+                        `;
+                    }).join("");
+
+                    section.innerHTML = `
+                        <div class="area-title">
+                            <span>${area}</span>
+                            <span class="area-count">${items.length} curso(s)</span>
+                        </div>
+                        <div class="courses-grid">${cardsHtml}</div>
+                    `;
+                    catalogContainer.appendChild(section);
+                });
+            }
+
+            searchInput.addEventListener("input", renderCatalog);
+            areaFilter.addEventListener("change", renderCatalog);
+
+            renderCatalog();
+        });
+    </script>
+</body>
+</html>
