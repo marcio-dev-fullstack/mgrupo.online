@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENTIX | Validação de Certificados</title>
+    <title>ZENTIX | Validador de Certificados</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="dark-theme">
-    <header class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-graduation-cap logo-icon"></i>
-            <span class="logo-title">ZENTIX <strong>VALIDAÇÃO</strong></span>
+<body class="valida-body">
+    <div class="valida-container">
+        <div class="logo">⚡ ZENTIX <span>Validador</span></div>
+        <h2>Validação Oficial de Certificado</h2>
+        <p>Insira o código impresso no documento para verificar a veracidade.</p>
+        <div class="form-group">
+            <input type="text" id="cert-code" placeholder="Ex: ZX-10-884920">
         </div>
-        <a href="index.html" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Voltar à Plataforma</a>
-    </header>
+        <button onclick="validarCertificado()" class="btn btn-primary">Validar Documento</button>
+        <div id="valida-output"></div>
+    </div>
 
-    <main class="dashboard-container center-content">
-        <div class="validate-box">
-            <i class="fa-solid fa-shield-check validate-icon"></i>
-            <h2>Validação Pública de Certificados</h2>
-            <p>Informe o código do certificado impresso para verificar sua autenticidade oficial.</p>
-
-            <div class="input-group">
-                <input type="text" id="cert-code-input" placeholder="Ex: ZNX-2026-8891" value="ZNX-2026-8891">
-                <button class="btn btn-primary" onclick="verifyCertificate()"><i class="fa-solid fa-magnifying-glass"></i> Validar Certificado</button>
-            </div>
-
-            <div id="verify-result" class="verify-result-card" style="display:none;">
-                <div class="status-badge valid"><i class="fa-solid fa-circle-check"></i> CERTIFICADO VÁLIDO</div>
-                <h3>NR-10 - Segurança em Instalações Elétricas</h3>
-                <p>Emitido para: <strong>Márcio Rodrigues de Oliveira</strong></p>
-                <p>Data de Emissão: 12/11/2026 • Carga Horária: 40 Horas</p>
-                <span class="hash-text">Hash SHA256: 8f9a2b1c4e6d3f5a7b8c9d0e1f2a3b4c</span>
-            </div>
-        </div>
-    </main>
-    <script src="app.js"></script>
+    <script>
+        function validarCertificado() {
+            const code = document.getElementById('cert-code').value.trim();
+            const out = document.getElementById('valida-output');
+            if (code === 'ZX-10-884920' || code === 'ZX-33-401928') {
+                out.innerHTML = `<div class="valid-box">✅ CERTIFICADO VÁLIDO!<br>Emitido para: Márcio Silva<br>Instituição: ZENTIX Treinamentos</div>`;
+            } else if(code === '') {
+                out.innerHTML = `<div class="invalid-box">Por favor, digite um código.</div>`;
+            } else {
+                out.innerHTML = `<div class="invalid-box">❌ Código não encontrado na base oficial ZENTIX.</div>`;
+            }
+        }
+        
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('code')) {
+            document.getElementById('cert-code').value = params.get('code');
+            validarCertificado();
+        }
+    </script>
 </body>
 </html>

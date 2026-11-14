@@ -1,22 +1,19 @@
-# ZENTIX Cursos - v2.0 com Segurança & Controle de Acesso (RBAC)
+# ZENTIX Cursos - Plataforma Web (v3.0)
 
-## 🛡️ Atualizações de Segurança de Acesso
+Sistema web completo da plataforma de ensino ZENTIX Cursos, incluindo área do aluno, painel administrativo, guarda de rotas de segurança (RBAC), certificados e reprodutor de aula.
 
-Nesta versão v2.0, foi implementado o modelo de **Controle de Acesso Baseado em Perfis (RBAC - Role-Based Access Control)**:
+## 🚀 O que há de novo na v3.0:
+1. **Guarda de Rotas (`auth-guard.js`)**: Bloqueio automático de navegação para `admin.html` em tempo de carregamento caso o usuário seja aluno.
+2. **Sistema de Perfis RBAC**:
+   - `admin`: Acesso total ao painel administrativo, edição e exclusão de registros.
+   - `aluno`: Acesso às aulas, progresso e certificados. Botões de exclusão são ocultados e desabilitados via JavaScript.
+3. **Página de Validação Pública (`valida.html`)**: Verificação de certificados por código hash ou parâmetro de URL.
+4. **Sala de Aula com Quiz & Anotações**: Reprodutor de vídeo simulado com salvamento automático de anotações no *LocalStorage*.
 
-### 1. Perfis Configurados:
-- **`admin` (Acesso Total)**:
-  - Acesso irrestrito a todas as áreas, incluindo o Painel Administrativo (`admin.html`).
-  - Permissão para gerenciar alunos, alterar cursos e executar exclusões de registros.
-- **`aluno` (Acesso Restrito)**:
-  - Acesso exclusivo às suas aulas, progresso, anotações, quizzes e emissão de certificados.
-  - **Não possui permissão de deleção**: Botões de exclusão são ocultados/desabilitados.
-  - Tentativas de acesso direto ao `admin.html` são bloqueadas e redirecionadas para a tela inicial.
+## 🛠️ Instalação e Atualização no GitHub (Comando Único)
 
-### 2. Estrutura de Arquivos da v2.0:
-- `auth.js`: Módulo de autenticação e proteção de rotas/botões.
-- `style.css`: Estilos de interface com suporte a distintivos de perfil (badges) e estados de permissão.
-- `login.html`: Seleção de perfis de teste (Aluno vs Admin).
-- `index.html`: Dashboard responsivo adaptativo ao perfil do usuário.
-- `admin.html`: Área protegida para administradores.
-- `v2.zip`: Pacote consolidado da versão.
+Copie e cole este comando no seu terminal na pasta do projeto:
+
+```bash
+git add . && git commit -m "ZENTIX v3.0: Guarda de Rotas JS e Segurança RBAC Completa" && git push origin main
+```

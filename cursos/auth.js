@@ -1,119 +1,74 @@
-/**
- * Módulo de Autenticação e Segurança - ZENTIX Cursos
- */
+// auth.js - Gerenciador de Autenticação e Perfis (RBAC)
+function realizarLogin(e) {
+    if (e) e.preventDefault();
+    const email = document.getElementById('email').value;
 
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.getElementById("loginForm");
-    const errorMsg = document.getElementById("errorMsg");
-    const userInput = document.getElementById("usernameInput");
-    const passInput = document.getElementById("passwordInput");
+    let userRole = 'aluno';
+    let userName = 'Aluno ZENTIX';
 
-    if (loginForm) {
-        // Limpa qualquer trava anterior de testes ao carregar a página
-        localStorage.removeItem("zentix_sec_state");
+    if (email.includes('admin')) {
+        userRole = 'admin';
+        userName = 'Márcio (Admin)';
+    }
 
-        // Se já houver uma sessão válida ativa, redireciona direto
-        const existingSession = getActiveSession();
-        if (existingSession && existingSession.role === "admin") {
-            window.location.replace("admin.html");
-            return;
-        }
+    const userData = {
+        email: email,
+        nome: userName,
+        role: userRole,
+        loginTime: new Date().toISOString()
+    };
 
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+    localStorage.setItem('zentix_user', JSON.stringify(userData));
+    alert(`Bem-vindo, ${userName}! Perfil ativado: [${userRole.toUpperCase()}]`);
+    
+    if (userRole === 'admin') {
+        window.location.href = 'admin.html';
+    } else {
+        window.location.href = 'index.html';
+    }
+}
 
-            const user = userInput.value.trim().toLowerCase();
-            const pass = passInput.value.trim();
+function preencherLogin(email, role) {
+    document.getElementById('email').value = email;
+    document.getElementById('senha').value = '123456';
+    realizarLogin();
+}
 
-            // Credenciais exatas do Administrador
-            if ((user === "admin" || user === "admin@zentix.com") && pass === "12345678") {
-                // Limpa falhas e bloqueios ao acertar
-                localStorage.removeItem("zentix_sec_state");
+function fazerLogout() {
+    localStorage.removeItem('zentix_user');
+    sessionStorage.removeItem('zentix_user');
+    window.location.href = 'login.html';
+}
 
-                const now = new Date().getTime();
-                const sessionData = {
-                    authenticated: true,
-                    username: "admin",
-                    displayName: "Administrador ZENTIX",
-                    role: "admin",
-                    loginTime: now,
-                    expiresAt: now + (2 * 60 * 60 * 1000) // 2 horas de validade
-                };
+// Aplica permissões visuais na página
+document.addEventListener('DOMContentLoaded', () => {
+    const usuarioSessao = localStorage.getItem('zentix_user') || sessionStorage.getItem('zentix_user');
+    if (!usuarioSessao) return;
 
-                // Salva a sessão segura codificada
-                localStorage.setItem("zentix_secure_session", btoa(JSON.stringify(sessionData)));
-                localStorage.removeItem("zentix_session");
+    const user = JSON.parse(usuarioSessao);
+    
+    // Atualiza nome e badge na navbar
+    const nameElem = document.getElementById('user-name');
+    const badgeElem = document.getElementById('user-badge');
+    const adminLinks = document.querySelectorAll('.admin-only');
 
-                if (errorMsg) errorMsg.style.display = "none";
-                window.location.replace("admin.html");
-            } else {
-                // Controle de tentativas incorretas
-                let state = getSecurityState();
-                state.attempts = (state.attempts || 0) + 1;
+    if (nameElem) nameElem.textContent = user.nome;
+    if (badgeElem) {
+        badgeElem.textContent = user.role === 'admin' ? '🛡️ Admin' : '🎓 Aluno';
+        badgeElem.className = `badge ${user.role === 'admin' ? 'badge-admin' : 'badge-student'}`;
+    }
 
-                if (state.attempts >= 3) {
-                    if (errorMsg) {
-                        errorMsg.innerHTML = `<i class="fa-solid fa-lock"></i> Excesso de tentativas. Aguarde alguns instantes.`;
-                        errorMsg.style.display = "block";
-                    }
-                    localStorage.removeItem("zentix_sec_state"); // Reseta o ciclo após o aviso
-                } else {
-                    saveSecurityState(state);
-                    const restam = 3 - state.attempts;
-                    if (errorMsg) {
-                        errorMsg.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Usuário ou senha incorretos. Restam ${restam} tentativa(s).`;
-                        errorMsg.style.display = "block";
-                    }
-                }
-                passInput.value = "";
-            }
+    // Exibe ou oculta links administrativos
+    adminLinks.forEach(link => {
+        link.style.display = user.role === 'admin' ? 'inline-block' : 'none';
+    });
+
+    // Se o usuário for ALUNO, esconde e desabilita qualquer botão de exclusão (.btn-delete)
+    if (user.role === 'aluno') {
+        const deleteButtons = document.querySelectorAll('.btn-delete');
+        deleteButtons.forEach(btn => {
+            btn.style.display = 'none';
+            btn.disabled = true;
         });
     }
 });
-
-function getSecurityState() {
-    try {
-        const raw = localStorage.getItem("zentix_sec_state");
-        if (!raw) return { attempts: 0 };
-        return JSON.parse(atob(raw));
-    } catch (e) {
-        return { attempts: 0 };
-    }
-}
-
-function saveSecurityState(state) {
-    localStorage.setItem("zentix_sec_state", btoa(JSON.stringify(state)));
-}
-
-function getActiveSession() {
-    const encodedSession = localStorage.getItem("zentix_secure_session");
-    if (!encodedSession) return null;
-
-    try {
-        const session = JSON.parse(atob(encodedSession));
-        const now = new Date().getTime();
-        if (!session || !session.authenticated || now > session.expiresAt) {
-            logout();
-            return null;
-        }
-        return session;
-    } catch (e) {
-        logout();
-        return null;
-    }
-}
-
-function checkAdminAuth() {
-    const session = getActiveSession();
-    if (!session || session.role !== "admin") {
-        window.location.replace("login.html");
-        return null;
-    }
-    return session;
-}
-
-function logout() {
-    localStorage.removeItem("zentix_secure_session");
-    localStorage.removeItem("zentix_session");
-    window.location.replace("login.html");
-}

@@ -2,69 +2,69 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>ZENTIX - Painel Principal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX Cursos | Área do Aluno</title>
     <link rel="stylesheet" href="style.css">
-    <script src="auth.js"></script>
 </head>
 <body>
-    <script>ZentixAuth.protectPage('aluno');</script>
-
-    <aside class="sidebar">
-        <div>
-            <div class="brand">⚡ ZENTIX</div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">🏠 Dashboard</a></li>
-                <li><a href="curso.html" class="nav-link">📚 Minhas Aulas</a></li>
-                <li><a href="certificados.html" class="nav-link">📜 Certificados</a></li>
-                <li><a href="cronograma.html" class="nav-link">📅 Cronograma</a></li>
-                <li class="admin-only"><a href="admin.html" class="nav-link" style="color: var(--danger);">🛡️ Painel Admin</a></li>
-            </ul>
+    <header class="navbar">
+        <div class="logo">⚡ ZENTIX <span>Cursos</span></div>
+        <nav class="nav-links">
+            <a href="index.html" class="active">Painel Principal</a>
+            <a href="cronograma.html">Cronograma</a>
+            <a href="certificados.html">Certificados</a>
+            <a href="admin.html" class="admin-only" style="display:none;">🛡️ Painel Admin</a>
+        </nav>
+        <div class="user-profile">
+            <span id="user-badge" class="badge">Aluno</span>
+            <span id="user-name">Usuário</span>
+            <button onclick="fazerLogout()" class="btn-sm btn-logout">Sair</button>
         </div>
-        <div class="user-profile-widget">
-            <div class="user-name-display" style="font-weight: 600;">Carregando...</div>
-            <div class="user-role-badge">...</div>
-            <button onclick="ZentixAuth.logout()" class="btn btn-danger" style="width: 100%; margin-top: 0.75rem; padding: 0.4rem;">Sair</button>
-        </div>
-    </aside>
+    </header>
 
-    <main class="main-content">
-        <header class="header-bar">
-            <div>
-                <h1>Área do Aluno & Treinamentos</h1>
-                <p style="color: var(--text-muted);">Acompanhe seu progresso e certificações regulatórias.</p>
-            </div>
-        </header>
+    <main class="container">
+        <section class="welcome-hero">
+            <h1>Área do Aluno</h1>
+            <p>Acompanhe seu progresso, retome suas aulas e acesse seus certificados.</p>
+        </section>
 
-        <section class="stats-grid">
-            <div class="stat-card">
-                <div style="color: var(--text-muted);">Cursos Ativos</div>
-                <div class="stat-val">3</div>
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <h3>Aulas Concluídas</h3>
+                <div class="value" id="count-aulas">24 / 30</div>
             </div>
-            <div class="stat-card">
-                <div style="color: var(--text-muted);">Aulas Concluídas</div>
-                <div class="stat-val">24/30</div>
+            <div class="metric-card">
+                <h3>Cursos Em Andamento</h3>
+                <div class="value" id="count-cursos">3</div>
             </div>
-            <div class="stat-card">
-                <div style="color: var(--text-muted);">Certificados Emitidos</div>
-                <div class="stat-val">2</div>
+            <div class="metric-card">
+                <h3>Certificados Emitidos</h3>
+                <div class="value" id="count-certificados">2</div>
             </div>
         </section>
 
-        <section class="card">
-            <h2>▶️ Continuar de Onde Parou</h2>
-            <p style="color: var(--text-muted); margin: 0.5rem 0 1rem 0;">Treinamento NR-10: Segurança em Instalações Elétricas (Módulo 3)</p>
-            <a href="curso.html" class="btn btn-primary">Assistir Aula PENDENTE</a>
+        <section class="resume-banner">
+            <div class="resume-content">
+                <span class="tag">Continuar de Onde Parou</span>
+                <h2>NR-35 - Trabalho em Altura</h2>
+                <p>Módulo 3: Equipamentos de Proteção Individual (EPI) e Análise de Risco</p>
+                <a href="curso.html?id=nr35" class="btn btn-primary">▶️ Assistir Aula Agora</a>
+            </div>
         </section>
 
-        <section class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h2>📋 Gestão de Cursos Inscritos</h2>
-                <button class="btn btn-danger admin-only btn-delete">🗑️ Excluir Todos os Dados (Apenas Admin)</button>
+        <section class="courses-section">
+            <div class="section-header">
+                <h2>Meus Cursos</h2>
+                <input type="text" id="search-input" placeholder="Buscar curso..." onkeyup="filtrarCursos()">
             </div>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">
-                * Perfil <strong>Aluno</strong> possui acesso de leitura e conclusão de aulas. Ações destrutivas são restritas ao <strong>Admin</strong>.
-            </p>
+            <div class="courses-grid" id="courses-container">
+                <!-- Renderizado via JavaScript -->
+            </div>
         </section>
     </main>
+
+    <script src="courses-data.js"></script>
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
