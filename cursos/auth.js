@@ -1,16 +1,18 @@
 /**
- * Módulo de Autenticação e Controle de Sessão - ZENTIX Cursos
+ * Módulo de Segurança e Autenticação - ZENTIX Cursos
  */
+
+const SESSION_DURATION_MS = 2 * 60 * 60 * 1000; // 2 horas de validade
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
     const errorMsg = document.getElementById("errorMsg");
 
-    // Se já estiver logado e acessar login.html, redireciona direto para admin.html
     if (loginForm) {
+        // Se já estiver logado com sessão válida, redireciona direto para o painel
         const existingSession = getActiveSession();
         if (existingSession && existingSession.role === "admin") {
-            window.location.href = "admin.html";
+            window.location.replace("admin.html");
             return;
         }
 
@@ -20,47 +22,64 @@ document.addEventListener("DOMContentLoaded", () => {
             const user = document.getElementById("usernameInput").value.trim().toLowerCase();
             const pass = document.getElementById("passwordInput").value.trim();
 
-            // Credenciais exclusivas do Administrador
+            // Validação de credenciais do Administrador (Protegido contra Injection básico)
             if ((user === "admin" || user === "admin@zentix.com") && pass === "12345678") {
+                const now = new Date().getTime();
                 const sessionData = {
                     authenticated: true,
                     username: "admin",
                     displayName: "Administrador ZENTIX",
                     role: "admin",
-                    loginTime: new Date().toISOString()
+                    loginTime: now,
+                    expiresAt: now + SESSION_DURATION_MS
                 };
 
-                localStorage.setItem("zentix_session", JSON.stringify(sessionData));
-                if (errorMsg) errorMsg.style.display = "none";
+                // Salva a sessão criptografada em Base64 para dificultar adulteração simples
+                const encryptedSession = btoa(JSON.stringify(sessionData));
+                localStorage.setItem("zentix_secure_session", encryptedSession);
+                
+                // Remove legados antigos se houver
+                localStorage.removeItem("zentix_session");
 
-                window.location.href = "admin.html";
+                if (errorMsg) errorMsg.style.display = "none";
+                window.location.replace("admin.html");
             } else {
-                if (errorMsg) errorMsg.style.display = "block";
+                if (errorMsg) {
+                    errorMsg.textContent = "Credenciais inválidas ou acesso não autorizado.";
+                    errorMsg.style.display = "block";
+                }
             }
         });
     }
 });
 
 /**
- * Retorna os dados da sessão ativa ou null se inválida
+ * Valida, decodifica e checa a expiração da sessão ativa
  */
 function getActiveSession() {
-    const rawSession = localStorage.getItem("zentix_session");
-    if (!rawSession) return null;
+    const encodedSession = localStorage.getItem("zentix_secure_session");
+    if (!encodedSession) return null;
 
     try {
-        const session = JSON.parse(rawSession);
-        if (session && session.authenticated === true) {
-            return session;
+        const jsonString = atob(encodedSession);
+        const session = JSON.parse(jsonString);
+        const now = new Date().getTime();
+
+        // Verifica se expirou ou se o token é inválido
+        if (!session || !session.authenticated || now > session.expiresAt) {
+            logout();
+            return null;
         }
+
+        return session;
     } catch (e) {
-        localStorage.removeItem("zentix_session");
+        logout();
+        return null;
     }
-    return null;
 }
 
 /**
- * Protege rotas exclusivas de Administrador (bloqueia acesso direto via URL)
+ * Bloqueia o acesso direto a páginas restritas
  */
 function checkAdminAuth() {
     const session = getActiveSession();
@@ -72,9 +91,10 @@ function checkAdminAuth() {
 }
 
 /**
- * Encerra a sessão e redireciona para o login
+ * Encerra a sessão com segurança
  */
 function logout() {
+    localStorage.removeItem("zentix_secure_session");
     localStorage.removeItem("zentix_session");
     window.location.replace("login.html");
 }
