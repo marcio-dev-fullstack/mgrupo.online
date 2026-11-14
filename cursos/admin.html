@@ -2,53 +2,224 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>ZENTIX - Painel Administrativo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX Cursos - Painel Administrativo</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Verificação imediata de segurança antes de renderizar o corpo da página -->
     <script src="auth.js"></script>
+    <script>
+        const currentSession = checkAdminAuth();
+    </script>
+
+    <style>
+        body {
+            background-color: #0b1120;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .admin-navbar {
+            background-color: #131c31;
+            border-bottom: 1px solid #1e293b;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .admin-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #0ea5e9;
+        }
+        .admin-brand i {
+            color: #f97316;
+        }
+        .admin-user-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .admin-badge {
+            background-color: rgba(14, 165, 233, 0.15);
+            border: 1px solid #0ea5e9;
+            color: #38bdf8;
+            padding: 0.4rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .btn-logout {
+            background-color: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-logout:hover {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+        .admin-main {
+            max-width: 1100px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+        .welcome-banner {
+            background-color: #131c31;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .welcome-banner h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.6rem;
+            color: #ffffff;
+        }
+        .welcome-banner p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .admin-card {
+            background-color: #131c31;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .admin-card:hover {
+            transform: translateY(-3px);
+            border-color: #0ea5e9;
+        }
+        .admin-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background-color: rgba(14, 165, 233, 0.15);
+            color: #0ea5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        .admin-card h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.15rem;
+            color: #f8fafc;
+        }
+        .admin-card p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+    </style>
 </head>
 <body>
-    <script>ZentixAuth.protectPage('admin');</script>
 
-    <aside class="sidebar">
-        <div>
-            <div class="brand">⚡ ZENTIX ADMIN</div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">🏠 Dashboard</a></li>
-                <li><a href="admin.html" class="nav-link active">🛡️ Gestão Global</a></li>
-            </ul>
+    <header class="admin-navbar">
+        <div class="admin-brand">
+            <i class="fa-solid fa-bolt"></i>
+            <span>ZENTIX ADMIN</span>
         </div>
-        <div class="user-profile-widget">
-            <div class="user-name-display">Admin</div>
-            <div class="user-role-badge badge-admin">🛡️ Admin</div>
-            <button onclick="ZentixAuth.logout()" class="btn btn-danger" style="width: 100%; margin-top: 0.75rem;">Sair</button>
+        <div class="admin-user-actions">
+            <span class="admin-badge" id="adminUserLabel">
+                <i class="fa-solid fa-shield-halved"></i> Admin
+            </span>
+            <button onclick="logout()" class="btn-logout">
+                <i class="fa-solid fa-right-from-bracket"></i> Sair
+            </button>
         </div>
-    </aside>
+    </header>
 
-    <main class="main-content">
-        <h1>🛡️ Painel de Controle Administrativo</h1>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Acesso Restrito: Gerenciamento de Alunos, Cursos e Exclusões</p>
+    <main class="admin-main">
+        <div class="welcome-banner">
+            <h1>Painel de Gestão ZENTIX Cursos</h1>
+            <p>Acesso administrativo autenticado. Selecione um módulo abaixo para gerenciar a plataforma.</p>
+        </div>
 
-        <div class="card">
-            <h2>👥 Alunos Cadastrados</h2>
-            <table style="width: 100%; margin-top: 1rem; border-collapse: collapse; text-align: left;">
-                <thead>
-                    <tr style="border-bottom: 1px solid var(--border-color);">
-                        <th style="padding: 0.75rem;">Nome</th>
-                        <th>E-mail</th>
-                        <th>Perfil</th>
-                        <th>Ação Administrativa</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="border-bottom: 1px solid var(--border-color);">
-                        <td style="padding: 0.75rem;">Marcio Silva</td>
-                        <td>aluno@zentix.com</td>
-                        <td><span class="user-role-badge badge-aluno">Aluno</span></td>
-                        <td><button onclick="alert('Aluno removido pelo administrador.')" class="btn btn-danger" style="padding: 0.3rem 0.6rem;">Deletar Aluno</button></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="admin-grid">
+            <a href="1-catalogo-completo.html" class="admin-card">
+                <div class="admin-card-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <h3>Catálogo Completo</h3>
+                <p>Visualizar e conferir todos os cursos livres e profissionalizantes cadastrados.</p>
+            </a>
+
+            <a href="2-normas-reguladoras.html" class="admin-card">
+                <div class="admin-card-icon">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                </div>
+                <h3>Normas Reguladoras (NRs)</h3>
+                <p>Gerenciar e revisar a grade de treinamentos de Segurança e Saúde no Trabalho.</p>
+            </a>
+
+            <a href="certificados.html" class="admin-card">
+                <div class="admin-card-icon">
+                    <i class="fa-solid fa-certificate"></i>
+                </div>
+                <h3>Emissão de Certificados</h3>
+                <p>Acessar o gerador e validador de certificados digitais para alunos.</p>
+            </a>
+
+            <a href="valida.html" class="admin-card">
+                <div class="admin-card-icon">
+                    <i class="fa-solid fa-qrcode"></i>
+                </div>
+                <h3>Validação de Autenticidade</h3>
+                <p>Consultar códigos de registro e verificar a validade de certificados emitidos.</p>
+            </a>
+
+            <a href="cronograma.html" class="admin-card">
+                <div class="admin-card-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <h3>Cronograma de Turmas</h3>
+                <p>Acompanhar datas, cargas horárias e calendário de atividades.</p>
+            </a>
+
+            <a href="index.html" class="admin-card">
+                <div class="admin-card-icon">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <h3>Visualizar Portal Público</h3>
+                <p>Abrir a página inicial da plataforma ZENTIX Cursos como visitante.</p>
+            </a>
         </div>
     </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (currentSession) {
+                const label = document.getElementById("adminUserLabel");
+                if (label) {
+                    label.innerHTML = `<i class="fa-solid fa-shield-halved"></i> ${currentSession.displayName || currentSession.username}`;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
