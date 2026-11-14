@@ -2,13 +2,740 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>ZENTIX | Normas Reguladoras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTIX Cursos | Treinamentos de Normas Reguladoras (NR)</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0b1120;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 1.5rem 1.5rem;
+        }
+        .header-container h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+            color: #ffffff;
+        }
+        .header-container p {
+            font-size: 1.05rem;
+            color: #94a3b8;
+            margin: 0;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0ea5e9;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+        }
+        .back-btn:hover {
+            color: #38bdf8;
+        }
+        .nr-grid-container {
+            max-width: 1200px;
+            margin: 0 auto 4rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+        .nr-card {
+            background-color: #131c31;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .nr-card:hover {
+            transform: translateY(-3px);
+            border-color: #0ea5e9;
+        }
+        .nr-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .nr-badge {
+            background-color: rgba(14, 165, 233, 0.15);
+            border: 1px solid #0ea5e9;
+            color: #38bdf8;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .nr-workload {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nr-card h3 {
+            font-size: 1.15rem;
+            color: #f8fafc;
+            margin: 0 0 0.5rem 0;
+        }
+        .nr-card p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin: 0 0 1.2rem 0;
+            line-height: 1.45;
+        }
+        .nr-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #1e293b;
+            padding-top: 1rem;
+        }
+        .nr-mte {
+            font-size: 0.78rem;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 600;
+        }
+        .btn-details {
+            background-color: #0284c7;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .btn-details:hover {
+            background-color: #0369a1;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
+
+    <div class="header-container">
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Voltar ao Portal
+        </a>
         <h1>Treinamentos de Normas Reguladoras (NR)</h1>
-        <p>Cursos de Segurança do Trabalho certificados pelo MTE.</p>
+        <p>Relação completa de todas as Normas Reguladoras de Segurança e Saúde no Trabalho (SST) certificadas pelo MTE.</p>
     </div>
+
+    <div class="nr-grid-container">
+
+        <!-- NR 01 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-01</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h a 8h</span>
+                </div>
+                <h3>Disposições Gerais e Gerenciamento de Riscos Ocupacionais</h3>
+                <p>Diretrizes e requisitos para agerenciamento de riscos ocupacionais e implementação do PGR.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 02 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-02</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Inspeção Prévia (Revogada / Histórica)</h3>
+                <p>Estudo normativo sobre histórico e conformidade de instalações novas.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 03 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-03</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Embargo e Interdição</h3>
+                <p>Critérios para caracterização de grave e iminente risco e procedimentos de interdição.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 04 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-04</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 12h</span>
+                </div>
+                <h3>SESMT (Serviços Especializados em Segurança e em Medicina do Trabalho)</h3>
+                <p>Dimensionamento e organização dos serviços de segurança nas empresas.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 05 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-05</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 20h</span>
+                </div>
+                <h3>CIPA (Comissão Interna de Prevenção de Acidentes e Assédio)</h3>
+                <p>Formação obrigatória para prevenção de acidentes e combate ao assédio no ambiente de trabalho.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 06 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-06</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>EPI (Equipamentos de Proteção Individual)</h3>
+                <p>Critérios de fornecimento, uso, guarda, higienização e responsabilidades sobre EPIs.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 07 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-07</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 8h</span>
+                </div>
+                <h3>PCMSO (Programa de Controle Médico de Saúde Ocupacional)</h3>
+                <p>Diretrizes e exames médicos obrigatórios para preservação da saúde dos trabalhadores.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 08 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-08</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Edificações</h3>
+                <p>Requisitos técnicos mínimos que devem ser observados nas edificações para garantir segurança.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 09 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-09</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 8h</span>
+                </div>
+                <h3>Avaliação e Controle das Exposições Ocupacionais</h3>
+                <p>Identificação e controle de agentes físicos, químicos e biológicos nos ambientes laborais.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 10 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-10</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 40h</span>
+                </div>
+                <h3>Segurança em Instalações e Serviços em Eletricidade</h3>
+                <p>Segurança básica e complementar para trabalhos diretos ou indiretos com eletricidade.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 11 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-11</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h a 40h</span>
+                </div>
+                <h3>Transporte, Movimentação, Armazenagem e Manuseio de Materiais</h3>
+                <p>Operação segura de empilhadeiras, pontes rolantes, talhas e guindastes.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 12 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-12</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 8h a 16h</span>
+                </div>
+                <h3>Segurança no Trabalho em Máquinas e Equipamentos</h3>
+                <p>Medidas de proteção para operação segura e manutenção de maquinário industrial.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 13 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-13</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 40h</span>
+                </div>
+                <h3>Caldeiras, Vasos de Pressão, Tubulações e Tanques</h3>
+                <p>Segurança na operação, inspeção e manutenção de equipamentos sob pressão.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 14 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-14</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Fornos Industriais</h3>
+                <p>Requisitos de segurança na construção, operação e manutenção de fornos.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 15 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-15</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Atividades e Operações Insalubres</h3>
+                <p>Limites de tolerância e caracterização de agentes insalubres no trabalho.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 16 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-16</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Atividades e Operações Perigosas</h3>
+                <p>Caracterização de exposições e atividades perigosas (explosivos, inflamáveis, eletricidade).</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 17 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-17</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 8h</span>
+                </div>
+                <h3>Ergonomia</h3>
+                <p>Adaptação das condições de trabalho às características psicofisiológicas dos trabalhadores.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 18 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-18</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 6h a 40h</span>
+                </div>
+                <h3>Segurança na Indústria da Construção</h3>
+                <p>Diretrizes de planejamento e organização para segurança em canteiros de obras.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 19 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-19</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Explosivos</h3>
+                <p>Armazenagem, manuseio e fabricação segura de explosivos e artefatos correlatos.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 20 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-20</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h a 16h</span>
+                </div>
+                <h3>Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis</h3>
+                <p>Capacitação para manuseio, armazenamento e processamento de inflamáveis.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 21 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-21</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Trabalhos a Céu Aberto</h3>
+                <p>Medidas protetivas e abrigos para trabalhadores expostos a intempéries climáticas.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 22 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-22</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Segurança e Saúde Ocupacional na Mineração</h3>
+                <p>Diretrizes de segurança para lavra subterrânea e a céu aberto.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 23 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-23</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Proteção Contra Incêndios</h3>
+                <p>Medidas de prevenção e combate a princípios de incêndio nos locais de trabalho.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 24 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-24</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Condições Sanitárias e de Conforto nos Locais de Trabalho</h3>
+                <p>Requisitos de banheiros, vestiários, refeitórios e áreas de vivência.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 25 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-25</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Resíduos Industriais</h3>
+                <p>Gerenciamento, coleta e descarte seguro de resíduos gerados nos processos industriais.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 26 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-26</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Sinalização de Segurança</h3>
+                <p>Padrões de cores e rotulagem preventiva para identificação de riscos no ambiente.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 28 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-28</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 4h</span>
+                </div>
+                <h3>Fiscalização e Penalidades</h3>
+                <p>Critérios de autuação, penalidades e prazos decorrentes da fiscalização trabalhista.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 29 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-29</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Segurança e Saúde no Trabalho Portuário</h3>
+                <p>Normas específicas para operações em portos e instalações retroportuárias.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 30 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-30</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Segurança e Saúde no Trabalho Aquaviário</h3>
+                <p>Proteção à integridade física de trabalhadores em embarcações comerciais.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 31 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-31</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 20h</span>
+                </div>
+                <h3>Segurança e Saúde no Trabalho na Agricultura, Pecuária e Silvicultura</h3>
+                <p>Diretrizes de SST aplicadas ao setor rural e agronegócio.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 32 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-32</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Segurança e Saúde no Trabalho em Estabelecimentos de Saúde</h3>
+                <p>Prevenção de riscos biológicos, químicos e radiológicos em hospitais e clínicas.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 33 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-33</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h a 40h</span>
+                </div>
+                <h3>Segurança e Saúde no Trabalho em Espaços Confinados</h3>
+                <p>Procedimentos para entrada, monitoramento e resgate em locais confinados.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 34 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-34</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Condições e Meio Ambiente de Trabalho na Indústria Naval</h3>
+                <p>Segurança em estaleiros, reparos e desmonte de embarcações.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 35 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-35</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 8h</span>
+                </div>
+                <h3>Trabalho em Altura</h3>
+                <p>Planejamento, organização e execução segura para atividades acima de 2 metros.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 36 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-36</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Segurança e Saúde no Trabalho em Empresas de Abate e Processamento de Carnes</h3>
+                <p>Ergonomia, prevenção de acidentes e riscos biológicos em frigoríficos.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 37 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-37</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Segurança e Saúde in Plataformas de Petróleo</h3>
+                <p>Requisitos de segurança para instalações marítimas de extração de petróleo.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+        <!-- NR 38 -->
+        <div class="nr-card">
+            <div>
+                <div class="nr-card-header">
+                    <span class="nr-badge">NR-38</span>
+                    <span class="nr-workload"><i class="fa-regular fa-clock"></i> 16h</span>
+                </div>
+                <h3>Segurança e Saúde no Trabalho na Limpeza Urbana e Manejo de Resíduos</h3>
+                <p>Diretrizes para prevenção de acidentes e proteção à saúde na coleta de lixo e varrição.</p>
+            </div>
+            <div class="nr-footer">
+                <span class="nr-mte"><i class="fa-solid fa-check-circle"></i> Válido MTE</span>
+                <a href="#" class="btn-details">Ver Curso</a>
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>
