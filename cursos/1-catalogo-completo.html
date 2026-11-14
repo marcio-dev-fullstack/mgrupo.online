@@ -222,11 +222,10 @@
 
     <div id="catalogContainer"></div>
 
-    <!-- Importa o banco de dados dos ~500 cursos já existente na pasta -->
+    <!-- Importa o banco de dados courses-data.js com todos os cursos -->
     <script src="courses-data.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Detecta automaticamente o array de cursos exportado pelo courses-data.js
             const rawList = window.coursesData || window.COURSES || window.courses || (typeof coursesData !== "undefined" ? coursesData : (typeof courses !== "undefined" ? courses : []));
 
             const catalogContainer = document.getElementById("catalogContainer");
@@ -236,11 +235,10 @@
 
             if (!Array.isArray(rawList) || rawList.length === 0) {
                 totalBadge.textContent = "0 cursos carregados";
-                catalogContainer.innerHTML = `<div class="area-section"><p>Verifique a estrutura do arquivo <code>courses-data.js</code>.</p></div>`;
+                catalogContainer.innerHTML = `<div class="area-section"><p style="color:#fca5a5;">Nenhum curso encontrado no arquivo <code>courses-data.js</code>.</p></div>`;
                 return;
             }
 
-            // Extrai áreas únicas
             const areasSet = new Set();
             rawList.forEach(c => {
                 const area = c.area || c.category || c.categoria || "Formação Geral";
@@ -271,7 +269,6 @@
 
                 totalBadge.textContent = `${filtered.length} cursos disponíveis`;
 
-                // Agrupa por área
                 const grouped = {};
                 filtered.forEach(c => {
                     const area = c.area || c.category || c.categoria || "Formação Geral";
