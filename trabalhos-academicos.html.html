@@ -72,15 +72,15 @@
         .pricing-section {
             margin: 35px 0 25px 0;
             background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
         .pricing-header {
-            background-color: #1a365d;
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
             color: #ffffff;
-            padding: 15px 20px;
+            padding: 18px 20px;
             text-align: center;
         }
         .pricing-header h2 {
@@ -93,46 +93,52 @@
             border-collapse: collapse;
             text-align: left;
         }
-        .price-table th, .price-table td {
-            padding: 14px 20px;
-            border-bottom: 1px solid #edf2f7;
-        }
         .price-table th {
-            background-color: #ebf8ff;
-            color: #2b6cb0;
+            padding: 14px 20px;
+            background-color: #1e293b;
+            color: #ffffff;
             font-weight: 700;
             font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .price-table tr:last-child td {
-            border-bottom: none;
+        .price-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
         }
-        .price-table tr:nth-child(even) {
-            background-color: #f7fafc;
+
+        /* Cores de fundo distintas para cada linha, mantendo o texto padronizado */
+        .price-table tr.linha-1 td { background-color: #f0fdf4; border-left: 5px solid #22c55e; } 
+        .price-table tr.linha-2 td { background-color: #eff6ff; border-left: 5px solid #3b82f6; } 
+        .price-table tr.linha-3 td { background-color: #fefce8; border-left: 5px solid #eab308; } 
+        .price-table tr.linha-4 td { background-color: #faf5ff; border-left: 5px solid #a855f7; } 
+        .price-table tr.linha-5 td { background-color: #fff1f2; border-left: 5px solid #f43f5e; } 
+        .price-table tr.linha-6 td { background-color: #fff7ed; border-left: 5px solid #f97316; } 
+
+        .price-table tr:hover td {
+            filter: brightness(0.97);
         }
-        .price-table tr:hover {
-            background-color: #edf2f7;
-        }
+
         .service-name {
-            font-weight: 600;
-            color: #2d3748;
-        }
-        .price-tag {
             font-weight: 700;
-            color: #2b6cb0;
+            color: #0f172a;
+            font-size: 1.02rem;
+        }
+        
+        /* Padrão unificado para TODOS os preços da tabela */
+        .price-tag {
+            font-weight: 800;
+            color: #0f172a !important; /* Cor padronizada idêntica para todos */
             text-align: right;
             white-space: nowrap;
+            font-size: 1.05rem;
         }
-        .price-tag.consult {
-            color: #d69e2e;
-            font-style: italic;
-        }
+
         .pricing-notice {
-            background-color: #fffaf0;
-            border-top: 1px solid #feebc8;
-            padding: 12px 20px;
-            color: #744210;
+            background-color: #fffbeb;
+            border-top: 1px solid #fde68a;
+            padding: 14px 20px;
+            color: #92400e;
             font-size: 0.9rem;
             font-weight: 600;
             display: flex;
@@ -154,7 +160,7 @@
             background-color: #2b6cb0;
         }
 
-        /* Novo Rodapé Aprimorado */
+        /* Rodapé Aprimorado */
         .site-footer {
             background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
             color: #ffffff;
@@ -324,29 +330,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="linha-1">
                     <td class="service-name">Trabalhos Acadêmicos</td>
                     <td class="price-tag">A partir de R$ 50,00</td>
                 </tr>
-                <tr>
+                <tr class="linha-2">
                     <td class="service-name">TCC / Artigo Científico</td>
                     <td class="price-tag">A partir de R$ 400,00</td>
                 </tr>
-                <tr>
+                <tr class="linha-3">
                     <td class="service-name">TCC / Projeto Integrador</td>
                     <td class="price-tag">A partir de R$ 500,00</td>
                 </tr>
-                <tr>
+                <tr class="linha-4">
                     <td class="service-name">TCC / Monografia</td>
                     <td class="price-tag">A partir de R$ 500,00</td>
                 </tr>
-                <tr>
+                <tr class="linha-5">
                     <td class="service-name">Mestrado / Dissertação</td>
-                    <td class="price-tag consult">A partir de R$ 5.000,00</td>
+                    <td class="price-tag">A partir de R$ 5.000,00</td>
                 </tr>
-                <tr>
+                <tr class="linha-6">
                     <td class="service-name">Doutorado / Tese</td>
-                    <td class="price-tag consult">A partir de R$ 10.000,00</td>
+                    <td class="price-tag">A partir de R$ 10.000,00</td>
                 </tr>
             </tbody>
         </table>
