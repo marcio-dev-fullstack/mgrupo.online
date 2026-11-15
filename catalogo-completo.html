@@ -1,167 +1,277 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Completo de Cursos - UniFATIX</title>
-    <!-- Tailwind CSS para estilização responsiva -->
+    <title>UniFATIX EAD - Plataforma Global de Cursos 100% Online</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Supabase JS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Lucide Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body class="bg-slate-50 min-h-screen flex flex-col">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
 
-    <!-- Cabeçalho Institucional -->
-    <header class="bg-blue-950 text-white shadow-md py-4 px-6 flex flex-wrap justify-between items-center gap-4">
-        <div class="flex items-center gap-3">
-            <span class="text-2xl font-extrabold tracking-wide text-blue-400">UniFATIX</span>
-            <span class="text-slate-500">|</span>
-            <span class="text-sm font-medium text-slate-200">Catálogo de Cursos e Pós-Graduações</span>
-        </div>
-        <div class="flex items-center gap-3">
-            <a href="certificados.html" class="bg-blue-900 hover:bg-blue-800 px-4 py-2 rounded-lg text-sm font-medium transition">
-                Meus Certificados
-            </a>
-            <a href="../index.html" class="bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition">
-                Painel do Aluno
-            </a>
+    <!-- Navbar -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
+                        U
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">UniFATIX</span>
+                        <span class="text-xs px-2 py-0.5 ml-1 rounded-full bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 font-semibold">EAD 40h</span>
+                    </div>
+                </div>
+
+                <!-- Navigation links & search -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#catalogo" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition">Catálogo de Cursos</a>
+                    <a href="#metodologia" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition">Metodologia 40h</a>
+                    <a href="#certificados" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition">Certificados</a>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <!-- Search input -->
+                    <div class="relative hidden sm:block">
+                        <input type="text" id="searchInput" placeholder="Buscar curso ou tecnologia..." 
+                               class="w-64 text-sm pl-9 pr-4 py-2 rounded-full border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <i class="fas fa-search absolute left-3 top-2.5 text-slate-400 text-sm"></i>
+                    </div>
+
+                    <!-- Theme toggle button -->
+                    <button id="themeToggle" class="p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-amber-400"></i>
+                    </button>
+                    
+                    <button class="bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm px-4 py-2 rounded-xl transition shadow-md shadow-brand-500/20">
+                        Portal do Aluno
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Conteúdo Principal -->
-    <main class="max-w-7xl w-full mx-auto px-6 py-10 flex-grow">
-        
-        <!-- Título e Barra de Busca -->
+    <!-- Hero Banner -->
+    <section class="relative py-16 bg-gradient-to-b from-brand-50/50 via-slate-50 to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 mb-4 border border-indigo-200 dark:border-indigo-800">
+                <i class="fas fa-certificate text-indigo-500"></i> Certificação Oficial EAD de 40 Horas
+            </span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto">
+                Plataforma Global de Cursos Online com <span class="bg-gradient-to-r from-brand-600 to-indigo-600 bg-clip-text text-transparent">Metodologia Prática Módulo 5</span>
+            </h1>
+            <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                Explore 60 cursos completos organizados em 6 grandes áreas do conhecimento. Estrutura padrão de 40h (5 Módulos de 8h), com laboratório prático, mapas mentais interativos e testes com autocorreção instantânea.
+            </p>
+
+            <!-- Quick Metrics -->
+            <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="text-3xl font-extrabold text-brand-600 dark:text-brand-400">60</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Cursos Completos</div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">6</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Áreas do Saber</div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">40h</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Ementa Padrão</div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="text-3xl font-extrabold text-purple-600 dark:text-purple-400">100%</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Autocorreção Módulo 5</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Catalog Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10" id="catalogo">
+        <!-- Area Filter Tabs -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
             <div>
-                <h1 class="text-3xl font-extrabold text-slate-900">Nossos Cursos Disponíveis</h1>
-                <p class="text-slate-600 text-sm mt-1">Escolha sua especialização ou capacitação profissional e inicie imediatamente.</p>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Áreas de Conhecimento</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Selecione uma área para navegar pelos 10 cursos disponíveis</p>
             </div>
             
-            <div class="w-full md:w-80">
-                <input type="text" id="campo-busca" placeholder="Buscar curso por nome..." 
-                       class="w-full border border-slate-300 bg-white rounded-xl px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:border-blue-600">
+            <div class="flex items-center space-x-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="areaTabs">
+                <!-- Dynamically populated tabs -->
             </div>
         </div>
 
-        <!-- Grid onde os cursos serão injetados via JavaScript -->
-        <div id="cursos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <p class="text-slate-500 col-span-full text-center py-12 animate-pulse">Carregando catálogo de cursos...</p>
+        <!-- Course Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="coursesGrid">
+            <!-- Dynamically populated course cards -->
         </div>
     </main>
 
-    <!-- Rodapé -->
-    <footer class="bg-slate-900 text-slate-400 text-center py-5 text-xs mt-12">
-        © 2026 UniFATIX - Educação a Distância e Pós-Graduação. Todos os direitos reservados.
+    <!-- Metodologia Section -->
+    <section class="bg-slate-100 dark:bg-slate-800/50 py-12 border-t border-slate-200 dark:border-slate-800" id="metodologia">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">Estrutura Pedagógica de Excelência (40 Horas)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div class="w-8 h-8 rounded-lg bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 font-bold flex items-center justify-center mb-3">M1</div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Fundamentos (8h)</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Bases teóricas, conceitos elementares e contextualização histórica/prática.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center mb-3">M2</div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Arquitetura (8h)</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Modelos conceituais, estruturas intermediárias e boas práticas iniciais.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div class="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 font-bold flex items-center justify-center mb-3">M3</div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Ferramentas (8h)</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Uso avançado de tecnologias, instrumentalização e resolução de desafios.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 font-bold flex items-center justify-center mb-3">M4</div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">Frameworks (8h)</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Padrões de mercado, tendências futuras e metodologias de implantação.</p>
+                </div>
+                <div class="bg-gradient-to-br from-emerald-500 to-teal-700 text-white p-5 rounded-2xl shadow-lg">
+                    <div class="w-8 h-8 rounded-lg bg-white/20 text-white font-bold flex items-center justify-center mb-3">M5</div>
+                    <h3 class="font-bold text-sm">Prática & Quiz (8h)</h3>
+                    <p class="text-xs opacity-90 mt-2">Estudos de caso, Mapa Mental visual e Quiz Interativo com Autocorreção instantânea.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left sm:flex sm:justify-between sm:items-center">
+            <div>
+                <p class="text-sm font-semibold text-white">UniFATIX EAD &copy; 2026 - Portal de Cursos Online</p>
+                <p class="text-xs mt-1 text-slate-500">Desenvolvido com excelência pedagógica e tecnologia de ponta em 40 horas aula.</p>
+            </div>
+            <div class="mt-4 sm:mt-0 flex justify-center space-x-6 text-sm">
+                <a href="https://github.com/marcio-dev-fullstack/unifatix.edu.br" target="_blank" class="hover:text-white transition"><i class="fab fa-github mr-1"></i> Repositório GitHub</a>
+                <a href="#catalogo" class="hover:text-white transition">Catálogo 60 Cursos</a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Script de Conexão, Busca e Renderização -->
-    <script type="module">
-        import { supabase } from '../supabase.js';
+    <!-- Course Details & Syllabus Modal -->
+    <div id="courseModal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-4xl rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden my-8 transform transition-all">
+            <!-- Modal Header -->
+            <div class="p-6 bg-gradient-to-r from-slate-900 to-brand-950 text-white relative">
+                <button id="closeModalBtn" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                    <i class="fas fa-times"></i>
+                </button>
+                <span id="modalAreaBadge" class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/30 text-brand-200 border border-brand-400/30">
+                    Área
+                </span>
+                <h2 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold mt-3">Título do Curso</h2>
+                <div class="flex flex-wrap items-center gap-4 text-xs text-slate-300 mt-3">
+                    <span><i class="fas fa-clock text-amber-400 mr-1"></i> Carga Horária: <strong>40 horas</strong></span>
+                    <span><i class="fas fa-layer-group text-indigo-400 mr-1"></i> Estrutura: <strong>5 Módulos de 8h</strong></span>
+                    <span><i class="fas fa-user-graduate text-emerald-400 mr-1"></i> Nível: <strong id="modalLevel">Avançado</strong></span>
+                </div>
+            </div>
 
-        let todosCursos = [];
-        let matriculasUsuario = new Set();
+            <!-- Modal Content -->
+            <div class="p-6 max-h-[70vh] overflow-y-auto space-y-6">
+                <!-- Description -->
+                <div>
+                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Descrição do Curso</h3>
+                    <p id="modalDescription" class="text-slate-700 dark:text-slate-300 mt-2 text-sm leading-relaxed"></p>
+                </div>
 
-        async function inicializarCatalogo() {
-            const container = document.getElementById('cursos-grid');
-
-            try {
-                // 1. Verifica se há usuário logado para identificar cursos já adquiridos
-                const { data: { user } } = await supabase.auth.getUser();
-                if (user) {
-                    const { data: matriculas } = await supabase
-                        .from('progresso_alunos')
-                        .select('curso_id')
-                        .eq('user_id', user.id);
-
-                    if (matriculas) {
-                        matriculas.forEach(m => matriculasUsuario.add(m.curso_id));
-                    }
-                }
-
-                // 2. Busca todos os cursos cadastrados na tabela 'cursos'
-                const { data: cursos, error } = await supabase
-                    .from('cursos')
-                    .select('*')
-                    .order('titulo', { ascending: true });
-
-                if (error) throw error;
-
-                todosCursos = cursos || [];
-                renderizarCursos(todosCursos);
-
-            } catch (err) {
-                console.error('Erro ao buscar cursos:', err.message);
-                container.innerHTML = `
-                    <div class="col-span-full bg-red-50 border border-red-200 text-red-700 p-6 rounded-xl text-center">
-                        <p class="font-bold">Erro ao carregar o catálogo de cursos.</p>
-                        <p class="text-sm mt-1">${err.message}</p>
+                <!-- Syllabus (5 Modules) -->
+                <div>
+                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Ementa Oficial (40 Horas / 5 Módulos)</h3>
+                    <div id="modalSyllabus" class="space-y-3">
+                        <!-- Module list injected dynamically -->
                     </div>
-                `;
-            }
-        }
+                </div>
 
-        function renderizarCursos(lista) {
-            const container = document.getElementById('cursos-grid');
-
-            if (!lista || lista.length === 0) {
-                container.innerHTML = `<p class="text-slate-500 col-span-full text-center py-12">Nenhum curso encontrado.</p>`;
-                return;
-            }
-
-            container.innerHTML = '';
-            lista.forEach(curso => {
-                const jaMatriculado = matriculasUsuario.has(curso.id);
-                const precoFormatado = Number(curso.preco || 199.90).toFixed(2).replace('.', ',');
-
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl shadow-sm p-6 flex flex-col justify-between border border-slate-200 hover:shadow-md transition";
-                
-                card.innerHTML = `
-                    <div>
-                        <div class="flex justify-between items-center gap-2">
-                            <span class="text-xs font-bold bg-blue-100 text-blue-900 py-1 px-3 rounded-full uppercase">
-                                ${curso.carga_horaria} Horas
-                            </span>
-                            ${jaMatriculado 
-                                ? '<span class="text-xs font-bold bg-emerald-100 text-emerald-800 py-1 px-3 rounded-full">Matriculado</span>' 
-                                : ''}
+                <!-- Module 5 Classroom & Interactive Quiz Launcher -->
+                <div class="bg-gradient-to-r from-emerald-900/20 to-teal-900/20 border border-emerald-500/30 rounded-2xl p-5">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded bg-emerald-500 text-white font-bold text-xs">MÓDULO 5 - PRÁTICO</span>
+                            <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-1">Laboratório, Mapa Mental & Quiz com Autocorreção</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">Testes interativos de 8 horas práticas com feedback e gabarito comentado.</p>
                         </div>
-
-                        <h3 class="text-xl font-bold text-slate-900 mt-4 mb-2 leading-snug">${curso.titulo}</h3>
-                        <p class="text-slate-600 text-sm mb-5 leading-relaxed">${curso.descricao || 'Formação completa com certificação reconhecida.'}</p>
+                        <button id="openQuizBtn" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl transition shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2">
+                            <i class="fas fa-play"></i> Iniciar Módulo 5 Prático
+                        </button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="pt-4 border-t border-slate-100">
-                        ${jaMatriculado 
-                            ? `<a href="curso.html?id=${curso.id}" class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-2.5 px-4 rounded-xl font-semibold text-sm transition">
-                                   Acessar Sala de Aula
-                               </a>`
-                            : `<div class="flex items-center justify-between mb-3">
-                                   <span class="text-xs text-slate-500 font-medium">Investimento:</span>
-                                   <span class="text-xl font-black text-slate-900">R$ ${precoFormatado}</span>
-                               </div>
-                               <a href="checkout.html?id=${curso.id}" class="block w-full bg-blue-700 hover:bg-blue-800 text-white text-center py-2.5 px-4 rounded-xl font-semibold text-sm transition shadow-sm">
-                                   Matricule-se Agora
-                               </a>`
-                        }
+    <!-- Quiz & Practical Assessment Modal -->
+    <div id="quizModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-3xl rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden my-8">
+            <div class="p-5 bg-slate-800 text-white flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Módulo 5: Avaliação Prática Autocorrigida</span>
+                    <h3 id="quizCourseTitle" class="text-xl font-bold">Título do Curso</h3>
+                </div>
+                <button id="closeQuizBtn" class="w-8 h-8 rounded-full bg-slate-700 hover:bg-slate-600 text-white flex items-center justify-center transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-6 max-h-[75vh] overflow-y-auto space-y-6">
+                <!-- Case Study Section -->
+                <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <h4 class="font-bold text-sm text-brand-600 dark:text-brand-400 mb-1"><i class="fas fa-briefcase mr-1"></i> Estudo de Caso Prático</h4>
+                    <p id="quizCaseStudy" class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed"></p>
+                </div>
+
+                <!-- Mind Map Section -->
+                <div class="bg-indigo-50 dark:bg-indigo-950/40 p-4 rounded-xl border border-indigo-200 dark:border-indigo-800">
+                    <h4 class="font-bold text-sm text-indigo-600 dark:text-indigo-400 mb-2"><i class="fas fa-sitemap mr-1"></i> Mapa Mental Sintético da Disciplina</h4>
+                    <div id="quizMindMap" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Quiz Questions Form -->
+                <form id="quizForm" class="space-y-6">
+                    <div id="quizQuestionsContainer" class="space-y-6"></div>
+
+                    <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                        <button type="button" id="submitQuizBtn" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-brand-500/30 transition">
+                            <i class="fas fa-check-circle mr-1"></i> Enviar Respostas para Autocorreção
+                        </button>
+                        <div id="quizScoreBadge" class="hidden px-4 py-2 rounded-xl text-sm font-extrabold"></div>
                     </div>
-                `;
-                container.appendChild(card);
-            });
-        }
+                </form>
+            </div>
+        </div>
+    </div>
 
-        // Filtro de busca em tempo real
-        document.getElementById('campo-busca').addEventListener('input', (e) => {
-            const termo = e.target.value.toLowerCase().trim();
-            const filtrados = todosCursos.filter(c => 
-                c.titulo.toLowerCase().includes(termo) || 
-                (c.descricao && c.descricao.toLowerCase().includes(termo))
-            );
-            renderizarCursos(filtrados);
-        });
-
-        inicializarCatalogo();
-    </script>
+    <!-- Main JavaScript Logic -->
+    <script src="assets/js/courses-data.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
