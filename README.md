@@ -1,24 +1,7 @@
-# UniFATIX EAD - Plataforma Global de Cursos 100% Online
+# UNIFATIX / ZENTIX - v8.0 (70 Cursos & Paginação)
 
-Plataforma de cursos 100% online com 60 cursos completos organizados por 6 áreas de conhecimento.
-
-## Estrutura Pedagógica (40h)
-- **Carga Horária Standard**: 40 Horas por curso
-- **Divisão**: 5 Módulos de 8h cada
-  - Módulo 1: Fundamentos (8h)
-  - Módulo 2: Conceitos Intermediários e Arquitetura (8h)
-  - Módulo 3: Aplicação Avançada e Ferramentas (8h)
-  - Módulo 4: Frameworks, Boas Práticas e Tendências (8h)
-  - Módulo 5: Laboratório Prático, Estudo de Caso, Mapa Mental e Quiz Interativo com Autocorreção Instantânea (8h)
-
-## Áreas do Conhecimento
-1. **Tecnologia & Programação** (10 Cursos)
-2. **Inteligência Artificial & Dados** (10 Cursos)
-3. **Negócios & Gestão** (10 Cursos)
-4. **Design & Experiência** (10 Cursos)
-5. **Saúde & Biociências** (10 Cursos)
-6. **Engenharia & Exatas** (10 Cursos)
-
-## Como Executar
-Basta abrir o arquivo `index.html` em qualquer navegador web moderno (Google Chrome, Firefox, Safari, Edge).
-Não requer instalação de servidor local.
+## Novidades na Versão v8.0:
+1. **70 Cursos Cadastrados**: 10 cursos especializados por sub-área em Educação e Engenharias (`assets/js/courses-data.js`).
+2. **Busca em Tempo Real & Filtros**: Filtro instantâneo no topo de `catalogo-completo.html`.
+3. **Paginação Dinâmica**: Sistema de carregamento por lotes via botão *"Carregar Mais Cursos"*.
+4. **Área do Aluno Integrada**: Perfil de KESIA DE OLIVEIRA QUADROS com status *Boleto em Dia*.
