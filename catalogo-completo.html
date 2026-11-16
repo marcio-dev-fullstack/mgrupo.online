@@ -1,301 +1,136 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNIFATIX - Catálogo Completo de Cursos (70 Cursos)</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        :root {
-            --bg-main: #0f172a;
-            --bg-card: #1e293b;
-            --primary: #0066ff;
-            --primary-glow: #00f0ff;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #334155;
-        }
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .header-nav {
-            background: rgba(15, 23, 42, 0.95);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #0066ff, #00f0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-        .search-box {
-            background: var(--bg-card);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        .search-box input {
-            background: transparent;
-            border: none;
-            color: #fff;
-            font-size: 1.1rem;
-            width: 100%;
-            outline: none;
-        }
-        .filter-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-        .tag-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-        }
-        .tag-btn.active, .tag-btn:hover {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary-glow);
-        }
-        .stats-bar {
-            margin-bottom: 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            display: flex;
-            justify-content: space-between;
-        }
-        .grid-cursos {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-        .card-curso {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        .card-curso:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary-glow);
-        }
-        .badge-cat {
-            display: inline-block;
-            background: rgba(0, 102, 255, 0.15);
-            color: #38bdf8;
-            padding: 0.3rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            width: fit-content;
-        }
-        .card-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin: 0 0 0.8rem 0;
-            line-height: 1.4;
-        }
-        .card-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1.2rem;
-        }
-        .btn-acessar {
-            background: linear-gradient(135deg, #0066ff, #0044cc);
-            color: #fff;
-            text-decoration: none;
-            text-align: center;
-            padding: 0.75rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: opacity 0.2s;
-        }
-        .btn-acessar:hover {
-            opacity: 0.9;
-        }
-        .load-more-container {
-            text-align: center;
-            margin: 3rem 0;
-        }
-        .btn-load-more {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: #fff;
-            padding: 0.8rem 2.5rem;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .btn-load-more:hover {
-            background: var(--primary);
-            box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Completo de Cursos | UNIFATIX ZENTIX</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; }
+    .header { background: #1e293b; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; }
+    .header h1 { color: #00f0ff; margin: 0; font-size: 24px; }
+    .user-badge { background: #0284c7; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: bold; }
+    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .search-box { margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+    .search-input { flex: 1; min-width: 280px; padding: 14px 20px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #fff; font-size: 16px; outline: none; }
+    .search-input:focus { border-color: #00f0ff; box-shadow: 0 0 10px rgba(0,240,255,0.3); }
+    .category-filter { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; width: 100%; }
+    .filter-btn { padding: 8px 16px; border-radius: 20px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; cursor: pointer; white-space: nowrap; transition: 0.3s; }
+    .filter-btn.active, .filter-btn:hover { background: #0066ff; color: #fff; border-color: #0066ff; }
+    .cursos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin-top: 20px; }
+    .card-curso { background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; transition: transform 0.2s, border-color 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-curso:hover { transform: translateY(-4px); border-color: #00f0ff; }
+    .badge-area { background: rgba(0, 102, 255, 0.2); color: #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; width: fit-content; margin-bottom: 12px; }
+    .card-curso h3 { font-size: 18px; margin: 0 0 10px 0; color: #f8fafc; }
+    .carga-horaria { font-size: 14px; color: #94a3b8; margin-bottom: 20px; }
+    .carga-horaria strong { color: #00f0ff; }
+    .btn-acessar { background: #0066ff; color: #fff; text-decoration: none; padding: 10px; text-align: center; border-radius: 6px; font-weight: bold; transition: background 0.2s; }
+    .btn-acessar:hover { background: #0052cc; }
+    .load-more-container { text-align: center; margin-top: 40px; }
+    .btn-load-more { background: transparent; border: 2px solid #00f0ff; color: #00f0ff; padding: 12px 30px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+    .btn-load-more:hover { background: #00f0ff; color: #0f172a; }
+  </style>
 </head>
 <body>
-    <header class="header-nav">
-        <div class="logo">UNIFATIX / ZENTIX</div>
-        <nav>
-            <a href="index.html" style="color: var(--text-main); text-decoration: none; margin-right: 1.5rem;">Área do Aluno</a>
-            <a href="login.html" style="color: var(--primary-glow); text-decoration: none; font-weight: 600;">Sair / Login</a>
-        </nav>
-    </header>
 
-    <div class="container">
-        <h1>Catálogo de Cursos & Especializações (70 Cursos)</h1>
-        <p style="color: var(--text-muted);">Explore todas as áreas de Educação e Engenharia com busca instantânea e carregamento dinâmico.</p>
+  <div class="header">
+    <h1>UNIFATIX ZENTIX | Catálogo Acadêmico</h1>
+    <div class="user-badge">🟢 KÉSIA DE OLIVEIRA QUADROS (Boleto em Dia)</div>
+  </div>
 
-        <!-- Campo de Busca em Tempo Real -->
-        <div class="search-box">
-            <span>🔍</span>
-            <input type="text" id="input-busca" placeholder="Digite o nome do curso, código (ex: NR-10, Topografia, EDU-101) ou área...">
-        </div>
-
-        <!-- Filtros por Categoria -->
-        <div class="filter-tags" id="filter-tags">
-            <button class="tag-btn active" data-cat="TODOS">Todos os Cursos (70)</button>
-            <button class="tag-btn" data-cat="Educação - Pedagogia">Pedagogia (10)</button>
-            <button class="tag-btn" data-cat="Educação Inclusiva">Educação Inclusiva (10)</button>
-            <button class="tag-btn" data-cat="Engenharia de Segurança">Segurança do Trabalho (10)</button>
-            <button class="tag-btn" data-cat="Engenharia Civil">Engenharia Civil (10)</button>
-            <button class="tag-btn" data-cat="Engenharia Elétrica">Engenharia Elétrica (10)</button>
-            <button class="tag-btn" data-cat="Engenharia Mecânica">Engenharia Mecânica (10)</button>
-            <button class="tag-btn" data-cat="Engenharia Ambiental">Engenharia Ambiental (10)</button>
-            <button class="tag-btn" data-cat="Engenharia de Software">Engenharia de Software (10)</button>
-        </div>
-
-        <div class="stats-bar">
-            <span id="txt-contador">Exibindo 0 de 70 cursos</span>
-            <span>Status da Matrícula: <strong style="color: #4ade80;">🟢 Boleto em Dia (KESIA DE OLIVEIRA QUADROS)</strong></span>
-        </div>
-
-        <!-- Grid de Cursos -->
-        <div class="grid-cursos" id="grid-cursos"></div>
-
-        <!-- Botão Carregar Mais -->
-        <div class="load-more-container">
-            <button id="btn-carregar-mais" class="btn-load-more">Carregar Mais Cursos 👇</button>
-        </div>
+  <div class="container">
+    <h2>Catálogo Completo de Cursos (Carga Horária Padrão: 40h)</h2>
+    
+    <div class="search-box">
+      <input type="text" id="input-busca" class="search-input" placeholder="🔍 Pesquisar por nome ou código do curso (ex: NR-10, Topografia, EDU-101)...">
+      <div class="category-filter" id="container-filtros">
+        <button class="filter-btn active" data-cat="todas">Todas as Áreas</button>
+        <button class="filter-btn" data-cat="Pedagogia & Gestão Escolar">Pedagogia</button>
+        <button class="filter-btn" data-cat="Educação Inclusiva & AEE">Educação Inclusiva</button>
+        <button class="filter-btn" data-cat="Segurança do Trabalho & NRs">Segurança do Trabalho (NRs)</button>
+        <button class="filter-btn" data-cat="Engenharia Civil & Agrimensura">Engenharia Civil</button>
+        <button class="filter-btn" data-cat="Engenharia Elétrica & Fotovoltaica">Engenharia Elétrica</button>
+        <button class="filter-btn" data-cat="Engenharia Mecânica & Automação">Engenharia Mecânica</button>
+        <button class="filter-btn" data-cat="Engenharia Ambiental & Sustentabilidade">Engenharia Ambiental</button>
+      </div>
     </div>
 
-    <script src="assets/js/courses-data.js"></script>
-    <script>
-        let paginaAtual = 1;
-        const cursosPorPagina = 9;
-        let categoriaAtiva = "TODOS";
-        let cursosFiltrados = [...TODOS_OS_CURSOS];
+    <div id="grid-cursos" class="cursos-grid"></div>
 
-        const inputBusca = document.getElementById('input-busca');
-        const gridCursos = document.getElementById('grid-cursos');
-        const btnCarregarMais = document.getElementById('btn-carregar-mais');
-        const txtContador = document.getElementById('txt-contador');
-        const filterTags = document.getElementById('filter-tags');
+    <div class="load-more-container">
+      <button id="btn-carregar-mais" class="btn-load-more">Carregar Mais Cursos 👇</button>
+    </div>
+  </div>
 
-        function aplicarFiltros() {
-            const termo = inputBusca.value.toLowerCase().trim();
-            cursosFiltrados = TODOS_OS_CURSOS.filter(curso => {
-                const bateCategoria = (categoriaAtiva === "TODOS" || curso.categoria === categoriaAtiva);
-                const bateBusca = (
-                    curso.titulo.toLowerCase().includes(termo) ||
-                    curso.codigo.toLowerCase().includes(termo) ||
-                    curso.categoria.toLowerCase().includes(termo)
-                );
-                return bateCategoria && bateBusca;
-            });
-            paginaAtual = 1;
-            renderizar();
-        }
+  <script src="assets/js/courses-data.js"></script>
+  <script>
+    let paginaAtual = 1;
+    const cursosPorPagina = 9;
+    let categoriaAtual = 'todas';
+    let termoBusca = '';
 
-        function renderizar() {
-            const limite = paginaAtual * cursosPorPagina;
-            const exibidos = cursosFiltrados.slice(0, limite);
+    function filtrarCursos() {
+      return window.UNIFATIX_COURSES.filter(c => {
+        const bateCategoria = categoriaAtual === 'todas' || c.categoria === categoriaAtual;
+        const bateBusca = c.titulo.toLowerCase().includes(termoBusca) || c.codigo.toLowerCase().includes(termoBusca);
+        return bateCategoria && bateBusca;
+      });
+    }
 
-            if (exibidos.length === 0) {
-                gridCursos.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">Nenhum curso encontrado com os filtros atuais.</div>`;
-                btnCarregarMais.style.display = 'none';
-                txtContador.innerText = `Exibindo 0 de ${cursosFiltrados.length} cursos encontrados`;
-                return;
-            }
+    function renderizar() {
+      const container = document.getElementById('grid-cursos');
+      const btn = document.getElementById('btn-carregar-mais');
+      const filtrados = filtrarCursos();
 
-            gridCursos.innerHTML = exibidos.map(c => `
-                <div class="card-curso">
-                    <div>
-                        <span class="badge-cat">${c.categoria}</span>
-                        <h3 class="card-title">${c.codigo}: ${c.titulo}</h3>
-                        <div class="card-meta">
-                            ⏱️ Carga Horária: <strong>${c.cargaHoraria}</strong><br>
-                            🎓 Nível: <strong>${c.nivel}</strong>
-                        </div>
-                    </div>
-                    <a href="curso.html?id=${c.id}" class="btn-acessar">Iniciar / Acessar Curso</a>
-                </div>
-            `).join('');
+      const limite = paginaAtual * cursosPorPagina;
+      const exibidos = filtrados.slice(0, limite);
 
-            txtContador.innerText = `Exibindo ${exibidos.length} de ${cursosFiltrados.length} cursos encontrados (Total Geral: 70)`;
+      if (exibidos.length === 0) {
+        container.innerHTML = '<p style="color: #94a3b8; grid-column: 1/-1; text-align: center;">Nenhum curso encontrado para este filtro.</p>';
+        btn.style.display = 'none';
+        return;
+      }
 
-            if (limite >= cursosFiltrados.length) {
-                btnCarregarMais.style.display = 'none';
-            } else {
-                btnCarregarMais.style.display = 'inline-block';
-            }
-        }
+      container.innerHTML = exibidos.map(c => `
+        <div class="card-curso">
+          <div>
+            <span class="badge-area">${c.categoria}</span>
+            <h3>${c.codigo}: ${c.titulo}</h3>
+            <p class="carga-horaria">Carga Horária Padrão: <strong>40h</strong></p>
+          </div>
+          <a href="aluno/curso.html?id=${c.id}" class="btn-acessar">Acessar Curso</a>
+        </div>
+      `).join('');
 
-        inputBusca.addEventListener('input', aplicarFiltros);
+      if (limite >= filtrados.length) {
+        btn.style.display = 'none';
+      } else {
+        btn.style.display = 'inline-block';
+      }
+    }
 
-        btnCarregarMais.addEventListener('click', () => {
-            paginaAtual++;
-            renderizar();
-        });
+    document.getElementById('input-busca').addEventListener('input', (e) => {
+      termoBusca = e.target.value.toLowerCase();
+      paginaAtual = 1;
+      renderizar();
+    });
 
-        filterTags.addEventListener('click', (e) => {
-            if (e.target.classList.contains('tag-btn')) {
-                document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
-                e.target.classList.add('active');
-                categoriaAtiva = e.target.getAttribute('data-cat');
-                aplicarFiltros();
-            }
-        });
+    document.getElementById('container-filtros').addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-btn')) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        categoriaAtual = e.target.getAttribute('data-cat');
+        paginaAtual = 1;
+        renderizar();
+      }
+    });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            aplicarFiltros();
-        });
-    </script>
+    document.getElementById('btn-carregar-mais').addEventListener('click', () => {
+      paginaAtual++;
+      renderizar();
+    });
+
+    document.addEventListener('DOMContentLoaded', renderizar);
+  </script>
 </body>
 </html>
