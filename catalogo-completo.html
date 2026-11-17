@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Completo de Cursos - UniFATIX</title>
+    <!-- Tailwind CSS para estilização responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+    <!-- Cabeçalho Institucional -->
+    <header class="bg-blue-950 text-white shadow-md py-4 px-6 flex flex-wrap justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl font-extrabold tracking-wide text-blue-400">UniFATIX</span>
+            <span class="text-slate-500">|</span>
+            <span class="text-sm font-medium text-slate-200">Catálogo de Cursos e Pós-Graduações</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="certificados.html" class="bg-blue-900 hover:bg-blue-800 px-4 py-2 rounded-lg text-sm font-medium transition">
+                Meus Certificados
+            </a>
+            <a href="../index.html" class="bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition">
+                Painel do Aluno
+            </a>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="max-w-7xl w-full mx-auto px-6 py-10 flex-grow">
+        
+        <!-- Título e Barra de Busca -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl font-extrabold text-slate-900">Nossos Cursos Disponíveis</h1>
+                <p class="text-slate-600 text-sm mt-1">Escolha sua especialização ou capacitação profissional e inicie imediatamente.</p>
+            </div>
+            
+            <div class="w-full md:w-80">
+                <input type="text" id="campo-busca" placeholder="Buscar curso por nome..." 
+                       class="w-full border border-slate-300 bg-white rounded-xl px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:border-blue-600">
+            </div>
+        </div>
+
+        <!-- Grid onde os cursos serão injetados via JavaScript -->
+        <div id="cursos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <p class="text-slate-500 col-span-full text-center py-12 animate-pulse">Carregando catálogo de cursos...</p>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-5 text-xs mt-12">
+        © 2026 UniFATIX - Educação a Distância e Pós-Graduação. Todos os direitos reservados.
+    </footer>
+
+    <!-- Script de Conexão, Busca e Renderização -->
+    <script type="module">
+        import { supabase } from '../supabase.js';
+
+        let todosCursos = [];
+        let matriculasUsuario = new Set();
+
+        async function inicializarCatalogo() {
+            const container = document.getElementById('cursos-grid');
+
+            try {
+                // 1. Verifica se há usuário logado para identificar cursos já adquiridos
+                const { data: { user } } = await supabase.auth.getUser();
+                if (user) {
+                    const { data: matriculas } = await supabase
+                        .from('progresso_alunos')
+                        .select('curso_id')
+                        .eq('user_id', user.id);
+
+                    if (matriculas) {
+                        matriculas.forEach(m => matriculasUsuario.add(m.curso_id));
+                    }
+                }
+
+                // 2. Busca todos os cursos cadastrados na tabela 'cursos'
+                const { data: cursos, error } = await supabase
+                    .from('cursos')
+                    .select('*')
+                    .order('titulo', { ascending: true });
+
+                if (error) throw error;
+
+                todosCursos = cursos || [];
+                renderizarCursos(todosCursos);
+
+            } catch (err) {
+                console.error('Erro ao buscar cursos:', err.message);
+                container.innerHTML = `
+                    <div class="col-span-full bg-red-50 border border-red-200 text-red-700 p-6 rounded-xl text-center">
+                        <p class="font-bold">Erro ao carregar o catálogo de cursos.</p>
+                        <p class="text-sm mt-1">${err.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderizarCursos(lista) {
+            const container = document.getElementById('cursos-grid');
+
+            if (!lista || lista.length === 0) {
+                container.innerHTML = `<p class="text-slate-500 col-span-full text-center py-12">Nenhum curso encontrado.</p>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            lista.forEach(curso => {
+                const jaMatriculado = matriculasUsuario.has(curso.id);
+                const precoFormatado = Number(curso.preco || 199.90).toFixed(2).replace('.', ',');
+
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl shadow-sm p-6 flex flex-col justify-between border border-slate-200 hover:shadow-md transition";
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-center gap-2">
+                            <span class="text-xs font-bold bg-blue-100 text-blue-900 py-1 px-3 rounded-full uppercase">
+                                ${curso.carga_horaria} Horas
+                            </span>
+                            ${jaMatriculado 
+                                ? '<span class="text-xs font-bold bg-emerald-100 text-emerald-800 py-1 px-3 rounded-full">Matriculado</span>' 
+                                : ''}
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-900 mt-4 mb-2 leading-snug">${curso.titulo}</h3>
+                        <p class="text-slate-600 text-sm mb-5 leading-relaxed">${curso.descricao || 'Formação completa com certificação reconhecida.'}</p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100">
+                        ${jaMatriculado 
+                            ? `<a href="curso.html?id=${curso.id}" class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-2.5 px-4 rounded-xl font-semibold text-sm transition">
+                                   Acessar Sala de Aula
+                               </a>`
+                            : `<div class="flex items-center justify-between mb-3">
+                                   <span class="text-xs text-slate-500 font-medium">Investimento:</span>
+                                   <span class="text-xl font-black text-slate-900">R$ ${precoFormatado}</span>
+                               </div>
+                               <a href="checkout.html?id=${curso.id}" class="block w-full bg-blue-700 hover:bg-blue-800 text-white text-center py-2.5 px-4 rounded-xl font-semibold text-sm transition shadow-sm">
+                                   Matricule-se Agora
+                               </a>`
+                        }
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Filtro de busca em tempo real
+        document.getElementById('campo-busca').addEventListener('input', (e) => {
+            const termo = e.target.value.toLowerCase().trim();
+            const filtrados = todosCursos.filter(c => 
+                c.titulo.toLowerCase().includes(termo) || 
+                (c.descricao && c.descricao.toLowerCase().includes(termo))
+            );
+            renderizarCursos(filtrados);
+        });
+
+        inicializarCatalogo();
+    </script>
+</body>
+</html>
