@@ -3,162 +3,779 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Completo de Cursos - UniFATIX</title>
-    <!-- Tailwind CSS para estilização responsiva -->
+    <title>Catálogo de Cursos de Tecnologia & IA - UniFATIX</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Supabase JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Barra de rolagem customizada para o modal de ementa */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+    </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex flex-col">
+<body class="bg-slate-50 min-h-screen flex flex-col text-slate-800 antialiased">
 
     <!-- Cabeçalho Institucional -->
-    <header class="bg-blue-950 text-white shadow-md py-4 px-6 flex flex-wrap justify-between items-center gap-4">
-        <div class="flex items-center gap-3">
-            <span class="text-2xl font-extrabold tracking-wide text-blue-400">UniFATIX</span>
-            <span class="text-slate-500">|</span>
-            <span class="text-sm font-medium text-slate-200">Catálogo de Cursos e Pós-Graduações</span>
-        </div>
-        <div class="flex items-center gap-3">
-            <a href="certificados.html" class="bg-blue-900 hover:bg-blue-800 px-4 py-2 rounded-lg text-sm font-medium transition">
-                Meus Certificados
-            </a>
-            <a href="../index.html" class="bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition">
-                Painel do Aluno
-            </a>
+    <header class="bg-blue-950 text-white shadow-md py-4 px-6 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <a href="../index.html" class="text-2xl font-extrabold tracking-wide text-blue-400 hover:text-blue-300 transition">UniFATIX</a>
+                <span class="text-slate-600">|</span>
+                <span class="text-xs sm:text-sm font-medium text-slate-200">Formação Executiva & Tech EaD (40h)</span>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="certificados.html" target="_blank" class="bg-blue-900 hover:bg-blue-800 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition flex items-center gap-1.5">
+                    <i data-lucide="award" class="w-4 h-4 text-blue-300"></i>
+                    <span>Meus Certificados</span>
+                </a>
+                <a href="../index.html" class="bg-blue-600 hover:bg-blue-500 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    <span>Painel do Aluno</span>
+                </a>
+            </div>
         </div>
     </header>
 
+    <!-- Banner de Destaque Metodológico -->
+    <section class="bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-10 px-6 border-b border-blue-800">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div class="max-w-3xl">
+                <span class="inline-flex items-center gap-1.5 bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Grade Curricular 2026 • 100% Prático (Hands-on)
+                </span>
+                <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                    Engenharia de Software & IA de Última Geração
+                </h1>
+                <p class="text-slate-300 text-sm sm:text-base mt-2 leading-relaxed">
+                    20 formações intensivas de <strong>40 horas</strong> estruturadas em <strong>5 módulos práticos de 8h</strong>. Desenvolva projetos reais, agentes autônomos, arquiteturas cloud e aplicações modernas com certificação digital verificável.
+                </p>
+            </div>
+            <div class="grid grid-cols-3 gap-3 w-full lg:w-auto bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-sm">
+                <div class="text-center px-2">
+                    <span class="block text-2xl font-black text-blue-400">40h</span>
+                    <span class="text-[11px] text-slate-300 uppercase font-semibold">Por Curso</span>
+                </div>
+                <div class="text-center px-2 border-x border-white/10">
+                    <span class="block text-2xl font-black text-emerald-400">5x8h</span>
+                    <span class="text-[11px] text-slate-300 uppercase font-semibold">Módulos Práticos</span>
+                </div>
+                <div class="text-center px-2">
+                    <span class="block text-2xl font-black text-amber-400">100%</span>
+                    <span class="text-[11px] text-slate-300 uppercase font-semibold">EaD & Projetos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Conteúdo Principal -->
-    <main class="max-w-7xl w-full mx-auto px-6 py-10 flex-grow">
+    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 flex-grow">
         
-        <!-- Título e Barra de Busca -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-            <div>
-                <h1 class="text-3xl font-extrabold text-slate-900">Nossos Cursos Disponíveis</h1>
-                <p class="text-slate-600 text-sm mt-1">Escolha sua especialização ou capacitação profissional e inicie imediatamente.</p>
+        <!-- Filtros e Barra de Busca -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 mb-8 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <!-- Abas de Categoria -->
+            <div class="flex flex-wrap gap-2" id="filtros-categoria">
+                <button data-cat="todos" class="cat-btn active bg-blue-900 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition">
+                    Todos (20)
+                </button>
+                <button data-cat="ia" class="cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold transition">
+                    IA Generativa & Agentes
+                </button>
+                <button data-cat="fullstack" class="cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold transition">
+                    Full-Stack & Mobile
+                </button>
+                <button data-cat="cloud" class="cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold transition">
+                    Cloud, DevOps & Dados
+                </button>
+                <button data-cat="seguranca" class="cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold transition">
+                    Sistemas Críticos & Web3
+                </button>
             </div>
             
-            <div class="w-full md:w-80">
-                <input type="text" id="campo-busca" placeholder="Buscar curso por nome..." 
-                       class="w-full border border-slate-300 bg-white rounded-xl px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:border-blue-600">
+            <!-- Campo de Busca -->
+            <div class="relative w-full lg:w-80">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+                <input type="text" id="campo-busca" placeholder="Buscar curso, stack ou módulo..." 
+                       class="w-full border border-slate-300 bg-slate-50 focus:bg-white rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition">
             </div>
         </div>
 
-        <!-- Grid onde os cursos serão injetados via JavaScript -->
+        <!-- Grid de Cursos -->
         <div id="cursos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <p class="text-slate-500 col-span-full text-center py-12 animate-pulse">Carregando catálogo de cursos...</p>
         </div>
     </main>
 
+    <!-- Modal de Ementa Completa (5 Módulos de 8h) -->
+    <div id="modal-ementa" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-fadeIn">
+            <!-- Header do Modal -->
+            <div class="bg-blue-950 text-white p-6 flex justify-between items-start gap-4">
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span id="modal-categoria" class="text-[11px] font-bold bg-blue-600 text-white px-2.5 py-0.5 rounded-full uppercase"></span>
+                        <span class="text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2.5 py-0.5 rounded-full">
+                            Carga Horária: 40h (5 Módulos x 8h)
+                        </span>
+                    </div>
+                    <h2 id="modal-titulo" class="text-xl sm:text-2xl font-extrabold leading-snug"></h2>
+                    <p id="modal-subtitulo" class="text-slate-300 text-xs sm:text-sm mt-1"></p>
+                </div>
+                <button onclick="fecharModal()" class="text-slate-400 hover:text-white bg-white/10 hover:bg-white/20 p-2 rounded-xl transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Corpo do Modal (Scrollable) -->
+            <div class="p-6 overflow-y-auto space-y-4 flex-grow bg-slate-50" id="modal-modulos-container">
+                <!-- Módulos injetados via JS -->
+            </div>
+
+            <!-- Footer do Modal -->
+            <div class="bg-white border-t border-slate-200 p-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <span class="text-xs text-slate-500 block">Acesso imediato + Certificado Digital 40h</span>
+                    <span id="modal-preco" class="text-2xl font-black text-slate-900"></span>
+                </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <button onclick="fecharModal()" class="w-1/3 sm:w-auto px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold text-sm hover:bg-slate-100 transition">
+                        Fechar
+                    </button>
+                    <a id="modal-btn-acao" href="#" class="w-2/3 sm:w-auto px-6 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm text-center shadow-md transition flex items-center justify-center gap-2">
+                        <span>Garantir Minha Vaga</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/5562996466033?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20de%2040h%20da%20UniFATIX." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Atendimento via WhatsApp"
+       class="fixed bottom-5 right-5 z-40 bg-emerald-600 hover:bg-emerald-500 text-white p-3.5 rounded-full shadow-lg hover:shadow-xl transition-transform hover:scale-105 flex items-center gap-2">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <span class="hidden sm:inline text-xs font-bold pr-1">Dúvidas? Fale Conosco</span>
+    </a>
+
     <!-- Rodapé -->
-    <footer class="bg-slate-900 text-slate-400 text-center py-5 text-xs mt-12">
-        © 2026 UniFATIX - Educação a Distância e Pós-Graduação. Todos os direitos reservados.
+    <footer class="bg-slate-900 text-slate-400 text-center py-6 px-4 text-xs mt-12 border-t border-slate-800">
+        <p class="font-semibold text-slate-300">UniFATIX - Educação a Distância, Engenharia e Tecnologia</p>
+        <p class="mt-1">© 2026 Todos os direitos reservados. Certificação válida em todo o território nacional.</p>
     </footer>
 
-    <!-- Script de Conexão, Busca e Renderização -->
+    <!-- Banco de Dados Local Estruturado (20 Cursos de Última Geração - 40h / 5x8h) + Integração Supabase -->
     <script type="module">
-        import { supabase } from '../supabase.js';
+        // Catálogo completo de 20 cursos de programação de última geração (5 módulos x 8h = 40h)
+        const CATALOGO_20_CURSOS = [
+            {
+                id: "ia-agentes-autonomos",
+                titulo: "Engenharia de Agentes Autônomos de IA com LangGraph e CrewAI",
+                categoria: "ia",
+                categoriaLabel: "IA Generativa & Agentes",
+                carga_horaria: 40,
+                preco: 249.90,
+                stack: "Python • LangGraph • CrewAI • MCP",
+                descricao: "Construa sistemas multiagentes capazes de planejar, executar ferramentas, consultar bancos de dados e colaborar de forma autônoma em produção.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Arquitetura de Agentes, Tool Calling e Model Context Protocol (MCP)", pratica: "Lab Prático: Criação de um servidor MCP customizado conectado a APIs externas e banco SQL." },
+                    { titulo: "Módulo 2 (8h): Fluxos Cíclicos e Memória Persistente com LangGraph", pratica: "Lab Prático: Agente de atendimento técnico com checkpoints, estado persistente e Human-in-the-Loop." },
+                    { titulo: "Módulo 3 (8h): Orquestração Multiagente com CrewAI e AutoGen", pratica: "Lab Prático: Squad autônomo de engenharia de software (Pesquisador, Arquiteto, Coder e Revisor)." },
+                    { titulo: "Módulo 4 (8h): Guardrails, Observabilidade e Avaliação de Agentes", pratica: "Lab Prático: Instrumentação com LangSmith/Phoenix e bloqueio de alucinações em tempo real." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Deploy de Agente Corporativo em Produção", pratica: "Projeto Integrador: Empacotamento via FastAPI + Docker com autenticação e painel de auditoria." }
+                ]
+            },
+            {
+                id: "rag-avancado-vetorial",
+                titulo: "Arquitetura RAG Avançada, GraphRAG e Bancos Vetoriais",
+                categoria: "ia",
+                categoriaLabel: "IA Generativa & Agentes",
+                carga_horaria: 40,
+                preco: 239.90,
+                stack: "pgvector • Qdrant • Neo4j • Hybrid Search",
+                descricao: "Domine pipelines de recuperação aumentada por geração de alta precisão combinando busca vetorial híbrida, reranking neural e grafos de conhecimento.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Embeddings Multimodais, Chunking Semântico e Parsers de Documentos", pratica: "Lab Prático: Pipeline de extração de PDFs complexos, tabelas e OCR para Markdown estruturado." },
+                    { titulo: "Módulo 2 (8h): PostgreSQL com pgvector e Busca Híbrida (BM25 + Vetorial)", pratica: "Lab Prático: Otimização de índices HNSW e IVFFlat em milhões de registros no Supabase/Postgres." },
+                    { titulo: "Módulo 3 (8h): Reranking Neural, Query Expansion e Self-RAG", pratica: "Lab Prático: Redução de ruído semântico com Cross-Encoders (Cohere/BGE) e reescrita de consultas." },
+                    { titulo: "Módulo 4 (8h): GraphRAG — Integrando LLMs com Bancos de Grafos (Neo4j)", pratica: "Lab Prático: Extração automatizada de entidades e relacionamentos para respostas multihop." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Copiloto Jurídico/Normativo Auditável", pratica: "Projeto Integrador: Sistema RAG completo com citação exata de fontes, página e score de confiança." }
+                ]
+            },
+            {
+                id: "fine-tuning-slms-locais",
+                titulo: "Fine-Tuning de LLMs, SLMs e Inferência Local de Alta Performance",
+                categoria: "ia",
+                categoriaLabel: "IA Generativa & Agentes",
+                carga_horaria: 40,
+                preco: 259.90,
+                stack: "PyTorch • Unsloth • LoRA/QLoRA • vLLM • Ollama",
+                descricao: "Treine, quantize e hospede modelos de linguagem especializados (Llama, Qwen, Mistral) em infraestrutura própria com latência ultrabaixa.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Anatomia de Transformers, Tokenização e Engenharia de Datasets", pratica: "Lab Prático: Criação e limpeza de datasets sintéticos no formato ChatML/Alpaca." },
+                    { titulo: "Módulo 2 (8h): Fine-Tuning Eficiente com LoRA, QLoRA e Unsloth", pratica: "Lab Prático: Ajuste fino supervisionado (SFT) de um modelo 8B em GPU para domínio específico." },
+                    { titulo: "Módulo 3 (8h): Alinhamento de Preferências com DPO e GRPO", pratica: "Lab Prático: Refinamento de raciocínio lógico e formato de saída JSON estrito." },
+                    { titulo: "Módulo 4 (8h): Quantização (GGUF, AWQ, EXL2) e Motores de Inferência", pratica: "Lab Prático: Benchmark de throughput e latência comparando Ollama, llama.cpp e vLLM." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Servidor Privado de IA On-Premise", pratica: "Projeto Integrador: Cluster de inferência compatível com API OpenAI e balanceamento de carga." }
+                ]
+            },
+            {
+                id: "fullstack-nextjs-react19",
+                titulo: "Desenvolvimento Full-Stack Moderno com Next.js 15, React 19 e TypeScript",
+                categoria: "fullstack",
+                categoriaLabel: "Full-Stack & Mobile",
+                carga_horaria: 40,
+                preco: 219.90,
+                stack: "Next.js 15 • React 19 • TypeScript • Prisma • Tailwind",
+                descricao: "Construa aplicações web de altíssima velocidade utilizando React Server Components, Server Actions, streaming SSR e tipagem ponta a ponta.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): TypeScript Avançado, App Router e React Server Components", pratica: "Lab Prático: Arquitetura modular com renderização híbrida (SSR, SSG e ISR) e Suspense." },
+                    { titulo: "Módulo 2 (8h): Mutações Seguras com Server Actions e Validação Zod", pratica: "Lab Prático: Formulários otimistas com useActionState, useOptimistic e tratamento de erros." },
+                    { titulo: "Módulo 3 (8h): Camada de Dados com PostgreSQL, Drizzle/Prisma ORM e Cache", pratica: "Lab Prático: Modelagem relacional, migrations e estratégias granulares de invalidação de cache." },
+                    { titulo: "Módulo 4 (8h): Autenticação Moderna (Auth.js / Supabase Auth) e RBAC", pratica: "Lab Prático: Controle de acesso baseado em papéis, OAuth2, Passkeys e proteção de rotas." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — SaaS Multi-Tenant Completo", pratica: "Projeto Integrador: Plataforma SaaS com assinaturas, dashboard analítico e deploy CI/CD." }
+                ]
+            },
+            {
+                id: "python-fastapi-assincrono",
+                titulo: "APIs de Alta Performance e Microsserviços com Python e FastAPI",
+                categoria: "fullstack",
+                categoriaLabel: "Full-Stack & Mobile",
+                carga_horaria: 40,
+                preco: 209.90,
+                stack: "Python 3.13 • FastAPI • SQLAlchemy 2.0 • Redis • Celery",
+                descricao: "Projete APIs assíncronas escaláveis com validação Pydantic v2, filas distribuídas, WebSockets e arquitetura limpa pronta para nuvem.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Programação Assíncrona (AsyncIO), Pydantic v2 e Clean Architecture", pratica: "Lab Prático: Estruturação de API RESTful desacoplada com injeção de dependências." },
+                    { titulo: "Módulo 2 (8h): Persistência Assíncrona com SQLAlchemy 2.0 e Alembic", pratica: "Lab Prático: Repositórios assíncronos, pool de conexões e prevenção de queries N+1." },
+                    { titulo: "Módulo 3 (8h): Segurança OAuth2, JWT, Rate Limiting e Cache com Redis", pratica: "Lab Prático: Implementação de refresh tokens, proteção contra brute-force e cache distribuído." },
+                    { titulo: "Módulo 4 (8h): Processamento em Background com TaskIQ/Celery e WebSockets", pratica: "Lab Prático: Geração assíncrona de relatórios pesados e notificações em tempo real." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Gateway de Pagamentos e Webhooks", pratica: "Projeto Integrador: API idempotente com testes automatizados (Pytest) e documentação OpenAPI." }
+                ]
+            },
+            {
+                id: "mobile-flutter-offline-first",
+                titulo: "Engenharia Mobile Multiplataforma Offline-First com Flutter e Dart",
+                categoria: "fullstack",
+                categoriaLabel: "Full-Stack & Mobile",
+                carga_horaria: 40,
+                preco: 219.90,
+                stack: "Flutter • Dart • Riverpod • SQLite/Drift • Supabase",
+                descricao: "Desenvolva aplicativos nativos iOS e Android resilientes a falhas de rede com sincronização bidirecional, geolocalização e mapas.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Arquitetura Limpa em Flutter e Gerência de Estado com Riverpod", pratica: "Lab Prático: Construção de interface responsiva Material 3 com navegação declarativa (GoRouter)." },
+                    { titulo: "Módulo 2 (8h): Banco de Dados Local Reativo com Drift (SQLite) e Criptografia", pratica: "Lab Prático: Persistência local estruturada com queries reativas e armazenamento seguro." },
+                    { titulo: "Módulo 3 (8h): Motor de Sincronização Offline-First e Resolução de Conflitos", pratica: "Lab Prático: Fila de sincronização automática em background quando a conexão é restabelecida." },
+                    { titulo: "Módulo 4 (8h): Recursos Nativos: Câmera, OCR, GPS em Background e Mapas", pratica: "Lab Prático: Coleta de coordenadas geográficas, captura de evidências fotográficas e assinatura digital." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — App de Vistoria Técnica e Campo", pratica: "Projeto Integrador: Aplicativo completo sincronizado com backend PostgreSQL/Supabase e geração de PDF." }
+                ]
+            },
+            {
+                id: "rust-backend-sistemas",
+                titulo: "Programação de Sistemas e Backends Ultrarrápidos com Rust",
+                categoria: "seguranca",
+                categoriaLabel: "Sistemas Críticos & Web3",
+                carga_horaria: 40,
+                preco: 249.90,
+                stack: "Rust • Tokio • Axum • SQLx • WebAssembly",
+                descricao: "Domine segurança de memória sem garbage collector, concorrência sem data races e construa serviços web de latência sub-milissegundo.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Ownership, Borrowing, Lifetimes e Sistema de Tipos Avançado", pratica: "Lab Prático: Modelagem segura de domínio usando Enums, Pattern Matching e Traits." },
+                    { titulo: "Módulo 2 (8h): Tratamento de Erros Idiomático, Iteradores e Smart Pointers", pratica: "Lab Prático: Construção de uma CLI de alta velocidade para processamento paralelo de logs." },
+                    { titulo: "Módulo 3 (8h): Concorrência Assíncrona com Tokio, Canais e Mutexes", pratica: "Lab Prático: Worker pool assíncrono capaz de processar dezenas de milhares de requisições/seg." },
+                    { titulo: "Módulo 4 (8h): Desenvolvimento Web com Axum e Queries Verificadas com SQLx", pratica: "Lab Prático: API REST com validação de SQL em tempo de compilação e serialização Serde." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Microsserviço de Telemetria em Tempo Real", pratica: "Projeto Integrador: Motor de ingestão de eventos de alta vazão empacotado em imagem Docker minimalista." }
+                ]
+            },
+            {
+                id: "golang-microsservicos-grpc",
+                titulo: "Microsserviços Distribuídos de Alta Escala com Go (Golang) e gRPC",
+                categoria: "cloud",
+                categoriaLabel: "Cloud, DevOps & Dados",
+                carga_horaria: 40,
+                preco: 229.90,
+                stack: "Go • Goroutines • gRPC • Protobuf • Kafka",
+                descricao: "Aprenda a linguagem padrão da infraestrutura cloud moderna para criar serviços concorrentes, comunicação binária gRPC e sistemas orientados a eventos.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Fundamentos Idiomáticos de Go, Interfaces e Composição", pratica: "Lab Prático: Estruturação de projeto seguindo Standard Go Project Layout e testes table-driven." },
+                    { titulo: "Módulo 2 (8h): Concorrência Nativa com Goroutines, Channels e Context", pratica: "Lab Prático: Padrões Fan-In/Fan-Out, Worker Pools e cancelamento gracioso de tarefas." },
+                    { titulo: "Módulo 3 (8h): Comunicação de Alta Velocidade com Protocol Buffers e gRPC", pratica: "Lab Prático: Implementação de serviços unary e streaming bidirecional entre microsserviços." },
+                    { titulo: "Módulo 4 (8h): Mensageria Assíncrona e Event-Driven com Apache Kafka/NATS", pratica: "Lab Prático: Produtores e consumidores resilientes com Dead Letter Queues e idempotência." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Plataforma de Processamento de Transações", pratica: "Projeto Integrador: Ecossistema de 3 microsserviços Go comunicando via gRPC e eventos." }
+                ]
+            },
+            {
+                id: "devops-kubernetes-gitops",
+                titulo: "DevOps Moderno, Kubernetes, Terraform e GitOps na Prática",
+                categoria: "cloud",
+                categoriaLabel: "Cloud, DevOps & Dados",
+                carga_horaria: 40,
+                preco: 239.90,
+                stack: "Docker • Kubernetes • Terraform • ArgoCD • GitHub Actions",
+                descricao: "Automatize infraestrutura como código, orquestre contêineres em produção e implante pipelines de entrega contínua declarativos com GitOps.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Contêineres Otimizados (Multi-Stage) e Segurança de Imagens", pratica: "Lab Prático: Redução de imagens de 1GB para 20MB com Distroless e scan de vulnerabilidades Trivy." },
+                    { titulo: "Módulo 2 (8h): Arquitetura Kubernetes: Pods, Deployments, Ingress e HPA", pratica: "Lab Prático: Deploy de aplicação full-stack em cluster K8s com autoescalonamento baseado em carga." },
+                    { titulo: "Módulo 3 (8h): Empacotamento com Helm Charts e Gerenciamento de Segredos", pratica: "Lab Prático: Criação de charts reutilizáveis e injeção segura de credenciais com Sealed Secrets." },
+                    { titulo: "Módulo 4 (8h): Infraestrutura como Código (IaC) com Terraform/OpenTofu", pratica: "Lab Prático: Provisionamento automatizado de VPC, cluster e banco gerenciado na nuvem." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Pipeline CI/CD Completo com GitOps (ArgoCD)", pratica: "Projeto Integrador: Esteira automatizada do git push ao deploy self-healing em Kubernetes." }
+                ]
+            },
+            {
+                id: "engenharia-dados-lakehouse",
+                titulo: "Engenharia de Dados Moderna: Lakehouse, dbt, Apache Iceberg e Airflow",
+                categoria: "cloud",
+                categoriaLabel: "Cloud, DevOps & Dados",
+                carga_horaria: 40,
+                preco: 239.90,
+                stack: "Python • DuckDB • Apache Iceberg • dbt • Airflow",
+                descricao: "Construa pipelines analíticos modernos usando arquitetura Medallion (Bronze, Silver, Gold), tabelas abertas Iceberg e transformação SQL testável.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Arquitetura Data Lakehouse e Formatos Colunares (Parquet & Iceberg)", pratica: "Lab Prático: Versionamento de dados, Time Travel e Schema Evolution com Apache Iceberg." },
+                    { titulo: "Módulo 2 (8h): Processamento Ultrarrápido In-Process com DuckDB e Polars", pratica: "Lab Prático: Ingestão e limpeza de gigabytes de dados brutos sem necessidade de clusters pesados." },
+                    { titulo: "Módulo 3 (8h): Engenharia Analítica e Modelagem Dimensional com dbt Core", pratica: "Lab Prático: Implementação de camadas Bronze/Silver/Gold com testes automatizados de qualidade." },
+                    { titulo: "Módulo 4 (8h): Orquestração de Pipelines e Data Observability com Airflow", pratica: "Lab Prático: Criação de DAGs idempotentes, alertas de falha e linhagem de dados." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Lakehouse Corporativo End-to-End", pratica: "Projeto Integrador: Pipeline completo ingerindo APIs e bancos transacionais até um dashboard analítico." }
+                ]
+            },
+            {
+                id: "postgres-postgis-geoprocessamento",
+                titulo: "Banco de Dados Avançado com PostgreSQL, PostGIS e Supabase",
+                categoria: "cloud",
+                categoriaLabel: "Cloud, DevOps & Dados",
+                carga_horaria: 40,
+                preco: 219.90,
+                stack: "PostgreSQL 17 • PostGIS • RLS • Edge Functions • PL/pgSQL",
+                descricao: "Transforme o PostgreSQL em uma plataforma completa de backend, análise espacial georreferenciada, segurança granular e tempo real.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Performance Tuning, Índices Avançados (GIN, GiST, BRIN) e EXPLAIN", pratica: "Lab Prático: Diagnóstico e otimização de queries lentas em tabelas com milhões de linhas." },
+                    { titulo: "Módulo 2 (8h): Segurança Multi-Tenant com Row Level Security (RLS) e Triggers", pratica: "Lab Prático: Blindagem de dados por usuário/organização diretamente no motor do banco." },
+                    { titulo: "Módulo 3 (8h): Inteligência Geoespacial com PostGIS e Sistemas de Coordenadas", pratica: "Lab Prático: Consultas de proximidade, interseção de polígonos, buffers e validação de CAR/SIGEF." },
+                    { titulo: "Módulo 4 (8h): Automação no Banco: PL/pgSQL, pg_cron e Edge Functions", pratica: "Lab Prático: Webhooks nativos, tarefas agendadas e integração com APIs externas via Deno." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Backend Georreferenciado de Gestão Ambiental", pratica: "Projeto Integrador: API espacial completa com visualização em mapa interativo e auditoria." }
+                ]
+            },
+            {
+                id: "visao-computacional-yolo-ocr",
+                titulo: "Visão Computacional Aplicada, YOLO11 e Extração Inteligente de Documentos",
+                categoria: "ia",
+                categoriaLabel: "IA Generativa & Agentes",
+                carga_horaria: 40,
+                preco: 239.90,
+                stack: "Python • OpenCV • Ultralytics YOLO11 • PaddleOCR • VLM",
+                descricao: "Desenvolva soluções de inspeção visual, detecção de objetos em tempo real e digitalização inteligente de documentos fiscais e técnicos.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Processamento Digital de Imagens e Vídeo com OpenCV", pratica: "Lab Prático: Pré-processamento, correção de perspectiva, binarização adaptativa e filtros." },
+                    { titulo: "Módulo 2 (8h): Detecção e Segmentação em Tempo Real com YOLO11", pratica: "Lab Prático: Treinamento customizado para detecção de EPIs em canteiros de obras e controle de acesso." },
+                    { titulo: "Módulo 3 (8h): OCR de Alta Precisão e Document Understanding com VLMs", pratica: "Lab Prático: Extração estruturada de dados de notas fiscais, CNHs e laudos digitalizados." },
+                    { titulo: "Módulo 4 (8h): Rastreamento de Objetos (Tracking) e Contagem em Streams RTSP", pratica: "Lab Prático: Monitoramento de fluxo de veículos/pessoas em câmeras IP com alertas automáticos." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Sistema de Auditoria Visual Automatizada", pratica: "Projeto Integrador: Aplicação web/API que recebe imagens ou vídeo e gera relatórios de conformidade." }
+                ]
+            },
+            {
+                id: "ia-generativa-web-vercel-sdk",
+                titulo: "Desenvolvimento de Aplicações Web com IA usando Vercel AI SDK e Streaming UI",
+                categoria: "ia",
+                categoriaLabel: "IA Generativa & Agentes",
+                carga_horaria: 40,
+                preco: 219.90,
+                stack: "TypeScript • Vercel AI SDK • React • OpenAI/Gemini • Generative UI",
+                descricao: "Crie interfaces conversacionais de próxima geração que renderizam componentes React dinâmicos, gráficos e formulários em tempo real.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Fundamentos de Streaming de Tokens e Provedores Unificados", pratica: "Lab Prático: Abstração multi-modelo (Gemini, Claude, GPT) com fallback automático de provedor." },
+                    { titulo: "Módulo 2 (8h): Saídas Estruturadas com Zod (streamObject & generateObject)", pratica: "Lab Prático: Geração de planos de aula, orçamentos e JSONs tipados em tempo real." },
+                    { titulo: "Módulo 3 (8h): Generative UI — Renderizando Componentes Interativos via IA", pratica: "Lab Prático: Assistente que responde com tabelas filtráveis, gráficos e cards acionáveis." },
+                    { titulo: "Módulo 4 (8h): Assistentes Multimodais com Voz (STT/TTS) e Análise de Arquivos", pratica: "Lab Prático: Interface por comando de voz e análise instantânea de planilhas e PDFs enviados." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Copiloto Pedagógico ou Corporativo SaaS", pratica: "Projeto Integrador: Plataforma web interativa com histórico de sessões, exportação e controle de tokens." }
+                ]
+            },
+            {
+                id: "devsecops-appsec-owasp",
+                titulo: "Engenharia de Segurança de Aplicações (AppSec), DevSecOps e OWASP Top 10",
+                categoria: "seguranca",
+                categoriaLabel: "Sistemas Críticos & Web3",
+                carga_horaria: 40,
+                preco: 229.90,
+                stack: "OWASP • Pentest Web • SAST/DAST • OAuth2/OIDC • Zero Trust",
+                descricao: "Aprenda a identificar, explorar e corrigir vulnerabilidades críticas em aplicações web, APIs e pipelines CI/CD antes que cheguem à produção.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Segurança Ofensiva e Defensiva no OWASP Top 10 & API Security", pratica: "Lab Prático: Exploração e remediação de SQLi, XSS, SSRF, IDOR/BOLA e Broken Auth." },
+                    { titulo: "Módulo 2 (8h): Criptografia Aplicada, Gestão de Chaves e Padrões OAuth2 / OIDC", pratica: "Lab Prático: Implementação de PKCE, rotação de chaves JWT e assinatura digital de documentos." },
+                    { titulo: "Módulo 3 (8h): Segurança em Aplicações de IA (OWASP Top 10 for LLMs)", pratica: "Lab Prático: Defesa contra Prompt Injection, vazamento de system prompt e Data Poisoning." },
+                    { titulo: "Módulo 4 (8h): Automação DevSecOps: SAST, DAST, SCA e Secret Scanning", pratica: "Lab Prático: Bloqueio automático de commits vulneráveis usando Semgrep, Gitleaks e OWASP ZAP." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Auditoria e Hardening de Sistema Web", pratica: "Projeto Integrador: Relatório técnico de vulnerabilidades e aplicação completa de patches de segurança." }
+                ]
+            },
+            {
+                id: "arquitetura-software-ddd-event",
+                titulo: "Arquitetura de Software Moderna: DDD, Event Sourcing e CQRS",
+                categoria: "fullstack",
+                categoriaLabel: "Full-Stack & Mobile",
+                carga_horaria: 40,
+                preco: 239.90,
+                stack: "Domain-Driven Design • CQRS • Event Sourcing • Clean Arch",
+                descricao: "Projete sistemas corporativos complexos e evolutivos alinhando código às regras de negócio com Domain-Driven Design e arquitetura orientada a eventos.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Strategic DDD: Bounded Contexts, Context Mapping e Linguagem Ubíqua", pratica: "Lab Prático: Event Storming e decomposição de um monólito complexo em domínios coesos." },
+                    { titulo: "Módulo 2 (8h): Tactical DDD: Aggregates, Entities, Value Objects e Domain Events", pratica: "Lab Prático: Implementação de núcleo de domínio rico 100% isolado de frameworks." },
+                    { titulo: "Módulo 3 (8h): Separação de Leituras e Escritas com Padrão CQRS", pratica: "Lab Prático: Modelos otimizados de escrita transacional e projeções rápidas de leitura." },
+                    { titulo: "Módulo 4 (8h): Event Sourcing e Padrão Outbox para Consistência Eventual", pratica: "Lab Prático: Reconstrução de estado histórico a partir de um Event Store imutável." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Core Bancário/Financeiro Auditável", pratica: "Projeto Integrador: Sistema completo com trilha de auditoria imutável e testes de arquitetura." }
+                ]
+            },
+            {
+                id: "observabilidade-opentelemetry",
+                titulo: "Observabilidade Full-Stack com OpenTelemetry, Prometheus e Grafana",
+                categoria: "cloud",
+                categoriaLabel: "Cloud, DevOps & Dados",
+                carga_horaria: 40,
+                preco: 209.90,
+                stack: "OpenTelemetry • Prometheus • Grafana • Loki • Tempo",
+                descricao: "Elimine pontos cegos em sistemas distribuídos correlacionando logs, métricas e traces distribuídos com o padrão aberto da CNCF.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Os Três Pilares da Observabilidade e Arquitetura OpenTelemetry", pratica: "Lab Prático: Configuração do OpenTelemetry Collector para receber e rotear telemetria." },
+                    { titulo: "Módulo 2 (8h): Rastreamento Distribuído (Distributed Tracing) com Grafana Tempo", pratica: "Lab Prático: Instrumentação de microsserviços para rastrear gargalos ponta a ponta." },
+                    { titulo: "Módulo 3 (8h): Métricas de Engenharia (RED/USE) e SLOs com Prometheus", pratica: "Lab Prático: Criação de alertas inteligentes baseados em Error Budget e burn rate." },
+                    { titulo: "Módulo 4 (8h): Logs Estruturados e Correlação com TraceID usando Grafana Loki", pratica: "Lab Prático: Investigação de incidentes navegando do alerta para a métrica, trace e log exato." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Stack Completa de SRE e Diagnóstico de Caos", pratica: "Projeto Integrador: Painéis executivos e técnicos diagnosticando falhas injetadas em produção." }
+                ]
+            },
+            {
+                id: "edge-computing-serverless",
+                titulo: "Edge Computing e Serverless de Baixa Latência com Cloudflare Workers",
+                categoria: "cloud",
+                categoriaLabel: "Cloud, DevOps & Dados",
+                carga_horaria: 40,
+                preco: 209.90,
+                stack: "Cloudflare Workers • Hono • D1 SQLite • KV • Durable Objects",
+                descricao: "Execute código, bancos de dados e inferência de IA na borda da rede global em mais de 300 cidades com zero cold start.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Arquitetura V8 Isolates e APIs Ultrarrápidas com Hono", pratica: "Lab Prático: Criação de API tipada rodando na borda com latência global inferior a 30ms." },
+                    { titulo: "Módulo 2 (8h): Persistência na Borda: Cloudflare D1 (SQLite), KV e Object Storage R2", pratica: "Lab Prático: Upload direto de arquivos S3-compatível sem custo de egresso e cache distribuído." },
+                    { titulo: "Módulo 3 (8h): Estado Distribuído e WebSockets em Tempo Real com Durable Objects", pratica: "Lab Prático: Sala colaborativa multiplayer e rate limiter distribuído com consistência forte." },
+                    { titulo: "Módulo 4 (8h): Workers AI, Vectorize e Gateways de IA na Borda", pratica: "Lab Prático: Cache semântico e execução de modelos de embeddings diretamente na Edge." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Encurtador Analítico e Gateway Global", pratica: "Projeto Integrador: Plataforma global com geolocalização de requisições, analytics e painel." }
+                ]
+            },
+            {
+                id: "iot-industrial-esp32-mqtt",
+                titulo: "IoT Industrial, Sistemas Embarcados com ESP32, MQTT e Digital Twins",
+                categoria: "seguranca",
+                categoriaLabel: "Sistemas Críticos & Web3",
+                carga_horaria: 40,
+                preco: 229.90,
+                stack: "ESP32 • C++/MicroPython • MQTT • TimescaleDB • Node-RED",
+                descricao: "Conecte sensores físicos à nuvem industrial com protocolos leves, séries temporais de alta frequência e dashboards em tempo real.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Programação de Microcontroladores ESP32 e Leitura de Sensores", pratica: "Lab Prático: Aquisição de dados ambientais, elétricos e industriais com filtragem de ruído." },
+                    { titulo: "Módulo 2 (8h): Protocolo MQTT, Brokers (EMQX/Mosquitto) e Segurança TLS", pratica: "Lab Prático: Comunicação pub/sub resiliente com QoS, Last Will e certificados X.509." },
+                    { titulo: "Módulo 3 (8h): Edge Gateways e Automação Visual com Node-RED", pratica: "Lab Prático: Regras de acionamento local, alertas via Telegram/WhatsApp e tratamento de falhas." },
+                    { titulo: "Módulo 4 (8h): Bancos de Séries Temporais (TimescaleDB) e Telemetria", pratica: "Lab Prático: Armazenamento eficiente de milhões de leituras por hora e agregações contínuas." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Sistema de Monitoramento Predial/Industrial", pratica: "Projeto Integrador: Gêmeo digital web exibindo telemetria ao vivo, histórico e alarmes." }
+                ]
+            },
+            {
+                id: "web3-smart-contracts-solidity",
+                titulo: "Desenvolvimento Web3, Smart Contracts Seguros em Solidity e Tokenização",
+                categoria: "seguranca",
+                categoriaLabel: "Sistemas Críticos & Web3",
+                carga_horaria: 40,
+                preco: 229.90,
+                stack: "Solidity • Foundry • OpenZeppelin • Viem/Wagmi • ERC-20/721",
+                descricao: "Desenvolva, teste e audite contratos inteligentes compatíveis com EVM e integre aplicações descentralizadas (dApps) modernas.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Arquitetura EVM, Criptografia Assimétrica e Solidity Moderno", pratica: "Lab Prático: Estruturação de contratos, otimização de Gas e padrões de armazenamento." },
+                    { titulo: "Módulo 2 (8h): Ambiente Profissional com Foundry, Testes Unitários e Fuzzing", pratica: "Lab Prático: Suíte completa de testes automatizados e simulações de ataque em rede local." },
+                    { titulo: "Módulo 3 (8h): Padrões de Tokenização (ERC-20, ERC-721, ERC-1155) e Governança", pratica: "Lab Prático: Emissão de ativos digitais, certificados verificáveis on-chain e controle de acesso." },
+                    { titulo: "Módulo 4 (8h): Segurança de Smart Contracts: Reentrancy, Overflows e Auditoria", pratica: "Lab Prático: Análise estática com Slither e correção de vulnerabilidades clássicas." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — dApp de Registro e Autenticidade Imutável", pratica: "Projeto Integrador: Frontend React integrado com carteiras digitais e contrato verificado em Testnet." }
+                ]
+            },
+            {
+                id: "automacao-rpa-python-playwright",
+                titulo: "Automação Inteligente de Processos (RPA), Web Scraping e IA com Playwright",
+                categoria: "ia",
+                categoriaLabel: "IA Generativa & Agentes",
+                carga_horaria: 40,
+                preco: 199.90,
+                stack: "Python • Playwright • n8n • BeautifulSoup • LLM Extraction",
+                descricao: "Automatize fluxos administrativos repetitivos, colete dados de portais complexos e integre sistemas legados sem API usando robôs resilientes.",
+                modulos: [
+                    { titulo: "Módulo 1 (8h): Automação de Navegadores Modernos com Playwright Assíncrono", pratica: "Lab Prático: Robôs resilientes com seletores inteligentes, interceptação de rede e geração de PDFs." },
+                    { titulo: "Módulo 2 (8h): Web Scraping em Escala, Bypass de Bloqueios e Sessões Persistentes", pratica: "Lab Prático: Coleta estruturada de diários oficiais, licitações e portais públicos." },
+                    { titulo: "Módulo 3 (8h): Extração Semântica com LLMs e Visão (AI-Powered Scraping)", pratica: "Lab Prático: Robôs que entendem layouts variáveis e estruturam dados sem quebrar seletores CSS." },
+                    { titulo: "Módulo 4 (8h): Orquestração Low-Code/Pro-Code com n8n e Webhooks", pratica: "Lab Prático: Integração automática entre e-mail, planilhas, banco de dados e WhatsApp." },
+                    { titulo: "Módulo 5 (8h): Projeto Final — Robô de Monitoramento e Triagem Administrativa", pratica: "Projeto Integrador: Agente agendado que consulta portais, resume documentos com IA e notifica gestores." }
+                ]
+            }
+        ];
 
-        let todosCursos = [];
+        // Configuração opcional do Supabase (caso exista ../supabase.js no projeto)
+        let supabaseClient = null;
+        try {
+            const mod = await import('../supabase.js');
+            supabaseClient = mod.supabase;
+        } catch (e) {
+            console.info('Modo catálogo local ativo (../supabase.js não carregado).');
+        }
+
+        let todosCursos = [...CATALOGO_20_CURSOS];
         let matriculasUsuario = new Set();
+        let categoriaAtual = 'todos';
+        let termoBusca = '';
 
         async function inicializarCatalogo() {
-            const container = document.getElementById('cursos-grid');
+            if (supabaseClient) {
+                try {
+                    const { data: { user } } = await supabaseClient.auth.getUser();
+                    if (user) {
+                        const { data: matriculas } = await supabaseClient
+                            .from('progresso_alunos')
+                            .select('curso_id')
+                            .eq('user_id', user.id);
 
-            try {
-                // 1. Verifica se há usuário logado para identificar cursos já adquiridos
-                const { data: { user } } = await supabase.auth.getUser();
-                if (user) {
-                    const { data: matriculas } = await supabase
-                        .from('progresso_alunos')
-                        .select('curso_id')
-                        .eq('user_id', user.id);
-
-                    if (matriculas) {
-                        matriculas.forEach(m => matriculasUsuario.add(m.curso_id));
+                        if (matriculas) {
+                            matriculas.forEach(m => matriculasUsuario.add(m.curso_id));
+                        }
                     }
+
+                    const { data: cursosRemotos, error } = await supabaseClient
+                        .from('cursos')
+                        .select('*')
+                        .order('titulo', { ascending: true });
+
+                    // Se houver cursos cadastrados no Supabase com módulos, mescla ou utiliza
+                    if (!error && cursosRemotos && cursosRemotos.length > 0) {
+                        todosCursos = cursosRemotos.map((c, idx) => ({
+                            ...CATALOGO_20_CURSOS[idx % CATALOGO_20_CURSOS.length],
+                            ...c
+                        }));
+                    }
+                } catch (err) {
+                    console.warn('Utilizando catálogo padrão local:', err.message);
                 }
-
-                // 2. Busca todos os cursos cadastrados na tabela 'cursos'
-                const { data: cursos, error } = await supabase
-                    .from('cursos')
-                    .select('*')
-                    .order('titulo', { ascending: true });
-
-                if (error) throw error;
-
-                todosCursos = cursos || [];
-                renderizarCursos(todosCursos);
-
-            } catch (err) {
-                console.error('Erro ao buscar cursos:', err.message);
-                container.innerHTML = `
-                    <div class="col-span-full bg-red-50 border border-red-200 text-red-700 p-6 rounded-xl text-center">
-                        <p class="font-bold">Erro ao carregar o catálogo de cursos.</p>
-                        <p class="text-sm mt-1">${err.message}</p>
-                    </div>
-                `;
             }
+
+            aplicarFiltros();
+            lucide.createIcons();
+        }
+
+        function aplicarFiltros() {
+            const filtrados = todosCursos.filter(curso => {
+                const matchCat = categoriaAtual === 'todos' || curso.categoria === categoriaAtual;
+                const texto = `${curso.titulo} ${curso.descricao} ${curso.stack || ''} ${curso.modulos?.map(m => m.titulo).join(' ')}`.toLowerCase();
+                const matchBusca = texto.includes(termoBusca);
+                return matchCat && matchBusca;
+            });
+
+            renderizarCursos(filtrados);
         }
 
         function renderizarCursos(lista) {
             const container = document.getElementById('cursos-grid');
 
             if (!lista || lista.length === 0) {
-                container.innerHTML = `<p class="text-slate-500 col-span-full text-center py-12">Nenhum curso encontrado.</p>`;
+                container.innerHTML = `
+                    <div class="col-span-full bg-white border border-slate-200 rounded-2xl p-12 text-center">
+                        <p class="text-slate-600 font-semibold">Nenhum curso encontrado para "${termoBusca}".</p>
+                        <button onclick="resetarFiltros()" class="mt-3 text-blue-700 hover:underline text-sm font-bold">Limpar filtros</button>
+                    </div>`;
                 return;
             }
 
             container.innerHTML = '';
-            lista.forEach(curso => {
+            lista.forEach((curso, index) => {
                 const jaMatriculado = matriculasUsuario.has(curso.id);
-                const precoFormatado = Number(curso.preco || 199.90).toFixed(2).replace('.', ',');
+                const precoFormatado = Number(curso.preco || 219.90).toFixed(2).replace('.', ',');
 
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl shadow-sm p-6 flex flex-col justify-between border border-slate-200 hover:shadow-md transition";
+                const card = document.createElement('article');
+                card.className = "bg-white rounded-2xl shadow-sm p-6 flex flex-col justify-between border border-slate-200 hover:border-blue-300 hover:shadow-lg transition duration-200 group";
                 
                 card.innerHTML = `
                     <div>
-                        <div class="flex justify-between items-center gap-2">
-                            <span class="text-xs font-bold bg-blue-100 text-blue-900 py-1 px-3 rounded-full uppercase">
-                                ${curso.carga_horaria} Horas
+                        <!-- Badges Superiores -->
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+                            <span class="text-[11px] font-bold bg-blue-50 text-blue-900 border border-blue-200 py-1 px-2.5 rounded-full">
+                                ${curso.categoriaLabel || 'Tecnologia & IA'}
                             </span>
-                            ${jaMatriculado 
-                                ? '<span class="text-xs font-bold bg-emerald-100 text-emerald-800 py-1 px-3 rounded-full">Matriculado</span>' 
-                                : ''}
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[11px] font-extrabold bg-slate-900 text-white py-1 px-2.5 rounded-full">
+                                    ${curso.carga_horaria || 40}h • 5 Módulos
+                                </span>
+                                ${jaMatriculado 
+                                    ? '<span class="text-[11px] font-bold bg-emerald-100 text-emerald-800 py-1 px-2.5 rounded-full">Matriculado</span>' 
+                                    : ''}
+                            </div>
                         </div>
 
-                        <h3 class="text-xl font-bold text-slate-900 mt-4 mb-2 leading-snug">${curso.titulo}</h3>
-                        <p class="text-slate-600 text-sm mb-5 leading-relaxed">${curso.descricao || 'Formação completa com certificação reconhecida.'}</p>
+                        <!-- Título e Descrição -->
+                        <h3 class="text-lg font-extrabold text-slate-900 group-hover:text-blue-800 transition leading-snug mb-2">
+                            ${curso.titulo}
+                        </h3>
+                        <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed line-clamp-3">
+                            ${curso.descricao}
+                        </p>
+
+                        <!-- Stack Tecnológica -->
+                        <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-2.5 mb-4">
+                            <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">Stack & Ferramentas Práticas</span>
+                            <span class="text-xs font-semibold text-slate-700">${curso.stack || 'Projeto Prático EaD'}</span>
+                        </div>
+
+                        <!-- Prévia dos 5 Módulos -->
+                        <div class="space-y-1.5 mb-5">
+                            <p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Estrutura (5 x 8h):</p>
+                            <ul class="text-xs text-slate-600 space-y-1">
+                                ${(curso.modulos || []).slice(0, 3).map(m => `
+                                    <li class="truncate flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0"></span>
+                                        <span>${m.titulo.replace(/^Módulo \d+ \(8h\):\s*/, '')}</span>
+                                    </li>
+                                `).join('')}
+                                <li class="text-blue-700 font-semibold text-[11px] pl-3">+ 2 módulos avançados e projeto final...</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="pt-4 border-t border-slate-100">
+                    <!-- Rodapé do Card -->
+                    <div class="pt-4 border-t border-slate-100 space-y-2.5">
+                        <button data-curso-id="${curso.id}" class="btn-ver-ementa w-full bg-slate-100 hover:bg-slate-200 text-slate-800 py-2 px-4 rounded-xl font-bold text-xs transition flex items-center justify-center gap-1.5">
+                            <i data-lucide="book-open" class="w-3.5 h-3.5 text-blue-700"></i>
+                            <span>Ver Ementa Completa (40h)</span>
+                        </button>
+
                         ${jaMatriculado 
-                            ? `<a href="curso.html?id=${curso.id}" class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-2.5 px-4 rounded-xl font-semibold text-sm transition">
+                            ? `<a href="curso.html?id=${curso.id}" class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-2.5 px-4 rounded-xl font-bold text-sm transition shadow-sm">
                                    Acessar Sala de Aula
                                </a>`
-                            : `<div class="flex items-center justify-between mb-3">
-                                   <span class="text-xs text-slate-500 font-medium">Investimento:</span>
-                                   <span class="text-xl font-black text-slate-900">R$ ${precoFormatado}</span>
-                               </div>
-                               <a href="checkout.html?id=${curso.id}" class="block w-full bg-blue-700 hover:bg-blue-800 text-white text-center py-2.5 px-4 rounded-xl font-semibold text-sm transition shadow-sm">
-                                   Matricule-se Agora
-                               </a>`
+                            : `<div class="flex items-center justify-between pt-1">
+                                   <div>
+                                       <span class="text-[11px] text-slate-400 block">Investimento único</span>
+                                       <span class="text-lg font-black text-slate-900">R$ ${precoFormatado}</span>
+                                   </div>
+                                   <a href="checkout.html?id=${curso.id}" class="bg-blue-700 hover:bg-blue-800 text-white py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm transition shadow-sm">
+                                       Matricule-se
+                                   </a>
+                               </div>`
                         }
                     </div>
                 `;
                 container.appendChild(card);
             });
+
+            // Eventos para abrir o modal de ementa
+            document.querySelectorAll('.btn-ver-ementa').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-curso-id');
+                    abrirModalEmenta(id);
+                });
+            });
+
+            lucide.createIcons();
         }
 
-        // Filtro de busca em tempo real
+        // Funções do Modal
+        window.abrirModalEmenta = function(cursoId) {
+            const curso = todosCursos.find(c => String(c.id) === String(cursoId));
+            if (!curso) return;
+
+            const jaMatriculado = matriculasUsuario.has(curso.id);
+            const precoFormatado = Number(curso.preco || 219.90).toFixed(2).replace('.', ',');
+
+            document.getElementById('modal-categoria').textContent = curso.categoriaLabel || 'Formação Tech 40h';
+            document.getElementById('modal-titulo').textContent = curso.titulo;
+            document.getElementById('modal-subtitulo').textContent = curso.stack || '';
+            document.getElementById('modal-preco').textContent = jaMatriculado ? 'Curso Já Adquirido' : `R$ ${precoFormatado}`;
+
+            const btnAcao = document.getElementById('modal-btn-acao');
+            if (jaMatriculado) {
+                btnAcao.href = `curso.html?id=${curso.id}`;
+                btnAcao.className = "w-2/3 sm:w-auto px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm text-center shadow-md transition flex items-center justify-center gap-2";
+                btnAcao.innerHTML = `<span>Ir para Sala de Aula</span><i data-lucide="play-circle" class="w-4 h-4"></i>`;
+            } else {
+                btnAcao.href = `checkout.html?id=${curso.id}`;
+                btnAcao.className = "w-2/3 sm:w-auto px-6 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm text-center shadow-md transition flex items-center justify-center gap-2";
+                btnAcao.innerHTML = `<span>Matricular Agora</span><i data-lucide="arrow-right" class="w-4 h-4"></i>`;
+            }
+
+            const modulosContainer = document.getElementById('modal-modulos-container');
+            modulosContainer.innerHTML = `
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-xs sm:text-sm text-blue-950">
+                    <strong>Objetivo da Formação:</strong> ${curso.descricao}
+                </div>
+                <div class="space-y-3">
+                    ${(curso.modulos || []).map((mod, idx) => `
+                        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <span class="text-xs font-extrabold text-blue-800 uppercase tracking-wide">Unidade 0${idx + 1}</span>
+                                <span class="text-[11px] font-bold bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md">8 Horas • EaD Prático</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-sm sm:text-base">${mod.titulo}</h4>
+                            <div class="mt-2 bg-emerald-50/70 border-l-4 border-emerald-500 p-2.5 rounded-r-lg text-xs text-slate-700">
+                                <strong class="text-emerald-900">Atividade Prática:</strong> ${mod.pratica.replace(/^Lab Prático:\s*|^Projeto Integrador:\s*/, '')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            const modal = document.getElementById('modal-ementa');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        };
+
+        window.fecharModal = function() {
+            const modal = document.getElementById('modal-ementa');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        };
+
+        window.resetarFiltros = function() {
+            categoriaAtual = 'todos';
+            termoBusca = '';
+            document.getElementById('campo-busca').value = '';
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('bg-blue-900', 'text-white');
+                b.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            document.querySelector('[data-cat="todos"]').classList.add('bg-blue-900', 'text-white');
+            document.querySelector('[data-cat="todos"]').classList.remove('bg-slate-100', 'text-slate-700');
+            aplicarFiltros();
+        };
+
+        // Fechar modal com tecla ESC ou clique fora
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharModal(); });
+        document.getElementById('modal-ementa').addEventListener('click', (e) => {
+            if (e.target.id === 'modal-ementa') fecharModal();
+        });
+
+        // Eventos dos botões de categoria
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.cat-btn').forEach(b => {
+                    b.classList.remove('bg-blue-900', 'text-white');
+                    b.classList.add('bg-slate-100', 'text-slate-700');
+                });
+                btn.classList.add('bg-blue-900', 'text-white');
+                btn.classList.remove('bg-slate-100', 'text-slate-700');
+                categoriaAtual = btn.getAttribute('data-cat');
+                aplicarFiltros();
+            });
+        });
+
+        // Evento de busca em tempo real
         document.getElementById('campo-busca').addEventListener('input', (e) => {
-            const termo = e.target.value.toLowerCase().trim();
-            const filtrados = todosCursos.filter(c => 
-                c.titulo.toLowerCase().includes(termo) || 
-                (c.descricao && c.descricao.toLowerCase().includes(termo))
-            );
-            renderizarCursos(filtrados);
+            termoBusca = e.target.value.toLowerCase().trim();
+            aplicarFiltros();
         });
 
         inicializarCatalogo();
