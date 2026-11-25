@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compilado Oficial — Prefeitura Municipal de Conceição do Araguaia (PA)</title>
+    <style>
+        :root {
+            --primary: #0f2942;
+            --primary-light: #1e466e;
+            --accent: #d97706;
+            --accent-bg: #fef3c7;
+            --bg: #f1f5f9;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-muted: #475569;
+            --border: #cbd5e1;
+            --shadow: 0 4px 6px -1px rgba(15, 41, 66, 0.08), 0 2px 4px -2px rgba(15, 41, 66, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Institutional Header */
+        .top-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #ffffff;
+            padding: 28px 20px 24px;
+            border-bottom: 4px solid var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        .header-uf {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin: 0 0 4px;
+        }
+
+        .header-title {
+            font-size: 1.65rem;
+            font-weight: 800;
+            margin: 0 0 6px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .header-subtitle {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            margin: 0 0 18px;
+        }
+
+        .stats-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .stat-chip {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Filter & Navigation Bar */
+        .controls-bar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 14px 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .controls-container {
+            max-width: 1040px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 240px;
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(30, 70, 110, 0.12);
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        .nav-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-pill {
+            text-decoration: none;
+            background: #f8fafc;
+            color: var(--primary);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-pill:hover, .nav-pill.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .nav-pill .badge {
+            background: var(--accent);
+            color: #ffffff;
+            padding: 1px 7px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1040px;
+            width: 100%;
+            margin: 28px auto 48px;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .orgao-section {
+            margin-bottom: 42px;
+            scroll-margin-top: 120px;
+        }
+
+        .orgao-banner {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 16px 22px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-left: 6px solid var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .orgao-label {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #93c5fd;
+            font-weight: 700;
+        }
+
+        .orgao-banner h2 {
+            margin: 2px 0 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .orgao-total {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .grupo-data {
+            margin-top: 20px;
+            padding-left: 14px;
+            border-left: 3px solid #94a3b8;
+        }
+
+        .data-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            background: #e2e8f0;
+            padding: 8px 14px;
+            border-radius: 6px;
+        }
+
+        .data-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .data-count {
+            margin-left: auto;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .materias-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .materia-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.15s ease;
+        }
+
+        .materia-card-header {
+            background: #f8fafc;
+            padding: 16px 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .materia-meta-top {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 0.78rem;
+        }
+
+        .tag-data {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 2px 9px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .tag-pub {
+            background: #e2e8f0;
+            color: #334155;
+            padding: 2px 9px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .tag-cod {
+            background: var(--accent-bg);
+            color: #92400e;
+            padding: 2px 9px;
+            border-radius: 4px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .materia-titulo {
+            margin: 0;
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+
+        .materia-conteudo {
+            padding: 22px 24px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: #1e293b;
+        }
+
+        .materia-conteudo p {
+            margin: 0 0 12px;
+        }
+
+        .materia-conteudo table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 0.88rem;
+        }
+
+        .materia-conteudo table td, .materia-conteudo table th {
+            border: 1px solid #94a3b8;
+            padding: 8px 10px;
+        }
+
+        .materia-conteudo table p {
+            margin: 0;
+        }
+
+        .materia-rodape {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 12px 22px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .verif-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .verif-info a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .verif-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Highlighted Footer */
+        .rodape-destaque {
+            background: linear-gradient(90deg, #091a2c 0%, var(--primary) 50%, #091a2c 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 34px 20px;
+            border-top: 5px solid var(--accent);
+            margin-top: auto;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .rodape-destaque-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #091a2c;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+        }
+
+        .rodape-destaque-texto {
+            margin: 0;
+            font-size: 1.75rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #fbbf24;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+        }
+
+        .rodape-destaque-sub {
+            margin: 8px 0 0;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        .empty-state {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--surface);
+            border-radius: 8px;
+            border: 1px dashed var(--border);
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 640px) {
+            .header-title { font-size: 1.3rem; }
+            .materia-conteudo { padding: 16px; }
+            .rodape-destaque-texto { font-size: 1.35rem; }
+            .grupo-data { padding-left: 8px; }
+        }
+
+        @media print {
+            .controls-bar { display: none !important; }
+            body { background: #fff; }
+            .main-container { margin: 0; padding: 0; max-width: none; }
+            .materia-card { box-shadow: none; break-inside: avoid; border: 1px solid #999; }
+            .orgao-banner { background: #eee !important; color: #000 !important; border: 1px solid #000; }
+            .orgao-label { color: #333 !important; }
+            .rodape-destaque {
+                background: #f8fafc !important;
+                color: #000 !important;
+                border-top: 3pt solid #000;
+                padding: 16pt;
+                margin-top: 24pt;
+            }
+            .rodape-destaque-texto {
+                color: #000 !important;
+                text-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <div class="header-container">
+            <p class="header-uf">Estado do Pará &bull; Diário Oficial dos Municípios (FAMEP)</p>
+            <h1 class="header-title">Prefeitura Municipal de Conceição do Araguaia</h1>
+            <p class="header-subtitle">Compilação de Atos Oficiais organizados por Órgão e Data — Edição nº 4138 (25/11/2026)</p>
+            <div class="stats-bar">
+                <span class="stat-chip"><strong>10</strong> Atos Compilados</span>
+                <span class="stat-chip"><strong>3</strong> Órgãos / Secretarias</span>
+                <span class="stat-chip">Publicação Oficial: <strong>25/11/2026</strong></span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="controls-bar" aria-label="Filtros e navegação por órgão">
+        <div class="controls-container">
+            <div class="search-row">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar por portaria, nome, assunto ou código identificador..." aria-label="Buscar matérias">
+                <button type="button" class="btn-action btn-secondary" onclick="resetFilters()">Limpar Filtro</button>
+                <button type="button" class="btn-action" onclick="window.print()">Imprimir / Salvar PDF</button>
+            </div>
+            <div class="nav-pills">
+                <a href="#topo" class="nav-pill active" onclick="filterOrgao('all', this); return false;">Todos os Órgãos <span class="badge">10</span></a>
+                <a href="#orgao-controladoria-geral-do-municipio" class="nav-pill" data-orgao="controladoria-geral-do-municipio">CONTROLADORIA GERAL DO MUNICÍPIO <span class="badge">7</span></a><a href="#orgao-secretaria-de-infraestrutura-desenvolvimento-urbano" class="nav-pill" data-orgao="secretaria-de-infraestrutura-desenvolvimento-urbano">SECRETARIA DE INFRAESTRUTURA DESENVOLVIMENTO URBANO <span class="badge">1</span></a><a href="#orgao-secretaria-municipal-de-fazenda" class="nav-pill" data-orgao="secretaria-municipal-de-fazenda">SECRETARIA MUNICIPAL DE FAZENDA <span class="badge">2</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container" id="topo">
+        <div id="emptyState" class="empty-state">
+            Nenhum ato oficial encontrado para o filtro pesquisado.
+        </div>
+        
+    <section class="orgao-section" id="orgao-controladoria-geral-do-municipio" data-orgao-section="controladoria-geral-do-municipio">
+        <div class="orgao-banner">
+            <div>
+                <span class="orgao-label">Órgão / Secretaria</span>
+                <h2>CONTROLADORIA GERAL DO MUNICÍPIO</h2>
+            </div>
+            <span class="orgao-total">7 publicações</span>
+        </div>
+        
+        <div class="grupo-data">
+            <div class="data-header">
+                <span class="data-icone">&#128197;</span>
+                <h3>Data do Ato: 23/11/2026</h3>
+                <span class="data-count">7 matérias</span>
+            </div>
+            <div class="materias-lista">
+                
+            <article class="materia-card" id="cod-F80447C6" data-search="controladoria geral do município controladoria geral do município - portaria nº 0324/2026, de 23 de novembro de 2026 f80447c6 23/11/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 23/11/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>F80447C6</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">CONTROLADORIA GERAL DO MUNICÍPIO - PORTARIA Nº 0324/2026, DE 23 DE NOVEMBRO DE 2026</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>A PREFEITA MUNICIPAL DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e:</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> a Lei Municipal nº 1.432, de 04 de abril de 2024, que dispõe sobre a criação do Programa Municipal de Estágio no âmbito da Administração Pública Municipal, em consonância à Iniciativa 1 Milhão de Oportunidades (1MiO), e dá outras providências;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO </strong>o inciso I, da Cláusula 9ª – Da Rescisão, do Termo de Compromisso de Estágio celebrado;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> o Ofício nº 511/2026-SEGEPLAN, de 17 de novembro de 2026, da Secretaria Municipal de Gestão e Planejamento;</p>
+<p style="text-align: justify">RESOLVE:</p>
+<p style="text-align: justify">Art. 1º - Rescindir o Termo de Compromisso celebrado entre este Município, representado pela Secretaria Municipal de Gestão e Planejamento, e a Estagiária <strong>DANIELA MORAIS DA SILVA</strong>.</p>
+<p style="text-align: justify">Art. 2º - Fica a Secretaria Municipal de Gestão e Planejamento incumbida de formalizar a entrega de certificado de realização do estágio, com indicação resumida das atividades desenvolvidas, do período cumprido e da avaliação do respectivo desempenho do discente.</p>
+<p style="text-align: justify">Art. 2º - Esta Portaria entra em vigor na data de sua publicação, retroagindo seus efeitos ao dia 13 de novembro de 2026,  revogadas as disposições em contrário.</p>
+<p style="text-align: justify">Gabinete da Prefeita, em 23 de novembro de 2026.</p>
+<p style="text-align: justify"><strong>ELIDA ELENA MOREIRA</strong></p>
+<p style="text-align: justify">Prefeita Municipal</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Marileusa Miranda Costa<br/><b>Código Identificador:</b>F80447C6</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>F80447C6</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="materia-card" id="cod-FE442DE6" data-search="controladoria geral do município controladoria geral do município - portaria nº 0325/2026, de 23 de novembro de 2026 fe442de6 23/11/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 23/11/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>FE442DE6</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">CONTROLADORIA GERAL DO MUNICÍPIO - PORTARIA Nº 0325/2026, DE 23 DE NOVEMBRO DE 2026</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>A PREFEITA MUNICIPAL DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e:</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> a Lei Municipal nº 1.432, de 04 de abril de 2024, que dispõe sobre a criação do Programa Municipal de Estágio no âmbito da Administração Pública Municipal, em consonância à Iniciativa 1 Milhão de Oportunidades (1MiO), e dá outras providências;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO </strong>o inciso I, da Cláusula 9ª – Da Rescisão, do Termo de Compromisso de Estágio celebrado;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> o Ofício nº 511/2026-SEGEPLAN, de 17 de novembro de 2026, da Secretaria Municipal de Gestão e Planejamento;</p>
+<p style="text-align: justify">RESOLVE:</p>
+<p style="text-align: justify">Art. 1º - Rescindir o Termo de Compromisso celebrado entre este Município, representado pela Secretaria Municipal de Gestão e Planejamento, e a Estagiária <strong>EVELLYN VITÓRIA SILVA SANTOS</strong>.</p>
+<p style="text-align: justify">Art. 2º - Fica a Secretaria Municipal de Gestão e Planejamento incumbida de formalizar a entrega de certificado de realização do estágio, com indicação resumida das atividades desenvolvidas, do período cumprido e da avaliação do respectivo desempenho do discente.</p>
+<p style="text-align: justify">Art. 2º - Esta Portaria entra em vigor na data de sua publicação, retroagindo seus efeitos ao dia 13 de novembro de 2026,  revogadas as disposições em contrário.</p>
+<p style="text-align: justify">Gabinete da Prefeita, em 23 de novembro de 2026.</p>
+<p style="text-align: justify"><strong>ELIDA ELENA MOREIRA</strong></p>
+<p style="text-align: justify">Prefeita Municipal</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Marileusa Miranda Costa<br/><b>Código Identificador:</b>FE442DE6</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>FE442DE6</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="materia-card" id="cod-9B8E7D5D" data-search="controladoria geral do município controladoria geral do município - portaria nº 0326/2026, de 23 de novembro de 2026 9b8e7d5d 23/11/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 23/11/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>9B8E7D5D</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">CONTROLADORIA GERAL DO MUNICÍPIO - PORTARIA Nº 0326/2026, DE 23 DE NOVEMBRO DE 2026</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>A PREFEITA MUNICIPAL DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e:</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> a Lei Municipal nº 1.432, de 04 de abril de 2024, que dispõe sobre a criação do Programa Municipal de Estágio no âmbito da Administração Pública Municipal, em consonância à Iniciativa 1 Milhão de Oportunidades (1MiO), e dá outras providências;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO </strong>o inciso I, da Cláusula 9ª – Da Rescisão, do Termo de Compromisso de Estágio celebrado;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> o Ofício nº 511/2026-SEGEPLAN, de 17 de novembro de 2026, da Secretaria Municipal de Gestão e Planejamento;</p>
+<p style="text-align: justify">RESOLVE:</p>
+<p style="text-align: justify">Art. 1º - Rescindir o Termo de Compromisso celebrado entre este Município, representado pela Secretaria Municipal de Gestão e Planejamento, e a Estagiária <strong>FERNANDA MARINHO DE OLIVEIRA</strong>.</p>
+<p style="text-align: justify">Art. 2º - Fica a Secretaria Municipal de Gestão e Planejamento incumbida de formalizar a entrega de certificado de realização do estágio, com indicação resumida das atividades desenvolvidas, do período cumprido e da avaliação do respectivo desempenho do discente.</p>
+<p style="text-align: justify">Art. 2º - Esta Portaria entra em vigor na data de sua publicação, retroagindo seus efeitos ao dia 13 de novembro de 2026,  revogadas as disposições em contrário.</p>
+<p style="text-align: justify">Gabinete da Prefeita, em 23 de novembro de 2026.</p>
+<p style="text-align: justify"><strong>ELIDA ELENA MOREIRA</strong></p>
+<p style="text-align: justify">Prefeita Municipal</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Marileusa Miranda Costa<br/><b>Código Identificador:</b>9B8E7D5D</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>9B8E7D5D</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="materia-card" id="cod-790F3B75" data-search="controladoria geral do município controladoria geral do município - portaria nº 0327/2026, de 23 de novembro de 2026 790f3b75 23/11/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 23/11/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>790F3B75</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">CONTROLADORIA GERAL DO MUNICÍPIO - PORTARIA Nº 0327/2026, DE 23 DE NOVEMBRO DE 2026</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>A PREFEITA MUNICIPAL DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e:</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> a Lei Municipal nº 1.432, de 04 de abril de 2024, que dispõe sobre a criação do Programa Municipal de Estágio no âmbito da Administração Pública Municipal, em consonância à Iniciativa 1 Milhão de Oportunidades (1MiO), e dá outras providências;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO </strong>o inciso I, da Cláusula 9ª – Da Rescisão, do Termo de Compromisso de Estágio celebrado;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> o Ofício nº 511/2026-SEGEPLAN, de 17 de novembro de 2026, da Secretaria Municipal de Gestão e Planejamento;</p>
+<p style="text-align: justify">RESOLVE:</p>
+<p style="text-align: justify">Art. 1º - Rescindir o Termo de Compromisso celebrado entre este Município, representado pela Secretaria Municipal de Gestão e Planejamento, e o Estagiário <strong>GABRIEL CABRAL DA SILVA</strong>.</p>
+<p style="text-align: justify">Art. 2º - Fica a Secretaria Municipal de Gestão e Planejamento incumbida de formalizar a entrega de certificado de realização do estágio, com indicação resumida das atividades desenvolvidas, do período cumprido e da avaliação do respectivo desempenho do discente.</p>
+<p style="text-align: justify">Art. 2º - Esta Portaria entra em vigor na data de sua publicação, retroagindo seus efeitos ao dia 13 de novembro de 2026,  revogadas as disposições em contrário.</p>
+<p style="text-align: justify">Gabinete da Prefeita, em 23 de novembro de 2026.</p>
+<p style="text-align: justify"><strong>ELIDA ELENA MOREIRA</strong></p>
+<p style="text-align: justify">Prefeita Municipal</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Marileusa Miranda Costa<br/><b>Código Identificador:</b>790F3B75</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>790F3B75</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="materia-card" id="cod-8C1684A2" data-search="controladoria geral do município controladoria geral do município - portaria nº 0328/2026, de 23 de novembro de 2026 8c1684a2 23/11/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 23/11/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>8C1684A2</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">CONTROLADORIA GERAL DO MUNICÍPIO - PORTARIA Nº 0328/2026, DE 23 DE NOVEMBRO DE 2026</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>A PREFEITA MUNICIPAL DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e:</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> a Lei Municipal nº 1.432, de 04 de abril de 2024, que dispõe sobre a criação do Programa Municipal de Estágio no âmbito da Administração Pública Municipal, em consonância à Iniciativa 1 Milhão de Oportunidades (1MiO), e dá outras providências;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO </strong>o inciso I, da Cláusula 9ª – Da Rescisão, do Termo de Compromisso de Estágio celebrado;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> o Ofício nº 511/2026-SEGEPLAN, de 17 de novembro de 2026, da Secretaria Municipal de Gestão e Planejamento;</p>
+<p style="text-align: justify">RESOLVE:</p>
+<p style="text-align: justify">Art. 1º - Rescindir o Termo de Compromisso celebrado entre este Município, representado pela Secretaria Municipal de Gestão e Planejamento, e o Estagiário <strong>GABRIEL GALVÃO DE OLIVEIRA</strong>.</p>
+<p style="text-align: justify">Art. 2º - Fica a Secretaria Municipal de Gestão e Planejamento incumbida de formalizar a entrega de certificado de realização do estágio, com indicação resumida das atividades desenvolvidas, do período cumprido e da avaliação do respectivo desempenho do discente.</p>
+<p style="text-align: justify">Art. 2º - Esta Portaria entra em vigor na data de sua publicação, retroagindo seus efeitos ao dia 13 de novembro de 2026,  revogadas as disposições em contrário.</p>
+<p style="text-align: justify">Gabinete da Prefeita, em 23 de novembro de 2026.</p>
+<p style="text-align: justify"><strong>ELIDA ELENA MOREIRA</strong></p>
+<p style="text-align: justify">Prefeita Municipal</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Marileusa Miranda Costa<br/><b>Código Identificador:</b>8C1684A2</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>8C1684A2</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="materia-card" id="cod-6D776860" data-search="controladoria geral do município controladoria geral do município - portaria nº 0329/2026, de 23 de novembro de 2026 6d776860 23/11/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 23/11/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>6D776860</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">CONTROLADORIA GERAL DO MUNICÍPIO - PORTARIA Nº 0329/2026, DE 23 DE NOVEMBRO DE 2026</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>A PREFEITA MUNICIPAL DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e:</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> a Lei Municipal nº 1.432, de 04 de abril de 2024, que dispõe sobre a criação do Programa Municipal de Estágio no âmbito da Administração Pública Municipal, em consonância à Iniciativa 1 Milhão de Oportunidades (1MiO), e dá outras providências;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO </strong>o inciso I, da Cláusula 9ª – Da Rescisão, do Termo de Compromisso de Estágio celebrado;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> o Ofício nº 511/2026-SEGEPLAN, de 17 de novembro de 2026, da Secretaria Municipal de Gestão e Planejamento;</p>
+<p style="text-align: justify">RESOLVE:</p>
+<p style="text-align: justify">Art. 1º - Rescindir o Termo de Compromisso celebrado entre este Município, representado pela Secretaria Municipal de Gestão e Planejamento, e o Estagiário <strong>GABRIEL GLADSON GOMES DA SILVA.</strong></p>
+<p style="text-align: justify">Art. 2º - Fica a Secretaria Municipal de Gestão e Planejamento incumbida de formalizar a entrega de certificado de realização do estágio, com indicação resumida das atividades desenvolvidas, do período cumprido e da avaliação do respectivo desempenho do discente.</p>
+<p style="text-align: justify">Art. 2º - Esta Portaria entra em vigor na data de sua publicação, retroagindo seus efeitos ao dia 13 de novembro de 2026,  revogadas as disposições em contrário.</p>
+<p style="text-align: justify">Gabinete da Prefeita, em 23 de novembro de 2026.</p>
+<p style="text-align: justify"><strong>ELIDA ELENA MOREIRA</strong></p>
+<p style="text-align: justify">Prefeita Municipal</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Marileusa Miranda Costa<br/><b>Código Identificador:</b>6D776860</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>6D776860</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="materia-card" id="cod-D1169F66" data-search="controladoria geral do município controladoria geral do município - portaria nº 0330/2026, de 23 de novembro de 2026 d1169f66 23/11/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 23/11/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>D1169F66</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">CONTROLADORIA GERAL DO MUNICÍPIO - PORTARIA Nº 0330/2026, DE 23 DE NOVEMBRO DE 2026</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>A PREFEITA MUNICIPAL DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e:</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> a Lei Municipal nº 1.432, de 04 de abril de 2024, que dispõe sobre a criação do Programa Municipal de Estágio no âmbito da Administração Pública Municipal, em consonância à Iniciativa 1 Milhão de Oportunidades (1MiO), e dá outras providências;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO </strong>o inciso I, da Cláusula 9ª – Da Rescisão, do Termo de Compromisso de Estágio celebrado;</p>
+<p style="text-align: justify"><strong>CONSIDERANDO</strong> o Ofício nº 511/2026-SEGEPLAN, de 17 de novembro de 2026, da Secretaria Municipal de Gestão e Planejamento;</p>
+<p style="text-align: justify">RESOLVE:</p>
+<p style="text-align: justify">Art. 1º - Rescindir o Termo de Compromisso celebrado entre este Município, representado pela Secretaria Municipal de Gestão e Planejamento, e a Estagiária <strong>ISABELLA GOMES DE BESSA</strong>.</p>
+<p style="text-align: justify">Art. 2º - Fica a Secretaria Municipal de Gestão e Planejamento incumbida de formalizar a entrega de certificado de realização do estágio, com indicação resumida das atividades desenvolvidas, do período cumprido e da avaliação do respectivo desempenho do discente.</p>
+<p style="text-align: justify">Art. 2º - Esta Portaria entra em vigor na data de sua publicação, retroagindo seus efeitos ao dia 13 de novembro de 2026,  revogadas as disposições em contrário.</p>
+<p style="text-align: justify">Gabinete da Prefeita, em 23 de novembro de 2026.</p>
+<p style="text-align: justify"><strong>ELIDA ELENA MOREIRA</strong></p>
+<p style="text-align: justify">Prefeita Municipal</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Marileusa Miranda Costa<br/><b>Código Identificador:</b>D1169F66</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>D1169F66</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            </div>
+        </div>
+        
+    </section>
+    
+    <section class="orgao-section" id="orgao-secretaria-de-infraestrutura-desenvolvimento-urbano" data-orgao-section="secretaria-de-infraestrutura-desenvolvimento-urbano">
+        <div class="orgao-banner">
+            <div>
+                <span class="orgao-label">Órgão / Secretaria</span>
+                <h2>SECRETARIA DE INFRAESTRUTURA DESENVOLVIMENTO URBANO</h2>
+            </div>
+            <span class="orgao-total">1 publicação</span>
+        </div>
+        
+        <div class="grupo-data">
+            <div class="data-header">
+                <span class="data-icone">&#128197;</span>
+                <h3>Data do Ato: 24/11/2026</h3>
+                <span class="data-count">1 matéria</span>
+            </div>
+            <div class="materias-lista">
+                
+            <article class="materia-card" id="cod-B6CA33C2" data-search="secretaria de infraestrutura desenvolvimento urbano secretaria de infraestrutura desenvolvimento urbano - portaria nº 104/2026/semidu - fiscal técnico de contrato- saldo mão de obra do convênio das 40 pontes b6ca33c2 24/11/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 24/11/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>B6CA33C2</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">SECRETARIA DE INFRAESTRUTURA DESENVOLVIMENTO URBANO - PORTARIA Nº 104/2026/SEMIDU - FISCAL TÉCNICO DE CONTRATO- SALDO MÃO DE OBRA DO CONVÊNIO DAS 40 PONTES</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>SECRETÁRIO MUNICIPAL DE INFRAESTRUTURA E DESENVOLVIMENTO URBANO DE CONCEIÇÃO DO ARAGUAIA-PA</strong>, no uso de suas atribuições legais, com base no que lhe compete à prática de atos de gestão administrativa, em conformidade com o disposto no inciso X, do § 1º, do art. 18, da Lei nº 14.133/2021</p>
+<p style="text-align: justify">RESOLVE:</p>
+<p style="text-align: justify">Art. 1º - Designar os servidores para, sem prejuízo de suas atribuições normais, exercerem os encargos de Gestor e de Fiscal de Contrato e seus respectivos Suplentes, como abaixo segue:</p>
+<table border="1" cellspacing="0" cellpadding="4"><tbody><tr><td colspan="1" rowspan="1"><p style="text-align: justify"><strong>PROCESSO</strong></p></td><td colspan="1" rowspan="1"><p style="text-align: justify"><strong>OBJETO</strong></p></td></tr><tr><td colspan="1" rowspan="1"><p style="text-align: center"><strong> </strong></p><p style="text-align: center"><strong>8084/2026</strong></p></td><td colspan="1" rowspan="1"><p style="text-align: justify"><strong>CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA FORNECIMENTO DE SERVIÇO DE MÃO DE OBRA PARA IMPLANTAÇÃO DE 40 PONTES EMCONCRETO ARMADO, TOTALIZANDO 420M NO MUNICÍPIO DE CONCEIÇÃO DO ARAGUAIA-PA, CONFORME SALDO DO CONVÊNIO Nº031/2021/SEINFRA/PMCA, PROJETO BÁSICO E DEMAIS ANEXOS, e Especificações Técnicas contidas no Projeto Básico e demais anexos no Edital.</strong></p></td></tr></tbody></table>
+<table border="1" cellspacing="0" cellpadding="4"><tbody><tr><td colspan="1" rowspan="1"><p style="text-align: center"><strong>GESTOR</strong></p></td><td colspan="3" rowspan="1"><p style="text-align: center"><strong>MATRICULA</strong></p></td></tr><tr><td colspan="1" rowspan="1"><p style="text-align: center"><strong>JOICIELLE SILVA</strong></p></td><td colspan="3" rowspan="1"><p style="text-align: center"><strong>MATRICULA</strong>: <strong>1229286</strong></p></td></tr><tr><td colspan="1" rowspan="1"><p style="text-align: center"><strong>FISCAL</strong></p></td><td colspan="1" rowspan="1"><p style="text-align: center"><strong>MATRICULA Nº</strong></p></td><td colspan="1" rowspan="1"><p style="text-align: center"><strong>SUBSTITUTO</strong></p></td><td colspan="1" rowspan="1"><p style="text-align: center"><strong>MATRICULA Nº</strong></p></td></tr><tr><td colspan="1" rowspan="1"><p style="text-align: center"><strong>THARCISIO BARBOSA CUNHA  </strong></p></td><td colspan="1" rowspan="1"><p style="text-align: center"><strong>1229369</strong></p></td><td colspan="1" rowspan="1"><p style="text-align: center"><strong>WELLINGTON DOS REIS MENDES</strong></p></td><td colspan="1" rowspan="1"><p style="text-align: center"><strong>1229176</strong></p></td></tr></tbody></table>
+<p style="text-align: justify">São atribuições do Gestor do Contrato, conforme Decreto nº 023/2024 de 01 de Março 2024.</p>
+<p style="text-align: justify">Art. 6 º - Caberá ao Gestor do Contrato e, nos seus afastamentos e seus impedimentos legais, ao seu substituto, em especial:</p>
+<p style="text-align: justify">I - Coordenar as atividades relacionadas à fiscalização técnica, administrativa e setorial, de que tratam os incisos II, III e IV do <em>caput</em> do art. 5º deste decreto;</p>
+<p style="text-align: justify">II - Acompanhar os registros, realizados pelos fiscais do contrato, das ocorrências relacionadas à execução do contrato e às medidas adotadas, e informar à autoridade superior aquelas que ultrapassarem a sua competência;</p>
+<p style="text-align: justify">III - Acompanhar a manutenção das condições de habilitação do contratado, para fins de empenho de despesa e de pagamento, e anotar os problemas que obstem o fluxo normal da liquidação e do pagamento da despesa no relatório de riscos eventuais;</p>
+<p style="text-align: justify">IV - Coordenar a rotina de acompanhamento e de fiscalização do contrato, cujo histórico de gerenciamento deverá conter todos os registros formais da execução, a exemplo da ordem de serviço, do registro de ocorrências, das alterações e das prorrogações contratuais, e elaborar relatório com vistas à verificação da necessidade de adequações do contrato para fins de atendimento da finalidade da Administração;</p>
+<p style="text-align: justify">V - Coordenar os atos preparatórios à instrução processual e ao envio da documentação pertinente ao Setor de Contratos para a formalização dos procedimentos de que trata o inciso I do <em>caput</em> do art. 5º deste decreto;</p>
+<p style="text-align: justify">VI - Elaborar o relatório final de que trata a alínea "d", do inciso VI, do § 3º, do art. 174, da Lei nº 14.133/2021, com as informações obtidas durante a execução do contrato;</p>
+<p style="text-align: justify">VII - Coordenar a atualização contínua do relatório de riscos durante a gestão do contrato, com apoio dos fiscais técnico, administrativo e setorial;</p>
+<p style="text-align: justify">VIII - Emitir documento comprobatório da avaliação realizada pelos fiscais técnico, administrativo e setorial quanto ao cumprimento de obrigações assumidas pelo contratado, com menção ao seu desempenho na execução contratual, baseado em indicadores objetivamente definidos e aferidos, e a eventuais penalidades aplicadas, a constarem do cadastro de atesto de cumprimento de obrigações conforme disposto em regulamento;</p>
+<p style="text-align: justify">IX - Realizar o recebimento definitivo do objeto do contrato referido no art. 10 deste decreto, mediante termo detalhado que comprove o atendimento das exigências contratuais;</p>
+<p style="text-align: justify">X - Tomar providências para a formalização de processo administrativo de responsabilização para fins de aplicação de sanções, a ser conduzido pela comissão de que trata o art. 158, da Lei nº 14.133/2021, ou pelo agente ou pelo setor competente para tal, conforme o caso.</p>
+<p style="text-align: justify">São atribuições do Fiscal Técnico, Decreto nº 023/2024 de 01 de março 2024.</p>
+<p style="text-align: justify">Art. 7º - Caberá ao Fiscal Técnico do contrato e, nos seus afastamentos e seus impedimentos legais, ao seu substituto, em especial:</p>
+<p style="text-align: justify">I - Prestar apoio técnico e operacional ao Gestor do Contrato com informações pertinentes às suas competências;</p>
+<p style="text-align: justify">II - Anotar no histórico de gerenciamento do contrato todas as ocorrências relacionadas à execução do contrato, com a descrição do que for necessário para a regularização das faltas ou dos defeitos observados;</p>
+<p style="text-align: justify">III - Emitir notificações para a correção de rotinas ou de qualquer inexatidão ou irregularidade constatada, com a definição de prazo para a correção;</p>
+<p style="text-align: justify">IV - Informar ao Gestor do Contrato, em tempo hábil, a situação que demandar decisão ou adoção de medidas que ultrapassem a sua competência, para que adote as medidas necessárias e saneadoras, se for o caso;</p>
+<p style="text-align: justify">V - Comunicar imediatamente ao Gestor do Contrato quaisquer ocorrências que possam inviabilizar a execução do contrato nas datas estabelecidas;</p>
+<p style="text-align: justify">VI - Fiscalizar a execução do contrato para que sejam cumpridas as condições estabelecidas, de modo a assegurar os melhores resultados para a Administração, com a conferência das notas fiscais e das documentações exigidas para o pagamento e, após o ateste, que certifica o recebimento provisório, encaminhar ao Gestor de Contrato para ratificação;</p>
+<p style="text-align: justify">VII - Comunicar ao Gestor do Contrato, em tempo hábil, o término do contrato sob sua responsabilidade, com vistas à renovação tempestiva ou à prorrogação contratual;</p>
+<p style="text-align: justify">VIII - Participar da atualização do relatório de riscos durante a fase de gestão do contrato, em conjunto com o Fiscal Administrativo e com o Setorial, conforme o disposto no inciso VII do <em>caput</em> do art. 7º deste decreto;</p>
+<p style="text-align: justify">IX - Auxiliar o Gestor do Contrato com as informações necessárias, na elaboração do documento comprobatório da avaliação realizada na fiscalização do cumprimento de obrigações assumidas pelo contratado, conforme o disposto no inciso VIII do <em>caput</em> do art. 7º deste decreto;</p>
+<p style="text-align: justify">X - Realizar o recebimento provisório do objeto do contrato referido no art. 10 deste decreto, mediante termo detalhado que comprove o cumprimento das exigências de caráter técnico.</p>
+<p style="text-align: justify">4º Esta Portaria entra em vigor na data de sua publicação.</p>
+<p style="text-align: center">Gabinete do Secretário, em 24 de novembro de 2026.</p>
+<p style="text-align: center">_____________________________________________</p>
+<p style="text-align: center"><strong>NEILTON DA SILVA ARAÚJO</strong></p>
+<p style="text-align: center">Secretário de Infraestrutura e Desenvolvimento Urbano</p>
+<p style="text-align: center">Portaria nº 361/2025</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Augusto Tabosa Cavalcanti<br/><b>Código Identificador:</b>B6CA33C2</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>B6CA33C2</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            </div>
+        </div>
+        
+    </section>
+    
+    <section class="orgao-section" id="orgao-secretaria-municipal-de-fazenda" data-orgao-section="secretaria-municipal-de-fazenda">
+        <div class="orgao-banner">
+            <div>
+                <span class="orgao-label">Órgão / Secretaria</span>
+                <h2>SECRETARIA MUNICIPAL DE FAZENDA</h2>
+            </div>
+            <span class="orgao-total">2 publicações</span>
+        </div>
+        
+        <div class="grupo-data">
+            <div class="data-header">
+                <span class="data-icone">&#128197;</span>
+                <h3>Data do Ato: 27/10/2026</h3>
+                <span class="data-count">2 matérias</span>
+            </div>
+            <div class="materias-lista">
+                
+            <article class="materia-card" id="cod-80BCABF0" data-search="secretaria municipal de fazenda secretaria municipal de fazenda - portaria n° 012/2026 de 27 de outubro de 2026 80bcabf0 27/10/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 27/10/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>80BCABF0</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">SECRETARIA MUNICIPAL DE FAZENDA - PORTARIA N° 012/2026 DE 27 DE OUTUBRO DE 2026</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>O SECRETÁRIO MUNICIPAL DE FAZENDA DE CONCEIÇÃO DO ARAGUAIA – PARÁ,</strong> usando de suas atribuições legais, e em conformidade com a Lei Municipal nº 1.467, de 30 de abril de 2025, publicada no Diário Oficial dos Municípios do Estado do Pará (Edição nº 3.741, do dia 02 de maio de 2025);</p>
+<p style="text-align: justify"><strong>RESOLVE:</strong></p>
+<p style="text-align: justify">Art. 1° - Conceder 03 (três) diárias, no valor total de R$ 2.040,00 (dois mil trezentos e quarenta reais), ao Sr. FAUSTO DIOGO DIAS BARROS, ocupante do cargo de Secretário Municipal de Fazenda, em razão de viagem ao município de Xinguara/PA, no período de 30 de outubro de 2026 a 01 de novembro de 2026, a serviço desta municipalidade.</p>
+<p style="text-align: justify">Parágrafo único. O referido servidor terá participação no curso <strong>"REFORMA TRIBUTÁRIA DO CONSUMO E DA RENDA”</strong> com objetivo de conectar a Emenda Constitucional nº 132/2023 e as Leis Complementares nº 214/2025 nº 227/2026 às situações concretas enfrentadas por prefeituras, e demais localidades contábeis.</p>
+<p style="text-align: justify">Art. 2° - As diárias concedidas correrão por conta de verba especificada constante no Orçamento/2026.</p>
+<p style="text-align: justify">Art. 3° - Ao final da referida viagem o servidor deverá apresentar a comprovação da viagem e relatório das atividades à Controladoria Geral do Município, no prazo de 05 (cinco) dias úteis após o retorno, sob pena de não receber mais novas diárias.</p>
+<p style="text-align: justify">Art. 4° - Esta Portaria entrará em vigor na data de sua publicação, revogadas as disposições em contrário.</p>
+<p style="text-align: justify">Gabinete do secretário, 27 de outubro de 2026.</p>
+<p style="text-align: center"><strong>FAUSTO DIOGO DIAS BARROS</strong></p>
+<p style="text-align: center">Secretário Municipal de Fazenda</p>
+<p style="text-align: center">Port. n° 010/2025</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Nayara Crystina Pereira Pires<br/><b>Código Identificador:</b>80BCABF0</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>80BCABF0</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="materia-card" id="cod-4A343D54" data-search="secretaria municipal de fazenda secretaria municipal de fazenda - portaria n° 013/2026 de 27 de outubro de 2026 4a343d54 27/10/2026">
+                <div class="materia-card-header">
+                    <div class="materia-meta-top">
+                        <span class="tag-data">Ato de 27/10/2026</span>
+                        <span class="tag-pub">Publicado em 25/11/2026 &bull; Ed. 4138</span>
+                        <span class="tag-cod">Cód.: <strong>4A343D54</strong></span>
+                    </div>
+                    <h4 class="materia-titulo">SECRETARIA MUNICIPAL DE FAZENDA - PORTARIA N° 013/2026 DE 27 DE OUTUBRO DE 2026</h4>
+                </div>
+                <div class="materia-conteudo">
+                    <p style="text-align: justify"><strong>O SECRETÁRIO MUNICIPAL DE FAZENDA DE CONCEIÇÃO DO ARAGUAIA – PARÁ,</strong> usando de suas atribuições legais, e em conformidade com a Lei Municipal nº 1.467, de 30 de abril de 2025, publicada no Diário Oficial dos Municípios do Estado do Pará (Edição nº 3.741, do dia 02 de maio de 2025);</p>
+<p style="text-align: justify"><strong>RESOLVE:</strong></p>
+<p style="text-align: justify">Art. 1° - Conceder suprimento de fundos no valor de R$ 300,00 (trezentos reais) ao Sr. FAUSTO DIOGO DIAS BARROS, ocupante do cargo de Secretário Municipal de Fazenda, em razão de viagem ao município de Xinguara/PA, no período de 30 de outubro de 2026 a 01 de novembro de 2026, a serviço desta municipalidade.</p>
+<p style="text-align: justify">Parágrafo único. O deslocamento terá como destino o município de Xinguara/PA, com saída prevista para o dia 30 de outubro de 2026 e retorno no dia 01 de novembro de 2026. A referida viagem tem como objetivo a participação no curso "REFORMA TRIBUTÁRIA DO CONSUMO E DA RENDA” com objetivo de conectar a Emenda Constitucional nº 132/2023 e as Leis Complementares nº 214/2025 nº 227/2026 às situações concretas enfrentadas por prefeituras, e demais localidades contábeis.</p>
+<p style="text-align: justify">Art. 2° - O valor concedido correrá por conta de verba especificada constante no Orçamento/2026.</p>
+<p style="text-align: justify">Art. 3° - Ao final da referida viagem o servidor deverá apresentar a comprovação da viagem e relatório das atividades à Controladoria Geral do Município, no prazo de 05 (cinco) dias úteis após o retorno, sob pena de não receber mais novas diárias.</p>
+<p style="text-align: justify">Art. 4° - Esta Portaria entrará em vigor na data de sua publicação, revogadas as disposições em contrário.</p>
+<p style="text-align: justify">Gabinete do secretário, 27 de outubro de 2026.</p>
+<p style="text-align: center"><strong>FAUSTO DIOGO DIAS BARROS</strong></p>
+<p style="text-align: center">Secretário Municipal de Fazenda</p>
+<p style="text-align: center">Port. n° 010/2025</p>
+<div align="right"><br/><b>Publicado por:</b><br/>Nayara Crystina Pereira Pires<br/><b>Código Identificador:</b>4A343D54</div>        
+                </div>
+                <div class="materia-rodape">
+                    <div class="verif-info">
+                        <span><strong>Fonte:</strong> Diário Oficial dos Municípios do Estado do Pará (Edição nº 4138)</span>
+                        <span><strong>Autenticidade:</strong> <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a> &bull; Cód. <code>4A343D54</code></span>
+                    </div>
+                </div>
+            </article>
+            
+            </div>
+        </div>
+        
+    </section>
+    
+    </main>
+
+    <footer class="rodape-destaque">
+        <div class="rodape-destaque-badge">Fiscalização &amp; Transparência Pública</div>
+        <p class="rodape-destaque-texto">MÁRCIO - O FISCAL DO POVO</p>
+        <p class="rodape-destaque-sub">Compilação documental — Diário Oficial dos Municípios do Estado do Pará (Edição 4138)</p>
+    </footer>
+
+    <script>
+        let currentOrgao = 'all';
+
+        function filterOrgao(slug, el) {
+            currentOrgao = slug;
+            document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+            if (el) el.classList.add('active');
+            applyFilters();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            currentOrgao = 'all';
+            document.querySelectorAll('.nav-pill').forEach((p, i) => {
+                p.classList.toggle('active', i === 0);
+            });
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            let totalVisible = 0;
+
+            document.querySelectorAll('.orgao-section').forEach(section => {
+                const secSlug = section.getAttribute('data-orgao-section');
+                const matchesOrgao = (currentOrgao === 'all' || currentOrgao === secSlug);
+                
+                if (!matchesOrgao) {
+                    section.style.display = 'none';
+                    return;
+                }
+
+                let sectionVisibleCards = 0;
+                section.querySelectorAll('.grupo-data').forEach(grupo => {
+                    let grupoVisibleCards = 0;
+                    grupo.querySelectorAll('.materia-card').forEach(card => {
+                        const text = card.innerText.toLowerCase();
+                        const matchText = !query || text.includes(query);
+                        card.style.display = matchText ? 'block' : 'none';
+                        if (matchText) {
+                            grupoVisibleCards++;
+                            sectionVisibleCards++;
+                            totalVisible++;
+                        }
+                    });
+                    grupo.style.display = grupoVisibleCards > 0 ? 'block' : 'none';
+                });
+
+                section.style.display = sectionVisibleCards > 0 ? 'block' : 'none';
+            });
+
+            document.getElementById('emptyState').style.display = totalVisible === 0 ? 'block' : 'none';
+        }
+
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+        document.querySelectorAll('.nav-pill[data-orgao]').forEach(pill => {
+            pill.addEventListener('click', function(e) {
+                e.preventDefault();
+                const slug = this.getAttribute('data-orgao');
+                filterOrgao(slug, this);
+                const target = document.getElementById('orgao-' + slug);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
