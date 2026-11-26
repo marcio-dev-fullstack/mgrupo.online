@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicações Oficiais - Prefeitura Municipal de Conceição do Araguaia</title>
+    <style>
+        :root {
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --primary: #0f172a;
+            --accent: #1d4ed8;
+            --accent-light: #eff6ff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header.topo {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header.topo .uf {
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        header.topo h1 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        header.topo p.subtitulo {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 960px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
+        .controles {
+            background: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .filtros-orgao {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .btn-filtro {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-filtro:hover {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-filtro.ativo {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .busca-box {
+            flex: 1;
+            min-width: 220px;
+            max-width: 320px;
+        }
+
+        .busca-box input {
+            width: 100%;
+            padding: 0.55rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .busca-box input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+        }
+
+        .secao-orgao {
+            margin-bottom: 3rem;
+        }
+
+        .titulo-orgao {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 0.9rem 1.25rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-qtd {
+            background: rgba(255,255,255,0.18);
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .lista-materias {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            background: #e2e8f0;
+            padding: 1.25rem;
+            border-radius: 0 0 8px 8px;
+            border: 1px solid var(--border);
+            border-top: none;
+        }
+
+        .card-materia {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.75rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .meta-topo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.85rem;
+            margin-bottom: 1.1rem;
+            border-bottom: 2px solid #f1f5f9;
+            font-size: 0.85rem;
+        }
+
+        .tag-data {
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 700;
+            padding: 0.25rem 0.7rem;
+            border-radius: 4px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .tag-codigo {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.65rem;
+            border-radius: 4px;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .conteudo-oficial {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.02rem;
+            color: #111827;
+        }
+
+        .conteudo-oficial h5 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            border-left: 4px solid var(--accent);
+            padding-left: 0.75rem;
+        }
+
+        .conteudo-oficial p {
+            margin-bottom: 0.75rem;
+            text-align: justify;
+        }
+
+        .assinatura-publicador {
+            margin-top: 1.25rem;
+            text-align: right;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .rodape-verificacao {
+            margin-top: 1.25rem;
+            padding-top: 0.9rem;
+            border-top: 1px dashed var(--border);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .rodape-verificacao a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .rodape-verificacao a:hover {
+            text-decoration: underline;
+        }
+
+        footer.rodape-principal {
+            background: #090d16;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 3rem;
+            border-top: 4px solid #f59e0b;
+        }
+
+        .destaque-marcio {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            color: #fbbf24;
+            text-transform: uppercase;
+            background: rgba(251, 191, 36, 0.1);
+            border: 2px solid #f59e0b;
+            padding: 0.5rem 1.75rem;
+            border-radius: 8px;
+            text-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+        }
+
+        .sem-resultados {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            display: none;
+        }
+
+        @media (max-width: 640px) {
+            .card-materia {
+                padding: 1.2rem;
+            }
+            .destaque-marcio {
+                font-size: 1.5rem;
+                padding: 0.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="topo">
+    <p class="uf">Estado do Pará • Diário Oficial dos Municípios (Edição 4139)</p>
+    <h1>Prefeitura Municipal de Conceição do Araguaia</h1>
+    <p class="subtitulo">Acervo de Atos Oficiais organizados por Órgão Emissor e Ordem Cronológica</p>
+</header>
+
+<main class="container">
+    <section class="controles">
+        <div class="filtros-orgao">
+            <button class="btn-filtro ativo" onclick="filtrarOrgao('todos', this)">Todos os Órgãos (6)</button>
+            <button class="btn-filtro" onclick="filtrarOrgao('controladoria', this)">Controladoria Geral (2)</button>
+            <button class="btn-filtro" onclick="filtrarOrgao('educacao', this)">Secretaria de Educação (4)</button>
+        </div>
+        <div class="busca-box">
+            <input type="text" id="campoBusca" placeholder="Buscar por nome, portaria ou código..." onkeyup="aplicarFiltros()">
+        </div>
+    </section>
+
+    <div id="avisoVazio" class="sem-resultados">
+        Nenhuma publicação encontrada com os critérios informados.
+    </div>
+
+    <!-- ÓRGÃO 1: CONTROLADORIA GERAL DO MUNICÍPIO -->
+    <section class="secao-orgao" data-orgao="controladoria">
+        <div class="titulo-orgao">
+            <span>🏛️ Controladoria Geral do Município</span>
+            <span class="badge-qtd">2 matérias</span>
+        </div>
+        <div class="lista-materias">
+
+            <!-- Portaria 0355/2026 - 25/11/2026 -->
+            <article class="card-materia">
+                <div class="meta-topo">
+                    <span class="tag-data">📅 Ato: 25/11/2026 • Publicação: 26/11/2026</span>
+                    <span class="tag-codigo">Código: FAA4921E</span>
+                </div>
+                <div class="conteudo-oficial">
+                    <h5>CONTROLADORIA GERAL DO MUNICÍPIO - PORTARIA Nº 0355/2026, DE 25 DE NOVEMBRO DE 2026</h5>
+                    <p><strong>A PREFEITA MUNICIPAL DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais;</p>
+                    <p>RESOLVE:</p>
+                    <p>Art. 1º - Exonerar, do cargo de provimento comissionado de Assessora de Redes Sociais, com lotação junto ao Gabinete da Prefeita, a sra. <strong>FERNANDA FERNANDES VALENTE</strong>.</p>
+                    <p>Art. 2º - Esta Portaria entra em vigor na presente data, retroagindo seus efeitos ao dia 30 de outubro de 2026, revogadas as disposições em contrário.</p>
+                    <p>Gabinete da Prefeita, em 25 de novembro de 2026.</p>
+                    <p><strong>ELIDA ELENA MOREIRA</strong><br>Prefeita Municipal</p>
+                    <div class="assinatura-publicador">
+                        <strong>Publicado por:</strong> Marileusa Miranda Costa • <strong>Código Identificador:</strong> FAA4921E
+                    </div>
+                </div>
+                <div class="rodape-verificacao">
+                    <span>Diário Oficial dos Municípios do Estado do Pará • Edição 4139</span>
+                    <span>Conferência: <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a></span>
+                </div>
+            </article>
+
+            <!-- Portaria 0356/2026 - 25/11/2026 -->
+            <article class="card-materia">
+                <div class="meta-topo">
+                    <span class="tag-data">📅 Ato: 25/11/2026 • Publicação: 26/11/2026</span>
+                    <span class="tag-codigo">Código: CFE1F8D5</span>
+                </div>
+                <div class="conteudo-oficial">
+                    <h5>CONTROLADORIA GERAL DO MUNICÍPIO - PORTARIA Nº 0356/2026, DE 25 DE NOVEMBRO DE 2026</h5>
+                    <p><strong>A PREFEITA MUNICIPAL DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais;</p>
+                    <p>RESOLVE:</p>
+                    <p>Art. 1º - Exonerar, do cargo de provimento comissionado de Assessora de Imprensa, com lotação junto ao Gabinete da Prefeita, a sra. <strong>LEIDILARRAIANNY RODRIGUES SOBRINHO</strong>.</p>
+                    <p>Art. 2º - Esta Portaria entra em vigor na presente data, retroagindo seus efeitos ao dia 30 de outubro de 2026, revogadas as disposições em contrário.</p>
+                    <p>Gabinete da Prefeita, em 25 de novembro de 2026.</p>
+                    <p><strong>ELIDA ELENA MOREIRA</strong><br>Prefeita Municipal</p>
+                    <div class="assinatura-publicador">
+                        <strong>Publicado por:</strong> Marileusa Miranda Costa • <strong>Código Identificador:</strong> CFE1F8D5
+                    </div>
+                </div>
+                <div class="rodape-verificacao">
+                    <span>Diário Oficial dos Municípios do Estado do Pará • Edição 4139</span>
+                    <span>Conferência: <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a></span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ÓRGÃO 2: SECRETARIA MUNICIPAL DE EDUCAÇÃO -->
+    <section class="secao-orgao" data-orgao="educacao">
+        <div class="titulo-orgao">
+            <span>📚 Secretaria Municipal de Educação</span>
+            <span class="badge-qtd">4 matérias</span>
+        </div>
+        <div class="lista-materias">
+
+            <!-- Portaria 286/2026 - 24/11/2026 -->
+            <article class="card-materia">
+                <div class="meta-topo">
+                    <span class="tag-data">📅 Ato: 24/11/2026 • Publicação: 26/11/2026</span>
+                    <span class="tag-codigo">Código: 90161FEB</span>
+                </div>
+                <div class="conteudo-oficial">
+                    <h5>SECRETARIA MUNICIPAL DE EDUCAÇÃO - PORTARIA Nº 286/2026 (Em, 24/11/2026)</h5>
+                    <p><strong>O SECRETÁRIO MUNICIPAL DE EDUCAÇÃO E CULTURA DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e em conformidade com a Lei Municipal n.º 1.467, de 30 de abril de 2025, publicada no Diário Oficial dos Municípios do estado do Pará (edição n.º 3.741, do dia 02 de maio de 2025);</p>
+                    <p>RESOLVE:</p>
+                    <p>Art. 1º - Conceder a liberação de 02 (duas) diárias no valor de <strong>R$ 800,00 (oitocentos reais)</strong>, em favor do servidor municipal, <strong>MAGNO VIANA DA SILVA</strong>, Matricula <strong>n.º 1231375 e CPF n.º 003.921.472-97</strong>, com o cargo de <strong>MOTORISTA</strong>, para que o mesmo possa se deslocar para o município de <strong>Palmas - TO</strong>, nos dias <strong>24/11/2026 e 28/11/2026</strong>, com o objetivo de levar a equipe do jurídico em Palmas, que participarão de formação em Curitiba.</p>
+                    <p>Art. 2º - Determinar o prazo de 5 (cinco) dias, após a utilização, para a prestação de contas, devendo o saldo remanescente ser recolhido á tesouraria.</p>
+                    <p>Art. 3º - Esta Portaria entrará em vigor na data de sua publicação, revogadas as disposições em contrario.</p>
+                    <p>Gabinete do Secretário Municipal de Educação e Cultura<br><strong>Conceição do Araguaia – Pará, 24 de novembro de 2026.</strong></p>
+                    <p><strong>FHABIO ADOLFO NUNES</strong><br>Secretário Municipal de Educação e Cultura • Portaria: 007/2025</p>
+                    <div class="assinatura-publicador">
+                        <strong>Publicado por:</strong> Mislene Pereira Maciel Saraiva • <strong>Código Identificador:</strong> 90161FEB
+                    </div>
+                </div>
+                <div class="rodape-verificacao">
+                    <span>Diário Oficial dos Municípios do Estado do Pará • Edição 4139</span>
+                    <span>Conferência: <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a></span>
+                </div>
+            </article>
+
+            <!-- Portaria 287/2026 - 25/11/2026 -->
+            <article class="card-materia">
+                <div class="meta-topo">
+                    <span class="tag-data">📅 Ato: 25/11/2026 • Publicação: 26/11/2026</span>
+                    <span class="tag-codigo">Código: 252878C4</span>
+                </div>
+                <div class="conteudo-oficial">
+                    <h5>SECRETARIA MUNICIPAL DE EDUCAÇÃO - PORTARIA Nº 287/2026 (Em, 25/11/2026)</h5>
+                    <p><strong>O SECRETÁRIO MUNICIPAL DE EDUCAÇÃO E CULTURA DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e em conformidade com a Lei Municipal n.º 1.467, de 30 de abril de 2025, publicada no Diário Oficial dos Municípios do estado do Pará (edição n.º 3.741, do dia 02 de maio de 2025);</p>
+                    <p>RESOLVE:</p>
+                    <p>Art. 1º - Conceder a liberação de 01 (uma) diárias no valor de <strong>R$ 260,00 (duzentos e sessenta reais)</strong>, em favor da servidora municipal, <strong>IOLANDA VERA DE CARVALHO VALADARES</strong>, Matricula <strong>n.º 0001706 e CPF n.º 288.935.492-04</strong>, com o cargo de <strong>PROFESSOR PI PM</strong>, para que a mesma possa se deslocar para o Cidade de <strong>Redenção -PA</strong>, no dia <strong>27/11/2026</strong>, com o objetivo de <strong>acompanhar os alunos da rede municipal de educação da Escola Municipal de Educação Infantil e Ensino Fundamental Luzia Moura, para participar do Programa Cinema na Escola e visita ao Parque Ecológico</strong>.</p>
+                    <p>Art. 2º - Determinar o prazo de 5 (cinco) dias, após a utilização, para a prestação de contas, devendo o saldo remanescente ser recolhido á tesouraria.</p>
+                    <p>Art. 3º - Esta Portaria entrará em vigor na data de sua publicação, revogadas as disposições em contrario.</p>
+                    <p>Gabinete do Secretário Municipal de Educação e Cultura<br><strong>Conceição do Araguaia – Pará, 25 de novembro de 2026.</strong></p>
+                    <p><strong>FHABIO ADOLFO NUNES</strong><br>Secretário Municipal de Educação e Cultura • Portaria: 007/2025</p>
+                    <div class="assinatura-publicador">
+                        <strong>Publicado por:</strong> Mislene Pereira Maciel Saraiva • <strong>Código Identificador:</strong> 252878C4
+                    </div>
+                </div>
+                <div class="rodape-verificacao">
+                    <span>Diário Oficial dos Municípios do Estado do Pará • Edição 4139</span>
+                    <span>Conferência: <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a></span>
+                </div>
+            </article>
+
+            <!-- Portaria 288/2026 - 25/11/2026 -->
+            <article class="card-materia">
+                <div class="meta-topo">
+                    <span class="tag-data">📅 Ato: 25/11/2026 • Publicação: 26/11/2026</span>
+                    <span class="tag-codigo">Código: 7AF9617A</span>
+                </div>
+                <div class="conteudo-oficial">
+                    <h5>SECRETARIA MUNICIPAL DE EDUCAÇÃO - PORTARIA Nº 288/2026 (Em, 25/11/2026)</h5>
+                    <p><strong>O SECRETÁRIO MUNICIPAL DE EDUCAÇÃO E CULTURA DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e em conformidade com a Lei Municipal n.º 1.467, de 30 de abril de 2025, publicada no Diário Oficial dos Municípios do estado do Pará (edição n.º 3.741, do dia 02 de maio de 2025);</p>
+                    <p>RESOLVE:</p>
+                    <p>Art. 1º - Conceder a liberação de 01 (uma) diárias no valor de <strong>R$ 260,00 (duzentos e sessenta reais)</strong>, em favor da servidora municipal, <strong>ROBERTA ALVES DA SILVA</strong>, Matricula <strong>n.º 1231471 e CPF n.º 722.399.302-25</strong>, com o cargo de <strong>PROFESSOR ED/T</strong>, para que a mesma possa se deslocar para o Cidade de <strong>Redenção -PA</strong>, no dia <strong>27/11/2026</strong>, com o objetivo de <strong>acompanhar os alunos da rede municipal de educação da Escola Municipal de Educação Infantil e Ensino Fundamental Luzia Moura, para participar do Programa Cinema na Escola e visita ao Parque Ecológico</strong>.</p>
+                    <p>Art. 2º - Determinar o prazo de 5 (cinco) dias, após a utilização, para a prestação de contas, devendo o saldo remanescente ser recolhido á tesouraria.</p>
+                    <p>Art. 3º - Esta Portaria entrará em vigor na data de sua publicação, revogadas as disposições em contrario.</p>
+                    <p>Gabinete do Secretário Municipal de Educação e Cultura<br><strong>Conceição do Araguaia – Pará, 25 de novembro de 2026.</strong></p>
+                    <p><strong>FHABIO ADOLFO NUNES</strong><br>Secretário Municipal de Educação e Cultura • Portaria: 007/2025</p>
+                    <div class="assinatura-publicador">
+                        <strong>Publicado por:</strong> Mislene Pereira Maciel Saraiva • <strong>Código Identificador:</strong> 7AF9617A
+                    </div>
+                </div>
+                <div class="rodape-verificacao">
+                    <span>Diário Oficial dos Municípios do Estado do Pará • Edição 4139</span>
+                    <span>Conferência: <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a></span>
+                </div>
+            </article>
+
+            <!-- Portaria 289/2026 - 25/11/2026 -->
+            <article class="card-materia">
+                <div class="meta-topo">
+                    <span class="tag-data">📅 Ato: 25/11/2026 • Publicação: 26/11/2026</span>
+                    <span class="tag-codigo">Código: EB5FD670</span>
+                </div>
+                <div class="conteudo-oficial">
+                    <h5>SECRETARIA MUNICIPAL DE EDUCAÇÃO - PORTARIA Nº 289/2026 (Em, 25/11/2026)</h5>
+                    <p><strong>O SECRETÁRIO MUNICIPAL DE EDUCAÇÃO E CULTURA DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e em conformidade com a Lei Municipal n.º 1.467, de 30 de abril de 2025, publicada no Diário Oficial dos Municípios do estado do Pará (edição n.º 3.741, do dia 02 de maio de 2025);</p>
+                    <p>RESOLVE:</p>
+                    <p>Art. 1º - Conceder a liberação de 01 (uma) diárias no valor de <strong>R$ 260,00 (duzentos e sessenta reais)</strong>, em favor da servidora municipal, <strong>MARIA SALETE DANTAS DA SILVA</strong>, Matricula <strong>n.º 0001259 e CPF n.º 244.143.602-34</strong>, com o cargo de <strong>PROFESSOR P II -PM</strong>, para que a mesma possa se deslocar para o Cidade de <strong>Redenção -PA</strong>, no dia <strong>27/11/2026</strong>, com o objetivo de <strong>acompanhar os alunos da rede municipal de educação da Escola Municipal de Educação Infantil e Ensino Fundamental Luzia Moura, para participar do Programa Cinema na Escola e visita ao Parque Ecológico</strong>.</p>
+                    <p>Art. 2º - Determinar o prazo de 5 (cinco) dias, após a utilização, para a prestação de contas, devendo o saldo remanescente ser recolhido á tesouraria.</p>
+                    <p>Art. 3º - Esta Portaria entrará em vigor na data de sua publicação, revogadas as disposições em contrario.</p>
+                    <p>Gabinete do Secretário Municipal de Educação e Cultura<br><strong>Conceição do Araguaia – Pará, 25 de novembro de 2026.</strong></p>
+                    <p><strong>FHABIO ADOLFO NUNES</strong><br>Secretário Municipal de Educação e Cultura • Portaria: 007/2025</p>
+                    <div class="assinatura-publicador">
+                        <strong>Publicado por:</strong> Mislene Pereira Maciel Saraiva • <strong>Código Identificador:</strong> EB5FD670
+                    </div>
+                </div>
+                <div class="rodape-verificacao">
+                    <span>Diário Oficial dos Municípios do Estado do Pará • Edição 4139</span>
+                    <span>Conferência: <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a></span>
+                </div>
+            </article>
+
+            <!-- Portaria 290/2026 - 25/11/2026 -->
+            <article class="card-materia">
+                <div class="meta-topo">
+                    <span class="tag-data">📅 Ato: 25/11/2026 • Publicação: 26/11/2026</span>
+                    <span class="tag-codigo">Código: B6EA7A4A</span>
+                </div>
+                <div class="conteudo-oficial">
+                    <h5>SECRETARIA MUNICIPAL DE EDUCAÇÃO - PORTARIA Nº 290/2026 (Em, 25/11/2026)</h5>
+                    <p><strong>O SECRETÁRIO MUNICIPAL DE EDUCAÇÃO E CULTURA DE CONCEIÇÃO DO ARAGUAIA – PARÁ</strong>, usando de suas atribuições legais, e em conformidade com a Lei Municipal n.º 1.467, de 30 de abril de 2025, publicada no Diário Oficial dos Municípios do estado do Pará (edição n.º 3.741, do dia 02 de maio de 2025);</p>
+                    <p>RESOLVE:</p>
+                    <p>Art. 1º - Conceder a liberação de 01 (uma) diárias no valor de <strong>R$ 260,00 (duzentos e sessenta reais)</strong>, em favor do servidor municipal, <strong>ANTONIO RODRIGUES</strong>, Matricula <strong>n.º 1232222 e CPF n.º 545.682.503-15</strong>, com o cargo de <strong>MOTORISTA-ED/T</strong>, para que o mesmo possa se deslocar para o Cidade de <strong>Redenção -PA</strong>, no dia <strong>27/11/2026</strong>, com o objetivo de levar a <strong>equipe pedagógica e os alunos da rede municipal de educação da Escola Municipal de Educação Infantil e Ensino Fundamental Luzia Moura, para participar do Programa Cinema na Escola e visita ao Parque Ecológico</strong>.</p>
+                    <p>Art. 2º - Determinar o prazo de 5 (cinco) dias, após a utilização, para a prestação de contas, devendo o saldo remanescente ser recolhido á tesouraria.</p>
+                    <p>Art. 3º - Esta Portaria entrará em vigor na data de sua publicação, revogadas as disposições em contrario.</p>
+                    <p>Gabinete do Secretário Municipal de Educação e Cultura<br><strong>Conceição do Araguaia – Pará, 25 de novembro de 2026.</strong></p>
+                    <p><strong>FHABIO ADOLFO NUNES</strong><br>Secretário Municipal de Educação e Cultura • Portaria: 007/2025</p>
+                    <div class="assinatura-publicador">
+                        <strong>Publicado por:</strong> Mislene Pereira Maciel Saraiva • <strong>Código Identificador:</strong> B6EA7A4A
+                    </div>
+                </div>
+                <div class="rodape-verificacao">
+                    <span>Diário Oficial dos Municípios do Estado do Pará • Edição 4139</span>
+                    <span>Conferência: <a href="https://www.diariomunicipal.com.br/famep/" target="_blank" rel="noopener">diariomunicipal.com.br/famep</a></span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+</main>
+
+<footer class="rodape-principal">
+    <p>Compilação de Publicações Oficiais • Prefeitura Municipal de Conceição do Araguaia - PA</p>
+    <div class="destaque-marcio">MARCIO DOIDO</div>
+</footer>
+
+<script>
+    let orgaoSelecionado = 'todos';
+
+    function filtrarOrgao(orgao, botao) {
+        orgaoSelecionado = orgao;
+        document.querySelectorAll('.btn-filtro').forEach(btn => btn.classList.remove('ativo'));
+        botao.classList.add('ativo');
+        aplicarFiltros();
+    }
+
+    function aplicarFiltros() {
+        const termo = document.getElementById('campoBusca').value.toLowerCase().trim();
+        const secoes = document.querySelectorAll('.secao-orgao');
+        let totalVisiveis = 0;
+
+        secoes.forEach(secao => {
+            const orgaoSecao = secao.getAttribute('data-orgao');
+            const correspondeOrgao = (orgaoSelecionado === 'todos' || orgaoSelecionado === orgaoSecao);
+
+            if (!correspondeOrgao) {
+                secao.style.display = 'none';
+                return;
+            }
+
+            const cards = secao.querySelectorAll('.card-materia');
+            let cardsVisiveisNaSecao = 0;
+
+            cards.forEach(card => {
+                const texto = card.innerText.toLowerCase();
+                if (texto.includes(termo)) {
+                    card.style.display = 'block';
+                    cardsVisiveisNaSecao++;
+                    totalVisiveis++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            secao.style.display = cardsVisiveisNaSecao > 0 ? 'block' : 'none';
+        });
+
+        document.getElementById('avisoVazio').style.display = totalVisiveis === 0 ? 'block' : 'none';
+    }
+</script>
+
+</body>
+</html>
